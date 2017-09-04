@@ -1,0 +1,272 @@
+[{
+    "n" : "Vendor Smart Home AirCon Device",
+    "rt" : ["oic.wk.res"],
+    "if" : ["oic.if.ll", "oic.if.baseline"],
+    "links" : [{
+        "href" : "/oic/sec/doxm",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.doxm"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/pstat",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.pstat"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/acl2",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.acl2"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/cred",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.cred"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/crl",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.crl"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/csr",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.csr"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/roles",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.roles"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/d",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.d", "oic.d.airconditioner", "x.com.vendor.device.eco.power"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/p",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.p"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/introspection",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.introspection"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/rd",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.rd"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/BinarySwitchResURI",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.switch.binary"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:50162",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:53232",
+            "pri" : 1
+          }, {
+            "ep" : "coap+tcp://[fe80::36bc:ba82:adf0:c83a]:40247",
+            "pri" : 1
+          }, {
+            "ep" : "coaps+tcp://[fe80::36bc:ba82:adf0:c83a]:41304",
+            "pri" : 1
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -8,7 +8,7 @@
   "consumes" : ["application/json"],
   "produces" : ["application/json"],
   "paths" : {
-    "/my_implementation_value" : {
+    "/BinarySwitchResURI" : {
       "get" : {
         "parameters" : [{
             "$ref" : "#/parameters/interface"

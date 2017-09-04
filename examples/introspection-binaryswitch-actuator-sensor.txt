@@ -8,7 +8,7 @@
   "consumes" : ["application/json"],
   "produces" : ["application/json"],
   "paths" : {
-    "/my_sensor_implementation_value" : {
+    "/BinarySwitchResURI-Sensor" : {
       "get" : {
         "parameters" : [{
             "$ref" : "#/parameters/interface_s"
@@ -24,7 +24,7 @@
         }
       }
     },
-    "/my_actuator_implementation_value" : {
+    "/BinarySwitchResURI-Acutator" : {
       "get" : {
         "parameters" : [{
             "$ref" : "#/parameters/interface_a"
