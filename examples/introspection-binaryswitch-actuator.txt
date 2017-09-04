@@ -61,7 +61,7 @@
         "value" : {
           "type" : "boolean"
         },
-        "id" : {
+        "rt" : {
           "type" : "string",
           "default" : "oic.r.switch.binary",
           "readOnly" : true

@@ -1,33 +1,17 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "title" : "Binary Switch - actuator and sensor",
+    "title" : "Binary Switch - 2 actuators",
     "version" : "v1.1.0-20160519"
   },
   "schemes" : ["http"],
   "consumes" : ["application/json"],
   "produces" : ["application/json"],
   "paths" : {
-    "/BinarySwitchResURI-Sensor" : {
+    "/BinarySwitchResURI" : {
       "get" : {
         "parameters" : [{
-            "$ref" : "#/parameters/interface_s"
-          }
-        ],
-        "responses" : {
-          "200" : {
-            "description" : "",
-            "schema" : {
-              "$ref" : "#/definitions/BinarySwitch"
-            }
-          }
-        }
-      }
-    },
-    "/BinarySwitchResURI-Acutator" : {
-      "get" : {
-        "parameters" : [{
-            "$ref" : "#/parameters/interface_a"
+            "$ref" : "#/parameters/interface"
           }
         ],
         "responses" : {
@@ -42,14 +26,42 @@
       "post" : {
         "description" : "",
         "parameters" : [{
-            "$ref" : "#/parameters/interface_a"
+            "$ref" : "#/parameters/interface"
           }, {
-            "name" : "body",
-            "in" : "body",
-            "required" : true,
+            "$ref" : "#/parameters/postbody"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "description" : "",
             "schema" : {
               "$ref" : "#/definitions/BinarySwitch"
             }
+          }
+        }
+      }
+    },
+    "/2ndBinarySwitchResURI" : {
+      "get" : {
+        "parameters" : [{
+            "$ref" : "#/parameters/interface"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "$ref" : "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "post" : {
+        "description" : "",
+        "parameters" : [{
+            "$ref" : "#/parameters/interface"
+          }, {
+            "$ref" : "#/parameters/postbody"
           }
         ],
         "responses" : {
@@ -64,18 +76,20 @@
     }
   },
   "parameters" : {
-    "interface_a" : {
+    "interface" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.a", "oic.if.baseline"]
     },
-    "interface_s" : {
-      "in" : "query",
-      "name" : "if",
-      "type" : "string",
-      "enum" : ["oic.if.s", "oic.if.baseline"]
-    }
+    "postbody" : {
+            "name" : "body",
+            "in" : "body",
+            "required" : true,
+            "schema" : {
+              "$ref" : "#/definitions/BinarySwitch"
+            }
+          }
   },
   "definitions" : {
     "BinarySwitch" : {
@@ -83,15 +97,20 @@
         "value" : {
           "type" : "boolean"
         },
-        "n" : {
-          "type" : "string",
-          "maxLength" : 64,
-          "readOnly" : false
-        },
         "rt" : {
           "type" : "string",
           "default" : "oic.r.switch.binary",
           "readOnly" : true
+        },
+        "id" : {
+          "type" : "string",
+          "maxLength" : 64,
+          "readOnly" : true
+        },
+        "n" : {
+          "type" : "string",
+          "maxLength" : 64,
+          "readOnly" : false
         }
       },
       "required" : [
