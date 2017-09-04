@@ -1,17 +1,33 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "title" : "Binary Switch - actuator",
+    "title" : "Binary Switch - actuator and sensor",
     "version" : "v1.1.0-20160519"
   },
   "schemes" : ["http"],
   "consumes" : ["application/json"],
   "produces" : ["application/json"],
   "paths" : {
-    "/my_implementation_value" : {
+    "/my_sensor_implementation_value" : {
       "get" : {
         "parameters" : [{
-            "$ref" : "#/parameters/interface"
+            "$ref" : "#/parameters/interface_s"
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "$ref" : "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      }
+    },
+    "/my_actuator_implementation_value" : {
+      "get" : {
+        "parameters" : [{
+            "$ref" : "#/parameters/interface_a"
           }
         ],
         "responses" : {
@@ -26,7 +42,7 @@
       "post" : {
         "description" : "",
         "parameters" : [{
-            "$ref" : "#/parameters/interface"
+            "$ref" : "#/parameters/interface_a"
           }, {
             "name" : "body",
             "in" : "body",
@@ -48,11 +64,17 @@
     }
   },
   "parameters" : {
-    "interface" : {
+    "interface_a" : {
       "in" : "query",
       "name" : "if",
       "type" : "string",
       "enum" : ["oic.if.a", "oic.if.baseline"]
+    },
+    "interface_s" : {
+      "in" : "query",
+      "name" : "if",
+      "type" : "string",
+      "enum" : ["oic.if.s", "oic.if.baseline"]
     }
   },
   "definitions" : {
@@ -60,6 +82,11 @@
       "properties" : {
         "value" : {
           "type" : "boolean"
+        },
+        "n" : {
+          "type" : "string",
+          "maxLength" : 64,
+          "readOnly" : false
         },
         "id" : {
           "type" : "string",
