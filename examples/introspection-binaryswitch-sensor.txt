@@ -1,0 +1,53 @@
+{
+	"swagger" : "2.0",
+	"info" : {
+		"title" : "Binary Switch",
+		"version" : "v1.1.0-20160519"
+	},
+	"schemes" : ["http"],
+	"consumes" : ["application/json"],
+	"produces" : ["application/json"],
+	"paths" : {
+		"/my_implementation_value" : {
+			"get" : {
+				"parameters" : [{
+						"$ref" : "#/parameters/interface"
+					}
+				],
+				"responses" : {
+					"200" : {
+						"description" : "",
+						"schema" : {
+							"$ref" : "#/definitions/BinarySwitch"
+						}
+					}
+				}
+			}
+		}
+	},
+	"parameters" : {
+		"interface" : {
+			"in" : "query",
+			"name" : "if",
+			"type" : "string",
+			"enum" : ["oic.if.s", "oic.if.baseline"]
+		}
+	},
+	"definitions" : {
+		"BinarySwitch" : {
+			"properties" : {
+				"value" : {
+					"type" : "boolean"
+				},
+				"id" : {
+					"type" : "string",
+					"default" : "oic.r.switch.binary"
+				}
+			},
+			"required" : [
+				"value"
+			],
+			"type" : "object"
+		}
+	}
+}
