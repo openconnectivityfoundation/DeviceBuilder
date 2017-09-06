@@ -39,10 +39,15 @@
         "value" : {
           "type" : "boolean"
         },
-        "rt" : {
-          "type" : "string",
-          "default" : "oic.r.switch.binary",
-          "readOnly" : true
+        "rt": {
+          "type": "array",
+          "items" : {
+              "type" : "string",
+              "maxLength": 64
+            },
+          "minItems" : 1,
+          "readOnly": true,
+          "default" : ["oic.r.switch.binary"]
         }
       },
       "required" : [
