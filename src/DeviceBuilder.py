@@ -197,6 +197,7 @@ def find_resources(filename):
     for entry in json_data[0].get("links"):
         rt = entry.get("rt")
         href = entry.get("href")
+        prop_if = entry.get("if")
         #print ("rt (array)", rt, href)
         if rt:
             for rt_value in rt:
@@ -204,7 +205,7 @@ def find_resources(filename):
                     #print ("rt to handle:", rt_value)
                     if ".com." not in rt_value:
                         if "oic.d." not in rt_value:
-                            found_rt_values.append([rt_value, href])
+                            found_rt_values.append([rt_value, href,prop_if])
                         else:
                             print ("find_resources: device type rt (not handled):", rt_value)
                     else:
@@ -317,6 +318,39 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                     print ("update_definition_with_rt ", prop_name)
                     if prop_name == "rt":
                         property["default"] = [entry[1]]
+                        
+                             
+              
+def update_definition_with_if(json_data, rt_value_file, rt_values):
+    print ("update_definition_with_if", rt_values)
+    keyvaluepairs =[]
+    for path, path_item in json_data["paths"].items():
+        #print ("update_definition_with_if", path)
+        try:
+            x_example = path_item["get"]["responses"]["200"]["x-example"]
+            rt = x_example.get("rt")
+            schema = path_item["get"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            print ("update_definition_with_if schema stuff:", schema, ref)
+            if find_in_array(rt[0], rt_values):
+                for rt_f in rt_values:
+                    if rt_f[0] == rt[0]:
+                        keyvaluepairs.append([path,rt,ref, rt_f ])
+        except:
+            pass
+    print ("update_definition_with_if found stuff:", keyvaluepairs)
+    def_data = json_data["definitions"]
+    for def_name, def_item in def_data.items():
+        full_defname = "#/definitions/" + def_name
+        for entry in keyvaluepairs:
+            if entry[2] == full_defname:
+                # found entry
+                properties = def_item.get("properties")
+                for prop_name, property in properties.items():
+                    print ("update_definition_with_if ", prop_name)
+                    if prop_name == "if":
+                        print (" replacing if with", entry[3][2])
+                        property["items"]["enum"] = entry[3][2]
   
 
 def update_path_value(json_data, rt_value_file, rt_values):
@@ -351,6 +385,7 @@ def create_introspection(json_data, rt_value_file, rt_values):
     print("")
     update_path_value(json_data, rt_value_file, rt_values)
     update_definition_with_rt(json_data, rt_value_file, rt_values)
+    update_definition_with_if(json_data, rt_value_file, rt_values)
     
     remove_for_optimize(json_data)
     
@@ -392,6 +427,7 @@ try:
     for rt in rt_values:
         print ("  rt     :", rt[0])
         print ("    href :", rt[1])
+        print ("    if   :", rt[2])
 
     files_to_process = find_files(str(args.resource_dir), rt_values)
     for myfile in files_to_process:
