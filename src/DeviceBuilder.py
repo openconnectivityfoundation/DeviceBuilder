@@ -389,8 +389,21 @@ def create_introspection(json_data, rt_value_file, rt_values):
     
     remove_for_optimize(json_data)
     
+def remove_from_introspection(json_data, property_list):
+    print("remove_from_introspection", property_list)
+    if property_list is not None:
+        for property in property_list:
+            print ("remove_from_introspection:", property)
+        def_data = json_data["definitions"]
+        for def_name, def_item in def_data.items():
+                #full_defname = "#/definitions/" + def_name
 
-
+                properties = def_item.get("properties")
+                #for prop_name, property in properties.items():
+                for prop_name in property_list:
+                    eraseElement(properties,prop_name, eraseEntry=True)
+                        #print (" replacing if with", entry[3][2])
+                        #property["items"]["enum"] = entry[3][2]
     
 #
 #   main of script
@@ -409,7 +422,9 @@ parser.add_argument( "-introspection"    , "--introspection"    , default=None,
                      
 parser.add_argument( "-resource_dir"    , "--resource_dir"    , default=None,
                      help="resource directory",  nargs='?', const="", required=False)
+parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*', help='remove property (--remove_property  value range step precision id) ')
 
+                     
 parser.add_argument('-derived', '--derived', default=None, help='derived data model specificaton (--derived XXX) e.g. XXX Property Name in table use "." to ignore the property name setting')
 
 args = parser.parse_args()
@@ -418,6 +433,7 @@ args = parser.parse_args()
 print("oic/res file        :  " + str(args.ocfres))
 print("introspection (out) : " + str(args.introspection))
 print("resource dir        : " + str(args.resource_dir))
+print("remove_property     : " + str(args.remove_property))
 
 print("")
 
@@ -435,6 +451,7 @@ try:
         file_data = load_json(myfile, str(args.resource_dir))
         rt_values_file = swagger_rt(file_data)
         create_introspection( file_data, rt_values_file, rt_values)
+        remove_from_introspection(file_data, args.remove_property)
         
         fp = open(str(args.introspection),"w")
         json_string = json.dumps(file_data,indent=2)

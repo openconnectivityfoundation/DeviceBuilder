@@ -17,16 +17,11 @@ The base function is to create an swagger file that can be used for
 per resource (output file per detected and found resource)
 - add default rt taken from oic/res
 - replace enum of if from oic/res
+- remove properties: n, value, range, precision, step as commandline option
 
 
 # todo
 
-- remove value from definition part
-- remove range/precision if type is boolean
-- remove range as commandline option
-  - remove step as sub command line option
-- remove precision as commandline option
-- remove n as commandline option
-- collapse oneOf of types in definition part
+- collapse oneOf of types per property in definition part
 
 - merge different output files into 1
