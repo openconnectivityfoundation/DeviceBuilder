@@ -248,6 +248,12 @@ def find_in_array(value, array_values):
     return False
     
 def find_files(dirname, rt_values):
+    """
+    find the files where the rt values are stored in (as part of the example)
+    :param dirname: dir name
+    :param rt_values: array of rt values
+    :return: array of file names
+    """
     file_list = get_dir_list(dirname, ext=".swagger.json")
     print ("find_files: directory:", dirname)
     found_file = []
@@ -288,8 +294,36 @@ def remove_for_optimize(json_data):
                             if isinstance(entry, dict):
                                 eraseElement(entry,"x-example", eraseEntry=True)
               
+def clear_descriptions(json_data):
+    # remove the descriptions in the path
+    for path, path_item in json_data["paths"].items():
+        for method, method_item in path_item.items():
+            if isinstance(method_item, dict):
+                description = method_item.get("description")
+                if description is not None:
+                    method_item["description"] = ""
+    # remove the descriptions in the definitions         
+    for definition, definition_item in json_data["definitions"].items():
+        # definition - values
+        for defvalue, defvalue_item in definition_item.items():
+            if isinstance(defvalue_item, dict):
+                description = method_item.get("description")
+                if description is not None:
+                    method_item["description"] = ""
+                for propvalue, propvalue_item in defvalue_item.items():
+                    print ("clear_descriptions", propvalue)
+                    description = propvalue_item.get("description")
+                    if description is not None:
+                        propvalue_item["description"] = ""
+                    
               
 def update_definition_with_rt(json_data, rt_value_file, rt_values):
+    """
+    update the defintion section with the default rt value as array
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values
+    """
     print ("update_definition_with_rt", rt_values)
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -322,6 +356,12 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                              
               
 def update_definition_with_if(json_data, rt_value_file, rt_values):
+    """
+    update the defintion if enum with the values of rt_values
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values
+    """
     print ("update_definition_with_if", rt_values)
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -354,6 +394,12 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
   
 
 def update_path_value(json_data, rt_value_file, rt_values):
+    """
+    update the path value of the rt from the rt_valuees
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values
+    """
     print ("update_path_value:", rt_values)
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -361,16 +407,13 @@ def update_path_value(json_data, rt_value_file, rt_values):
         try:
             x_example = path_item["get"]["responses"]["200"]["x-example"]
             rt = x_example.get("rt")
-            #print ("    ",rt[0])
             if find_in_array(rt[0], rt_values):
                 for rt_f in rt_values:
                     if rt_f[0] == rt[0]:
-                        #print ("replace with", rt_f[1])
                         keyvaluepairs.append([path,rt_f[1] ])
         except:
             pass
     path_data = json_data["paths"]
-    #print (path_data)
     for replacement in keyvaluepairs:
         if replacement[1] != replacement[0]:
             old_path = replacement[0]
@@ -382,14 +425,26 @@ def update_path_value(json_data, rt_value_file, rt_values):
             print("update_path_value: already the same :", replacement)
         
 def create_introspection(json_data, rt_value_file, rt_values):
+    """
+    create the introspection data, e.g. morph json_data.
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values
+    """
     print("")
     update_path_value(json_data, rt_value_file, rt_values)
     update_definition_with_rt(json_data, rt_value_file, rt_values)
     update_definition_with_if(json_data, rt_value_file, rt_values)
     
     remove_for_optimize(json_data)
+    clear_descriptions(json_data)
     
 def remove_from_introspection(json_data, property_list):
+    """
+    remove the properties (for all resources) from the json data
+    :param json_data: the parsed swagger file
+    :param property_list: the properties to be removed
+    """
     print("remove_from_introspection", property_list)
     if property_list is not None:
         for property in property_list:
@@ -402,8 +457,7 @@ def remove_from_introspection(json_data, property_list):
                 #for prop_name, property in properties.items():
                 for prop_name in property_list:
                     eraseElement(properties,prop_name, eraseEntry=True)
-                        #print (" replacing if with", entry[3][2])
-                        #property["items"]["enum"] = entry[3][2]
+                    
     
 #
 #   main of script
