@@ -43,10 +43,11 @@ The oic/res file can be used "as is" from an implementation.
       - "rt" : ["oic.r.light.brightness"] == array of implemented types (only 1 type is suppported)
       - "if" : ["oic.if.a","oic.if.baseline"] == array of implemented interfaces
 
-# Implemented features
+# Implemented tool features
 
 per resource (output file per detected and found resource)
 - add default rt taken from oic/res
+- fix the href
 - replace enum of if from oic/res
 - remove properties: n, value, range, precision, step as commandline option
 - collapse/replace oneOf of types per property in definition part by the given argument
@@ -55,6 +56,20 @@ merge different output files into 1 swagger file.
 ## Optimisations:
 - clean descriptions (e.g. make them empty string, so that swagger is still valid)
 - removal of x-examples
+
+# How it works
+
+-The oic/res file is read.
+-All resources from core/security resources are ignored.
+-for all remaining resources    
+  - the swagger file that belongs to the "rt" is looked up
+  - for all found files with an "rt" that belongs to the device
+    - fix the rt value as definition
+    - fix the href
+    - remove unwanted properties
+    - fix the type
+    - remove unwanted (not needed) text descriptions
+  - merge all files into 1 output file
 
 # Todo
 
