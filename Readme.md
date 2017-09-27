@@ -29,5 +29,5 @@ per resource (output file per detected and found resource)
 # todo
 
 - simple input format
-- test cases
+- tests
 - examples
