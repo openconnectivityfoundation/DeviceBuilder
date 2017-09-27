@@ -1,0 +1,13 @@
+[{
+    "links" : [ {
+        "href" : "/BrightnessResURI",
+        "rt" : ["oic.r.light.brightness"],
+        "if" : ["oic.if.a","oic.if.baseline"]
+      }, {
+        "href" : "/BinarySwitchResURI",
+        "rt" : ["oic.r.switch.binary"],
+        "if" : ["oic.if.baseline", "oic.if.a"]
+      }
+    ]
+  }
+]
