@@ -261,7 +261,7 @@ def find_files(dirname, rt_values):
             #print ("  find_files: file :", myfile)
             file_data = load_json(myfile, dirname)
             rt_values_file = swagger_rt(file_data)
-            #print ("      rt_values:", rt_file)
+            #print ("      rt_values:", rt_values_file)
             for rt_file in rt_values_file:
                 if find_in_array(rt_file, rt_values):
                     found_file.append (myfile)
@@ -407,6 +407,14 @@ def update_definition_with_type(json_data, rt_value_file, rt_values, type):
     :param type: string, json type to use 
     """
     print ("update_definition_with_type: type to use: ", type)
+    if type is None:
+        return
+    supported_types = ["integer", "number", "string"]
+    if type not in supported_types:
+        print (" *** ERROR type is not valid:", type, " supported types:", supported_types)
+        return
+      
+    
     properties_to_change = ["value", "range", "step"]
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
@@ -495,7 +503,18 @@ def remove_from_introspection(json_data, property_list):
                 #for prop_name, property in properties.items():
                 for prop_name in property_list:
                     eraseElement(properties,prop_name, eraseEntry=True)
-                    
+        
+
+def merge(merge_data, file_data):
+    """
+    merge the file_data (paths and defintions) into merge_data
+    :param merge_data: the data that will be used to merge into
+    :param file_data: the data to merge
+    """
+    for path, path_item in file_data["paths"].items():
+        merge_data["paths"][path] = path_item
+    for definition, definiton_item in file_data["definitions"].items():
+        merge_data["definitions"][definition] = definiton_item
     
 #
 #   main of script
@@ -540,6 +559,9 @@ try:
         print ("    if   :", rt[2])
 
     files_to_process = find_files(str(args.resource_dir), rt_values)
+    print ("processing files:",files_to_process )
+    
+    merged_data = None
     for myfile in files_to_process:
         print ("  file :", myfile)
         file_data = load_json(myfile, str(args.resource_dir))
@@ -547,12 +569,22 @@ try:
         create_introspection( file_data, rt_values_file, rt_values,args.type)
         remove_from_introspection(file_data, args.remove_property)
         
-        fp = open(str(args.introspection),"w")
+        file_to_write = str(args.introspection) + myfile
+        fp = open(str(file_to_write),"w")
         json_string = json.dumps(file_data,indent=2)
         fp.write(json_string)
         fp.close()
+        if merged_data is None:
+            merged_data = file_data
+        else:
+            merge(merged_data, file_data)
         
-        
+    if merged_data is not None: 
+        file_to_write = str(args.introspection) + "merged.swagger.json"
+        fp = open(str(file_to_write),"w")
+        json_string = json.dumps(merged_data,indent=2)
+        fp.write(json_string)
+        fp.close()    
         
     
 except:

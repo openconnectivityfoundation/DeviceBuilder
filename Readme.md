@@ -19,6 +19,7 @@ per resource (output file per detected and found resource)
 - replace enum of if from oic/res
 - remove properties: n, value, range, precision, step as commandline option
 - collapse oneOf of types per property in definition part
+- merge different output files into 1
 
 # optimisations
 - clean descriptions
@@ -27,4 +28,6 @@ per resource (output file per detected and found resource)
 
 # todo
 
-- merge different output files into 1
+- simple input format
+- test cases
+- examples
