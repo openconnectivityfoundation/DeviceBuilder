@@ -18,6 +18,7 @@ per resource (output file per detected and found resource)
 - add default rt taken from oic/res
 - replace enum of if from oic/res
 - remove properties: n, value, range, precision, step as commandline option
+- collapse oneOf of types per property in definition part
 
 # optimisations
 - clean descriptions
@@ -26,5 +27,4 @@ per resource (output file per detected and found resource)
 
 # todo
 
-- collapse oneOf of types per property in definition part
 - merge different output files into 1

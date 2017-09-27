@@ -295,6 +295,10 @@ def remove_for_optimize(json_data):
                                 eraseElement(entry,"x-example", eraseEntry=True)
               
 def clear_descriptions(json_data):
+    """
+    clear the descriptions e.g. set them on empty string e.g. ""
+    :param json_data: the parsed swagger file
+    """
     # remove the descriptions in the path
     for path, path_item in json_data["paths"].items():
         for method, method_item in path_item.items():
@@ -393,6 +397,38 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                         property["items"]["enum"] = entry[3][2]
   
 
+
+def update_definition_with_type(json_data, rt_value_file, rt_values, type):
+    """
+    update the defintion if enum with the values of rt_values
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values
+    :param type: string, json type to use 
+    """
+    print ("update_definition_with_type: type to use: ", type)
+    properties_to_change = ["value", "range", "step"]
+    def_data = json_data["definitions"]
+    for def_name, def_item in def_data.items():
+        full_defname = "#/definitions/" + def_name
+        for entry in def_item:
+            properties = def_item.get("properties")
+            for prop_name, property in properties.items():
+                #print ("update_definition_with_type ", prop_name)
+                #if prop_name in properties_to_change:
+                one_off = property.get("anyOf")
+                if one_off is not None:
+                    print ("update_definition_with_type ", prop_name)
+                    property.pop("anyOf")
+                    property["type"] = type
+                if prop_name == "range":
+                    one_off = property["items"].get("anyOf")
+                    if one_off is not None:
+                        print ("update_definition_with_type ", prop_name)
+                        property["items"].pop("anyOf")
+                        property["items"]["type"] = type
+  
+  
 def update_path_value(json_data, rt_value_file, rt_values):
     """
     update the path value of the rt from the rt_valuees
@@ -400,7 +436,7 @@ def update_path_value(json_data, rt_value_file, rt_values):
     :param rt_value_file: the filename
     :param rt_values: array of rt values
     """
-    print ("update_path_value:", rt_values)
+    print ("update_path_value: values ==> ", rt_values)
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
         print ("update_path_value", path)
@@ -424,17 +460,19 @@ def update_path_value(json_data, rt_value_file, rt_values):
         else:
             print("update_path_value: already the same :", replacement)
         
-def create_introspection(json_data, rt_value_file, rt_values):
+def create_introspection(json_data, rt_value_file, rt_values, type):
     """
     create the introspection data, e.g. morph json_data.
     :param json_data: the parsed swagger file
     :param rt_value_file: the filename
     :param rt_values: array of rt values
+    :param type: string, json type to use if there is an anyOf construct
     """
     print("")
     update_path_value(json_data, rt_value_file, rt_values)
     update_definition_with_rt(json_data, rt_value_file, rt_values)
     update_definition_with_if(json_data, rt_value_file, rt_values)
+    update_definition_with_type(json_data, rt_value_file, rt_values, type)
     
     remove_for_optimize(json_data)
     clear_descriptions(json_data)
@@ -477,6 +515,7 @@ parser.add_argument( "-introspection"    , "--introspection"    , default=None,
 parser.add_argument( "-resource_dir"    , "--resource_dir"    , default=None,
                      help="resource directory",  nargs='?', const="", required=False)
 parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*', help='remove property (--remove_property  value range step precision id) ')
+parser.add_argument('-type', '--type', default=None, nargs='?', help='type of the value (or renamed value) (--type  integer number) ')
 
                      
 parser.add_argument('-derived', '--derived', default=None, help='derived data model specificaton (--derived XXX) e.g. XXX Property Name in table use "." to ignore the property name setting')
@@ -488,6 +527,7 @@ print("oic/res file        :  " + str(args.ocfres))
 print("introspection (out) : " + str(args.introspection))
 print("resource dir        : " + str(args.resource_dir))
 print("remove_property     : " + str(args.remove_property))
+print("type                : " + str(args.type))
 
 print("")
 
@@ -504,7 +544,7 @@ try:
         print ("  file :", myfile)
         file_data = load_json(myfile, str(args.resource_dir))
         rt_values_file = swagger_rt(file_data)
-        create_introspection( file_data, rt_values_file, rt_values)
+        create_introspection( file_data, rt_values_file, rt_values,args.type)
         remove_from_introspection(file_data, args.remove_property)
         
         fp = open(str(args.introspection),"w")
