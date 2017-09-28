@@ -100,7 +100,10 @@ def eraseElement(d,k , eraseEntry=False):
             else:
                 d.pop(k)
             if eraseEntry:
-                d.pop(k)
+                try:
+                    d.pop(k)
+                except:
+                    print("eraseElement : could not delete:", k)
                 
         else:
             print("eraseElement: Cannot find matching key:", k)
@@ -421,20 +424,21 @@ def update_definition_with_type(json_data, rt_value_file, rt_values, type):
         full_defname = "#/definitions/" + def_name
         for entry in def_item:
             properties = def_item.get("properties")
-            for prop_name, property in properties.items():
-                #print ("update_definition_with_type ", prop_name)
-                #if prop_name in properties_to_change:
-                one_off = property.get("anyOf")
-                if one_off is not None:
-                    print ("update_definition_with_type ", prop_name)
-                    property.pop("anyOf")
-                    property["type"] = type
-                if prop_name == "range":
-                    one_off = property["items"].get("anyOf")
+            if properties is not None:
+                for prop_name, property in properties.items():
+                    #print ("update_definition_with_type ", prop_name)
+                    #if prop_name in properties_to_change:
+                    one_off = property.get("anyOf")
                     if one_off is not None:
                         print ("update_definition_with_type ", prop_name)
-                        property["items"].pop("anyOf")
-                        property["items"]["type"] = type
+                        property.pop("anyOf")
+                        property["type"] = type
+                    if prop_name == "range":
+                        one_off = property["items"].get("anyOf")
+                        if one_off is not None:
+                            print ("update_definition_with_type ", prop_name)
+                            property["items"].pop("anyOf")
+                            property["items"]["type"] = type
   
   
 def update_path_value(json_data, rt_value_file, rt_values):
@@ -515,6 +519,9 @@ def merge(merge_data, file_data):
         merge_data["paths"][path] = path_item
     for definition, definiton_item in file_data["definitions"].items():
         merge_data["definitions"][definition] = definiton_item
+        
+    for parameter, parameter_item in file_data["parameters"].items():
+        merge_data["parameters"][parameter] = parameter_item
     
 #
 #   main of script
