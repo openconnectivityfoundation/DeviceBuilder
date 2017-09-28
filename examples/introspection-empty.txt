@@ -1,0 +1,15 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "empty swagger file",
+    "version" : "v1.0.0"
+  },
+  "schemes" : ["http"],
+  "consumes" : ["application/json"],
+  "produces" : ["application/json"],
+  "paths" : {
+    
+  },
+  "definitions" : {
+  }
+}
