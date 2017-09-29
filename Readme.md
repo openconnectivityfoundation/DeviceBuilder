@@ -14,7 +14,7 @@ Tool chain:
                              |
                      resource|descriptions
                              |
-                      _______v_________                                                      _______________
+                      _______v________                                                      _______________
      input           |                |         introspection data (swagger)               |               |
      description     |                |--------------------------------------------------->|               |
      --------------->|  DeviceBuilder |        ___________         __________              | actual device |
