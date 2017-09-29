@@ -1,0 +1,284 @@
+[{
+    "n" : "Vendor Smart Home AirCon Device",
+    "rt" : ["oic.wk.res"],
+    "if" : ["oic.if.ll", "oic.if.baseline"],
+    "links" : [{
+        "href" : "/oic/sec/doxm",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.doxm"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:37103",
+            "pri" : 1
+          }, {
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/pstat",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.pstat"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/acl2",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.acl2"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/cred",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.cred"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/crl",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.crl"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/csr",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.csr"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/sec/roles",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.roles"],
+        "if" : ["oic.if.baseline"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/d",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.d", "oic.d.airconditioner", "x.com.vendor.device.eco.power"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:37103",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/oic/p",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.p"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:37103",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/introspection",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.introspection"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/BinarySwitchResURI",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.switch.binary"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/TemperatureResURI",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.temperature"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/AirFlowResURI",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.airflow"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/Vendor/AirConditioner/TimerClock",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["x.com.vendor.timer"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/Vendor/AirConditioner/Swinger",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["x.com.vendor.swing"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coap://[fe80::36bc:ba82:adf0:c83a]:37103",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/ConfigurationResURI",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.con"],
+        "if" : ["oic.if.baseline", "oic.if.rw"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/vendor/aircon/collection/extra",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.col", "x.com.vendor.aircon.collection.extra"],
+        "if" : ["oic.if.baseline", "oic.if.ll", "oic.if.b"],
+        "p" : {
+          "bm" : 1
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/bridge/binary-switch",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.switch.binary"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/bridge/light",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.d.light"],
+        "if" : ["oic.if.baseline", "oic.if.r"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/bridge/light-brightness",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.r.light.brightness"],
+        "if" : ["oic.if.baseline", "oic.if.a"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }, {
+        "href" : "/bridge/root",
+        "anchor" : "ocf://12345678-1234-1234-1234-123456789012",
+        "rt" : ["oic.wk.col", "oic.d.light"],
+        "if" : ["oic.if.baseline", "oic.if.ll", "oic.if.r"],
+        "p" : {
+          "bm" : 3
+        },
+        "eps" : [{
+            "ep" : "coaps://[fe80::36bc:ba82:adf0:c83a]:49345",
+            "pri" : 1
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -486,19 +486,26 @@ def create_introspection(json_data, rt_value_file, rt_values, type):
     update_definition_with_if(json_data, rt_value_file, rt_values)
     update_definition_with_type(json_data, rt_value_file, rt_values, type)
     
+    
+def optimize_introspection(json_data):    
+    """
+    optimize the json
+    - clear the descriptions (e.g. remove the text only)
+    :param json_data: the parsed swagger file
+    """
     remove_for_optimize(json_data)
     clear_descriptions(json_data)
     
-def remove_from_introspection(json_data, property_list):
+def remove_from_definition(json_data, property_list):
     """
-    remove the properties (for all resources) from the json data
+    remove the properties in the property_kist (for all resources) from the json data
     :param json_data: the parsed swagger file
     :param property_list: the properties to be removed
     """
-    print("remove_from_introspection", property_list)
+    print("remove_from_definition", property_list)
     if property_list is not None:
         for property in property_list:
-            print ("remove_from_introspection:", property)
+            print ("remove_from_definition:", property)
         def_data = json_data["definitions"]
         for def_name, def_item in def_data.items():
                 #full_defname = "#/definitions/" + def_name
@@ -523,6 +530,46 @@ def merge(merge_data, file_data):
     for parameter, parameter_item in file_data["parameters"].items():
         merge_data["parameters"][parameter] = parameter_item
     
+def main_app(args, generation_type):   
+    rt_values = find_resources(str(args.ocfres))
+    print ("handling resources (overview):")
+    for rt in rt_values:
+        print ("  rt     :", rt[0])
+        print ("    href :", rt[1])
+        print ("    if   :", rt[2])
+    print(" ")
+
+    files_to_process = find_files(str(args.resource_dir), rt_values)
+    print ("processing files:",files_to_process )
+    
+    merged_data = None
+    for myfile in files_to_process:
+        print ("")
+        print ("  main: File :", myfile)
+        file_data = load_json(myfile, str(args.resource_dir))
+        rt_values_file = swagger_rt(file_data)
+        create_introspection( file_data, rt_values_file, rt_values,args.type)
+        remove_from_definition(file_data, args.remove_property)
+        
+        if "introspection" == generation_type:
+            optimize_introspection(file_data)
+        
+        file_to_write = str(args.out) + "_" + generation_type + "_" + myfile
+        fp = open(str(file_to_write),"w")
+        json_string = json.dumps(file_data,indent=2)
+        fp.write(json_string)
+        fp.close()
+        if merged_data is None:
+            merged_data = file_data
+        else:
+            merge(merged_data, file_data)
+        
+    if merged_data is not None: 
+        file_to_write = str(args.out) + "_" + generation_type + "_" + "merged.swagger.json"
+        fp = open(str(file_to_write),"w")
+        json_string = json.dumps(merged_data,indent=2)
+        fp.write(json_string)
+        fp.close()    
 #
 #   main of script
 #
@@ -535,8 +582,8 @@ parser.add_argument( "-ver"        , "--verbose"    , help="Execute in verbose m
 
 parser.add_argument( "-ocfres"    , "--ocfres"    , default=None,
                      help="ocf/res input",  nargs='?', const="", required=False)
-parser.add_argument( "-introspection"    , "--introspection"    , default=None,
-                     help="introspection file file name (output)",  nargs='?', const="", required=True)
+parser.add_argument( "-out"    , "--out"    , default=None,
+                     help="output dir + prefix e.g. (../mydir/generated1)",  nargs='?', const="", required=True)
                      
 parser.add_argument( "-resource_dir"    , "--resource_dir"    , default=None,
                      help="resource directory",  nargs='?', const="", required=False)
@@ -548,9 +595,8 @@ parser.add_argument('-derived', '--derived', default=None, help='derived data mo
 
 args = parser.parse_args()
 
-
-print("oic/res file        :  " + str(args.ocfres))
-print("introspection (out) : " + str(args.introspection))
+print("oic/res file        : " + str(args.ocfres))
+print("out                 : " + str(args.out))
 print("resource dir        : " + str(args.resource_dir))
 print("remove_property     : " + str(args.remove_property))
 print("type                : " + str(args.type))
@@ -558,40 +604,11 @@ print("type                : " + str(args.type))
 print("")
 
 try:
-    rt_values = find_resources(str(args.ocfres))
-    print ("resources:")
-    for rt in rt_values:
-        print ("  rt     :", rt[0])
-        print ("    href :", rt[1])
-        print ("    if   :", rt[2])
-
-    files_to_process = find_files(str(args.resource_dir), rt_values)
-    print ("processing files:",files_to_process )
+    print ("== INTROSPECTION ==")
+    main_app(args, "introspection")
     
-    merged_data = None
-    for myfile in files_to_process:
-        print ("  file :", myfile)
-        file_data = load_json(myfile, str(args.resource_dir))
-        rt_values_file = swagger_rt(file_data)
-        create_introspection( file_data, rt_values_file, rt_values,args.type)
-        remove_from_introspection(file_data, args.remove_property)
-        
-        file_to_write = str(args.introspection) + myfile
-        fp = open(str(file_to_write),"w")
-        json_string = json.dumps(file_data,indent=2)
-        fp.write(json_string)
-        fp.close()
-        if merged_data is None:
-            merged_data = file_data
-        else:
-            merge(merged_data, file_data)
-        
-    if merged_data is not None: 
-        file_to_write = str(args.introspection) + "merged.swagger.json"
-        fp = open(str(file_to_write),"w")
-        json_string = json.dumps(merged_data,indent=2)
-        fp.write(json_string)
-        fp.close()    
+    print ("== CODE GENERATION ==")
+    main_app(args, "codegeneration")
         
     
 except:
