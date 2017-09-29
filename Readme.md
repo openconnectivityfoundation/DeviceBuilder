@@ -7,15 +7,21 @@ The base function is to create an swagger file from OCF swagger type definitons 
 
 Tool chain:
 
-
-                       ________________                                                      _______________
-      input           |                |         introspection data (swagger)               |               |
-      description     |                |--------------------------------------------------->|               |
-      --------------->|  DeviceBuilder |        ___________         __________              | actual device |
-                      |                | code  |           |  src  |          | executable  |               |
-                      |                |------>| swagger2x |------>| compiler |------------>|               |
-                      |________________| data  |___________|       |__________|             |_______________|
-                                       (swagger)
+                         __________
+                        |          |
+                        | oneIOTa  |
+                        |__________|
+                             |
+                     resource|descriptions
+                             |
+                      _______v_________                                                      _______________
+     input           |                |         introspection data (swagger)               |               |
+     description     |                |--------------------------------------------------->|               |
+     --------------->|  DeviceBuilder |        ___________         __________              | actual device |
+                     |                | code  |           |  src  |          | executable  |               |
+                     |                |------>| swagger2x |------>| compiler |------------>|               |
+                     |________________| data  |___________|       |__________|             |_______________|
+                                      (swagger)
                                        
 
 # Usage
