@@ -49,5 +49,7 @@ wb-swagger validate ./out/test4_introspection_merged.swagger.json
 
 resfile=./input/oic-res-response-testdevice.json
 python3 ../src/DeviceBuilder.py -ocfres $resfile -resource_dir ../../IoTDataModels -out ./out/test5 -type integer
+wb-swagger validate ./out/test5_codegeneration_merged.swagger.json
+wb-swagger validate ./out/test5_introspection_merged.swagger.json
 
 #wb-swagger validate 
