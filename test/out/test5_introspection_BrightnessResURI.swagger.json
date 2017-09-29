@@ -1,0 +1,114 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/bridge/light-brightness": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Indicates that the brightness was changed.\nThe new brightness level is provided in the response.\n",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        },
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            },
+            "in": "body"
+          }
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        },
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "version": "v1.1.0-20160519",
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "title": "Brightness"
+  },
+  "parameters": {
+    "interface": {
+      "name": "if",
+      "type": "string",
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query"
+    }
+  },
+  "definitions": {
+    "Brightness": {
+      "properties": {
+        "precision": {
+          "readOnly": true,
+          "description": "",
+          "type": "number"
+        },
+        "brightness": {
+          "maximum": 100,
+          "type": "integer",
+          "minimum": 0,
+          "description": ""
+        },
+        "value": {
+          "type": "integer",
+          "description": ""
+        },
+        "step": {
+          "readOnly": true,
+          "description": "",
+          "type": "integer"
+        },
+        "range": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "",
+          "minItems": 2,
+          "maxItems": 2,
+          "readOnly": true
+        }
+      },
+      "type": "object",
+      "required": [
+        "brightness"
+      ]
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0"
+}

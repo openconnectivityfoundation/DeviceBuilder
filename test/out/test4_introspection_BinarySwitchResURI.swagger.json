@@ -1,0 +1,122 @@
+{
+  "paths": {
+    "/BinarySwitchResURI": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "required": true,
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "in": "body"
+          }
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519"
+  },
+  "definitions": {
+    "BinarySwitch": {
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "step": {
+          "readOnly": true,
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": ""
+        },
+        "range": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "maxItems": 2,
+          "type": "array",
+          "readOnly": true,
+          "description": "",
+          "minItems": 2
+        },
+        "precision": {
+          "readOnly": true,
+          "description": "",
+          "type": "number"
+        },
+        "value": {
+          "description": "",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "swagger": "2.0",
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "name": "if",
+      "type": "string",
+      "in": "query"
+    }
+  }
+}

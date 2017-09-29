@@ -1,0 +1,167 @@
+{
+  "schemes": [
+    "http"
+  ],
+  "definitions": {
+    "BinarySwitch": {
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "description": "",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Brightness": {
+      "required": [
+        "brightness"
+      ],
+      "properties": {
+        "brightness": {
+          "maximum": 100,
+          "description": "",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": ""
+        }
+      },
+      "type": "object"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "info": {
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519",
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/BinarySwitchResURI": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "required": true,
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      }
+    },
+    "/BrightnessResURI": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "required": true,
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates that the brightness was changed.\nThe new brightness level is provided in the response.\n",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "interface": {
+      "in": "query",
+      "name": "if",
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "type": "string"
+    }
+  }
+}

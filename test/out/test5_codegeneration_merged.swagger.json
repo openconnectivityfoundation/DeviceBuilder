@@ -1,0 +1,2242 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/ConsumablesLLResURI": {
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": [
+              {
+                "href": "/myTonerBlackResURI",
+                "if": [
+                  "oic.if.s",
+                  "oic.if.baseline"
+                ],
+                "rt": [
+                  "oic.r.consumable"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myTonerCyanResURI",
+                "if": [
+                  "oic.if.s",
+                  "oic.if.baseline"
+                ],
+                "rt": [
+                  "oic.r.consumable"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myTonerMagentaResURI",
+                "if": [
+                  "oic.if.s",
+                  "oic.if.baseline"
+                ],
+                "rt": [
+                  "oic.r.consumable"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myTonerYellowResURI",
+                "if": [
+                  "oic.if.s",
+                  "oic.if.baseline"
+                ],
+                "rt": [
+                  "oic.r.consumable"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              }
+            ],
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/consumables-ll"
+            }
+          }
+        },
+        "description": "This resource specifies things that can be consumed such as filter material, printer toner etc\nThe resource is a collection of instances of oic.r.consumable detailing the individual consumed items\nsupportedconsumables is the set of consumable types that this instance of the Resource supports\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
+        ]
+      }
+    },
+    "/bridge/light-brightness": {
+      "post": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "brightness": 10,
+              "id": "unique_example_id"
+            },
+            "description": "Indicates that the brightness was changed.\nThe new brightness level is provided in the response.\n",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        },
+        "description": "Sets the desired brightness level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "x-example": {
+              "brightness": 10,
+              "id": "unique_example_id"
+            },
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            },
+            "in": "body"
+          }
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "brightness": 50,
+              "rt": [
+                "oic.r.light.brightness"
+              ],
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        },
+        "description": "This resource describes the brightness of a light or lamp.\nbrightness is an integer showing the current brightness level as a quantized representation in the range 0-100.\nA brightness of 0 is the minimum for the resource.\nA brightness of 100 is the maximum for the resource.\nRetrieves the current brightness level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ]
+      }
+    },
+    "/HeatingZoneBaselineResURI": {
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "rt": [
+                "oic.r.heatingzonecollection",
+                "oic.wk.col"
+              ],
+              "links": [
+                {
+                  "href": "/myZone1ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myZone2ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myZone3ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myZone4ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                }
+              ],
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/HeatingZone"
+            }
+          }
+        },
+        "description": "This Resource provides information about the status of the heating zones of a Cook-Top.\nIt describes the case of a Cook-Top whose zones can be activated dynamically (i.e. the device implements pot recognition).\nThe resource is a collection of instances of oic.r.heatingzone detailing the individual cooktop zones\nRetrieves the current heating zone information.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          }
+        ]
+      }
+    },
+    "/HeatingZoneLLResURI": {
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": [
+              {
+                "href": "/myZone1ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myZone2ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myZone3ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myZone4ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              }
+            ],
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/HeatingZone-ll"
+            }
+          }
+        },
+        "description": "This Resource provides information about the status of the heating zones of a Cook-Top.\nIt describes the case of a Cook-Top whose zones can be activated dynamically (i.e. the device implements pot recognition).\nThe resource is a collection of instances of oic.r.heatingzone detailing the individual cooktop zones\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
+        ]
+      }
+    },
+    "/AirQualityBaselineResURI": {
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "if": [
+                "oic.if.baseline",
+                "oic.if.ll"
+              ],
+              "rt": [
+                "oic.r.airqualitycollection",
+                "oic.wk.col"
+              ],
+              "links": [
+                {
+                  "href": "/myCOMeasureResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.airquality"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myCO2ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.airquality"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                }
+              ],
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirQuality"
+            }
+          }
+        },
+        "description": "This resource describes a sensor that provides the qualitative or measured Air Quality.\nThe resource is a collection of instances of oic.r.airquality detailing the individual exposed contaminant measures\nThere is one collection entry per contaminant type supported by the device. A device must expose at least one measured or qualitative value.\nRetrieves the current air quality.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          }
+        ]
+      }
+    },
+    "/AirQualityLLResURI": {
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": [
+              {
+                "href": "/myCOMeasureResURI",
+                "if": [
+                  "oic.if.s",
+                  "oic.if.baseline"
+                ],
+                "rt": [
+                  "oic.r.airquality"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              },
+              {
+                "href": "/myCO2ResURI",
+                "if": [
+                  "oic.if.s",
+                  "oic.if.baseline"
+                ],
+                "rt": [
+                  "oic.r.airquality"
+                ],
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ]
+              }
+            ],
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirQuality-ll"
+            }
+          }
+        },
+        "description": "This resource describes a sensor that provides the qualitative or measured Air Quality.\nThe resource is a collection of instances of oic.r.airquality detailing the individual exposed contaminant measures\nThere is one collection entry per contaminant type supported by the device. A device must expose at least one measured or qualitative value.\nRetrieves the current air quality.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
+        ]
+      }
+    },
+    "/bridge/binary-switch": {
+      "post": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "value": true,
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        },
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "x-example": {
+              "value": true,
+              "id": "unique_example_id"
+            },
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "in": "body"
+          }
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "rt": [
+                "oic.r.switch.binary"
+              ],
+              "value": false,
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        },
+        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ]
+      }
+    },
+    "/AirFlowResURI": {
+      "post": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "speed": 3,
+              "direction": "right",
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          },
+          "403": {
+            "x-example": {
+              "speed": 3,
+              "supporteddirections": [
+                "left",
+                "right",
+                "centre"
+              ],
+              "id": "unique_example_id",
+              "direction": "right"
+            },
+            "description": "This response is generated by the OCF Server when the client sends:\n  An update with an invalid property value for direction.\n  An update with an out of range property value for speed.\nThe server may respond with the current resource representation.\n",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          }
+        },
+        "description": "Sets the current air flow values.\nOnly direction and speed may be set by an update operation.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "x-example": {
+              "speed": 3,
+              "direction": "right",
+              "id": "unique_example_id"
+            },
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            },
+            "in": "body"
+          }
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "automode": "Off",
+              "rt": [
+                "oic.r.airflow"
+              ],
+              "direction": "left",
+              "speed": 5,
+              "supporteddirections": [
+                "left",
+                "right",
+                "centre"
+              ],
+              "id": "unique_example_id",
+              "range": [
+                1,
+                7
+              ]
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          }
+        },
+        "description": "This resource describes the properties associated with air flow.\nThe supporteddirections is the set of valid values for the direction property for a particular instance of this resource type.\nThe direction is the directionality of the air flow if applicable, if supporteddirections is also present it must be a value from that set.\nDirection values are dependent on the capabilities of the unit.\nThe speed is an integer representing the current speed level for the unit.\nThe range (from oic.r.baseresource) is an array of the min,max values for the speed level. If not present the range defaults to [0,100].\nautomode is the status of the automode feature; Off means automode is not enabled, On means automode is active and the speed is automatically controlled by the device.\nRetrieves the current air flow values.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ]
+      }
+    },
+    "/TemperatureResURI": {
+      "post": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 18.0
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "x-example": {
+              "range": [
+                0.0,
+                100.0
+              ],
+              "units": "C",
+              "id": "unique_example_id",
+              "temperature": 20.0
+            },
+            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for temperature.\n  An update with an unsupported unit for this server.\nThe server responds with the current resource representation including\nthe range property illustrating the supported range and the error.\n",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        },
+        "description": "Sets the desired temperature value.\nIf a unit is included and the server does not support the unit indicated the request will fail.\nIf the units are omitted value is taken to be in C.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 18.0
+            },
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "in": "body"
+          }
+        ]
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "range": [
+                0.0,
+                100.0
+              ],
+              "rt": [
+                "oic.r.temperature"
+              ],
+              "units": "C",
+              "id": "unique_example_id",
+              "temperature": 20.0
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "x-example": {
+              "units": "C",
+              "id": "unique_example_id",
+              "temperature": 20.0
+            },
+            "description": "This response is generated by the OIC Server when the client sends:\n  A retrieve with q queryParameter indicating a unit that the server does not support.\nThe server responds with the current resource representation including the\nunits property illustrating the supported units and the error.\n",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        },
+        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "description": "Units",
+            "name": "units",
+            "in": "query"
+          }
+        ]
+      }
+    },
+    "/ConsumablesBaselineResURI": {
+      "get": {
+        "responses": {
+          "200": {
+            "x-example": {
+              "rts": [
+                "oic.r.consumable",
+                "oic.r.value.conditional"
+              ],
+              "supportedconsumables": [
+                "tonerBlack",
+                "tonerCyan",
+                "tonerMagenta",
+                "tonerYellow"
+              ],
+              "rt": [
+                "oic.r.consumablecollection",
+                "oic.wk.col"
+              ],
+              "links": [
+                {
+                  "href": "/myTonerBlackResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.consumable"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myTonerCyanResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.consumable"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myTonerMagentaResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.consumable"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                },
+                {
+                  "href": "/myTonerYellowResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.consumable"
+                  ],
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ]
+                }
+              ],
+              "id": "unique_example_id"
+            },
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/consumables"
+            }
+          }
+        },
+        "description": "This resource specifies things that can be consumed such as filter material, printer toner etc\nThe resource is a collection of instances of oic.r.consumable detailing the individual consumed items\nsupportedconsumables is the set of consumable types that this instance of the Resource supports\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "version": "v1.1.0-20160519",
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    "title": "Air Flow"
+  },
+  "parameters": {
+    "interface-ll": {
+      "name": "if",
+      "type": "string",
+      "enum": [
+        "oic.if.ll"
+      ],
+      "in": "query"
+    },
+    "interface": {
+      "name": "if",
+      "type": "string",
+      "enum": [
+        "oic.if.a",
+        "oic.if.s",
+        "oic.if.baseline"
+      ],
+      "in": "query"
+    },
+    "interface-baseline": {
+      "name": "if",
+      "type": "string",
+      "enum": [
+        "oic.if.baseline"
+      ],
+      "in": "query"
+    }
+  },
+  "definitions": {
+    "consumables-ll": {
+      "allOf": [
+        {
+          "description": "All forms of links in a collection",
+          "oneOf": [
+            {
+              "items": {
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                    "maxLength": 256,
+                    "format": "uri"
+                  },
+                  "if": {
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "oic.if.baseline",
+                        "oic.if.ll",
+                        "oic.if.b",
+                        "oic.if.rw",
+                        "oic.if.r",
+                        "oic.if.a",
+                        "oic.if.s"
+                      ]
+                    },
+                    "type": "array",
+                    "description": "The interface set supported by this resource",
+                    "minItems": 1
+                  },
+                  "rel": {
+                    "description": "The relation of the target URI referenced by the link to the context URI",
+                    "oneOf": [
+                      {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "default": [
+                          "hosts"
+                        ],
+                        "type": "array",
+                        "minItems": 1
+                      },
+                      {
+                        "default": "hosts",
+                        "type": "string",
+                        "maxLength": 64
+                      }
+                    ]
+                  },
+                  "eps": {
+                    "items": {
+                      "properties": {
+                        "pri": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "description": "The priority among multiple Endpoints as specified in 10.2.3"
+                        },
+                        "ep": {
+                          "type": "string",
+                          "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                          "format": "uri"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array",
+                    "description": "the Endpoint information of the target Resource"
+                  },
+                  "anchor": {
+                    "type": "string",
+                    "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                    "maxLength": 256,
+                    "format": "uri"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "A title for the link relation. Can be used by the UI to provide a context",
+                    "maxLength": 64
+                  },
+                  "di": {
+                    "type": "string",
+                    "description": "Unique identifier for device (UUID)",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "rt": {
+                    "items": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "type": "array",
+                    "description": "Resource Type",
+                    "minItems": 1
+                  },
+                  "p": {
+                    "properties": {
+                      "bm": {
+                        "type": "integer",
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable"
+                      }
+                    },
+                    "required": [
+                      "bm"
+                    ],
+                    "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                    "type": "object"
+                  },
+                  "type": {
+                    "items": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "type": "array",
+                    "default": "application/cbor",
+                    "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                    "minItems": 1
+                  },
+                  "ins": {
+                    "description": "The instance identifier for this web link in an array of web links - used in collections",
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "description": "An ordinal number that is not repeated - must be unique in the collection context"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Any unique string including a URI",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Unique identifier (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      }
+                    ]
+                  }
+                },
+                "type": "object",
+                "required": [
+                  "href",
+                  "rt",
+                  "if"
+                ]
+              },
+              "type": "array",
+              "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required"
+            }
+          ]
+        }
+      ]
+    },
+    "consumables": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "di": {
+              "type": "string",
+              "description": "The device ID which is an UUIDv4 string; used for backward compatibility with Spec A definition of /oic/res",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            },
+            "rts": {
+              "items": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "readOnly": true,
+              "description": "Defines the list of allowable resource types (for Target and anchors) in links included in the collection; new links being created can only be from this list",
+              "minItems": 1,
+              "type": "array"
+            },
+            "drel": {
+              "type": "string",
+              "description": "When specified this is the default relationship to use when an OIC Link does not specify an explicit relationship with *rel* parameter"
+            },
+            "links": {
+              "description": "All forms of links in a collection",
+              "oneOf": [
+                {
+                  "items": {
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      "if": {
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "oic.if.baseline",
+                            "oic.if.ll",
+                            "oic.if.b",
+                            "oic.if.rw",
+                            "oic.if.r",
+                            "oic.if.a",
+                            "oic.if.s"
+                          ]
+                        },
+                        "type": "array",
+                        "description": "The interface set supported by this resource",
+                        "minItems": 1
+                      },
+                      "rel": {
+                        "description": "The relation of the target URI referenced by the link to the context URI",
+                        "oneOf": [
+                          {
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            },
+                            "default": [
+                              "hosts"
+                            ],
+                            "type": "array",
+                            "minItems": 1
+                          },
+                          {
+                            "default": "hosts",
+                            "type": "string",
+                            "maxLength": 64
+                          }
+                        ]
+                      },
+                      "eps": {
+                        "items": {
+                          "properties": {
+                            "pri": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "description": "The priority among multiple Endpoints as specified in 10.2.3"
+                            },
+                            "ep": {
+                              "type": "string",
+                              "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                              "format": "uri"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "description": "the Endpoint information of the target Resource"
+                      },
+                      "anchor": {
+                        "type": "string",
+                        "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "A title for the link relation. Can be used by the UI to provide a context",
+                        "maxLength": 64
+                      },
+                      "di": {
+                        "type": "string",
+                        "description": "Unique identifier for device (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      },
+                      "rt": {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "type": "array",
+                        "description": "Resource Type",
+                        "minItems": 1
+                      },
+                      "p": {
+                        "properties": {
+                          "bm": {
+                            "type": "integer",
+                            "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable"
+                          }
+                        },
+                        "required": [
+                          "bm"
+                        ],
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                        "type": "object"
+                      },
+                      "type": {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "type": "array",
+                        "default": "application/cbor",
+                        "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                        "minItems": 1
+                      },
+                      "ins": {
+                        "description": "The instance identifier for this web link in an array of web links - used in collections",
+                        "oneOf": [
+                          {
+                            "type": "integer",
+                            "description": "An ordinal number that is not repeated - must be unique in the collection context"
+                          },
+                          {
+                            "type": "string",
+                            "description": "Any unique string including a URI",
+                            "maxLength": 256,
+                            "format": "uri"
+                          },
+                          {
+                            "type": "string",
+                            "description": "Unique identifier (UUID)",
+                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                          }
+                        ]
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "href",
+                      "rt",
+                      "if"
+                    ]
+                  },
+                  "type": "array",
+                  "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required"
+                }
+              ]
+            },
+            "id": {
+              "description": "ID for the collection. Can be an value that is unique to the use context or a UUIDv4",
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "description": "A number that is unique to that collection; like an ordinal number that is not repeated"
+                },
+                {
+                  "type": "string",
+                  "description": "A unique string that could be a hash or similarly unique"
+                },
+                {
+                  "type": "string",
+                  "description": "A unique string that could be a UUIDv4",
+                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+              ]
+            }
+          },
+          "type": "object",
+          "description": "A collection is a set (array) of tagged-link or set (array) of simple links along with additional properties to describe the collection itself"
+        },
+        {
+          "properties": {
+            "rts": {
+              "items": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "oic.r.consumable",
+                      "oic.r.value.conditional"
+                    ]
+                  },
+                  {
+                    "enum": [
+                      "oic.r.consumable"
+                    ]
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "uniqueItems": true,
+              "type": "array",
+              "minItems": 1
+            },
+            "if": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "oic.if.baseline",
+                  "oic.if.ll",
+                  "oic.if.b",
+                  "oic.if.lb",
+                  "oic.if.rw",
+                  "oic.if.r",
+                  "oic.if.a",
+                  "oic.if.s"
+                ]
+              },
+              "readOnly": true,
+              "description": "The interface set supported by this resource",
+              "minItems": 1,
+              "type": "array"
+            },
+            "rt": {
+              "items": {
+                "enum": [
+                  "oic.r.consumablecollection",
+                  "oic.wk.col"
+                ]
+              },
+              "maxItems": 2,
+              "uniqueItems": true,
+              "type": "array",
+              "minItems": 2
+            },
+            "n": {
+              "readOnly": true,
+              "description": "Friendly name of the resource",
+              "maxLength": 64,
+              "type": "string"
+            },
+            "supportedconsumables": {
+              "items": {
+                "type": "string"
+              },
+              "readOnly": true,
+              "description": "Array of possible consumables the device measures.",
+              "type": "array"
+            },
+            "id": {
+              "readOnly": true,
+              "description": "Instance ID of this specific resource",
+              "maxLength": 64,
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "AirQuality": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "di": {
+              "type": "string",
+              "description": "The device ID which is an UUIDv4 string; used for backward compatibility with Spec A definition of /oic/res",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            },
+            "rts": {
+              "items": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "readOnly": true,
+              "description": "Defines the list of allowable resource types (for Target and anchors) in links included in the collection; new links being created can only be from this list",
+              "minItems": 1,
+              "type": "array"
+            },
+            "drel": {
+              "type": "string",
+              "description": "When specified this is the default relationship to use when an OIC Link does not specify an explicit relationship with *rel* parameter"
+            },
+            "links": {
+              "description": "All forms of links in a collection",
+              "oneOf": [
+                {
+                  "items": {
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      "if": {
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "oic.if.baseline",
+                            "oic.if.ll",
+                            "oic.if.b",
+                            "oic.if.rw",
+                            "oic.if.r",
+                            "oic.if.a",
+                            "oic.if.s"
+                          ]
+                        },
+                        "type": "array",
+                        "description": "The interface set supported by this resource",
+                        "minItems": 1
+                      },
+                      "rel": {
+                        "description": "The relation of the target URI referenced by the link to the context URI",
+                        "oneOf": [
+                          {
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            },
+                            "default": [
+                              "hosts"
+                            ],
+                            "type": "array",
+                            "minItems": 1
+                          },
+                          {
+                            "default": "hosts",
+                            "type": "string",
+                            "maxLength": 64
+                          }
+                        ]
+                      },
+                      "eps": {
+                        "items": {
+                          "properties": {
+                            "pri": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "description": "The priority among multiple Endpoints as specified in 10.2.3"
+                            },
+                            "ep": {
+                              "type": "string",
+                              "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                              "format": "uri"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "description": "the Endpoint information of the target Resource"
+                      },
+                      "anchor": {
+                        "type": "string",
+                        "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "A title for the link relation. Can be used by the UI to provide a context",
+                        "maxLength": 64
+                      },
+                      "di": {
+                        "type": "string",
+                        "description": "Unique identifier for device (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      },
+                      "rt": {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "type": "array",
+                        "description": "Resource Type",
+                        "minItems": 1
+                      },
+                      "p": {
+                        "properties": {
+                          "bm": {
+                            "type": "integer",
+                            "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable"
+                          }
+                        },
+                        "required": [
+                          "bm"
+                        ],
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                        "type": "object"
+                      },
+                      "type": {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "type": "array",
+                        "default": "application/cbor",
+                        "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                        "minItems": 1
+                      },
+                      "ins": {
+                        "description": "The instance identifier for this web link in an array of web links - used in collections",
+                        "oneOf": [
+                          {
+                            "type": "integer",
+                            "description": "An ordinal number that is not repeated - must be unique in the collection context"
+                          },
+                          {
+                            "type": "string",
+                            "description": "Any unique string including a URI",
+                            "maxLength": 256,
+                            "format": "uri"
+                          },
+                          {
+                            "type": "string",
+                            "description": "Unique identifier (UUID)",
+                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                          }
+                        ]
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "href",
+                      "rt",
+                      "if"
+                    ]
+                  },
+                  "type": "array",
+                  "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required"
+                }
+              ]
+            },
+            "id": {
+              "description": "ID for the collection. Can be an value that is unique to the use context or a UUIDv4",
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "description": "A number that is unique to that collection; like an ordinal number that is not repeated"
+                },
+                {
+                  "type": "string",
+                  "description": "A unique string that could be a hash or similarly unique"
+                },
+                {
+                  "type": "string",
+                  "description": "A unique string that could be a UUIDv4",
+                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+              ]
+            }
+          },
+          "type": "object",
+          "description": "A collection is a set (array) of tagged-link or set (array) of simple links along with additional properties to describe the collection itself"
+        },
+        {
+          "properties": {
+            "n": {
+              "readOnly": true,
+              "description": "Friendly name of the resource",
+              "maxLength": 64,
+              "type": "string"
+            },
+            "rts": {
+              "items": {
+                "oneOf": [
+                  {
+                    "enum": [
+                      "oic.r.airquality",
+                      "oic.r.value.conditional"
+                    ]
+                  },
+                  {
+                    "enum": [
+                      "oic.r.airquality"
+                    ]
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "uniqueItems": true,
+              "type": "array",
+              "minItems": 1
+            },
+            "if": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "oic.if.baseline",
+                  "oic.if.ll",
+                  "oic.if.b",
+                  "oic.if.lb",
+                  "oic.if.rw",
+                  "oic.if.r",
+                  "oic.if.a",
+                  "oic.if.s"
+                ]
+              },
+              "readOnly": true,
+              "description": "The interface set supported by this resource",
+              "minItems": 1,
+              "type": "array"
+            },
+            "rt": {
+              "items": {
+                "enum": [
+                  "oic.r.airqualitycollection",
+                  "oic.wk.col"
+                ]
+              },
+              "maxItems": 2,
+              "uniqueItems": true,
+              "type": "array",
+              "minItems": 2
+            },
+            "id": {
+              "readOnly": true,
+              "description": "Instance ID of this specific resource",
+              "maxLength": 64,
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "HeatingZone-ll": {
+      "allOf": [
+        {
+          "description": "All forms of links in a collection",
+          "oneOf": [
+            {
+              "items": {
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                    "maxLength": 256,
+                    "format": "uri"
+                  },
+                  "if": {
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "oic.if.baseline",
+                        "oic.if.ll",
+                        "oic.if.b",
+                        "oic.if.rw",
+                        "oic.if.r",
+                        "oic.if.a",
+                        "oic.if.s"
+                      ]
+                    },
+                    "type": "array",
+                    "description": "The interface set supported by this resource",
+                    "minItems": 1
+                  },
+                  "rel": {
+                    "description": "The relation of the target URI referenced by the link to the context URI",
+                    "oneOf": [
+                      {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "default": [
+                          "hosts"
+                        ],
+                        "type": "array",
+                        "minItems": 1
+                      },
+                      {
+                        "default": "hosts",
+                        "type": "string",
+                        "maxLength": 64
+                      }
+                    ]
+                  },
+                  "eps": {
+                    "items": {
+                      "properties": {
+                        "pri": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "description": "The priority among multiple Endpoints as specified in 10.2.3"
+                        },
+                        "ep": {
+                          "type": "string",
+                          "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                          "format": "uri"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array",
+                    "description": "the Endpoint information of the target Resource"
+                  },
+                  "anchor": {
+                    "type": "string",
+                    "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                    "maxLength": 256,
+                    "format": "uri"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "A title for the link relation. Can be used by the UI to provide a context",
+                    "maxLength": 64
+                  },
+                  "di": {
+                    "type": "string",
+                    "description": "Unique identifier for device (UUID)",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "rt": {
+                    "items": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "type": "array",
+                    "description": "Resource Type",
+                    "minItems": 1
+                  },
+                  "p": {
+                    "properties": {
+                      "bm": {
+                        "type": "integer",
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable"
+                      }
+                    },
+                    "required": [
+                      "bm"
+                    ],
+                    "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                    "type": "object"
+                  },
+                  "type": {
+                    "items": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "type": "array",
+                    "default": "application/cbor",
+                    "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                    "minItems": 1
+                  },
+                  "ins": {
+                    "description": "The instance identifier for this web link in an array of web links - used in collections",
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "description": "An ordinal number that is not repeated - must be unique in the collection context"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Any unique string including a URI",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Unique identifier (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      }
+                    ]
+                  }
+                },
+                "type": "object",
+                "required": [
+                  "href",
+                  "rt",
+                  "if"
+                ]
+              },
+              "type": "array",
+              "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required"
+            }
+          ]
+        }
+      ]
+    },
+    "AirFlow": {
+      "properties": {
+        "step": {
+          "readOnly": true,
+          "description": "Step value across the defined range",
+          "type": "integer"
+        },
+        "speed": {
+          "type": "integer",
+          "description": "Current speed level"
+        },
+        "automode": {
+          "description": "Status of the automode feature, if on speed is set by the device",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        },
+        "value": {
+          "type": "integer",
+          "description": "The value sensed or actuated by this Resource"
+        },
+        "supporteddirections": {
+          "items": {
+            "uniqueItems": true,
+            "type": "string",
+            "minItems": 1
+          },
+          "readOnly": true,
+          "description": "Array of possible direction settings for this instance of the Resource Type",
+          "type": "array"
+        },
+        "precision": {
+          "readOnly": true,
+          "description": "Accuracy granularity of the exposed value",
+          "type": "number"
+        },
+        "direction": {
+          "type": "string",
+          "description": "Directionality of the air flow"
+        },
+        "range": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "The valid range for the value Property",
+          "minItems": 2,
+          "maxItems": 2,
+          "readOnly": true
+        }
+      },
+      "type": "object",
+      "required": [
+        "speed"
+      ]
+    },
+    "Brightness": {
+      "properties": {
+        "precision": {
+          "readOnly": true,
+          "description": "Accuracy granularity of the exposed value",
+          "type": "number"
+        },
+        "brightness": {
+          "maximum": 100,
+          "type": "integer",
+          "minimum": 0,
+          "description": "Quantized representation in the range 0-100 of the current sensed or set value for Brightness"
+        },
+        "value": {
+          "type": "integer",
+          "description": "The value sensed or actuated by this Resource"
+        },
+        "step": {
+          "readOnly": true,
+          "description": "Step value across the defined range",
+          "type": "integer"
+        },
+        "range": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "The valid range for the value Property",
+          "minItems": 2,
+          "maxItems": 2,
+          "readOnly": true
+        }
+      },
+      "type": "object",
+      "required": [
+        "brightness"
+      ]
+    },
+    "AirQuality-ll": {
+      "allOf": [
+        {
+          "description": "All forms of links in a collection",
+          "oneOf": [
+            {
+              "items": {
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                    "maxLength": 256,
+                    "format": "uri"
+                  },
+                  "if": {
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "oic.if.baseline",
+                        "oic.if.ll",
+                        "oic.if.b",
+                        "oic.if.rw",
+                        "oic.if.r",
+                        "oic.if.a",
+                        "oic.if.s"
+                      ]
+                    },
+                    "type": "array",
+                    "description": "The interface set supported by this resource",
+                    "minItems": 1
+                  },
+                  "rel": {
+                    "description": "The relation of the target URI referenced by the link to the context URI",
+                    "oneOf": [
+                      {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "default": [
+                          "hosts"
+                        ],
+                        "type": "array",
+                        "minItems": 1
+                      },
+                      {
+                        "default": "hosts",
+                        "type": "string",
+                        "maxLength": 64
+                      }
+                    ]
+                  },
+                  "eps": {
+                    "items": {
+                      "properties": {
+                        "pri": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "description": "The priority among multiple Endpoints as specified in 10.2.3"
+                        },
+                        "ep": {
+                          "type": "string",
+                          "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                          "format": "uri"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array",
+                    "description": "the Endpoint information of the target Resource"
+                  },
+                  "anchor": {
+                    "type": "string",
+                    "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                    "maxLength": 256,
+                    "format": "uri"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "A title for the link relation. Can be used by the UI to provide a context",
+                    "maxLength": 64
+                  },
+                  "di": {
+                    "type": "string",
+                    "description": "Unique identifier for device (UUID)",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                  },
+                  "rt": {
+                    "items": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "type": "array",
+                    "description": "Resource Type",
+                    "minItems": 1
+                  },
+                  "p": {
+                    "properties": {
+                      "bm": {
+                        "type": "integer",
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable"
+                      }
+                    },
+                    "required": [
+                      "bm"
+                    ],
+                    "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                    "type": "object"
+                  },
+                  "type": {
+                    "items": {
+                      "type": "string",
+                      "maxLength": 64
+                    },
+                    "type": "array",
+                    "default": "application/cbor",
+                    "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                    "minItems": 1
+                  },
+                  "ins": {
+                    "description": "The instance identifier for this web link in an array of web links - used in collections",
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "description": "An ordinal number that is not repeated - must be unique in the collection context"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Any unique string including a URI",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Unique identifier (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      }
+                    ]
+                  }
+                },
+                "type": "object",
+                "required": [
+                  "href",
+                  "rt",
+                  "if"
+                ]
+              },
+              "type": "array",
+              "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required"
+            }
+          ]
+        }
+      ]
+    },
+    "HeatingZone": {
+      "type": "object",
+      "allOf": [
+        {
+          "properties": {
+            "di": {
+              "type": "string",
+              "description": "The device ID which is an UUIDv4 string; used for backward compatibility with Spec A definition of /oic/res",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+            },
+            "rts": {
+              "items": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "readOnly": true,
+              "description": "Defines the list of allowable resource types (for Target and anchors) in links included in the collection; new links being created can only be from this list",
+              "minItems": 1,
+              "type": "array"
+            },
+            "drel": {
+              "type": "string",
+              "description": "When specified this is the default relationship to use when an OIC Link does not specify an explicit relationship with *rel* parameter"
+            },
+            "links": {
+              "description": "All forms of links in a collection",
+              "oneOf": [
+                {
+                  "items": {
+                    "properties": {
+                      "href": {
+                        "type": "string",
+                        "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      "if": {
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "oic.if.baseline",
+                            "oic.if.ll",
+                            "oic.if.b",
+                            "oic.if.rw",
+                            "oic.if.r",
+                            "oic.if.a",
+                            "oic.if.s"
+                          ]
+                        },
+                        "type": "array",
+                        "description": "The interface set supported by this resource",
+                        "minItems": 1
+                      },
+                      "rel": {
+                        "description": "The relation of the target URI referenced by the link to the context URI",
+                        "oneOf": [
+                          {
+                            "items": {
+                              "type": "string",
+                              "maxLength": 64
+                            },
+                            "default": [
+                              "hosts"
+                            ],
+                            "type": "array",
+                            "minItems": 1
+                          },
+                          {
+                            "default": "hosts",
+                            "type": "string",
+                            "maxLength": 64
+                          }
+                        ]
+                      },
+                      "eps": {
+                        "items": {
+                          "properties": {
+                            "pri": {
+                              "type": "integer",
+                              "minimum": 1,
+                              "description": "The priority among multiple Endpoints as specified in 10.2.3"
+                            },
+                            "ep": {
+                              "type": "string",
+                              "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                              "format": "uri"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array",
+                        "description": "the Endpoint information of the target Resource"
+                      },
+                      "anchor": {
+                        "type": "string",
+                        "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                        "maxLength": 256,
+                        "format": "uri"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "A title for the link relation. Can be used by the UI to provide a context",
+                        "maxLength": 64
+                      },
+                      "di": {
+                        "type": "string",
+                        "description": "Unique identifier for device (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                      },
+                      "rt": {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "type": "array",
+                        "description": "Resource Type",
+                        "minItems": 1
+                      },
+                      "p": {
+                        "properties": {
+                          "bm": {
+                            "type": "integer",
+                            "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable"
+                          }
+                        },
+                        "required": [
+                          "bm"
+                        ],
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                        "type": "object"
+                      },
+                      "type": {
+                        "items": {
+                          "type": "string",
+                          "maxLength": 64
+                        },
+                        "type": "array",
+                        "default": "application/cbor",
+                        "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                        "minItems": 1
+                      },
+                      "ins": {
+                        "description": "The instance identifier for this web link in an array of web links - used in collections",
+                        "oneOf": [
+                          {
+                            "type": "integer",
+                            "description": "An ordinal number that is not repeated - must be unique in the collection context"
+                          },
+                          {
+                            "type": "string",
+                            "description": "Any unique string including a URI",
+                            "maxLength": 256,
+                            "format": "uri"
+                          },
+                          {
+                            "type": "string",
+                            "description": "Unique identifier (UUID)",
+                            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                          }
+                        ]
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "href",
+                      "rt",
+                      "if"
+                    ]
+                  },
+                  "type": "array",
+                  "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required"
+                }
+              ]
+            },
+            "id": {
+              "description": "ID for the collection. Can be an value that is unique to the use context or a UUIDv4",
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "description": "A number that is unique to that collection; like an ordinal number that is not repeated"
+                },
+                {
+                  "type": "string",
+                  "description": "A unique string that could be a hash or similarly unique"
+                },
+                {
+                  "type": "string",
+                  "description": "A unique string that could be a UUIDv4",
+                  "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                }
+              ]
+            }
+          },
+          "type": "object",
+          "description": "A collection is a set (array) of tagged-link or set (array) of simple links along with additional properties to describe the collection itself"
+        },
+        {
+          "properties": {
+            "n": {
+              "readOnly": true,
+              "description": "Friendly name of the resource",
+              "maxLength": 64,
+              "type": "string"
+            },
+            "rts": {
+              "items": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "oic.r.heatingzone",
+                      "oic.r.value.conditional"
+                    ]
+                  },
+                  {
+                    "enum": [
+                      "oic.r.heatingzone"
+                    ]
+                  }
+                ]
+              },
+              "maxItems": 2,
+              "uniqueItems": true,
+              "type": "array",
+              "minItems": 1
+            },
+            "if": {
+              "items": {
+                "type": "string",
+                "enum": [
+                  "oic.if.baseline",
+                  "oic.if.ll",
+                  "oic.if.b",
+                  "oic.if.lb",
+                  "oic.if.rw",
+                  "oic.if.r",
+                  "oic.if.a",
+                  "oic.if.s"
+                ]
+              },
+              "readOnly": true,
+              "description": "The interface set supported by this resource",
+              "minItems": 1,
+              "type": "array"
+            },
+            "rt": {
+              "items": {
+                "enum": [
+                  "oic.r.heatingzonecollection",
+                  "oic.wk.col"
+                ]
+              },
+              "maxItems": 2,
+              "uniqueItems": true,
+              "type": "array",
+              "minItems": 2
+            },
+            "id": {
+              "readOnly": true,
+              "description": "Instance ID of this specific resource",
+              "maxLength": 64,
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "Temperature": {
+      "properties": {
+        "step": {
+          "readOnly": true,
+          "description": "Step value across the defined range",
+          "type": "integer"
+        },
+        "value": {
+          "type": "integer",
+          "description": "The value sensed or actuated by this Resource"
+        },
+        "units": {
+          "readOnly": true,
+          "description": "Units for the temperature value",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ]
+        },
+        "precision": {
+          "readOnly": true,
+          "description": "Accuracy granularity of the exposed value",
+          "type": "number"
+        },
+        "range": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "The valid range for the value Property",
+          "minItems": 2,
+          "maxItems": 2,
+          "readOnly": true
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Current temperature setting or measurement"
+        }
+      },
+      "type": "object",
+      "required": [
+        "temperature"
+      ]
+    },
+    "BinarySwitch": {
+      "properties": {
+        "precision": {
+          "readOnly": true,
+          "description": "Accuracy granularity of the exposed value",
+          "type": "number"
+        },
+        "step": {
+          "readOnly": true,
+          "description": "Step value across the defined range",
+          "type": "integer"
+        },
+        "value": {
+          "type": "boolean",
+          "description": "Status of the switch"
+        },
+        "range": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array",
+          "description": "The valid range for the value Property",
+          "minItems": 2,
+          "maxItems": 2,
+          "readOnly": true
+        }
+      },
+      "type": "object",
+      "required": [
+        "value"
+      ]
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0"
+}
