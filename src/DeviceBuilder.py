@@ -552,6 +552,7 @@ def main_app(args, generation_type):
         remove_from_definition(file_data, args.remove_property)
         
         if "introspection" == generation_type:
+            print ("optimize for introspection..")
             optimize_introspection(file_data)
         
         file_to_write = str(args.out) + "_" + generation_type + "_" + myfile
