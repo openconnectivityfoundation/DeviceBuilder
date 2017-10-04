@@ -49,29 +49,22 @@ This swagger data includes:
 - x-examples
 - full descriptions
 
+The advantage of this input format is:
+- can be used for existing devices, e.g. just retrieve the oic/res of an existing device
 
-# swagger file creation from devicebuilder input format
-The input format is an json array of:
-  -  "path" : "/mypath"
-    
-    string, required
-  -  "rt"   : [ "oic.r.switch.binary" ]
-  
-    array of strings, required
-  -  "if"   : ["oic.if.s" ],
-    
-    array of strings, required
-  -  "remove_properties" : [ "range"  ],  
-    
-    array of strings, optional, e.g. can be omitted, "range", "step" "value".
-  -  "remove_methods" : ["post"],
-  
-   array of strings, optional, e.g. can be omitted, must be "get" "post"
-  -  "override_type" : "integer"
-  
-   string, optional, e.g. can be omitted, must be "integer" or "number" or "string"
+# swagger file creation from DeviceBuilder input format
 
+The DeviceBuilder input format is an json array with the next properties:
+  -  "path" : string, required, must start with "/"
+  -  "rt"   : array of strings, required, the resource type that needs to be populated
+  -  "if"   : array of strings, required, the interfaces that needs to be supported
+  -  "remove_properties" : array of strings, optional, e.g. can be omitted, properties that will be removed: "range", "step" "value".
+  -  "remove_methods" : array of strings, optional, e.g. can be omitted, methods that will be removed:  "get" "post"
+  -  "override_type" :   string, optional, e.g. can be omitted, override the value type: "integer" or "number" or "string"
 
+the advantage of this format that it is:
+- simple
+- instructions per resource instance to change things.
 
 ## Options needed to run the tool:
 - introspection : output base file

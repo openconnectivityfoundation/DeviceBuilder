@@ -34,6 +34,14 @@ if sys.version_info < (3, 5):
                     (sys.version_info[0], sys.version_info[1]))
 
 
+                    
+index_rt     = 0
+index_href   = 1
+index_if     = 2
+index_type   = 3
+index_prop   = 4
+index_method = 5 
+                    
 
 def load_json(filename, my_dir=None):
     """
@@ -182,12 +190,34 @@ def find_key_link(rec_dict, target, depth=0):
                 return r #[list(r.items())]
 
 
-index_rt     = 0
-index_href   = 1
-index_if     = 2
-index_type   = 3
-index_prop   = 4
-index_method = 5          
+def find_key_value(rec_dict, searchkey, target, depth=0):
+    """
+    find the first key recursively
+    also traverse lists (arrays, oneOf,..) but only returns the first occurance
+    :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
+    :param target: target key to search for
+    :param depth: depth of the search (recursion)
+    :return:
+    """
+    #print ("")
+    #print ("find_key_value:", searchkey, target, depth)
+    #print ("find_key_value:", rec_dict)
+    if isinstance(rec_dict, dict):
+        # direct key
+        for key, value in rec_dict.items():
+            if key == searchkey and value == target:
+                #print ("  find_key_value found!: find_key_value:", rec_dict)
+                return rec_dict
+            elif isinstance(value, dict):
+                r = find_key_value(value, searchkey, target, depth+1)
+                if r is not None:
+                    return r
+            elif isinstance(value, list):
+                for entry in value:
+                    if isinstance(entry, dict):
+                        r = find_key_value(entry, searchkey, target, depth+1)
+                        if r is not None:
+                            return r
            
 def find_oic_res_resources(filename, args):
     """
@@ -291,7 +321,7 @@ def find_files(dirname, rt_values):
     find the files where the rt values are stored in (as part of the example)
     :param dirname: dir name
     :param rt_values: array of rt values
-    :return: array of file names
+    :return: array of file names, no duplicates...
     """
     file_list = get_dir_list(dirname, ext=".swagger.json")
     print ("find_files: directory:", dirname)
@@ -303,7 +333,7 @@ def find_files(dirname, rt_values):
             #print ("      rt_values:", rt_values_file)
             for rt_file in rt_values_file:
                 if find_in_array(rt_file, rt_values):
-                    found_file.append (myfile)
+                   found_file.append (myfile)
     return  found_file     
             
     
@@ -588,20 +618,22 @@ def update_path_value(json_data, rt_value_file, rt_values):
         else:
             print("update_path_value: already the same :", replacement)
         
-def create_introspection(json_data, rt_value_file, rt_values):
+def create_introspection(json_data, rt_value_file, rt_values, index):
     """
     create the introspection data, e.g. morph json_data.
     :param json_data: the parsed swagger file
     :param rt_value_file: the filename
     :param rt_values: array of rt values
     """
-    print("")
-    update_path_value(json_data, rt_value_file, rt_values)
-    update_definition_with_rt(json_data, rt_value_file, rt_values)
-    update_definition_with_if(json_data, rt_value_file, rt_values)
-    update_definition_with_type(json_data, rt_value_file, rt_values)
-    remove_definition_properties(json_data, rt_value_file, rt_values)
-    remove_path_method(json_data, rt_value_file, rt_values)
+    print("create_introspection", index)
+    rt_single = [rt_values[index]]
+    
+    update_path_value(json_data, rt_value_file, rt_single)
+    update_definition_with_rt(json_data, rt_value_file, rt_single)
+    update_definition_with_if(json_data, rt_value_file, rt_single)
+    update_definition_with_type(json_data, rt_value_file, rt_single)
+    remove_definition_properties(json_data, rt_value_file, rt_single)
+    remove_path_method(json_data, rt_value_file, rt_single)
     
     
 def optimize_introspection(json_data):    
@@ -620,13 +652,51 @@ def merge(merge_data, file_data):
     :param merge_data: the data that will be used to merge into
     :param file_data: the data to merge
     """
+    index = 0
+    for parameter, parameter_item in file_data["parameters"].items():
+        data = merge_data["parameters"].get(parameter)
+        if data is None:
+            merge_data["parameters"][parameter] = parameter_item
+        else:
+            print ("merge: parameter exist:", parameter)
+            new_parameter = parameter + str(index)
+            index = index + 1
+            print ("merge: parameter exist:", parameter, " adding as:", new_parameter)
+            merge_data["parameters"][new_parameter] = parameter_item
+            # todo fix the path data
+            search_parameter = "#/parameters/"+parameter
+            my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
+            print (" -->",my_dict)
+            my_dict["$ref"] = "#/parameters/"+new_parameter
+            #my_dict = find_key_value(file_data, parameter)
+            #if my_dict is not None:
+            #    my_dict = new_parameter
+            
+    
+    for definition, definiton_item in file_data["definitions"].items():
+        data = merge_data["definitions"].get(definition)
+        if data is None:
+            merge_data["definitions"][definition] = definiton_item
+        else:
+            print ("merge: definition exist:", definition)
+            new_definition = definition + str(index)
+            index = index + 1
+            print ("merge: parameter exist:", definition, " adding as:", new_definition)
+            merge_data["definitions"][new_definition] = definiton_item
+            # todo fix the path data
+            search_definition = "#/definitions/" + definition
+            my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
+            print (" -->",my_dict)
+            my_dict["$ref"] = "#/definitions/" +new_definition
+            #print (" -->",my_dict)
+            # try again for the other method
+            my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
+            if my_dict is not None:
+                my_dict["$ref"] = "#/definitions/" + new_definition
+    
+    
     for path, path_item in file_data["paths"].items():
         merge_data["paths"][path] = path_item
-    for definition, definiton_item in file_data["definitions"].items():
-        merge_data["definitions"][definition] = definiton_item
-        
-    for parameter, parameter_item in file_data["parameters"].items():
-        merge_data["parameters"][parameter] = parameter_item
     
     
 def main_app(args, generation_type):  
@@ -644,6 +714,30 @@ def main_app(args, generation_type):
         
     print ("handling resources (overview):")
     # type,[props to be removed], [methods to be removed]
+    #for rt in rt_values:
+    #    print ("  rt                 :", rt[0])
+    #    print ("    href             :", rt[1])
+    #    print ("    if               :", rt[2])
+    #    print ("    type (replace)   :", rt[3])
+    #    print ("    props (remove)   :", rt[4])
+    #    print ("    methods (remove) :", rt[5])
+    #print(" ")
+
+    files_to_process = find_files(str(args.resource_dir), rt_values)
+    print ("processing files:",files_to_process )
+    
+    index = 0
+    merged_data = None
+    for myfile in files_to_process:
+        print ("")
+        print ("  main: File :", myfile)
+        file_data = load_json(myfile, str(args.resource_dir))
+        rt_values_file = swagger_rt(file_data)
+        print ("  main: rt :", rt_values_file)
+        for rt in rt_values:
+            if rt[0] == rt_values_file[0]:
+                rt.append(myfile)
+                
     for rt in rt_values:
         print ("  rt                 :", rt[0])
         print ("    href             :", rt[1])
@@ -651,34 +745,35 @@ def main_app(args, generation_type):
         print ("    type (replace)   :", rt[3])
         print ("    props (remove)   :", rt[4])
         print ("    methods (remove) :", rt[5])
-    print(" ")
-
-    files_to_process = find_files(str(args.resource_dir), rt_values)
-    print ("processing files:",files_to_process )
-    
-    merged_data = None
-    for myfile in files_to_process:
-        print ("")
-        print ("  main: File :", myfile)
-        file_data = load_json(myfile, str(args.resource_dir))
-        rt_values_file = swagger_rt(file_data)
-        create_introspection( file_data, rt_values_file, rt_values)
-        
-        if "introspection" == generation_type:
-            print ("optimize for introspection..")
-            optimize_introspection(file_data)
-        
-        if write_intermediate:
-            file_to_write = str(args.out) + "_" + generation_type + "_" + myfile
-            fp = open(str(file_to_write),"w")
-            json_string = json.dumps(file_data,indent=2)
-            fp.write(json_string)
-            fp.close()
-        
-        if merged_data is None:
-            merged_data = file_data
+        if len(rt) > 6:
+            print ("    basefile         :", rt[6])
         else:
-            merge(merged_data, file_data)
+            ("    no base file found! : ignored")
+    print(" ")   
+        
+    for rt in rt_values:
+        if len(rt) > 6:
+            file_data = load_json(rt[6], str(args.resource_dir))
+            rt_values_file = swagger_rt(file_data)
+        
+            create_introspection( file_data, rt_values_file, rt_values, index)
+            index = index + 1
+            
+            if "introspection" == generation_type:
+                print ("optimize for introspection..")
+                optimize_introspection(file_data)
+            
+            if write_intermediate:
+                file_to_write = str(args.out) + "_" + generation_type + "_" + myfile
+                fp = open(str(file_to_write),"w")
+                json_string = json.dumps(file_data,indent=2)
+                fp.write(json_string)
+                fp.close()
+            
+            if merged_data is None:
+                merged_data = file_data
+            else:
+                merge(merged_data, file_data)
         
     if merged_data is not None: 
         file_to_write = str(args.out) + "_" + generation_type + "_" + "merged.swagger.json"
