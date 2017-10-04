@@ -21,19 +21,13 @@
 #############################
 
 
-import time
 import os
 import json
-import random
 import sys
 import argparse
 import traceback
-from datetime import datetime
-from time import gmtime, strftime
-#import jsonref
 from os import listdir
 from os.path import isfile, join
-
 
 if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
@@ -591,9 +585,7 @@ parser.add_argument( "-resource_dir"    , "--resource_dir"    , default=None,
 parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*', help='remove property (--remove_property  value range step precision id) ')
 parser.add_argument('-type', '--type', default=None, nargs='?', help='type of the value (or renamed value) (--type  integer number) ')
 
-                     
-parser.add_argument('-derived', '--derived', default=None, help='derived data model specificaton (--derived XXX) e.g. XXX Property Name in table use "." to ignore the property name setting')
-
+ 
 args = parser.parse_args()
 
 print("oic/res file        : " + str(args.ocfres))
