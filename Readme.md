@@ -52,32 +52,19 @@ This swagger data includes:
 The advantage of this input format is:
 - can be used for existing devices, e.g. just retrieve the oic/res of an existing device
 
-# swagger file creation from DeviceBuilder input format
-
-The DeviceBuilder input format is an json array with the next properties:
-  -  "path" : string, required, must start with "/"
-  -  "rt"   : array of strings, required, the resource type that needs to be populated
-  -  "if"   : array of strings, required, the interfaces that needs to be supported
-  -  "remove_properties" : array of strings, optional, e.g. can be omitted, properties that will be removed: "range", "step" "value".
-  -  "remove_methods" : array of strings, optional, e.g. can be omitted, methods that will be removed:  "get" "post"
-  -  "override_type" :   string, optional, e.g. can be omitted, override the value type: "integer" or "number" or "string"
-
-the advantage of this format that it is:
-- simple
-- instructions per resource instance to change things.
-
-## Options needed to run the tool:
+### Options needed to run the tool (oic/res):
 - introspection : output base file
 - ocfres: the oic/res output in json
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)
 
-## Optional options dependend on the wanted output:
+
+### Optional options dependend on the wanted output:
 - remove_property : array of properties that needs to be removed, e.g. range, step, etc that are not implemented
 - type: if the resource is multi-valued, e.g. oneOf(integer,number) then one force an single type for this
 note that this is done on all the resources in the same way.
 
 
-## Simple input format
+### Simplyfied oic/res input format
   The ```simple input format``` is an stripped down version of oic/res json file.
   It still has all needed data to create an introspection file.
   The intention is that if you do not have an implementation yet, this file format can be used to create an introspection file.
@@ -95,6 +82,25 @@ note that this works for:
 - resources that are an actuator or sensor
 - works for collections, but without batch
   - batch introduces the next level of resources, which is not handled in the format.
+      
+# swagger file creation from DeviceBuilder input format
+
+The DeviceBuilder input format is an json array with the next properties:
+  -  "path" : string, required, must start with "/"
+  -  "rt"   : array of strings, required, the resource type that needs to be populated
+  -  "if"   : array of strings, required, the interfaces that needs to be supported
+  -  "remove_properties" : array of strings, optional, e.g. can be omitted, properties that will be removed: "range", "step" "value".
+  -  "remove_methods" : array of strings, optional, e.g. can be omitted, methods that will be removed:  "get" "post"
+  -  "override_type" :   string, optional, e.g. can be omitted, override the value type: "integer" or "number" or "string"
+
+The advantage of this format that it is:
+- instructions per resource instance to change things.
+
+### Options needed to run the tool (deviceBuilder):
+- introspection : output base file
+- input: the manually crafted deviceBuilder input file
+- resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)      
+      
       
 # Implemented tool features
 
