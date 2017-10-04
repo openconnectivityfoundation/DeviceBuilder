@@ -50,6 +50,29 @@ This swagger data includes:
 - full descriptions
 
 
+# swagger file creation from devicebuilder input format
+The input format is an json array of:
+  -  "path" : "/mypath"
+    
+    string, required
+  -  "rt"   : [ "oic.r.switch.binary" ]
+  
+    array of strings, required
+  -  "if"   : ["oic.if.s" ],
+    
+    array of strings, required
+  -  "remove_properties" : [ "range"  ],  
+    
+    array of strings, optional, e.g. can be omitted, "range", "step" "value".
+  -  "remove_methods" : ["post"],
+  
+   array of strings, optional, e.g. can be omitted, must be "get" "post"
+  -  "override_type" : "integer"
+  
+   string, optional, e.g. can be omitted, must be "integer" or "number" or "string"
+
+
+
 ## Options needed to run the tool:
 - introspection : output base file
 - ocfres: the oic/res output in json
