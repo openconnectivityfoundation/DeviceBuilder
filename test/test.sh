@@ -1,54 +1,72 @@
-#
-#
-#
+#!/bin/bash
 
-if [ ! -f ../../IoTDataModels/README.md ]
-then
-pushd `pwd`
-cd ../..
-git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
-popd
-fi
+PYTHON_EXE=C:\\python35-32\\python3.exe
+DeviceBuilder=../src/deviceBuilder.py
 
-mkdir out
+OUTPUT_DIR=./out
+OUTPUT_DIR_DOCS=../test/$OUTPUT_DIR
+REF_DIR=./ref
+EXT=.txt
 
-resfile=./input_oic_res/oic-res-response-binaryswitch.json
-python3 ../src/DeviceBuilder.py -ocfres $resfile -resource_dir ../../IoTDataModels -out ./out/test1
-wb-swagger validate ./out/test1_codegeneration_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test1_codegeneration_merged.swagger.json
-wb-swagger validate ./out/test1_introspection_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test1_introspection_merged.swagger.json
+function compare_output {
+    diff -w $OUTPUT_DIR/$TEST_CASE$EXT $REF_DIR/$TEST_CASE$EXT
+    echo "testcase difference: $TEST_CASE $?"
+    #echo "blah"
+}
 
-resfile=./input_oic_res/oic-res-response-binaryswitch-href.json
-python3 ../src/DeviceBuilder.py -ocfres $resfile -resource_dir ../../IoTDataModels -out ./out/test2
-wb-swagger validate ./out/test2_codegeneration_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test2_codegeneration_merged.swagger.json
-wb-swagger validate ./out/test2_introspection_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test2_introspection_merged.swagger.json
-
-resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
-python3 ../src/DeviceBuilder.py -ocfres $resfile -resource_dir ../../IoTDataModels -out ./out/test3 -remove_property step range precision
-#test3_codegeneration_BinarySwitchResURI.swagger
-#test3_codegeneration_BrightnessResURI.swagger
-wb-swagger validate ./out/test3_codegeneration_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test3_codegeneration_BrightnessResURI.swagger.json
-wb-swagger validate ./out/test3_codegeneration_merged.swagger.json
-wb-swagger validate ./out/test3_introspection_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test3_introspection_BrightnessResURI.swagger.json
-wb-swagger validate ./out/test3_introspection_merged.swagger.json
+function compare_to_reference_file {
+    diff -w $OUTPUT_DIR/$1 $REF_DIR/$1
+    echo "output $1 difference: $TEST_CASE $?"
+    #echo "blah"
+}
 
 
-resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
-python3 ../src/DeviceBuilder.py -ocfres $resfile -resource_dir ../../IoTDataModels -out ./out/test4 -type int
-wb-swagger validate ./out/test4_codegeneration_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test4_codegeneration_BrightnessResURI.swagger.json
-wb-swagger validate ./out/test4_codegeneration_merged.swagger.json
-wb-swagger validate ./out/test4_introspection_BinarySwitchResURI.swagger.json
-wb-swagger validate ./out/test4_introspection_BrightnessResURI.swagger.json
-wb-swagger validate ./out/test4_introspection_merged.swagger.json
+function compare_to_reference_file_in_dir {
+    diff -w $OUTPUT_DIR/$1 $REF_DIR/$2/$1
+    echo "output $1 difference: $TEST_CASE $?"
+    #echo "blah"
+}
 
-resfile=./input_oic_res/oic-res-response-testdevice.json
-python3 ../src/DeviceBuilder.py -ocfres $resfile -resource_dir ../../IoTDataModels -out ./out/test5 -type integer
-wb-swagger validate ./out/test5_codegeneration_merged.swagger.json
-wb-swagger validate ./out/test5_introspection_merged.swagger.json
+function compare_file {
+    echo "comparing ($TEST_CASE): " $1 $2
+    diff -wb $1 $2
+    #echo "blah"
+}
 
+
+function my_test {
+    $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE$EXT 2>&1
+    compare_output
+} 
+
+function my_test_in_dir {
+    mkdir -p $OUTPUT_DIR/$TEST_CASE
+    $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    compare_file $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT $REF_DIR/$TEST_CASE/$TEST_CASE$EXT
+    
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
+    
+} 
+
+
+TEST_CASE="testcase_1"
+
+function tests {
+
+# option -h
+TEST_CASE="testcase_1"
+my_test -h
+
+# default docx 
+TEST_CASE="lightdevice"
+
+resfile=./input_define_device/input-lightdevice.json
+
+my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+}
+
+tests  

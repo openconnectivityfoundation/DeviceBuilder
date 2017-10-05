@@ -1,0 +1,22 @@
+[
+
+    {
+      "path" : "/binaryswitch",
+      "rt"   : [ "oic.r.switch.binary" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "step" , "id", "precision" ]
+    },
+     {
+      "path" : "/dimming",
+      "rt"   : [ "oic.r.light.dimming" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "step", "value" , "id" , "precision"]
+    },
+     {
+      "path" : "/colourchroma",
+      "rt"   : [ "oic.r.colour.chroma" ],
+      "if"   : ["oic.if.baseline","oic.if.a" ],
+      "remove_properties" : [ "range", "step", "value" , "id" ]
+    }
+
+]

@@ -83,16 +83,14 @@ def eraseElement(d,k , eraseEntry=False):
     :param k: decendenants of this key should be deleted (if not the starting with an /)
     :param eraseEntry : also erases the element k.
     """
-    print ("eraseElement:", k)
+    #print ("eraseElement:", k)
     if isinstance(d, dict):
         found = k in d
         if found:
-            print("eraseElement: erased sub elements of key:", k)
             decendants = d[k]
             kill_list = []
             if isinstance(decendants, dict):
                 for key, value in decendants.items():
-                    print ("eraseElement:", key)
                     if key.startswith("/"):
                         pass
                     else:
@@ -114,16 +112,11 @@ def eraseElement(d,k , eraseEntry=False):
         index = 0
         for list_item in d:
             for key in list_item:
-                print("eraseElement: list key:", k)
                 if key == k:
-                    print("eraseElement: removing key:", k)
                     remove_index.append(index)
             index += 1
         for index in remove_index:
-            print("eraseElement: removing index:", index)
-            print ("eraseElement: before remove:", d)
             del d[index] 
-            print ("eraseElement: after remove:", d)
             
     else:
         print("eraseElement: Not able to delete: ", k)
@@ -781,7 +774,7 @@ def main_app(args, generation_type):
             if write_intermediate:
                 file_to_write = str(args.out) + "_" + generation_type + "_" + myfile
                 fp = open(str(file_to_write),"w")
-                json_string = json.dumps(file_data,indent=2)
+                json_string = json.dumps(file_data,indent=2, sort_keys=True)
                 fp.write(json_string)
                 fp.close()
             
@@ -794,7 +787,7 @@ def main_app(args, generation_type):
     if merged_data is not None: 
         file_to_write = str(args.out) + "_" + generation_type + "_" + "merged.swagger.json"
         fp = open(str(file_to_write),"w")
-        json_string = json.dumps(merged_data,indent=2)
+        json_string = json.dumps(merged_data,indent=2, sort_keys=True)
         fp.write(json_string)
         fp.close()    
 #

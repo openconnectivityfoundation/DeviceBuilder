@@ -1,0 +1,198 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/lightdevice/out
+resource dir        : ../../IoTDataModels
+oic/res file        : None
+input file          : ./input_define_device/input-lightdevice.json
+remove_property     : None
+type                : None
+intermediate files  : False
+
+== INTROSPECTION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagger.json', 'DimmingResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : ColourChromaResURI.swagger.json
+  main: rt : ['oic.r.colour.chroma']
+
+  main: File : DimmingResURI.swagger.json
+  main: rt : ['oic.r.light.dimming']
+  rt                 : oic.r.switch.binary
+    href             : /binaryswitch
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'id', 'precision']
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.light.dimming
+    href             : /dimming
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'value', 'id', 'precision']
+    methods (remove) : None
+    basefile         : DimmingResURI.swagger.json
+  rt                 : oic.r.colour.chroma
+    href             : /colourchroma
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'value', 'id']
+    methods (remove) : None
+    basefile         : ColourChromaResURI.swagger.json
+ 
+create_introspection 0
+update_path_value:
+   rt: oic.r.switch.binary  href: /binaryswitch
+update_path_value /BinarySwitchResURI
+update_path_value :: /BinarySwitchResURI /binaryswitch
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /binaryswitch  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
+eraseElement: Cannot find matching key: id
+remove_path_method
+   href: /binaryswitch  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+create_introspection 1
+update_path_value:
+   rt: oic.r.light.dimming  href: /dimming
+update_path_value /DimmingResURI
+update_path_value :: /DimmingResURI /dimming
+update_definition_with_rt
+  rt: oic.r.light.dimming
+update_definition_with_if
+  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /dimming  type: None
+remove_definition_properties
+   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
+eraseElement: Cannot find matching key: id
+remove_path_method
+   href: /dimming  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+create_introspection 2
+update_path_value:
+   rt: oic.r.colour.chroma  href: /colourchroma
+update_path_value /ColourChromaResURI
+update_path_value :: /ColourChromaResURI /colourchroma
+update_definition_with_rt
+  rt: oic.r.colour.chroma
+update_definition_with_if
+  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /colourchroma  type: None
+remove_definition_properties
+   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
+eraseElement: Cannot find matching key: id
+remove_path_method
+   href: /colourchroma  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface20
+ --> {'$ref': '#/parameters/interface'}
+== CODE GENERATION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagger.json', 'DimmingResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : ColourChromaResURI.swagger.json
+  main: rt : ['oic.r.colour.chroma']
+
+  main: File : DimmingResURI.swagger.json
+  main: rt : ['oic.r.light.dimming']
+  rt                 : oic.r.switch.binary
+    href             : /binaryswitch
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'id', 'precision']
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.light.dimming
+    href             : /dimming
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'value', 'id', 'precision']
+    methods (remove) : None
+    basefile         : DimmingResURI.swagger.json
+  rt                 : oic.r.colour.chroma
+    href             : /colourchroma
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'value', 'id']
+    methods (remove) : None
+    basefile         : ColourChromaResURI.swagger.json
+ 
+create_introspection 0
+update_path_value:
+   rt: oic.r.switch.binary  href: /binaryswitch
+update_path_value /BinarySwitchResURI
+update_path_value :: /BinarySwitchResURI /binaryswitch
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /binaryswitch  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
+eraseElement: Cannot find matching key: id
+remove_path_method
+   href: /binaryswitch  method: None
+create_introspection 1
+update_path_value:
+   rt: oic.r.light.dimming  href: /dimming
+update_path_value /DimmingResURI
+update_path_value :: /DimmingResURI /dimming
+update_definition_with_rt
+  rt: oic.r.light.dimming
+update_definition_with_if
+  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /dimming  type: None
+remove_definition_properties
+   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
+eraseElement: Cannot find matching key: id
+remove_path_method
+   href: /dimming  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+create_introspection 2
+update_path_value:
+   rt: oic.r.colour.chroma  href: /colourchroma
+update_path_value /ColourChromaResURI
+update_path_value :: /ColourChromaResURI /colourchroma
+update_definition_with_rt
+  rt: oic.r.colour.chroma
+update_definition_with_if
+  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /colourchroma  type: None
+remove_definition_properties
+   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
+eraseElement: Cannot find matching key: id
+remove_path_method
+   href: /colourchroma  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface20
+ --> {'$ref': '#/parameters/interface'}
