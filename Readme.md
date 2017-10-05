@@ -144,9 +144,9 @@ merge different output files into 1 swagger file.
 
 # How it works
 
--The oic/res file is read.
--All resources from core/security resources are ignored.
--for all remaining resources    
+- The oic/res file is read from disk
+- All resources from core/security resources are ignored.
+- for all remaining resources    
   - the swagger file that belongs to the "rt" is looked up
   - for all found files with an "rt" that belongs to the device
     - fix the rt value as definition
