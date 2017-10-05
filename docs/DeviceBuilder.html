@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module DeviceBuilder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>DeviceBuilder</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cwovander%5Cdocuments%5Cwouter%5Cstandard-orgs%5Coic%5Cdevicebuilder%5Csrc%5Cdevicebuilder.py">c:\users\wovander\documents\wouter\standard-orgs\oic\devicebuilder\src\devicebuilder.py</a></font></td></tr></table>
+    <p><tt>#############################<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;copyright&nbsp;2016&nbsp;Open&nbsp;Interconnect&nbsp;Consortium,&nbsp;Inc.&nbsp;All&nbsp;rights&nbsp;reserved.<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;Redistribution&nbsp;and&nbsp;use&nbsp;in&nbsp;source&nbsp;and&nbsp;binary&nbsp;forms,&nbsp;with&nbsp;or&nbsp;without&nbsp;modification,<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;permitted&nbsp;provided&nbsp;that&nbsp;the&nbsp;following&nbsp;conditions&nbsp;are&nbsp;met:<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;Redistributions&nbsp;of&nbsp;source&nbsp;code&nbsp;must&nbsp;retain&nbsp;the&nbsp;above&nbsp;copyright&nbsp;notice,<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;list&nbsp;of&nbsp;conditions&nbsp;and&nbsp;the&nbsp;following&nbsp;disclaimer.<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;Redistributions&nbsp;in&nbsp;binary&nbsp;form&nbsp;must&nbsp;reproduce&nbsp;the&nbsp;above&nbsp;copyright&nbsp;notice,<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;list&nbsp;of&nbsp;conditions&nbsp;and&nbsp;the&nbsp;following&nbsp;disclaimer&nbsp;in&nbsp;the&nbsp;documentation&nbsp;and/or&nbsp;other&nbsp;materials&nbsp;provided<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;the&nbsp;distribution.<br>
+#<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;THIS&nbsp;SOFTWARE&nbsp;IS&nbsp;PROVIDED&nbsp;BY&nbsp;THE&nbsp;OPEN&nbsp;INTERCONNECT&nbsp;CONSORTIUM,&nbsp;INC.&nbsp;"AS&nbsp;IS"&nbsp;AND&nbsp;ANY&nbsp;EXPRESS&nbsp;OR&nbsp;IMPLIED&nbsp;WARRANTIES,<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;INCLUDING,&nbsp;BUT&nbsp;NOT&nbsp;LIMITED&nbsp;TO,&nbsp;THE&nbsp;IMPLIED&nbsp;WARRANTIES&nbsp;OF&nbsp;MERCHANTABILITY&nbsp;AND&nbsp;FITNESS&nbsp;FOR&nbsp;A&nbsp;PARTICULAR&nbsp;PURPOSE&nbsp;OR<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;WARRANTIES&nbsp;OF&nbsp;NON-INFRINGEMENT,&nbsp;ARE&nbsp;DISCLAIMED.&nbsp;IN&nbsp;NO&nbsp;EVENT&nbsp;SHALL&nbsp;THE&nbsp;OPEN&nbsp;INTERCONNECT&nbsp;CONSORTIUM,&nbsp;INC.&nbsp;OR<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;CONTRIBUTORS&nbsp;BE&nbsp;LIABLE&nbsp;FOR&nbsp;ANY&nbsp;DIRECT,&nbsp;INDIRECT,&nbsp;INCIDENTAL,&nbsp;SPECIAL,&nbsp;EXEMPLARY,&nbsp;OR&nbsp;CONSEQUENTIAL&nbsp;DAMAGES<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;(INCLUDING,&nbsp;BUT&nbsp;NOT&nbsp;LIMITED&nbsp;TO,&nbsp;PROCUREMENT&nbsp;OF&nbsp;SUBSTITUTE&nbsp;GOODS&nbsp;OR&nbsp;SERVICES;&nbsp;LOSS&nbsp;OF&nbsp;USE,&nbsp;DATA,&nbsp;OR&nbsp;PROFITS;<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;BUSINESS&nbsp;INTERRUPTION)&nbsp;HOWEVER&nbsp;CAUSED&nbsp;AND&nbsp;ON&nbsp;ANY&nbsp;THEORY&nbsp;OF&nbsp;LIABILITY,&nbsp;WHETHER&nbsp;IN&nbsp;CONTRACT,&nbsp;STRICT&nbsp;LIABILITY,<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;TORT&nbsp;(INCLUDING&nbsp;NEGLIGENCE&nbsp;OR&nbsp;OTHERWISE)&nbsp;ARISING&nbsp;IN&nbsp;ANY&nbsp;WAY&nbsp;OUT&nbsp;OF&nbsp;THE&nbsp;USE&nbsp;OF&nbsp;THIS&nbsp;SOFTWARE,<br>
+#&nbsp;&nbsp;&nbsp;&nbsp;EVEN&nbsp;IF&nbsp;ADVISED&nbsp;OF&nbsp;THE&nbsp;POSSIBILITY&nbsp;OF&nbsp;SUCH&nbsp;DAMAGE.<br>
+#<br>
+#############################</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="argparse.html">argparse</a><br>
+<a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="traceback.html">traceback</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-clear_descriptions"><strong>clear_descriptions</strong></a>(json_data)</dt><dd><tt>clear&nbsp;the&nbsp;descriptions&nbsp;e.g.&nbsp;set&nbsp;them&nbsp;on&nbsp;empty&nbsp;string&nbsp;e.g.&nbsp;""<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-create_introspection"><strong>create_introspection</strong></a>(json_data, rt_value_file, rt_values, index)</dt><dd><tt>create&nbsp;the&nbsp;introspection&nbsp;data,&nbsp;e.g.&nbsp;morph&nbsp;json_data.<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-erase_element"><strong>erase_element</strong></a>(d, k, erase_entry=False)</dt><dd><tt>erases&nbsp;an&nbsp;the&nbsp;sub&nbsp;entries&nbsp;of&nbsp;k&nbsp;in&nbsp;the&nbsp;dict&nbsp;d,&nbsp;if&nbsp;the&nbsp;subkey&nbsp;does&nbsp;not&nbsp;start&nbsp;with&nbsp;an&nbsp;/,&nbsp;e.g.&nbsp;an&nbsp;sub&nbsp;end&nbsp;point<br>
+&nbsp;<br>
+:param&nbsp;d:&nbsp;node&nbsp;tree&nbsp;representing&nbsp;the&nbsp;(partial)&nbsp;raml&nbsp;file<br>
+:param&nbsp;k:&nbsp;descendants&nbsp;of&nbsp;this&nbsp;key&nbsp;should&nbsp;be&nbsp;deleted&nbsp;(if&nbsp;not&nbsp;the&nbsp;starting&nbsp;with&nbsp;an&nbsp;/)<br>
+:param&nbsp;erase_entry&nbsp;:&nbsp;also&nbsp;erases&nbsp;the&nbsp;element&nbsp;k.</tt></dd></dl>
+ <dl><dt><a name="-find_files"><strong>find_files</strong></a>(dirname, rt_values)</dt><dd><tt>find&nbsp;the&nbsp;files&nbsp;where&nbsp;the&nbsp;rt&nbsp;values&nbsp;are&nbsp;stored&nbsp;in&nbsp;(as&nbsp;part&nbsp;of&nbsp;the&nbsp;example)<br>
+:param&nbsp;dirname:&nbsp;dir&nbsp;name<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values<br>
+:return&nbsp;found_file:&nbsp;array&nbsp;of&nbsp;file&nbsp;names,&nbsp;no&nbsp;duplicates...</tt></dd></dl>
+ <dl><dt><a name="-find_in_array"><strong>find_in_array</strong></a>(value, array_values)</dt><dd><tt>compare&nbsp;the&nbsp;value&nbsp;against&nbsp;the&nbsp;first&nbsp;element&nbsp;of&nbsp;the&nbsp;1&nbsp;level&nbsp;down&nbsp;array.<br>
+:param&nbsp;value:&nbsp;value&nbsp;to&nbsp;compare<br>
+:param&nbsp;array_values:&nbsp;array&nbsp;[[&nbsp;a,&nbsp;b,&nbsp;c],[a,b,c]]<br>
+:return:&nbsp;True&nbsp;=&nbsp;Found,&nbsp;False&nbsp;is&nbsp;not&nbsp;found</tt></dd></dl>
+ <dl><dt><a name="-find_input_resources"><strong>find_input_resources</strong></a>(filename)</dt><dd><tt>find&nbsp;the&nbsp;rt&nbsp;values&nbsp;for&nbsp;introspection,&nbsp;uses&nbsp;the&nbsp;ingore&nbsp;list&nbsp;and&nbsp;excludes&nbsp;oic.d&nbsp;and&nbsp;.com.&nbsp;in&nbsp;the&nbsp;rt&nbsp;values.<br>
+:param&nbsp;filename:&nbsp;filename&nbsp;with&nbsp;oic/res&nbsp;response&nbsp;(json)<br>
+:return:&nbsp;array&nbsp;with&nbsp;found&nbsp;[rt,&nbsp;href,&nbsp;if,&nbsp;type,[props&nbsp;to&nbsp;be&nbsp;removed],&nbsp;[methods&nbsp;to&nbsp;be&nbsp;removed]]&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-find_key"><strong>find_key</strong></a>(rec_dict, target, depth=0)</dt><dd><tt>find&nbsp;key&nbsp;"target"&nbsp;in&nbsp;recursive&nbsp;dict<br>
+:param&nbsp;rec_dict:&nbsp;dict&nbsp;to&nbsp;search&nbsp;in,&nbsp;json&nbsp;schema&nbsp;dict,&nbsp;so&nbsp;it&nbsp;is&nbsp;combination&nbsp;of&nbsp;dict&nbsp;and&nbsp;arrays<br>
+:param&nbsp;target:&nbsp;target&nbsp;key&nbsp;to&nbsp;search&nbsp;for<br>
+:param&nbsp;depth:&nbsp;depth&nbsp;of&nbsp;the&nbsp;search&nbsp;(recursion)<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-find_key_and_clean"><strong>find_key_and_clean</strong></a>(rec_dict, search_key, depth=0)</dt><dd><tt>find&nbsp;all&nbsp;keys&nbsp;and&nbsp;clean&nbsp;the&nbsp;value,&nbsp;e.g.&nbsp;make&nbsp;the&nbsp;value&nbsp;an&nbsp;empty&nbsp;string<br>
+also&nbsp;traverse&nbsp;lists&nbsp;(arrays,&nbsp;oneOf,..)&nbsp;<br>
+:param&nbsp;rec_dict:&nbsp;dict&nbsp;to&nbsp;search&nbsp;in,&nbsp;json&nbsp;schema&nbsp;dict,&nbsp;so&nbsp;it&nbsp;is&nbsp;combination&nbsp;of&nbsp;dict&nbsp;and&nbsp;arrays<br>
+:param&nbsp;search_key:&nbsp;target&nbsp;key&nbsp;to&nbsp;search&nbsp;in&nbsp;the&nbsp;dict&nbsp;and&nbsp;to&nbsp;be&nbsp;updated<br>
+:param&nbsp;depth:&nbsp;depth&nbsp;of&nbsp;the&nbsp;search&nbsp;(recursion)<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-find_key_link"><strong>find_key_link</strong></a>(rec_dict, target, depth=0)</dt><dd><tt>find&nbsp;the&nbsp;first&nbsp;key&nbsp;recursively<br>
+also&nbsp;traverse&nbsp;lists&nbsp;(arrays,&nbsp;oneOf,..)&nbsp;but&nbsp;only&nbsp;returns&nbsp;the&nbsp;first&nbsp;occurance<br>
+:param&nbsp;rec_dict:&nbsp;dict&nbsp;to&nbsp;search&nbsp;in,&nbsp;json&nbsp;schema&nbsp;dict,&nbsp;so&nbsp;it&nbsp;is&nbsp;combination&nbsp;of&nbsp;dict&nbsp;and&nbsp;arrays<br>
+:param&nbsp;target:&nbsp;target&nbsp;key&nbsp;to&nbsp;search&nbsp;for<br>
+:param&nbsp;depth:&nbsp;depth&nbsp;of&nbsp;the&nbsp;search&nbsp;(recursion)<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-find_key_value"><strong>find_key_value</strong></a>(rec_dict, searchkey, target, depth=0)</dt><dd><tt>find&nbsp;the&nbsp;first&nbsp;key&nbsp;with&nbsp;value&nbsp;"target"&nbsp;recursively<br>
+also&nbsp;traverse&nbsp;lists&nbsp;(arrays,&nbsp;oneOf,..)&nbsp;but&nbsp;only&nbsp;returns&nbsp;the&nbsp;first&nbsp;occurance<br>
+returns&nbsp;the&nbsp;dict&nbsp;that&nbsp;contains&nbsp;the&nbsp;search&nbsp;key.<br>
+so&nbsp;the&nbsp;returned&nbsp;dict&nbsp;can&nbsp;be&nbsp;updated&nbsp;by&nbsp;dict[searchkey]&nbsp;=&nbsp;xxx<br>
+:param&nbsp;rec_dict:&nbsp;dict&nbsp;to&nbsp;search&nbsp;in,&nbsp;json&nbsp;schema&nbsp;dict,&nbsp;so&nbsp;it&nbsp;is&nbsp;combination&nbsp;of&nbsp;dict&nbsp;and&nbsp;arrays<br>
+:param&nbsp;searchkey:&nbsp;target&nbsp;key&nbsp;to&nbsp;search&nbsp;for<br>
+:param&nbsp;target:&nbsp;target&nbsp;value&nbsp;that&nbsp;belongs&nbsp;to&nbsp;key&nbsp;to&nbsp;search&nbsp;for<br>
+:param&nbsp;depth:&nbsp;depth&nbsp;of&nbsp;the&nbsp;search&nbsp;(recursion)<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-find_oic_res_resources"><strong>find_oic_res_resources</strong></a>(filename, my_args)</dt><dd><tt>find&nbsp;the&nbsp;rt&nbsp;values&nbsp;for&nbsp;introspection,&nbsp;uses&nbsp;the&nbsp;ingore&nbsp;list&nbsp;and&nbsp;excludes&nbsp;oic.d&nbsp;and&nbsp;.com.&nbsp;in&nbsp;the&nbsp;rt&nbsp;values.<br>
+:param&nbsp;filename:&nbsp;filename&nbsp;with&nbsp;oic/res&nbsp;response&nbsp;(json)<br>
+:param&nbsp;my_args:&nbsp;argument&nbsp;object<br>
+:return:&nbsp;array&nbsp;with&nbsp;found&nbsp;[rt,&nbsp;href,&nbsp;if,&nbsp;type,[props&nbsp;to&nbsp;be&nbsp;removed],&nbsp;[methods&nbsp;to&nbsp;be&nbsp;removed]]&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-get_dir_list"><strong>get_dir_list</strong></a>(my_dir, ext=None)</dt><dd><tt>get&nbsp;all&nbsp;files&nbsp;(none&nbsp;recursive)&nbsp;in&nbsp;the&nbsp;specified&nbsp;dir<br>
+:param&nbsp;my_dir:&nbsp;path&nbsp;to&nbsp;the&nbsp;directory<br>
+:param&nbsp;ext:&nbsp;filter&nbsp;on&nbsp;extension<br>
+:return:&nbsp;list&nbsp;of&nbsp;files&nbsp;(only&nbsp;base_name)</tt></dd></dl>
+ <dl><dt><a name="-listdir"><strong>listdir</strong></a>(path=None)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;containing&nbsp;the&nbsp;names&nbsp;of&nbsp;the&nbsp;files&nbsp;in&nbsp;the&nbsp;directory.<br>
+&nbsp;<br>
+path&nbsp;can&nbsp;be&nbsp;specified&nbsp;as&nbsp;either&nbsp;str&nbsp;or&nbsp;bytes.&nbsp;&nbsp;If&nbsp;path&nbsp;is&nbsp;bytes,<br>
+&nbsp;&nbsp;the&nbsp;filenames&nbsp;returned&nbsp;will&nbsp;also&nbsp;be&nbsp;bytes;&nbsp;in&nbsp;all&nbsp;other&nbsp;circumstances<br>
+&nbsp;&nbsp;the&nbsp;filenames&nbsp;returned&nbsp;will&nbsp;be&nbsp;str.<br>
+If&nbsp;path&nbsp;is&nbsp;None,&nbsp;uses&nbsp;the&nbsp;path='.'.<br>
+On&nbsp;some&nbsp;platforms,&nbsp;path&nbsp;may&nbsp;also&nbsp;be&nbsp;specified&nbsp;as&nbsp;an&nbsp;open&nbsp;file&nbsp;descriptor;\<br>
+&nbsp;&nbsp;the&nbsp;file&nbsp;descriptor&nbsp;must&nbsp;refer&nbsp;to&nbsp;a&nbsp;directory.<br>
+&nbsp;&nbsp;If&nbsp;this&nbsp;functionality&nbsp;is&nbsp;unavailable,&nbsp;using&nbsp;it&nbsp;raises&nbsp;NotImplementedError.<br>
+&nbsp;<br>
+The&nbsp;list&nbsp;is&nbsp;in&nbsp;arbitrary&nbsp;order.&nbsp;&nbsp;It&nbsp;does&nbsp;not&nbsp;include&nbsp;the&nbsp;special<br>
+entries&nbsp;'.'&nbsp;and&nbsp;'..'&nbsp;even&nbsp;if&nbsp;they&nbsp;are&nbsp;present&nbsp;in&nbsp;the&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-load_json"><strong>load_json</strong></a>(filename, my_dir=None)</dt><dd><tt>load&nbsp;the&nbsp;JSON&nbsp;schema&nbsp;file<br>
+:param&nbsp;filename:&nbsp;filename&nbsp;(with&nbsp;extension)<br>
+:param&nbsp;my_dir:&nbsp;path&nbsp;to&nbsp;the&nbsp;file<br>
+:return:&nbsp;json_dict</tt></dd></dl>
+ <dl><dt><a name="-main_app"><strong>main_app</strong></a>(my_args, generation_type)</dt><dd><tt>:param&nbsp;my_args:&nbsp;argument&nbsp;object<br>
+:param&nbsp;generation_type:&nbsp;string&nbsp;introspection&nbsp;or&nbsp;code</tt></dd></dl>
+ <dl><dt><a name="-merge"><strong>merge</strong></a>(merge_data, file_data, index)</dt><dd><tt>merge&nbsp;the&nbsp;file_data&nbsp;(paths&nbsp;and&nbsp;defintions)&nbsp;into&nbsp;merge_data<br>
+:param&nbsp;merge_data:&nbsp;the&nbsp;data&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;merge&nbsp;into<br>
+:param&nbsp;file_data:&nbsp;the&nbsp;data&nbsp;to&nbsp;merge<br>
+:param&nbsp;index:&nbsp;index&nbsp;counter&nbsp;of&nbsp;the&nbsp;index&nbsp;that&nbsp;is&nbsp;being&nbsp;merged</tt></dd></dl>
+ <dl><dt><a name="-optimize_introspection"><strong>optimize_introspection</strong></a>(json_data)</dt><dd><tt>optimize&nbsp;the&nbsp;json<br>
+-&nbsp;clear&nbsp;the&nbsp;descriptions&nbsp;(e.g.&nbsp;remove&nbsp;the&nbsp;text&nbsp;only)<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-remove_definition_properties"><strong>remove_definition_properties</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>remove&nbsp;the&nbsp;defintion&nbsp;properties&nbsp;as&nbsp;indicated&nbsp;in&nbsp;the&nbsp;values&nbsp;of&nbsp;rt_values<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-remove_for_optimize"><strong>remove_for_optimize</strong></a>(json_data)</dt><dd><tt>remove&nbsp;things&nbsp;from&nbsp;the&nbsp;swagger&nbsp;file<br>
+-&nbsp;license&nbsp;data<br>
+-&nbsp;x-examples&nbsp;in&nbsp;responses<br>
+-&nbsp;x-examples&nbsp;in&nbsp;body&nbsp;defintions&nbsp;(parameters)<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;swagger&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-remove_path_method"><strong>remove_path_method</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>remove&nbsp;the&nbsp;method&nbsp;on&nbsp;an&nbsp;path<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-swagger_rt"><strong>swagger_rt</strong></a>(json_data)</dt><dd><tt>get&nbsp;the&nbsp;rt&nbsp;value&nbsp;from&nbsp;the&nbsp;example<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;swagger&nbsp;file&nbsp;as&nbsp;json&nbsp;struct<br>
+:return:&nbsp;array&nbsp;of&nbsp;arrays&nbsp;of&nbsp;found&nbsp;values&nbsp;e.g.&nbsp;[&nbsp;[a,b],[a,b]&nbsp;]</tt></dd></dl>
+ <dl><dt><a name="-update_definition_with_if"><strong>update_definition_with_if</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>update&nbsp;the&nbsp;defintion&nbsp;if&nbsp;enum&nbsp;with&nbsp;the&nbsp;values&nbsp;of&nbsp;rt_values<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-update_definition_with_rt"><strong>update_definition_with_rt</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>update&nbsp;the&nbsp;defintion&nbsp;section&nbsp;with&nbsp;the&nbsp;default&nbsp;rt&nbsp;value&nbsp;as&nbsp;array<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-update_definition_with_type"><strong>update_definition_with_type</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>update&nbsp;the&nbsp;defintion&nbsp;type&nbsp;values,&nbsp;e.g.&nbsp;override&nbsp;the&nbsp;type&nbsp;in&nbsp;an&nbsp;oneof&nbsp;construct<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-update_parameters_with_if"><strong>update_parameters_with_if</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>update&nbsp;the&nbsp;defintion&nbsp;if&nbsp;enum&nbsp;with&nbsp;the&nbsp;values&nbsp;of&nbsp;rt_values<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+ <dl><dt><a name="-update_path_value"><strong>update_path_value</strong></a>(json_data, rt_value_file, rt_values)</dt><dd><tt>update&nbsp;the&nbsp;path&nbsp;value&nbsp;of&nbsp;the&nbsp;rt&nbsp;from&nbsp;the&nbsp;rt_valuees<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
+:param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
+:param&nbsp;rt_values:&nbsp;array&nbsp;of&nbsp;rt&nbsp;values</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>index_href</strong> = 1<br>
+<strong>index_if</strong> = 2<br>
+<strong>index_method</strong> = 5<br>
+<strong>index_prop</strong> = 4<br>
+<strong>index_rt</strong> = 0<br>
+<strong>index_type</strong> = 3</td></tr></table>
+</body></html>
