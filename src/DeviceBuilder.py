@@ -800,56 +800,58 @@ def main_app(my_args, generation_type):
         fp.close()
 
 
+       
 #
 #   main of script
 #
-print ("**************************")
-print ("*** DeviceBuilder (v1) ***")
-print ("**************************")
-parser = argparse.ArgumentParser()
+if __name__ == '__main__':
+    print ("**************************")
+    print ("*** DeviceBuilder (v1) ***")
+    print ("**************************")
+    parser = argparse.ArgumentParser()
 
-parser.add_argument("-ver", "--verbose", help="Execute in verbose mode", action='store_true')
+    parser.add_argument("-ver", "--verbose", help="Execute in verbose mode", action='store_true')
 
-parser.add_argument("-ocfres", "--ocfres", default=None,
-                     help="ocf/res input", nargs='?', const="", required=False)
-parser.add_argument("-input", "--input", default=None,
-                     help="device builder input format",  nargs='?', const="", required=False)
-parser.add_argument("-out", "--out", default=None,
-                     help="output dir + prefix e.g. (../mydir/generated1)", nargs='?', const="", required=True)
+    parser.add_argument("-ocfres", "--ocfres", default=None,
+                         help="ocf/res input", nargs='?', const="", required=False)
+    parser.add_argument("-input", "--input", default=None,
+                         help="device builder input format",  nargs='?', const="", required=False)
+    parser.add_argument("-out", "--out", default=None,
+                         help="output dir + prefix e.g. (../mydir/generated1)", nargs='?', const="", required=True)
 
-parser.add_argument("-intermediate_files", "--intermediate_files", default=False,
-                     help="write intermediate files", required=False)      
-                     
-parser.add_argument("-resource_dir", "--resource_dir", default=None,
-                     help="resource directory",  nargs='?', const="", required=False)
-parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*',
-                    help='remove property (--remove_property  value range step precision id) ')
-parser.add_argument('-type', '--type', default=None, nargs='?',
-                    help='type of the value (or renamed value) (--type  integer number) ')
+    parser.add_argument("-intermediate_files", "--intermediate_files", default=False,
+                         help="write intermediate files", required=False)      
+                         
+    parser.add_argument("-resource_dir", "--resource_dir", default=None,
+                         help="resource directory",  nargs='?', const="", required=False)
+    parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*',
+                        help='remove property (--remove_property  value range step precision id) ')
+    parser.add_argument('-type', '--type', default=None, nargs='?',
+                        help='type of the value (or renamed value) (--type  integer number) ')
 
- 
-args = parser.parse_args()
+     
+    args = parser.parse_args()
 
-print("out                 : " + str(args.out))
-print("resource dir        : " + str(args.resource_dir))
-# print("")
-print("oic/res file        : " + str(args.ocfres))
-print("input file          : " + str(args.input))
-# print("")
-print("remove_property     : " + str(args.remove_property))
-print("type                : " + str(args.type))
-print("intermediate files  : " + str(args.intermediate_files))
-print("")
+    print("out                 : " + str(args.out))
+    print("resource dir        : " + str(args.resource_dir))
+    # print("")
+    print("oic/res file        : " + str(args.ocfres))
+    print("input file          : " + str(args.input))
+    # print("")
+    print("remove_property     : " + str(args.remove_property))
+    print("type                : " + str(args.type))
+    print("intermediate files  : " + str(args.intermediate_files))
+    print("")
 
-try:
-    print ("== INTROSPECTION ==")
-    main_app(args, "introspection")
-    
-    print ("== CODE GENERATION ==")
-    main_app(args, "codegeneration")
+    try:
+        print ("== INTROSPECTION ==")
+        main_app(args, "introspection")
         
-    
-except:
-    print ("error in ", args.ocfres)
-    traceback.print_exc()
-    pass
+        print ("== CODE GENERATION ==")
+        main_app(args, "codegeneration")
+            
+        
+    except:
+        print ("error in ", args.ocfres)
+        traceback.print_exc()
+        pass
