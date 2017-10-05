@@ -483,10 +483,11 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
             if entry[2] == full_defname:
                 # found entry
                 properties = def_item.get("properties")
-                for prop_name, property in properties.items():
-                    if prop_name == "if":
-                        print (" replacing if with", entry[3][index_if])
-                        property["items"]["enum"] = entry[3][index_if]
+                if properties is not None:
+                    for prop_name, property in properties.items():
+                        if prop_name == "if":
+                            print (" replacing if with", entry[3][index_if])
+                            property["items"]["enum"] = entry[3][index_if]
                         
                         
 def update_parameters_with_if(json_data, rt_value_file, rt_values):
@@ -499,20 +500,7 @@ def update_parameters_with_if(json_data, rt_value_file, rt_values):
     print ("update_parameters_with_if")
     for rt_value in rt_values:
         print ("  href:",rt_value[index_href], " if:",rt_value[index_if])
-    #keyvaluepairs =[]
-    #for path, path_item in json_data["paths"].items():
-    #    try:
-    #        x_example = path_item["get"]["responses"]["200"]["x-example"]
-    #        rt = x_example.get("rt")
-    #        schema = path_item["get"]["responses"]["200"]["schema"]
-    #        ref = schema["$ref"]
-    #        #print ("update_parameters_with_if schema stuff:", schema, ref)
-    #        if find_in_array(rt[index_rt], rt_values):
-    #            for rt_f in rt_values:
-    #                if rt_f[index_rt] == rt[index_rt]:
-    #                    keyvaluepairs.append([path,rt,ref, rt_f ])
-    #    except:
-    #        pass
+
     param_data = json_data["parameters"]
     for param_name, param_item in param_data.items():
         print ("update_parameters_with_if", param_name)
