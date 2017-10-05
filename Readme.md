@@ -156,10 +156,4 @@ merge different output files into 1 swagger file.
     - (remove unwanted (not needed) text descriptions)
   - merge all files into 1 output file
 
-# Todo
-- tests (partially done)
-- support multiple rt types 
-- collections: batch interface
-- bug: fix anyOff in introspection removal, 
-   - actually this should be removed in raml2doc..
  

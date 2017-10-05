@@ -289,7 +289,7 @@ def find_input_resources(filename):
 
 def swagger_rt(json_data):
     """
-    get the rt value from teh example
+    get the rt value from the example
     :param json_data: the swagger file as json struct
     :return: array of arrays of found values e.g. [ [a,b],[a,b] ]
     """
@@ -574,7 +574,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
     for def_name, def_item in def_data.items():
         full_def_name = "#/definitions/" + def_name
         for entry in keyvaluepairs:
-            if entry[2] == full_def_name:
+            if entry[2] == full_defname:
                 print ("  definition:", full_def_name)
                 # found entry
                 properties = def_item.get("properties")
@@ -743,7 +743,7 @@ def main_app(my_args, generation_type):
     print ("handling resources (overview):")
     files_to_process = find_files(str(args.resource_dir), rt_values)
     print ("processing files:", files_to_process)
-    
+
     merged_data = None
     for my_file in files_to_process:
         print ("")
