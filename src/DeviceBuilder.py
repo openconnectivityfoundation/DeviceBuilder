@@ -677,21 +677,22 @@ def optimize_introspection(json_data):
     clear_descriptions(json_data)
            
 
-def merge(merge_data, file_data):
+def merge(merge_data, file_data, index):
     """
     merge the file_data (paths and defintions) into merge_data
     :param merge_data: the data that will be used to merge into
     :param file_data: the data to merge
+    :param index: index counter of the index that is being merged
     """
-    index = 0
+    local_index = 0
     for parameter, parameter_item in file_data["parameters"].items():
         data = merge_data["parameters"].get(parameter)
         if data is None:
             merge_data["parameters"][parameter] = parameter_item
         else:
             print ("merge: parameter exist:", parameter)
-            new_parameter = parameter + str(index)
-            index = index + 1
+            new_parameter = parameter + str(index) + str(local_index)
+            local_index = local_index + 1
             print ("merge: parameter exist:", parameter, " adding as:", new_parameter)
             merge_data["parameters"][new_parameter] = parameter_item
             # fix the path data
@@ -706,8 +707,8 @@ def merge(merge_data, file_data):
             merge_data["definitions"][definition] = definiton_item
         else:
             print ("merge: definition exist:", definition)
-            new_definition = definition + str(index)
-            index = index + 1
+            new_definition = definition + str(local_index) + str(local_index)
+            local_index = local_index + 1
             print ("merge: parameter exist:", definition, " adding as:", new_definition)
             merge_data["definitions"][new_definition] = definiton_item
             # fix the definition data
@@ -766,13 +767,12 @@ def main_app(args, generation_type):
             ("    no base file found! : ignored")
     print(" ")   
         
+    index = 0
     for rt in rt_values:
         if len(rt) > 6:
             file_data = load_json(rt[6], str(args.resource_dir))
             rt_values_file = swagger_rt(file_data)
-        
             create_introspection( file_data, rt_values_file, rt_values, index)
-            index = index + 1
             
             if "introspection" == generation_type:
                 print ("optimize for introspection..")
@@ -788,7 +788,8 @@ def main_app(args, generation_type):
             if merged_data is None:
                 merged_data = file_data
             else:
-                merge(merged_data, file_data)
+                merge(merged_data, file_data, index)
+        index = index + 1
         
     if merged_data is not None: 
         file_to_write = str(args.out) + "_" + generation_type + "_" + "merged.swagger.json"
