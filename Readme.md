@@ -5,24 +5,6 @@ The base function is to create an swagger file from OCF swagger type definitons 
 - code generation (as input of swagger2x) 
 - generate introspection file.
 
-Tool chain:
-
-                         __________
-                        |          |
-                        | oneIOTa  |
-                        |__________|
-                             |
-                     resource|descriptions
-                             |
-                      _______v________                                                      _______________
-     input           |                |         introspection data (swagger)               |               |
-     description     |                |--------------------------------------------------->|               |
-     --------------->|  DeviceBuilder |        ___________         __________              | actual device |
-                     |                | code  |           |  src  |          | executable  |               |
-                     |                |------>| swagger2x |------>| compiler |------------>|               |
-                     |________________| data  |___________|       |__________|             |_______________|
-                                      (swagger)
-                                       
 
 # Usage
 The tool is python3.5 code.
@@ -35,6 +17,27 @@ run from the commandline in the src directory:
 Running the above command gives all command line options available. 
 
 # swagger file creation from oic/res.
+
+
+Tool chain:
+
+                         __________
+                        |          |
+                        | oneIOTa  |
+                        |__________|
+                             |
+                     resource|descriptions
+                             |
+                      _______v________                                         _______________
+     oic/res         |                |      introspection data (swagger)     |               |
+     description     |                |-------------------------------------->|               |
+     --------------->|  DeviceBuilder |        ___________                    | actual device |
+                     |                | code  |           |                   |               |
+                     |                |------>| /dev/null |                   |               |
+                     |________________| data  |___________|                   |_______________|
+                                      (swagger)
+                                      
+                                      
 ## for introspection
 create introspection file from an oic/res (json) input file.
 The oic/res file can be used "as is" from an implementation.
@@ -84,6 +87,26 @@ note that this works for:
   - batch introduces the next level of resources, which is not handled in the format.
       
 # swagger file creation from DeviceBuilder input format
+
+
+Tool chain:
+
+                         __________
+                        |          |
+                        | oneIOTa  |
+                        |__________|
+                             |
+                     resource|descriptions
+                             |
+                      _______v________                                                      _______________
+     input           |                |         introspection data (swagger)               |               |
+     description     |                |--------------------------------------------------->|               |
+     --------------->|  DeviceBuilder |        ___________         __________              | actual device |
+                     |                | code  |           |  src  |          | executable  |               |
+                     |                |------>| swagger2x |------>| compiler |------------>|               |
+                     |________________| data  |___________|       |__________|             |_______________|
+                                      (swagger)
+                                       
 
 The DeviceBuilder input format is an json array with the next properties:
   -  "path" : string, required, must start with "/"
