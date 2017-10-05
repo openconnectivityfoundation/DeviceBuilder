@@ -46,27 +46,94 @@ function my_test_in_dir {
     
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    #compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    #compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
+    
+} 
+
+function my_test_in_dir_with_compare {
+    mkdir -p $OUTPUT_DIR/$TEST_CASE
+    $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    compare_file $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT $REF_DIR/$TEST_CASE/$TEST_CASE$EXT
+    
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     
 } 
 
 
+
 TEST_CASE="testcase_1"
 
-function tests {
+function generic_tests {
 
 # option -h
 TEST_CASE="testcase_1"
 my_test -h
 
-# default docx 
-TEST_CASE="lightdevice"
+}
 
-resfile=./input_define_device/input-lightdevice.json
 
-my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+function oic_res_tests {
+
+TEST_CASE="oic_res_1"
+resfile=./input_oic_res/oic-res-response-binaryswitch.json
+my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+TEST_CASE="oic_res_2"
+resfile=./input_oic_res/oic-res-response-binaryswitch-href.json
+my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+
+TEST_CASE="oic_res_3"
+resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
+my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -remove_property step range precision
+
+TEST_CASE="oic_res_4"
+resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
+my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -type int
+
+TEST_CASE="oic_res_5"
+resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
+my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -type int
+
+TEST_CASE="oic_res_6"
+resfile=./input_oic_res/oic-res-response-testdevice.json
+my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -type integer
 
 }
 
-tests  
+
+function deviceBuilder_tests {
+
+# option -h
+TEST_CASE="testcase_1"
+my_test -h
+
+
+TEST_CASE="lightdevice"
+resfile=./input_define_device/input-lightdevice.json
+my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+
+TEST_CASE="switch"
+resfile=./input_define_device/input-switch.json
+my_test_in_dir_with_compare -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+}
+
+if [ ! -f ../../IoTDataModels/README.md ]
+then
+pushd `pwd`
+cd ../..
+git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
+popd
+fi
+
+
+generic_tests
+oic_res_tests
+deviceBuilder_tests  

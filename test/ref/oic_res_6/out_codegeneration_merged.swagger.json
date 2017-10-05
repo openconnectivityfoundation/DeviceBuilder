@@ -1,0 +1,632 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "AirFlow": {
+      "properties": {
+        "automode": {
+          "description": "Status of the automode feature, if on speed is set by the device",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        },
+        "direction": {
+          "description": "Directionality of the air flow",
+          "type": "string"
+        },
+        "precision": {
+          "description": "Accuracy granularity of the exposed value",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "The valid range for the value Property",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "speed": {
+          "description": "Current speed level",
+          "type": "integer"
+        },
+        "step": {
+          "description": "Step value across the defined range",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "supporteddirections": {
+          "description": "Array of possible direction settings for this instance of the Resource Type",
+          "items": {
+            "minItems": 1,
+            "type": "string",
+            "uniqueItems": true
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "value": {
+          "description": "The value sensed or actuated by this Resource",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "speed"
+      ],
+      "type": "object"
+    },
+    "BinarySwitch": {
+      "properties": {
+        "precision": {
+          "description": "Accuracy granularity of the exposed value",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "The valid range for the value Property",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "Step value across the defined range",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "value": {
+          "description": "Status of the switch",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "BinarySwitch11": {
+      "properties": {
+        "precision": {
+          "description": "Accuracy granularity of the exposed value",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "The valid range for the value Property",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "Step value across the defined range",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "value": {
+          "description": "Status of the switch",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "Brightness": {
+      "properties": {
+        "brightness": {
+          "description": "Quantized representation in the range 0-100 of the current sensed or set value for Brightness",
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "precision": {
+          "description": "Accuracy granularity of the exposed value",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "The valid range for the value Property",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "Step value across the defined range",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "value": {
+          "description": "The value sensed or actuated by this Resource",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "brightness"
+      ],
+      "type": "object"
+    },
+    "Temperature": {
+      "properties": {
+        "precision": {
+          "description": "Accuracy granularity of the exposed value",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "The valid range for the value Property",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "Step value across the defined range",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "temperature": {
+          "description": "Current temperature setting or measurement",
+          "type": "number"
+        },
+        "units": {
+          "description": "Units for the temperature value",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        },
+        "value": {
+          "description": "The value sensed or actuated by this Resource",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface10": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.s",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface20": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface50": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface60": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/AirFlowResURI": {
+      "get": {
+        "description": "This resource describes the properties associated with air flow.\nThe supporteddirections is the set of valid values for the direction property for a particular instance of this resource type.\nThe direction is the directionality of the air flow if applicable, if supporteddirections is also present it must be a value from that set.\nDirection values are dependent on the capabilities of the unit.\nThe speed is an integer representing the current speed level for the unit.\nThe range (from oic.r.baseresource) is an array of the min,max values for the speed level. If not present the range defaults to [0,100].\nautomode is the status of the automode feature; Off means automode is not enabled, On means automode is active and the speed is automatically controlled by the device.\nRetrieves the current air flow values.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface20"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            },
+            "x-example": {
+              "automode": "Off",
+              "direction": "left",
+              "id": "unique_example_id",
+              "range": [
+                1,
+                7
+              ],
+              "rt": [
+                "oic.r.airflow"
+              ],
+              "speed": 5,
+              "supporteddirections": [
+                "left",
+                "right",
+                "centre"
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets the current air flow values.\nOnly direction and speed may be set by an update operation.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            },
+            "x-example": {
+              "direction": "right",
+              "id": "unique_example_id",
+              "speed": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            },
+            "x-example": {
+              "direction": "right",
+              "id": "unique_example_id",
+              "speed": 3
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OCF Server when the client sends:\n  An update with an invalid property value for direction.\n  An update with an out of range property value for speed.\nThe server may respond with the current resource representation.\n",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            },
+            "x-example": {
+              "direction": "right",
+              "id": "unique_example_id",
+              "speed": 3,
+              "supporteddirections": [
+                "left",
+                "right",
+                "centre"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/BinarySwitchResURI": {
+      "get": {
+        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "rt": [
+                "oic.r.switch.binary"
+              ],
+              "value": false
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    "/TemperatureResURI": {
+      "get": {
+        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          },
+          {
+            "description": "Units",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "range": [
+                0.0,
+                100.0
+              ],
+              "rt": [
+                "oic.r.temperature"
+              ],
+              "temperature": 20.0,
+              "units": "C"
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:\n  A retrieve with q queryParameter indicating a unit that the server does not support.\nThe server responds with the current resource representation including the\nunits property illustrating the supported units and the error.\n",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 20.0,
+              "units": "C"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets the desired temperature value.\nIf a unit is included and the server does not support the unit indicated the request will fail.\nIf the units are omitted value is taken to be in C.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 18.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 18.0
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for temperature.\n  An update with an unsupported unit for this server.\nThe server responds with the current resource representation including\nthe range property illustrating the supported range and the error.\n",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "range": [
+                0.0,
+                100.0
+              ],
+              "temperature": 20.0,
+              "units": "C"
+            }
+          }
+        }
+      }
+    },
+    "/bridge/binary-switch": {
+      "get": {
+        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "rt": [
+                "oic.r.switch.binary"
+              ],
+              "value": false
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    "/bridge/light-brightness": {
+      "get": {
+        "description": "This resource describes the brightness of a light or lamp.\nbrightness is an integer showing the current brightness level as a quantized representation in the range 0-100.\nA brightness of 0 is the minimum for the resource.\nA brightness of 100 is the maximum for the resource.\nRetrieves the current brightness level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface60"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            },
+            "x-example": {
+              "brightness": 50,
+              "id": "unique_example_id",
+              "rt": [
+                "oic.r.light.brightness"
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets the desired brightness level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            },
+            "x-example": {
+              "brightness": 10,
+              "id": "unique_example_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates that the brightness was changed.\nThe new brightness level is provided in the response.\n",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            },
+            "x-example": {
+              "brightness": 10,
+              "id": "unique_example_id"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}

@@ -1,0 +1,90 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/oic_res_1/out
+resource dir        : ../../IoTDataModels
+oic/res file        : ./input_oic_res/oic-res-response-binaryswitch.json
+input file          : None
+remove_property     : None
+type                : None
+intermediate files  : False
+
+== INTROSPECTION ==
+find_resources: device type rt (not handled): oic.d.airconditioner
+find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+  rt                 : oic.wk.rd
+    href             : /oic/rd
+    if               : ['oic.if.baseline']
+    type (replace)   : None
+    props (remove)   : None
+    methods (remove) : None
+  rt                 : oic.r.switch.binary
+    href             : /BinarySwitchResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+ 
+create_introspection 1
+update_path_value:
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
+update_path_value /BinarySwitchResURI
+update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /BinarySwitchResURI  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: None
+remove_path_method
+   href: /BinarySwitchResURI  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+== CODE GENERATION ==
+find_resources: device type rt (not handled): oic.d.airconditioner
+find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+  rt                 : oic.wk.rd
+    href             : /oic/rd
+    if               : ['oic.if.baseline']
+    type (replace)   : None
+    props (remove)   : None
+    methods (remove) : None
+  rt                 : oic.r.switch.binary
+    href             : /BinarySwitchResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+ 
+create_introspection 1
+update_path_value:
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
+update_path_value /BinarySwitchResURI
+update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /BinarySwitchResURI  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: None
+remove_path_method
+   href: /BinarySwitchResURI  method: None

@@ -5,6 +5,40 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "",
+          "readOnly": true
+        },
         "value": {
           "description": "",
           "type": "boolean"
@@ -15,25 +49,12 @@
       ],
       "type": "object"
     },
-    "ColourChroma": {
+    "Brightness": {
       "properties": {
-        "csc": {
+        "brightness": {
           "description": "",
-          "items": {
-            "maximum": 1,
-            "minimum": 0,
-            "type": "number"
-          },
-          "maxItems": 2,
-          "minItems": 2,
-          "type": "array"
-        },
-        "ct": {
-          "description": "",
-          "type": "integer"
-        },
-        "hue": {
-          "description": "",
+          "maximum": 100,
+          "minimum": 0,
           "type": "integer"
         },
         "precision": {
@@ -41,27 +62,61 @@
           "readOnly": true,
           "type": "number"
         },
-        "saturation": {
+        "range": {
           "description": "",
-          "type": "integer"
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "",
+          "readOnly": true
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": ""
         }
       },
       "required": [
-        "hue",
-        "saturation",
-        "csc"
-      ],
-      "type": "object"
-    },
-    "Dimming": {
-      "properties": {
-        "dimmingSetting": {
-          "description": "",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "dimmingSetting"
+        "brightness"
       ],
       "type": "object"
     }
@@ -70,7 +125,7 @@
     "license": {
       "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
     },
-    "title": "Binary Switch",
+    "title": "Brightness",
     "version": "v1.1.0-20160519"
   },
   "parameters": {
@@ -91,131 +146,38 @@
       "in": "query",
       "name": "if",
       "type": "string"
-    },
-    "interface20": {
-      "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
     }
   },
   "paths": {
-    "/binaryswitch": {
+    "/BinarySwitchResURI": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            }
-          }
-        }
-      }
-    },
-    "/colourchroma": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface20"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            }
-          }
-        }
-      }
-    },
-    "/dimming": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Dimming"
-            }
-          }
-        }
-      },
-      "post": {
         "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Dimming"
+              "$ref": "#/definitions/BinarySwitch"
             }
           }
         ],
@@ -223,13 +185,49 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Dimming"
+              "$ref": "#/definitions/BinarySwitch"
             }
-          },
-          "403": {
+          }
+        }
+      }
+    },
+    "/BrightnessResURI": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Dimming"
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
             }
           }
         }

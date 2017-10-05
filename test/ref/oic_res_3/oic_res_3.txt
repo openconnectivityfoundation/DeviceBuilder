@@ -1,0 +1,137 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/oic_res_3/out
+resource dir        : ../../IoTDataModels
+oic/res file        : ./input_oic_res/oic-res-response-binaryswitch-brightness.json
+input file          : None
+remove_property     : ['step', 'range', 'precision']
+type                : None
+intermediate files  : False
+
+== INTROSPECTION ==
+find_resources: device type rt (not handled): oic.d.airconditioner
+find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : BrightnessResURI.swagger.json
+  main: rt : ['oic.r.light.brightness']
+  rt                 : oic.r.light.brightness
+    href             : /BrightnessResURI
+    if               : ['oic.if.a', 'oic.if.baseline']
+    type (replace)   : None
+    props (remove)   : ['step', 'range', 'precision']
+    methods (remove) : None
+    basefile         : BrightnessResURI.swagger.json
+  rt                 : oic.r.switch.binary
+    href             : /BinarySwitchResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['step', 'range', 'precision']
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+ 
+create_introspection 0
+update_path_value:
+   rt: oic.r.light.brightness  href: /BrightnessResURI
+update_path_value /BrightnessResURI
+update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
+update_definition_with_rt
+  rt: oic.r.light.brightness
+update_definition_with_if
+  href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
+update_definition_with_type
+  href: /BrightnessResURI  type: None
+remove_definition_properties
+   rt: oic.r.light.brightness  prop: ['step', 'range', 'precision']
+remove_path_method
+   href: /BrightnessResURI  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+create_introspection 1
+update_path_value:
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
+update_path_value /BinarySwitchResURI
+update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /BinarySwitchResURI  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: ['step', 'range', 'precision']
+remove_path_method
+   href: /BinarySwitchResURI  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+== CODE GENERATION ==
+find_resources: device type rt (not handled): oic.d.airconditioner
+find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : BrightnessResURI.swagger.json
+  main: rt : ['oic.r.light.brightness']
+  rt                 : oic.r.light.brightness
+    href             : /BrightnessResURI
+    if               : ['oic.if.a', 'oic.if.baseline']
+    type (replace)   : None
+    props (remove)   : ['step', 'range', 'precision']
+    methods (remove) : None
+    basefile         : BrightnessResURI.swagger.json
+  rt                 : oic.r.switch.binary
+    href             : /BinarySwitchResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['step', 'range', 'precision']
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+ 
+create_introspection 0
+update_path_value:
+   rt: oic.r.light.brightness  href: /BrightnessResURI
+update_path_value /BrightnessResURI
+update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
+update_definition_with_rt
+  rt: oic.r.light.brightness
+update_definition_with_if
+  href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
+update_definition_with_type
+  href: /BrightnessResURI  type: None
+remove_definition_properties
+   rt: oic.r.light.brightness  prop: ['step', 'range', 'precision']
+remove_path_method
+   href: /BrightnessResURI  method: None
+create_introspection 1
+update_path_value:
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
+update_path_value /BinarySwitchResURI
+update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /BinarySwitchResURI  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: ['step', 'range', 'precision']
+remove_path_method
+   href: /BinarySwitchResURI  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}

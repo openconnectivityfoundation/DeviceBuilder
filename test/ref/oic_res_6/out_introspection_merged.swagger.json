@@ -1,0 +1,514 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "AirFlow": {
+      "properties": {
+        "automode": {
+          "description": "",
+          "enum": [
+            "On",
+            "Off"
+          ]
+        },
+        "direction": {
+          "description": "",
+          "type": "string"
+        },
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "speed": {
+          "description": "",
+          "type": "integer"
+        },
+        "step": {
+          "description": "",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "supporteddirections": {
+          "description": "",
+          "items": {
+            "minItems": 1,
+            "type": "string",
+            "uniqueItems": true
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "value": {
+          "description": "",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "speed"
+      ],
+      "type": "object"
+    },
+    "BinarySwitch": {
+      "properties": {
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "value": {
+          "description": "",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "BinarySwitch11": {
+      "properties": {
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "value": {
+          "description": "",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "Brightness": {
+      "properties": {
+        "brightness": {
+          "description": "",
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "value": {
+          "description": "",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "brightness"
+      ],
+      "type": "object"
+    },
+    "Temperature": {
+      "properties": {
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "description": "",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "temperature": {
+          "description": "",
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        },
+        "value": {
+          "description": "",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface10": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.s",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface20": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface50": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface60": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/AirFlowResURI": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface20"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AirFlow"
+            }
+          }
+        }
+      }
+    },
+    "/BinarySwitchResURI": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      }
+    },
+    "/TemperatureResURI": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    },
+    "/bridge/binary-switch": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch11"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch11"
+            }
+          }
+        }
+      }
+    },
+    "/bridge/light-brightness": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface60"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}

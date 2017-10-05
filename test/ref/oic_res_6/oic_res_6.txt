@@ -1,0 +1,405 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/oic_res_6/out
+resource dir        : ../../IoTDataModels
+oic/res file        : ./input_oic_res/oic-res-response-testdevice.json
+input file          : None
+remove_property     : None
+type                : integer
+intermediate files  : False
+
+== INTROSPECTION ==
+find_resources: device type rt (not handled): oic.d.airconditioner
+find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
+find_resources: vendor defined rt (not handled): x.com.vendor.timer
+find_resources: vendor defined rt (not handled): x.com.vendor.swing
+find_resources: vendor defined rt (not handled): x.com.vendor.aircon.collection.extra
+find_resources: device type rt (not handled): oic.d.light
+find_resources: device type rt (not handled): oic.d.light
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagger.json', 'BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.json', 'ConsumablesBaselineResURI.swagger.json', 'HeatingZoneBaselineResURI.swagger.json', 'TemperatureResURI.swagger.json']
+
+  main: File : AirFlowResURI.swagger.json
+  main: rt : ['oic.r.airflow']
+
+  main: File : AirQualityBaselineResURI.swagger.json
+  main: rt : ['oic.r.airqualitycollection', 'oic.wk.col']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : BrightnessResURI.swagger.json
+  main: rt : ['oic.r.light.brightness']
+
+  main: File : ConsumablesBaselineResURI.swagger.json
+  main: rt : ['oic.r.consumablecollection', 'oic.wk.col']
+
+  main: File : HeatingZoneBaselineResURI.swagger.json
+  main: rt : ['oic.r.heatingzonecollection', 'oic.wk.col']
+
+  main: File : TemperatureResURI.swagger.json
+  main: rt : ['oic.r.temperature']
+  rt                 : oic.r.switch.binary
+    href             : /BinarySwitchResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.temperature
+    href             : /TemperatureResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : TemperatureResURI.swagger.json
+  rt                 : oic.r.airflow
+    href             : /AirFlowResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : AirFlowResURI.swagger.json
+  rt                 : oic.wk.con
+    href             : /ConfigurationResURI
+    if               : ['oic.if.baseline', 'oic.if.rw']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+  rt                 : oic.wk.col
+    href             : /vendor/aircon/collection/extra
+    if               : ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+  rt                 : oic.r.switch.binary
+    href             : /bridge/binary-switch
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.light.brightness
+    href             : /bridge/light-brightness
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BrightnessResURI.swagger.json
+  rt                 : oic.wk.col
+    href             : /bridge/root
+    if               : ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+ 
+create_introspection 0
+update_path_value:
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
+update_path_value /BinarySwitchResURI
+update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /BinarySwitchResURI  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: None
+remove_path_method
+   href: /BinarySwitchResURI  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+create_introspection 1
+update_path_value:
+   rt: oic.r.temperature  href: /TemperatureResURI
+update_path_value /TemperatureResURI
+update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
+update_definition_with_rt
+  rt: oic.r.temperature
+update_definition_with_if
+  href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /TemperatureResURI  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
+remove_definition_properties
+   rt: oic.r.temperature  prop: None
+remove_path_method
+   href: /TemperatureResURI  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+create_introspection 2
+update_path_value:
+   rt: oic.r.airflow  href: /AirFlowResURI
+update_path_value /AirFlowResURI
+update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
+update_definition_with_rt
+  rt: oic.r.airflow
+update_definition_with_if
+  href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /AirFlowResURI  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
+remove_definition_properties
+   rt: oic.r.airflow  prop: None
+remove_path_method
+   href: /AirFlowResURI  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface20
+ --> {'$ref': '#/parameters/interface'}
+create_introspection 5
+update_path_value:
+   rt: oic.r.switch.binary  href: /bridge/binary-switch
+update_path_value /BinarySwitchResURI
+update_path_value :: /BinarySwitchResURI /bridge/binary-switch
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /bridge/binary-switch  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: None
+remove_path_method
+   href: /bridge/binary-switch  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface50
+ --> {'$ref': '#/parameters/interface'}
+merge: definition exist: BinarySwitch
+merge: parameter exist: BinarySwitch  adding as: BinarySwitch11
+ --> {'$ref': '#/definitions/BinarySwitch'}
+create_introspection 6
+update_path_value:
+   rt: oic.r.light.brightness  href: /bridge/light-brightness
+update_path_value /BrightnessResURI
+update_path_value :: /BrightnessResURI /bridge/light-brightness
+update_definition_with_rt
+  rt: oic.r.light.brightness
+update_definition_with_if
+  href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /bridge/light-brightness  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
+remove_definition_properties
+   rt: oic.r.light.brightness  prop: None
+remove_path_method
+   href: /bridge/light-brightness  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface60
+ --> {'$ref': '#/parameters/interface'}
+== CODE GENERATION ==
+find_resources: device type rt (not handled): oic.d.airconditioner
+find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
+find_resources: vendor defined rt (not handled): x.com.vendor.timer
+find_resources: vendor defined rt (not handled): x.com.vendor.swing
+find_resources: vendor defined rt (not handled): x.com.vendor.aircon.collection.extra
+find_resources: device type rt (not handled): oic.d.light
+find_resources: device type rt (not handled): oic.d.light
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagger.json', 'BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.json', 'ConsumablesBaselineResURI.swagger.json', 'HeatingZoneBaselineResURI.swagger.json', 'TemperatureResURI.swagger.json']
+
+  main: File : AirFlowResURI.swagger.json
+  main: rt : ['oic.r.airflow']
+
+  main: File : AirQualityBaselineResURI.swagger.json
+  main: rt : ['oic.r.airqualitycollection', 'oic.wk.col']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : BrightnessResURI.swagger.json
+  main: rt : ['oic.r.light.brightness']
+
+  main: File : ConsumablesBaselineResURI.swagger.json
+  main: rt : ['oic.r.consumablecollection', 'oic.wk.col']
+
+  main: File : HeatingZoneBaselineResURI.swagger.json
+  main: rt : ['oic.r.heatingzonecollection', 'oic.wk.col']
+
+  main: File : TemperatureResURI.swagger.json
+  main: rt : ['oic.r.temperature']
+  rt                 : oic.r.switch.binary
+    href             : /BinarySwitchResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.temperature
+    href             : /TemperatureResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : TemperatureResURI.swagger.json
+  rt                 : oic.r.airflow
+    href             : /AirFlowResURI
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : AirFlowResURI.swagger.json
+  rt                 : oic.wk.con
+    href             : /ConfigurationResURI
+    if               : ['oic.if.baseline', 'oic.if.rw']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+  rt                 : oic.wk.col
+    href             : /vendor/aircon/collection/extra
+    if               : ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+  rt                 : oic.r.switch.binary
+    href             : /bridge/binary-switch
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.light.brightness
+    href             : /bridge/light-brightness
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+    basefile         : BrightnessResURI.swagger.json
+  rt                 : oic.wk.col
+    href             : /bridge/root
+    if               : ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
+    type (replace)   : integer
+    props (remove)   : None
+    methods (remove) : None
+ 
+create_introspection 0
+update_path_value:
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
+update_path_value /BinarySwitchResURI
+update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /BinarySwitchResURI  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: None
+remove_path_method
+   href: /BinarySwitchResURI  method: None
+create_introspection 1
+update_path_value:
+   rt: oic.r.temperature  href: /TemperatureResURI
+update_path_value /TemperatureResURI
+update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
+update_definition_with_rt
+  rt: oic.r.temperature
+update_definition_with_if
+  href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /TemperatureResURI  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
+remove_definition_properties
+   rt: oic.r.temperature  prop: None
+remove_path_method
+   href: /TemperatureResURI  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+create_introspection 2
+update_path_value:
+   rt: oic.r.airflow  href: /AirFlowResURI
+update_path_value /AirFlowResURI
+update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
+update_definition_with_rt
+  rt: oic.r.airflow
+update_definition_with_if
+  href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /AirFlowResURI  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
+remove_definition_properties
+   rt: oic.r.airflow  prop: None
+remove_path_method
+   href: /AirFlowResURI  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface20
+ --> {'$ref': '#/parameters/interface'}
+create_introspection 5
+update_path_value:
+   rt: oic.r.switch.binary  href: /bridge/binary-switch
+update_path_value /BinarySwitchResURI
+update_path_value :: /BinarySwitchResURI /bridge/binary-switch
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /bridge/binary-switch  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: None
+remove_path_method
+   href: /bridge/binary-switch  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface50
+ --> {'$ref': '#/parameters/interface'}
+merge: definition exist: BinarySwitch
+merge: parameter exist: BinarySwitch  adding as: BinarySwitch11
+ --> {'$ref': '#/definitions/BinarySwitch'}
+create_introspection 6
+update_path_value:
+   rt: oic.r.light.brightness  href: /bridge/light-brightness
+update_path_value /BrightnessResURI
+update_path_value :: /BrightnessResURI /bridge/light-brightness
+update_definition_with_rt
+  rt: oic.r.light.brightness
+update_definition_with_if
+  href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /bridge/light-brightness  type: integer
+update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
+remove_definition_properties
+   rt: oic.r.light.brightness  prop: None
+remove_path_method
+   href: /bridge/light-brightness  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface60
+ --> {'$ref': '#/parameters/interface'}

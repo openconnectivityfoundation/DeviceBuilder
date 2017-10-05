@@ -1,0 +1,28 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+usage: deviceBuilder.py [-h] [-ver] [-ocfres [OCFRES]] [-input [INPUT]] -out
+                        [OUT] [-intermediate_files INTERMEDIATE_FILES]
+                        [-resource_dir [RESOURCE_DIR]]
+                        [-remove_property [REMOVE_PROPERTY [REMOVE_PROPERTY ...]]]
+                        [-type [TYPE]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -ver, --verbose       Execute in verbose mode
+  -ocfres [OCFRES], --ocfres [OCFRES]
+                        ocf/res input
+  -input [INPUT], --input [INPUT]
+                        device builder input format
+  -out [OUT], --out [OUT]
+                        output dir + prefix e.g. (../mydir/generated1)
+  -intermediate_files INTERMEDIATE_FILES, --intermediate_files INTERMEDIATE_FILES
+                        write intermediate files
+  -resource_dir [RESOURCE_DIR], --resource_dir [RESOURCE_DIR]
+                        resource directory
+  -remove_property [REMOVE_PROPERTY [REMOVE_PROPERTY ...]], --remove_property [REMOVE_PROPERTY [REMOVE_PROPERTY ...]]
+                        remove property (--remove_property value range step
+                        precision id)
+  -type [TYPE], --type [TYPE]
+                        type of the value (or renamed value) (--type integer
+                        number)
