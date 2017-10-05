@@ -192,10 +192,13 @@ def find_key_link(rec_dict, target, depth=0):
 
 def find_key_value(rec_dict, searchkey, target, depth=0):
     """
-    find the first key recursively
+    find the first key with value "target" recursively
     also traverse lists (arrays, oneOf,..) but only returns the first occurance
+    returns the dict that contains the search key.
+    so the returned dict can be updated by dict[searchkey] = xxx
     :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
-    :param target: target key to search for
+    :param searchkey: target key to search for
+    :param target: target value that belongs to key to search for
     :param depth: depth of the search (recursion)
     :return:
     """
@@ -218,6 +221,32 @@ def find_key_value(rec_dict, searchkey, target, depth=0):
                         r = find_key_value(entry, searchkey, target, depth+1)
                         if r is not None:
                             return r
+                            
+                            
+                            
+def find_key_and_clean(rec_dict, searchkey, depth=0):
+    """
+    find all keys and clean the value, e.g. make the value an empty string
+    also traverse lists (arrays, oneOf,..) 
+    :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
+    :param searchkey: target key to search in the dict and to be updated
+    :param depth: depth of the search (recursion)
+    :return:
+    """
+    #print ("")
+    #print ("find_key_and_clean:", searchkey, target, depth)
+    #print ("find_key_and_clean:", rec_dict)
+    if isinstance(rec_dict, dict):
+        # direct key
+        for key, value in rec_dict.items():
+            if key == searchkey:
+                rec_dict[key] = ""
+            elif isinstance(value, dict):
+                r = find_key_and_clean(value, searchkey, depth+1)
+            elif isinstance(value, list):
+                for entry in value:
+                    if isinstance(entry, dict):
+                        r = find_key_and_clean(entry, searchkey, depth+1)
            
 def find_oic_res_resources(filename, args):
     """
@@ -369,25 +398,26 @@ def clear_descriptions(json_data):
     :param json_data: the parsed swagger file
     """
     # remove the descriptions in the path
-    for path, path_item in json_data["paths"].items():
-        for method, method_item in path_item.items():
-            if isinstance(method_item, dict):
-                description = method_item.get("description")
-                if description is not None:
-                    method_item["description"] = ""
+    #for path, path_item in json_data["paths"].items():
+    #    for method, method_item in path_item.items():
+    #        if isinstance(method_item, dict):
+    #            description = method_item.get("description")
+    #            if description is not None:
+    #                method_item["description"] = ""
     # remove the descriptions in the definitions         
-    for definition, definition_item in json_data["definitions"].items():
-        # definition - values
-        for defvalue, defvalue_item in definition_item.items():
-            if isinstance(defvalue_item, dict):
-                description = method_item.get("description")
-                if description is not None:
-                    method_item["description"] = ""
-                for propvalue, propvalue_item in defvalue_item.items():
-                    print ("clear_descriptions", propvalue)
-                    description = propvalue_item.get("description")
-                    if description is not None:
-                        propvalue_item["description"] = ""
+    #for definition, definition_item in json_data["definitions"].items():
+    #    # definition - values
+    #    for defvalue, defvalue_item in definition_item.items():
+    #        if isinstance(defvalue_item, dict):
+    #            description = method_item.get("description")
+    #            if description is not None:
+    #                method_item["description"] = ""
+    #            for propvalue, propvalue_item in defvalue_item.items():
+    #                print ("clear_descriptions", propvalue)
+    #                description = propvalue_item.get("description")
+    #                if description is not None:
+    #                    propvalue_item["description"] = ""
+    find_key_and_clean(json_data,"description")                    
                     
               
 def update_definition_with_rt(json_data, rt_value_file, rt_values):
@@ -479,7 +509,7 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print ("  href:",rt_value[index_href], " type:",rt_value[index_type])
         
-    supported_types = ["integer", "number", "string"]      
+    supported_types = ["integer", "number", "string", "boolean"]      
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -504,7 +534,8 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                 type = "integer"
                 type = entry[3][index_type]
                 if entry[3][index_type] not in supported_types:
-                    print (" *** ERROR type is not valid:", entry[3][index_type], " supported types:", supported_types)
+                    if type is not None:
+                        print (" *** ERROR type is not valid:", entry[3][index_type], " supported types:", supported_types)
                 else:
                     type = entry[3][index_type]
                     if properties is not None:
@@ -663,16 +694,12 @@ def merge(merge_data, file_data):
             index = index + 1
             print ("merge: parameter exist:", parameter, " adding as:", new_parameter)
             merge_data["parameters"][new_parameter] = parameter_item
-            # todo fix the path data
+            # fix the path data
             search_parameter = "#/parameters/"+parameter
             my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
             print (" -->",my_dict)
             my_dict["$ref"] = "#/parameters/"+new_parameter
-            #my_dict = find_key_value(file_data, parameter)
-            #if my_dict is not None:
-            #    my_dict = new_parameter
-            
-    
+
     for definition, definiton_item in file_data["definitions"].items():
         data = merge_data["definitions"].get(definition)
         if data is None:
@@ -683,17 +710,15 @@ def merge(merge_data, file_data):
             index = index + 1
             print ("merge: parameter exist:", definition, " adding as:", new_definition)
             merge_data["definitions"][new_definition] = definiton_item
-            # todo fix the path data
+            # fix the definition data
             search_definition = "#/definitions/" + definition
             my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
             print (" -->",my_dict)
             my_dict["$ref"] = "#/definitions/" +new_definition
-            #print (" -->",my_dict)
             # try again for the other method
             my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
             if my_dict is not None:
                 my_dict["$ref"] = "#/definitions/" + new_definition
-    
     
     for path, path_item in file_data["paths"].items():
         merge_data["paths"][path] = path_item
@@ -713,16 +738,6 @@ def main_app(args, generation_type):
         write_intermediate=True
         
     print ("handling resources (overview):")
-    # type,[props to be removed], [methods to be removed]
-    #for rt in rt_values:
-    #    print ("  rt                 :", rt[0])
-    #    print ("    href             :", rt[1])
-    #    print ("    if               :", rt[2])
-    #    print ("    type (replace)   :", rt[3])
-    #    print ("    props (remove)   :", rt[4])
-    #    print ("    methods (remove) :", rt[5])
-    #print(" ")
-
     files_to_process = find_files(str(args.resource_dir), rt_values)
     print ("processing files:",files_to_process )
     
