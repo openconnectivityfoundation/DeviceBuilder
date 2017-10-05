@@ -79,7 +79,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "description": "",
@@ -97,13 +97,13 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature11"
+              "$ref": "#/definitions/Temperature"
             }
           },
           "403": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature11"
+              "$ref": "#/definitions/Temperature"
             }
           }
         }
@@ -112,14 +112,14 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature11"
             }
           }
         ],
@@ -127,7 +127,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature11"
             }
           },
           "403": {

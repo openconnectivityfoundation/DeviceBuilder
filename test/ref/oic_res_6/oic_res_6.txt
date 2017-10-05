@@ -115,6 +115,8 @@ update_definition_with_type  step
 update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /BinarySwitchResURI  method: None
 optimize for introspection..
@@ -141,6 +143,8 @@ update_definition_with_type  range
 update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.temperature  prop: None
+  definition: #/definitions/Temperature
+  definition: #/definitions/Temperature
 remove_path_method
    href: /TemperatureResURI  method: None
 optimize for introspection..
@@ -166,11 +170,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /AirFlowResURI  type: integer
+update_definition_with_type  value
 update_definition_with_type  step
 update_definition_with_type  range
-update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.airflow  prop: None
+  definition: #/definitions/AirFlow
+  definition: #/definitions/AirFlow
 remove_path_method
    href: /AirFlowResURI  method: None
 optimize for introspection..
@@ -199,6 +205,8 @@ update_definition_with_type  step
 update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /bridge/binary-switch  method: None
 optimize for introspection..
@@ -226,11 +234,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  step
 update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
+  definition: #/definitions/Brightness
+  definition: #/definitions/Brightness
 remove_path_method
    href: /bridge/light-brightness  method: None
 optimize for introspection..
@@ -345,6 +355,8 @@ update_definition_with_type  step
 update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /BinarySwitchResURI  method: None
 
@@ -368,6 +380,8 @@ update_definition_with_type  range
 update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.temperature  prop: None
+  definition: #/definitions/Temperature
+  definition: #/definitions/Temperature
 remove_path_method
    href: /TemperatureResURI  method: None
 merge: parameter exist: interface
@@ -389,11 +403,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /AirFlowResURI  type: integer
+update_definition_with_type  value
 update_definition_with_type  step
 update_definition_with_type  range
-update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.airflow  prop: None
+  definition: #/definitions/AirFlow
+  definition: #/definitions/AirFlow
 remove_path_method
    href: /AirFlowResURI  method: None
 merge: parameter exist: interface
@@ -419,6 +435,8 @@ update_definition_with_type  step
 update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /bridge/binary-switch  method: None
 merge: parameter exist: interface
@@ -443,11 +461,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  step
 update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
+  definition: #/definitions/Brightness
+  definition: #/definitions/Brightness
 remove_path_method
    href: /bridge/light-brightness  method: None
 merge: parameter exist: interface

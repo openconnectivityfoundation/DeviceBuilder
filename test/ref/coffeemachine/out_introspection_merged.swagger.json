@@ -5,40 +5,6 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
-        "precision": {
-          "description": "",
-          "readOnly": true,
-          "type": "number"
-        },
-        "range": {
-          "description": "",
-          "items": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "integer"
-              }
-            ]
-          },
-          "maxItems": 2,
-          "minItems": 2,
-          "readOnly": true,
-          "type": "array"
-        },
-        "step": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            }
-          ],
-          "description": "",
-          "readOnly": true
-        },
         "value": {
           "description": "",
           "type": "boolean"
@@ -49,75 +15,65 @@
       ],
       "type": "object"
     },
-    "Brightness": {
+    "Operation": {
       "properties": {
-        "brightness": {
+        "currentJobState": {
           "description": "",
-          "maximum": 100,
-          "minimum": 0,
-          "type": "integer"
+          "type": "string"
         },
-        "precision": {
+        "currentMachineState": {
           "description": "",
-          "readOnly": true,
-          "type": "number"
+          "type": "string"
         },
-        "range": {
+        "jobStates": {
           "description": "",
           "items": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "integer"
-              }
-            ]
+            "type": "string"
           },
-          "maxItems": 2,
-          "minItems": 2,
           "readOnly": true,
           "type": "array"
         },
-        "step": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            }
-          ],
+        "machineStates": {
           "description": "",
-          "readOnly": true
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
-        "value": {
-          "anyOf": [
-            {
-              "type": "array"
-            },
-            {
-              "type": "string"
-            },
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "object"
-            }
-          ],
-          "description": ""
+        "progressPercentage": {
+          "description": "",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "remainingTime": {
+          "description": "",
+          "readOnly": true,
+          "type": "string"
+        },
+        "runningTime": {
+          "description": "",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
-        "brightness"
+        "machineStates",
+        "currentMachineState"
       ],
+      "type": "object"
+    },
+    "OperationUpdate": {
+      "properties": {
+        "currentJobState": {
+          "description": "",
+          "type": "string"
+        },
+        "currentMachineState": {
+          "description": "",
+          "type": "string"
+        }
+      },
       "type": "object"
     }
   },
@@ -125,14 +81,14 @@
     "license": {
       "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
     },
-    "title": "Brightness",
+    "title": "Binary Switch",
     "version": "v1.1.0-20160519"
   },
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -149,7 +105,7 @@
     }
   },
   "paths": {
-    "/BinarySwitchResURI": {
+    "/onoff": {
       "get": {
         "description": "",
         "parameters": [
@@ -170,7 +126,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",
@@ -191,7 +147,7 @@
         }
       }
     },
-    "/BrightnessResURI": {
+    "/operationalstate": {
       "get": {
         "description": "",
         "parameters": [
@@ -203,7 +159,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/Operation"
             }
           }
         }
@@ -212,14 +168,14 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/OperationUpdate"
             }
           }
         ],
@@ -227,7 +183,13 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/OperationUpdate"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Operation"
             }
           }
         }

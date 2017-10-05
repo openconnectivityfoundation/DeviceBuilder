@@ -1,0 +1,167 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/coffeemachine/out
+resource dir        : ../../IoTDataModels
+oic/res file        : None
+input file          : ./input_define_device/input-coffeemachine.json
+remove_property     : None
+type                : None
+intermediate files  : False
+
+== INTROSPECTION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : OperationalStateResURI.swagger.json
+  main: rt : ['oic.r.operational.state']
+  rt                 : oic.r.switch.binary
+    href             : /onoff
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'precision']
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.operational.state
+    href             : /operationalstate
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : None
+    basefile         : OperationalStateResURI.swagger.json
+ 
+
+create_introspection index: 0 /onoff
+update_path_value:
+   rt: oic.r.switch.binary  href: /onoff
+update_path_value /BinarySwitchResURI
+update_path_value :: /BinarySwitchResURI /onoff
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /onoff  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: precision
+remove_path_method
+   href: /onoff  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+
+create_introspection index: 1 /operationalstate
+update_path_value:
+   rt: oic.r.operational.state  href: /operationalstate
+update_path_value /OperationalStateResURI
+update_path_value :: /OperationalStateResURI /operationalstate
+update_definition_with_rt
+  rt: oic.r.operational.state
+update_definition_with_if
+  href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /operationalstate  type: None
+remove_definition_properties
+   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
+  definition: #/definitions/Operation
+  definition: #/definitions/OperationUpdate
+remove_path_method
+   href: /operationalstate  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+== CODE GENERATION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.swagger.json']
+
+  main: File : BinarySwitchResURI.swagger.json
+  main: rt : ['oic.r.switch.binary']
+
+  main: File : OperationalStateResURI.swagger.json
+  main: rt : ['oic.r.operational.state']
+  rt                 : oic.r.switch.binary
+    href             : /onoff
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'step', 'precision']
+    methods (remove) : None
+    basefile         : BinarySwitchResURI.swagger.json
+  rt                 : oic.r.operational.state
+    href             : /operationalstate
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : None
+    basefile         : OperationalStateResURI.swagger.json
+ 
+
+create_introspection index: 0 /onoff
+update_path_value:
+   rt: oic.r.switch.binary  href: /onoff
+update_path_value /BinarySwitchResURI
+update_path_value :: /BinarySwitchResURI /onoff
+update_definition_with_rt
+  rt: oic.r.switch.binary
+update_definition_with_if
+  href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /onoff  type: None
+remove_definition_properties
+   rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: precision
+remove_path_method
+   href: /onoff  method: None
+
+create_introspection index: 1 /operationalstate
+update_path_value:
+   rt: oic.r.operational.state  href: /operationalstate
+update_path_value /OperationalStateResURI
+update_path_value :: /OperationalStateResURI /operationalstate
+update_definition_with_rt
+  rt: oic.r.operational.state
+update_definition_with_if
+  href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /operationalstate  type: None
+remove_definition_properties
+   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
+  definition: #/definitions/Operation
+  definition: #/definitions/OperationUpdate
+remove_path_method
+   href: /operationalstate  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}

@@ -50,6 +50,8 @@ update_definition_with_type
   href: /BinarySwitchResURI  type: None
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /BinarySwitchResURI  method: None
 optimize for introspection..
@@ -96,5 +98,7 @@ update_definition_with_type
   href: /BinarySwitchResURI  type: None
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /BinarySwitchResURI  method: None

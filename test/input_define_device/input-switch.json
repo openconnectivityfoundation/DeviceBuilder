@@ -1,0 +1,11 @@
+[
+    {
+      "path" : "/mypath",
+      "rt"   : [ "oic.r.switch.binary" ],
+      "if"   : ["oic.if.s" ],
+      "remove_properties" : [ "range"  ],    
+      "remove_methods" : ["post"],
+      "override_type" : "integer"
+    }
+
+]

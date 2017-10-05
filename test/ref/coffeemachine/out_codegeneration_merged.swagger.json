@@ -5,40 +5,6 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
-        "precision": {
-          "description": "Accuracy granularity of the exposed value",
-          "readOnly": true,
-          "type": "number"
-        },
-        "range": {
-          "description": "The valid range for the value Property",
-          "items": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "integer"
-              }
-            ]
-          },
-          "maxItems": 2,
-          "minItems": 2,
-          "readOnly": true,
-          "type": "array"
-        },
-        "step": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            }
-          ],
-          "description": "Step value across the defined range",
-          "readOnly": true
-        },
         "value": {
           "description": "Status of the switch",
           "type": "boolean"
@@ -49,75 +15,65 @@
       ],
       "type": "object"
     },
-    "Brightness": {
+    "Operation": {
       "properties": {
-        "brightness": {
-          "description": "Quantized representation in the range 0-100 of the current sensed or set value for Brightness",
-          "maximum": 100,
-          "minimum": 0,
-          "type": "integer"
+        "currentJobState": {
+          "description": "Currently active jobState",
+          "type": "string"
         },
-        "precision": {
-          "description": "Accuracy granularity of the exposed value",
-          "readOnly": true,
-          "type": "number"
+        "currentMachineState": {
+          "description": "Current state of operation of the device.",
+          "type": "string"
         },
-        "range": {
-          "description": "The valid range for the value Property",
+        "jobStates": {
+          "description": "array of the possible job states.",
           "items": {
-            "anyOf": [
-              {
-                "type": "number"
-              },
-              {
-                "type": "integer"
-              }
-            ]
+            "type": "string"
           },
-          "maxItems": 2,
-          "minItems": 2,
           "readOnly": true,
           "type": "array"
         },
-        "step": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            }
-          ],
-          "description": "Step value across the defined range",
-          "readOnly": true
+        "machineStates": {
+          "description": "array of the possible operational states.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
-        "value": {
-          "anyOf": [
-            {
-              "type": "array"
-            },
-            {
-              "type": "string"
-            },
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "object"
-            }
-          ],
-          "description": "The value sensed or actuated by this Resource"
+        "progressPercentage": {
+          "description": "Percentage completeness of the current jobState",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "remainingTime": {
+          "description": "Time till completion of the current operational state",
+          "readOnly": true,
+          "type": "string"
+        },
+        "runningTime": {
+          "description": "Elapsed time in the current operational state",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
-        "brightness"
+        "machineStates",
+        "currentMachineState"
       ],
+      "type": "object"
+    },
+    "OperationUpdate": {
+      "properties": {
+        "currentJobState": {
+          "description": "Currently active jobState",
+          "type": "string"
+        },
+        "currentMachineState": {
+          "description": "Current state of operation of the device.",
+          "type": "string"
+        }
+      },
       "type": "object"
     }
   },
@@ -126,14 +82,14 @@
       "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
       "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
     },
-    "title": "Brightness",
+    "title": "Binary Switch",
     "version": "v1.1.0-20160519"
   },
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -150,7 +106,7 @@
     }
   },
   "paths": {
-    "/BinarySwitchResURI": {
+    "/onoff": {
       "get": {
         "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
         "parameters": [
@@ -178,7 +134,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",
@@ -207,9 +163,9 @@
         }
       }
     },
-    "/BrightnessResURI": {
+    "/operationalstate": {
       "get": {
-        "description": "This resource describes the brightness of a light or lamp.\nbrightness is an integer showing the current brightness level as a quantized representation in the range 0-100.\nA brightness of 0 is the minimum for the resource.\nA brightness of 100 is the maximum for the resource.\nRetrieves the current brightness level.\n",
+        "description": "This resource describes the operational and job states on a device.\nThe states can be read or set, setting indicates a desired state.\nA device may reject an attempt to set a state that would result\nin adverse operational characteristics.\nThe machineStates is an array of the possible operational states.\nThe currentMachineState is the current state of operation of the device.\nThe jobStates is an array of the possible job states.\nThe currentJobState is the currently active jobState.\nThe runningTime is the ISO8601 encoded elapsed time in the current operational state.\nThe remainingTime is the ISO8601 encoded time till completion of the current operational state.\nThe progressPercentage is the percentage completeness of the current jobState.\nRetrieves the current operational and job states.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -219,46 +175,96 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/Operation"
             },
             "x-example": {
-              "brightness": 50,
+              "currentJobState": "rinse",
+              "currentMachineState": "active",
               "id": "unique_example_id",
+              "jobStates": [
+                "preWash",
+                "wash",
+                "rinse",
+                "spin",
+                "dry",
+                "airDry",
+                "wrinklePrevent"
+              ],
+              "machineStates": [
+                "pause",
+                "stopped",
+                "idle",
+                "active"
+              ],
+              "progressPercentage": 75,
+              "remainingTime": "PT10M40S",
               "rt": [
-                "oic.r.light.brightness"
-              ]
+                "oic.r.operational.state"
+              ],
+              "runningTime": "PT15M20S"
             }
           }
         }
       },
       "post": {
-        "description": "Sets the desired brightness level.\n",
+        "description": "Sets the desired operational or job state.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/OperationUpdate"
             },
             "x-example": {
-              "brightness": 10,
+              "currentJobState": "wash",
+              "currentMachineState": "pause",
               "id": "unique_example_id"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Indicates that the brightness was changed.\nThe new brightness level is provided in the response.\n",
+            "description": "",
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/OperationUpdate"
             },
             "x-example": {
-              "brightness": 10,
+              "currentJobState": "wash",
+              "currentMachineState": "pause",
               "id": "unique_example_id"
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an value for currentMachineState that is not found in machineStates.\n  An update with an value for currentJobState that is not found in jobStates.\nThe server responds with the current resource representation.\n",
+            "schema": {
+              "$ref": "#/definitions/Operation"
+            },
+            "x-example": {
+              "currentJobState": "rinse",
+              "currentMachineState": "active",
+              "id": "unique_example_id",
+              "jobStates": [
+                "preWash",
+                "wash",
+                "rinse",
+                "spin",
+                "dry",
+                "airDry",
+                "wrinklePrevent"
+              ],
+              "machineStates": [
+                "pause",
+                "stopped",
+                "idle",
+                "active"
+              ],
+              "progressPercentage": 75,
+              "remainingTime": "PT10M40S",
+              "runningTime": "PT15M20S"
             }
           }
         }

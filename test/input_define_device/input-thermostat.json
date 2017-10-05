@@ -1,0 +1,16 @@
+[
+    {
+      "path" : "/sensorthermostat",
+      "rt"   : [ "oic.r.temperature" ],
+      "if"   : ["oic.if.baseline", "oic.if.s" ],
+      "remove_properties" : [ "range", "value", "step", "precision"  ],    
+      "remove_methods" : ["post"]
+    },
+    {
+      "path" : "/actuatorthermostat",
+      "rt"   : [ "oic.r.temperature" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "value", "step", "precision"  ]
+    }
+
+]

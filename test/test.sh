@@ -127,6 +127,11 @@ TEST_CASE="thermostat"
 resfile=./input_define_device/input-thermostat.json
 my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
 
+
+TEST_CASE="coffeemachine"
+resfile=./input_define_device/input-coffeemachine.json
+my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
 }
 
 if [ ! -f ../../IoTDataModels/README.md ]

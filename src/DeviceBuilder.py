@@ -549,6 +549,18 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                         keyvaluepairs.append([path,rt,ref, rt_f ])
         except:
             pass  
+        try:
+            x_example = path_item["post"]["responses"]["200"]["x-example"]
+            rt = x_example.get("rt")
+            schema = path_item["post"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            if find_in_array(rt[0], rt_values):
+                for rt_f in rt_values:
+                    if rt_f[0] == rt[0]:
+                        keyvaluepairs.append([path,rt,ref, rt_f ])
+        except:
+            pass  
+            
     
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
@@ -592,6 +604,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
+        found_rt = False
         try:
             x_example = path_item["get"]["responses"]["200"]["x-example"]
             rt = x_example.get("rt")
@@ -601,13 +614,23 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
                 for rt_f in rt_values:
                     if rt_f[0] == rt[0]:
                         keyvaluepairs.append([path, rt, ref, rt_f ])
+                        found_rt = True
         except:
             pass
+        try:
+            schema = path_item["post"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            if found_rt == True:
+                keyvaluepairs.append([path, rt, ref, rt_f ])
+        except:
+            pass    
+                        
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
         full_defname = "#/definitions/" + def_name
         for entry in keyvaluepairs:
             if entry[2] == full_defname:
+                print ("  definition:",full_defname)
                 # found entry
                 properties = def_item.get("properties")
                 remove_list = entry[3][index_prop]
@@ -650,7 +673,6 @@ def update_path_value(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print ("   rt:",rt_value[index_rt], " href:",rt_value[index_href])
 
-    
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
         print ("update_path_value", path)
@@ -663,6 +685,7 @@ def update_path_value(json_data, rt_value_file, rt_values):
                         keyvaluepairs.append([path,rt_f[1] ])
         except:
             pass
+            
     path_data = json_data["paths"]
     for replacement in keyvaluepairs:
         if replacement[1] != replacement[0]:

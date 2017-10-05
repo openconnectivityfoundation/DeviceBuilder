@@ -49,6 +49,12 @@ update_definition_with_type
   href: /sensorthermostat  type: None
 remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+  definition: #/definitions/Temperature
+  definition: #/definitions/Temperature
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: value
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /sensorthermostat  method: ['post']
 optimize for introspection..
@@ -72,6 +78,12 @@ update_definition_with_type
   href: /actuatorthermostat  type: None
 remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+  definition: #/definitions/Temperature
+  definition: #/definitions/Temperature
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: value
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /actuatorthermostat  method: None
 optimize for introspection..
@@ -124,6 +136,12 @@ update_definition_with_type
   href: /sensorthermostat  type: None
 remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+  definition: #/definitions/Temperature
+  definition: #/definitions/Temperature
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: value
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /sensorthermostat  method: ['post']
 
@@ -144,6 +162,12 @@ update_definition_with_type
   href: /actuatorthermostat  type: None
 remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+  definition: #/definitions/Temperature
+  definition: #/definitions/Temperature
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: value
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /actuatorthermostat  method: None
 merge: parameter exist: interface

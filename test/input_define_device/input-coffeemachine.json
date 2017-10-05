@@ -1,0 +1,15 @@
+[
+    {
+      "path" : "/onoff",
+      "rt"   : [ "oic.r.switch.binary" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "step", "precision"  ]
+    },
+    {
+      "path" : "/operationalstate",
+      "rt"   : [ "oic.r.operational.state" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "value", "step", "precision"  ]
+    }
+
+]

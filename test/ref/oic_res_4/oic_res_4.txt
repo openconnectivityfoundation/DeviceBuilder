@@ -55,6 +55,8 @@ update_definition_with_type
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
+  definition: #/definitions/Brightness
+  definition: #/definitions/Brightness
 remove_path_method
    href: /BrightnessResURI  method: None
 optimize for introspection..
@@ -79,6 +81,8 @@ update_definition_with_type
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /BinarySwitchResURI  method: None
 optimize for introspection..
@@ -133,6 +137,8 @@ update_definition_with_type
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
+  definition: #/definitions/Brightness
+  definition: #/definitions/Brightness
 remove_path_method
    href: /BrightnessResURI  method: None
 
@@ -154,6 +160,8 @@ update_definition_with_type
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /BinarySwitchResURI  method: None
 merge: parameter exist: interface

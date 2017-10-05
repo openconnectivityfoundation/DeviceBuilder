@@ -54,6 +54,11 @@ update_definition_with_type
   href: /BrightnessResURI  type: None
 remove_definition_properties
    rt: oic.r.light.brightness  prop: ['step', 'range', 'precision']
+  definition: #/definitions/Brightness
+  definition: #/definitions/Brightness
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /BrightnessResURI  method: None
 optimize for introspection..
@@ -77,6 +82,11 @@ update_definition_with_type
   href: /BinarySwitchResURI  type: None
 remove_definition_properties
    rt: oic.r.switch.binary  prop: ['step', 'range', 'precision']
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /BinarySwitchResURI  method: None
 optimize for introspection..
@@ -130,6 +140,11 @@ update_definition_with_type
   href: /BrightnessResURI  type: None
 remove_definition_properties
    rt: oic.r.light.brightness  prop: ['step', 'range', 'precision']
+  definition: #/definitions/Brightness
+  definition: #/definitions/Brightness
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /BrightnessResURI  method: None
 
@@ -150,6 +165,11 @@ update_definition_with_type
   href: /BinarySwitchResURI  type: None
 remove_definition_properties
    rt: oic.r.switch.binary  prop: ['step', 'range', 'precision']
+  definition: #/definitions/BinarySwitch
+  definition: #/definitions/BinarySwitch
+eraseElement: Cannot find matching key: step
+eraseElement: Cannot find matching key: range
+eraseElement: Cannot find matching key: precision
 remove_path_method
    href: /BinarySwitchResURI  method: None
 merge: parameter exist: interface
