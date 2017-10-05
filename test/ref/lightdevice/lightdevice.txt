@@ -44,7 +44,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     methods (remove) : None
     basefile         : ColourChromaResURI.swagger.json
  
-create_introspection 0
+
+create_introspection index: 0 /binaryswitch
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
@@ -53,6 +54,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /binaryswitch  type: None
 remove_definition_properties
@@ -63,7 +68,8 @@ remove_path_method
 optimize for introspection..
 eraseElement: Cannot find matching key: x-example
 eraseElement: Cannot find matching key: x-example
-create_introspection 1
+
+create_introspection index: 1 /dimming
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
@@ -72,6 +78,10 @@ update_definition_with_rt
   rt: oic.r.light.dimming
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /dimming  type: None
 remove_definition_properties
@@ -85,7 +95,8 @@ eraseElement: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
  --> {'$ref': '#/parameters/interface'}
-create_introspection 2
+
+create_introspection index: 2 /colourchroma
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI
@@ -94,6 +105,10 @@ update_definition_with_rt
   rt: oic.r.colour.chroma
 update_definition_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /colourchroma  type: None
 remove_definition_properties
@@ -142,7 +157,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     methods (remove) : None
     basefile         : ColourChromaResURI.swagger.json
  
-create_introspection 0
+
+create_introspection index: 0 /binaryswitch
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
@@ -151,6 +167,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /binaryswitch  type: None
 remove_definition_properties
@@ -158,7 +178,8 @@ remove_definition_properties
 eraseElement: Cannot find matching key: id
 remove_path_method
    href: /binaryswitch  method: None
-create_introspection 1
+
+create_introspection index: 1 /dimming
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
@@ -167,6 +188,10 @@ update_definition_with_rt
   rt: oic.r.light.dimming
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /dimming  type: None
 remove_definition_properties
@@ -177,7 +202,8 @@ remove_path_method
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
  --> {'$ref': '#/parameters/interface'}
-create_introspection 2
+
+create_introspection index: 2 /colourchroma
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI
@@ -186,6 +212,10 @@ update_definition_with_rt
   rt: oic.r.colour.chroma
 update_definition_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /colourchroma  type: None
 remove_definition_properties

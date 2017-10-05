@@ -1,0 +1,154 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/thermostat/out
+resource dir        : ../../IoTDataModels
+oic/res file        : None
+input file          : ./input_define_device/input-thermostat.json
+remove_property     : None
+type                : None
+intermediate files  : False
+
+== INTROSPECTION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['TemperatureResURI.swagger.json']
+
+  main: File : TemperatureResURI.swagger.json
+  main: rt : ['oic.r.temperature']
+  rt                 : oic.r.temperature
+    href             : /sensorthermostat
+    if               : ['oic.if.baseline', 'oic.if.s']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : ['post']
+    basefile         : TemperatureResURI.swagger.json
+  rt                 : oic.r.temperature
+    href             : /actuatorthermostat
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : None
+    basefile         : TemperatureResURI.swagger.json
+ 
+
+create_introspection index: 0 /sensorthermostat
+update_path_value:
+   rt: oic.r.temperature  href: /sensorthermostat
+update_path_value /TemperatureResURI
+update_path_value :: /TemperatureResURI /sensorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+update_definition_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.s']
+update_definition_with_type
+  href: /sensorthermostat  type: None
+remove_definition_properties
+   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+remove_path_method
+   href: /sensorthermostat  method: ['post']
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+
+create_introspection index: 1 /actuatorthermostat
+update_path_value:
+   rt: oic.r.temperature  href: /actuatorthermostat
+update_path_value /TemperatureResURI
+update_path_value :: /TemperatureResURI /actuatorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+update_definition_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /actuatorthermostat  type: None
+remove_definition_properties
+   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+remove_path_method
+   href: /actuatorthermostat  method: None
+optimize for introspection..
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+eraseElement: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+merge: definition exist: Temperature
+merge: parameter exist: Temperature  adding as: Temperature11
+ --> {'$ref': '#/definitions/Temperature'}
+== CODE GENERATION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['TemperatureResURI.swagger.json']
+
+  main: File : TemperatureResURI.swagger.json
+  main: rt : ['oic.r.temperature']
+  rt                 : oic.r.temperature
+    href             : /sensorthermostat
+    if               : ['oic.if.baseline', 'oic.if.s']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : ['post']
+    basefile         : TemperatureResURI.swagger.json
+  rt                 : oic.r.temperature
+    href             : /actuatorthermostat
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : None
+    basefile         : TemperatureResURI.swagger.json
+ 
+
+create_introspection index: 0 /sensorthermostat
+update_path_value:
+   rt: oic.r.temperature  href: /sensorthermostat
+update_path_value /TemperatureResURI
+update_path_value :: /TemperatureResURI /sensorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+update_definition_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.s']
+update_definition_with_type
+  href: /sensorthermostat  type: None
+remove_definition_properties
+   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+remove_path_method
+   href: /sensorthermostat  method: ['post']
+
+create_introspection index: 1 /actuatorthermostat
+update_path_value:
+   rt: oic.r.temperature  href: /actuatorthermostat
+update_path_value /TemperatureResURI
+update_path_value :: /TemperatureResURI /actuatorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+update_definition_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
+update_definition_with_type
+  href: /actuatorthermostat  type: None
+remove_definition_properties
+   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+remove_path_method
+   href: /actuatorthermostat  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ --> {'$ref': '#/parameters/interface'}
+merge: definition exist: Temperature
+merge: parameter exist: Temperature  adding as: Temperature11
+ --> {'$ref': '#/definitions/Temperature'}

@@ -24,7 +24,8 @@ processing files: ['BinarySwitchResURI.swagger.json']
     methods (remove) : ['post']
     basefile         : BinarySwitchResURI.swagger.json
  
-create_introspection 0
+
+create_introspection index: 0 /mypath
 update_path_value:
    rt: oic.r.switch.binary  href: /mypath
 update_path_value /BinarySwitchResURI
@@ -33,6 +34,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /mypath  if: ['oic.if.s']
+update_parameters_with_if
+  href: /mypath  if: ['oic.if.s']
+update_parameters_with_if interface
+ replacing if with ['oic.if.s']
 update_definition_with_type
   href: /mypath  type: integer
 update_definition_with_type  range
@@ -58,7 +63,8 @@ processing files: ['BinarySwitchResURI.swagger.json']
     methods (remove) : ['post']
     basefile         : BinarySwitchResURI.swagger.json
  
-create_introspection 0
+
+create_introspection index: 0 /mypath
 update_path_value:
    rt: oic.r.switch.binary  href: /mypath
 update_path_value /BinarySwitchResURI
@@ -67,6 +73,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /mypath  if: ['oic.if.s']
+update_parameters_with_if
+  href: /mypath  if: ['oic.if.s']
+update_parameters_with_if interface
+ replacing if with ['oic.if.s']
 update_definition_with_type
   href: /mypath  type: integer
 update_definition_with_type  range

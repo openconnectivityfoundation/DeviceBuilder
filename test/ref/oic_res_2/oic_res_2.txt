@@ -32,7 +32,8 @@ processing files: ['BinarySwitchResURI.swagger.json']
     methods (remove) : None
     basefile         : BinarySwitchResURI.swagger.json
  
-create_introspection 1
+
+create_introspection index: 1 /myBinarySwitchResURI
 update_path_value:
    rt: oic.r.switch.binary  href: /myBinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -41,6 +42,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /myBinarySwitchResURI  type: None
 remove_definition_properties
@@ -73,7 +78,8 @@ processing files: ['BinarySwitchResURI.swagger.json']
     methods (remove) : None
     basefile         : BinarySwitchResURI.swagger.json
  
-create_introspection 1
+
+create_introspection index: 1 /myBinarySwitchResURI
 update_path_value:
    rt: oic.r.switch.binary  href: /myBinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -82,6 +88,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /myBinarySwitchResURI  type: None
 remove_definition_properties

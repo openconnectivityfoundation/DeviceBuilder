@@ -487,7 +487,39 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                     if prop_name == "if":
                         print (" replacing if with", entry[3][index_if])
                         property["items"]["enum"] = entry[3][index_if]
-  
+                        
+                        
+def update_parameters_with_if(json_data, rt_value_file, rt_values):
+    """
+    update the defintion if enum with the values of rt_values
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values
+    """
+    print ("update_parameters_with_if")
+    for rt_value in rt_values:
+        print ("  href:",rt_value[index_href], " if:",rt_value[index_if])
+    #keyvaluepairs =[]
+    #for path, path_item in json_data["paths"].items():
+    #    try:
+    #        x_example = path_item["get"]["responses"]["200"]["x-example"]
+    #        rt = x_example.get("rt")
+    #        schema = path_item["get"]["responses"]["200"]["schema"]
+    #        ref = schema["$ref"]
+    #        #print ("update_parameters_with_if schema stuff:", schema, ref)
+    #        if find_in_array(rt[index_rt], rt_values):
+    #            for rt_f in rt_values:
+    #                if rt_f[index_rt] == rt[index_rt]:
+    #                    keyvaluepairs.append([path,rt,ref, rt_f ])
+    #    except:
+    #        pass
+    param_data = json_data["parameters"]
+    for param_name, param_item in param_data.items():
+        print ("update_parameters_with_if", param_name)
+        for prop_name, prop in param_item.items():
+            if prop_name == "name" and prop == "if":
+                print (" replacing if with", rt_value[index_if])
+                param_item["enum"] = rt_value[index_if]
 
 
 def update_definition_with_type(json_data, rt_value_file, rt_values):
@@ -649,12 +681,16 @@ def create_introspection(json_data, rt_value_file, rt_values, index):
     :param rt_value_file: the filename
     :param rt_values: array of rt values
     """
-    print("create_introspection", index)
+    print ("")
+    #print("create_introspection index:", index)
     rt_single = [rt_values[index]]
+    #if rt_single is not None:
+    print("create_introspection index:", index, rt_single[0][index_href])
     
     update_path_value(json_data, rt_value_file, rt_single)
     update_definition_with_rt(json_data, rt_value_file, rt_single)
     update_definition_with_if(json_data, rt_value_file, rt_single)
+    update_parameters_with_if(json_data, rt_value_file, rt_single)
     update_definition_with_type(json_data, rt_value_file, rt_single)
     remove_definition_properties(json_data, rt_value_file, rt_single)
     remove_path_method(json_data, rt_value_file, rt_single)

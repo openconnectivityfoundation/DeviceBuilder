@@ -76,8 +76,8 @@
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -85,8 +85,8 @@
     },
     "interface10": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -94,8 +94,8 @@
     },
     "interface20": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",

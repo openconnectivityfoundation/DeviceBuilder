@@ -36,7 +36,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     methods (remove) : None
     basefile         : BinarySwitchResURI.swagger.json
  
-create_introspection 0
+
+create_introspection index: 0 /BrightnessResURI
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
@@ -45,6 +46,10 @@ update_definition_with_rt
   rt: oic.r.light.brightness
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
+update_parameters_with_if
+  href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
+update_parameters_with_if interface
+ replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: int
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
@@ -55,7 +60,8 @@ remove_path_method
 optimize for introspection..
 eraseElement: Cannot find matching key: x-example
 eraseElement: Cannot find matching key: x-example
-create_introspection 1
+
+create_introspection index: 1 /BinarySwitchResURI
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -64,6 +70,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: int
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
@@ -104,7 +114,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     methods (remove) : None
     basefile         : BinarySwitchResURI.swagger.json
  
-create_introspection 0
+
+create_introspection index: 0 /BrightnessResURI
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
@@ -113,6 +124,10 @@ update_definition_with_rt
   rt: oic.r.light.brightness
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
+update_parameters_with_if
+  href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
+update_parameters_with_if interface
+ replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: int
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
@@ -120,7 +135,8 @@ remove_definition_properties
    rt: oic.r.light.brightness  prop: None
 remove_path_method
    href: /BrightnessResURI  method: None
-create_introspection 1
+
+create_introspection index: 1 /BinarySwitchResURI
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -129,6 +145,10 @@ update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: int
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']

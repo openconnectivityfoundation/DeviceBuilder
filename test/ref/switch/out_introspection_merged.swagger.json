@@ -36,8 +36,7 @@
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.s"
       ],
       "in": "query",
       "name": "if",

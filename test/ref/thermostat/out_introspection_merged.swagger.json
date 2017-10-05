@@ -3,52 +3,45 @@
     "application/json"
   ],
   "definitions": {
-    "BinarySwitch": {
+    "Temperature": {
       "properties": {
-        "value": {
+        "temperature": {
           "description": "",
-          "type": "boolean"
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
         }
       },
       "required": [
-        "value"
+        "temperature"
       ],
       "type": "object"
     },
-    "Brightness": {
+    "Temperature11": {
       "properties": {
-        "brightness": {
+        "temperature": {
           "description": "",
-          "maximum": 100,
-          "minimum": 0,
-          "type": "integer"
+          "type": "number"
         },
-        "value": {
-          "anyOf": [
-            {
-              "type": "array"
-            },
-            {
-              "type": "string"
-            },
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "integer"
-            },
-            {
-              "type": "number"
-            },
-            {
-              "type": "object"
-            }
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
           ],
-          "description": ""
+          "readOnly": true
         }
       },
       "required": [
-        "brightness"
+        "temperature"
       ],
       "type": "object"
     }
@@ -57,14 +50,14 @@
     "license": {
       "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
     },
-    "title": "Brightness",
+    "title": "Temperature",
     "version": "v1.1.0-20160519"
   },
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.s"
       ],
       "in": "query",
       "name": "if",
@@ -81,61 +74,36 @@
     }
   },
   "paths": {
-    "/BinarySwitchResURI": {
+    "/actuatorthermostat": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            }
-          }
-        }
-      },
-      "post": {
         "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface10"
           },
           {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            }
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/BinarySwitch"
+              "$ref": "#/definitions/Temperature11"
             }
-          }
-        }
-      }
-    },
-    "/BrightnessResURI": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
+          },
+          "403": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/Temperature11"
             }
           }
         }
@@ -151,7 +119,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/Temperature"
             }
           }
         ],
@@ -159,7 +127,48 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Brightness"
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    },
+    "/sensorthermostat": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
             }
           }
         }

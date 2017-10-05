@@ -219,8 +219,8 @@
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -228,9 +228,8 @@
     },
     "interface10": {
       "enum": [
-        "oic.if.a",
-        "oic.if.s",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -238,8 +237,8 @@
     },
     "interface20": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -247,8 +246,8 @@
     },
     "interface50": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -256,8 +255,8 @@
     },
     "interface60": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -270,7 +269,7 @@
         "description": "This resource describes the properties associated with air flow.\nThe supporteddirections is the set of valid values for the direction property for a particular instance of this resource type.\nThe direction is the directionality of the air flow if applicable, if supporteddirections is also present it must be a value from that set.\nDirection values are dependent on the capabilities of the unit.\nThe speed is an integer representing the current speed level for the unit.\nThe range (from oic.r.baseresource) is an array of the min,max values for the speed level. If not present the range defaults to [0,100].\nautomode is the status of the automode feature; Off means automode is not enabled, On means automode is active and the speed is automatically controlled by the device.\nRetrieves the current air flow values.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface20"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
@@ -304,7 +303,7 @@
         "description": "Sets the current air flow values.\nOnly direction and speed may be set by an update operation.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface20"
           },
           {
             "in": "body",
@@ -413,7 +412,7 @@
         "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "description": "Units",
@@ -463,7 +462,7 @@
         "description": "Sets the desired temperature value.\nIf a unit is included and the server does not support the unit indicated the request will fail.\nIf the units are omitted value is taken to be in C.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",
@@ -512,14 +511,14 @@
         "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface50"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/BinarySwitch11"
+              "$ref": "#/definitions/BinarySwitch"
             },
             "x-example": {
               "id": "unique_example_id",
@@ -535,14 +534,14 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface50"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BinarySwitch"
+              "$ref": "#/definitions/BinarySwitch11"
             },
             "x-example": {
               "id": "unique_example_id",
@@ -569,7 +568,7 @@
         "description": "This resource describes the brightness of a light or lamp.\nbrightness is an integer showing the current brightness level as a quantized representation in the range 0-100.\nA brightness of 0 is the minimum for the resource.\nA brightness of 100 is the maximum for the resource.\nRetrieves the current brightness level.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface60"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
@@ -592,7 +591,7 @@
         "description": "Sets the desired brightness level.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface60"
           },
           {
             "in": "body",

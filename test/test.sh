@@ -76,7 +76,6 @@ my_test -h
 }
 
 
-
 function oic_res_tests {
 
 TEST_CASE="oic_res_1"
@@ -122,6 +121,11 @@ my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DI
 TEST_CASE="switch"
 resfile=./input_define_device/input-switch.json
 my_test_in_dir_with_compare -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+
+
+TEST_CASE="thermostat"
+resfile=./input_define_device/input-thermostat.json
+my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
 
 }
 

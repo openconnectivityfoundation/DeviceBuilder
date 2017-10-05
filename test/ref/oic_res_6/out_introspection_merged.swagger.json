@@ -218,8 +218,8 @@
   "parameters": {
     "interface": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -227,9 +227,8 @@
     },
     "interface10": {
       "enum": [
-        "oic.if.a",
-        "oic.if.s",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -237,8 +236,8 @@
     },
     "interface20": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -246,8 +245,8 @@
     },
     "interface50": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -255,8 +254,8 @@
     },
     "interface60": {
       "enum": [
-        "oic.if.a",
-        "oic.if.baseline"
+        "oic.if.baseline",
+        "oic.if.a"
       ],
       "in": "query",
       "name": "if",
@@ -269,7 +268,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface20"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
@@ -285,7 +284,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface20"
           },
           {
             "in": "body",
@@ -359,7 +358,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "description": "",
@@ -392,7 +391,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",
@@ -424,14 +423,14 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface50"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/BinarySwitch11"
+              "$ref": "#/definitions/BinarySwitch"
             }
           }
         }
@@ -440,14 +439,14 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface50"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BinarySwitch"
+              "$ref": "#/definitions/BinarySwitch11"
             }
           }
         ],
@@ -466,7 +465,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface60"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
@@ -482,7 +481,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface60"
           },
           {
             "in": "body",
