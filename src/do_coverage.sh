@@ -10,12 +10,12 @@
 # 
 
 python3 -m pydoc -w DeviceBuilder
-mkdir -p ../docs
-mv DeviceBuilder.html ../docs
+mkdir -p ../docs/
+mv DeviceBuilder.html ../docs/.
 
 
 coverage run --source . -m py.test
 coverage report
-coverage html -d ../docs
+coverage html -d ../docs/coverage
 
 
