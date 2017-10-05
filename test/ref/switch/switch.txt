@@ -46,11 +46,11 @@ remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range']
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: range
+erase_element: Cannot find matching key: range
 remove_path_method
    href: /mypath  method: ['post']
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -88,6 +88,6 @@ remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range']
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: range
+erase_element: Cannot find matching key: range
 remove_path_method
    href: /mypath  method: ['post']

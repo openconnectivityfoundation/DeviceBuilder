@@ -68,12 +68,14 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
     type (replace)   : integer
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
   rt                 : oic.wk.col
     href             : /vendor/aircon/collection/extra
     if               : ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
     type (replace)   : integer
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
   rt                 : oic.r.switch.binary
     href             : /bridge/binary-switch
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -94,6 +96,7 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
     type (replace)   : integer
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
  
 
 create_introspection index: 0 /BinarySwitchResURI
@@ -120,8 +123,8 @@ remove_definition_properties
 remove_path_method
    href: /BinarySwitchResURI  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /TemperatureResURI
 update_path_value:
@@ -148,12 +151,11 @@ remove_definition_properties
 remove_path_method
    href: /TemperatureResURI  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 
 create_introspection index: 2 /AirFlowResURI
 update_path_value:
@@ -170,9 +172,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /AirFlowResURI  type: integer
-update_definition_with_type  value
 update_definition_with_type  step
 update_definition_with_type  range
+update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.airflow  prop: None
   definition: #/definitions/AirFlow
@@ -180,11 +182,10 @@ remove_definition_properties
 remove_path_method
    href: /AirFlowResURI  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface20
- --> {'$ref': '#/parameters/interface'}
 
 create_introspection index: 5 /bridge/binary-switch
 update_path_value:
@@ -210,14 +211,12 @@ remove_definition_properties
 remove_path_method
    href: /bridge/binary-switch  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface50
- --> {'$ref': '#/parameters/interface'}
 merge: definition exist: BinarySwitch
 merge: parameter exist: BinarySwitch  adding as: BinarySwitch11
- --> {'$ref': '#/definitions/BinarySwitch'}
 
 create_introspection index: 6 /bridge/light-brightness
 update_path_value:
@@ -234,8 +233,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  range
 update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
@@ -244,11 +243,10 @@ remove_definition_properties
 remove_path_method
    href: /bridge/light-brightness  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface60
- --> {'$ref': '#/parameters/interface'}
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -308,12 +306,14 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
     type (replace)   : integer
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
   rt                 : oic.wk.col
     href             : /vendor/aircon/collection/extra
     if               : ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
     type (replace)   : integer
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
   rt                 : oic.r.switch.binary
     href             : /bridge/binary-switch
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -334,6 +334,7 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
     type (replace)   : integer
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
  
 
 create_introspection index: 0 /BinarySwitchResURI
@@ -386,7 +387,6 @@ remove_path_method
    href: /TemperatureResURI  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 
 create_introspection index: 2 /AirFlowResURI
 update_path_value:
@@ -403,9 +403,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /AirFlowResURI  type: integer
-update_definition_with_type  value
 update_definition_with_type  step
 update_definition_with_type  range
+update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.airflow  prop: None
   definition: #/definitions/AirFlow
@@ -414,7 +414,6 @@ remove_path_method
    href: /AirFlowResURI  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface20
- --> {'$ref': '#/parameters/interface'}
 
 create_introspection index: 5 /bridge/binary-switch
 update_path_value:
@@ -441,10 +440,8 @@ remove_path_method
    href: /bridge/binary-switch  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface50
- --> {'$ref': '#/parameters/interface'}
 merge: definition exist: BinarySwitch
 merge: parameter exist: BinarySwitch  adding as: BinarySwitch11
- --> {'$ref': '#/definitions/BinarySwitch'}
 
 create_introspection index: 6 /bridge/light-brightness
 update_path_value:
@@ -461,8 +458,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  range
 update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
@@ -472,4 +469,3 @@ remove_path_method
    href: /bridge/light-brightness  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface60
- --> {'$ref': '#/parameters/interface'}

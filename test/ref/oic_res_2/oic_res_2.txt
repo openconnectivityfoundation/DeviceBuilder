@@ -24,6 +24,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     type (replace)   : None
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
   rt                 : oic.r.switch.binary
     href             : /myBinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -55,8 +56,8 @@ remove_definition_properties
 remove_path_method
    href: /myBinarySwitchResURI  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -72,6 +73,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     type (replace)   : None
     props (remove)   : None
     methods (remove) : None
+    no base file found! : ignored
   rt                 : oic.r.switch.binary
     href             : /myBinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']

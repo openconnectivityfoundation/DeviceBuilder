@@ -54,14 +54,14 @@ remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /onoff  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /operationalstate
 update_path_value:
@@ -80,16 +80,15 @@ update_definition_with_type
   href: /operationalstate  type: None
 remove_definition_properties
    rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Operation
   definition: #/definitions/OperationUpdate
+  definition: #/definitions/Operation
 remove_path_method
    href: /operationalstate  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -135,9 +134,9 @@ remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /onoff  method: None
 
@@ -158,10 +157,9 @@ update_definition_with_type
   href: /operationalstate  type: None
 remove_definition_properties
    rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Operation
   definition: #/definitions/OperationUpdate
+  definition: #/definitions/Operation
 remove_path_method
    href: /operationalstate  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}

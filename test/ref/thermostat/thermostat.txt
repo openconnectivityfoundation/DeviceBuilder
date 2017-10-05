@@ -51,15 +51,15 @@ remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
   definition: #/definitions/Temperature
   definition: #/definitions/Temperature
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /sensorthermostat  method: ['post']
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /actuatorthermostat
 update_path_value:
@@ -80,22 +80,20 @@ remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
   definition: #/definitions/Temperature
   definition: #/definitions/Temperature
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /actuatorthermostat  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 merge: definition exist: Temperature
 merge: parameter exist: Temperature  adding as: Temperature11
- --> {'$ref': '#/definitions/Temperature'}
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -138,10 +136,10 @@ remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
   definition: #/definitions/Temperature
   definition: #/definitions/Temperature
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /sensorthermostat  method: ['post']
 
@@ -164,15 +162,13 @@ remove_definition_properties
    rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
   definition: #/definitions/Temperature
   definition: #/definitions/Temperature
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /actuatorthermostat  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 merge: definition exist: Temperature
 merge: parameter exist: Temperature  adding as: Temperature11
- --> {'$ref': '#/definitions/Temperature'}

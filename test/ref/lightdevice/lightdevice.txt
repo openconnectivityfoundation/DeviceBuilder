@@ -63,17 +63,17 @@ update_definition_with_type
 remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: id
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: id
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /binaryswitch  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /dimming
 update_path_value:
@@ -93,21 +93,20 @@ update_definition_with_type
 remove_definition_properties
    rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
   definition: #/definitions/Dimming
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: id
   definition: #/definitions/Dimming
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: id
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /dimming  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 
 create_introspection index: 2 /colourchroma
 update_path_value:
@@ -127,20 +126,19 @@ update_definition_with_type
 remove_definition_properties
    rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
   definition: #/definitions/ColourChroma
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: id
   definition: #/definitions/ColourChroma
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: id
 remove_path_method
    href: /colourchroma  method: None
 optimize for introspection..
-eraseElement: Cannot find matching key: x-example
-eraseElement: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface20
- --> {'$ref': '#/parameters/interface'}
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -195,12 +193,12 @@ update_definition_with_type
 remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: id
   definition: #/definitions/BinarySwitch
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: id
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /binaryswitch  method: None
 
@@ -222,18 +220,17 @@ update_definition_with_type
 remove_definition_properties
    rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
   definition: #/definitions/Dimming
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: id
   definition: #/definitions/Dimming
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: id
-eraseElement: Cannot find matching key: precision
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
 remove_path_method
    href: /dimming  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
- --> {'$ref': '#/parameters/interface'}
 
 create_introspection index: 2 /colourchroma
 update_path_value:
@@ -253,14 +250,13 @@ update_definition_with_type
 remove_definition_properties
    rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
   definition: #/definitions/ColourChroma
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: id
   definition: #/definitions/ColourChroma
-eraseElement: Cannot find matching key: range
-eraseElement: Cannot find matching key: step
-eraseElement: Cannot find matching key: value
-eraseElement: Cannot find matching key: id
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: id
 remove_path_method
    href: /colourchroma  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface20
- --> {'$ref': '#/parameters/interface'}

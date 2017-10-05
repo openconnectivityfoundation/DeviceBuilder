@@ -86,7 +86,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
@@ -102,7 +102,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",
