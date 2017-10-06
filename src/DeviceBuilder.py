@@ -574,7 +574,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
     for def_name, def_item in def_data.items():
         full_def_name = "#/definitions/" + def_name
         for entry in keyvaluepairs:
-            if entry[2] == full_defname:
+            if entry[2] == full_def_name:
                 print ("  definition:", full_def_name)
                 # found entry
                 properties = def_item.get("properties")
