@@ -60,12 +60,14 @@ fi
 
 echo "creating $OUTPUTDIR"
 mkdir -p $OUTPUTDIR
+cp $INPUTFILE $OUTPUTDIR
 
 $PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELSDIR -out $OUTPUTDIR/out 
 wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/out_introspection_merged.swagger.json
 
 #-template_dir ../src/templates -template NodeIotivityServer -swagger ../test/in/test_swagger_1/test_swagger_1.swagger.json -out_dir $OUTPUT_DIR/$TEST_CAS
-$PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template NodeIotivityServer -swagger $OUTPUTDIR/out_introspection_merged.swagger.json -out_dir $OUTPUTDIR/code
+mkdir -p $OUTPUTDIR/code
+$PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template NodeIotivityServer -swagger $OUTPUTDIR/out_codegeneration_merged.swagger.json -out_dir $OUTPUTDIR/code
 
 
