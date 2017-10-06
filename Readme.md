@@ -61,7 +61,7 @@ This swagger data includes:
 The advantage of this input format is:
 - can be used for existing devices, e.g. just retrieve the oic/res of an existing device
 
-### Options needed to run the tool (oic/res):
+### Options needed to run the tool (oic/res response):
 - introspection : output base file
 - ocfres: the oic/res output in json
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)
@@ -73,7 +73,7 @@ The advantage of this input format is:
 note that this is done on all the resources in the same way.
 
 
-### Simplified oic/res input format
+### Simplified oic/res response input format
   The ```simple input format``` is an stripped down version of oic/res json file.
   It still has all needed data to create an introspection file.
   The intention is that if you do not have an implementation yet, this file format can be used to create an introspection file.
@@ -87,31 +87,31 @@ note that this is done on all the resources in the same way.
       - "rt" : ["oic.r.light.brightness"] == array of implemented types (only 1 type is suppported)
       - "if" : ["oic.if.a","oic.if.baseline"] == array of implemented interfaces
 
-note that this works for:
+note that the generation works for:
 - resources that are an actuator or sensor
-- works for collections, but without batch
-  - batch introduces the next level of resources, which is not handled in the format.
+- works for collections, but without batch interface
+  - the batch introduces the next level of resources, which is not handled in the format.
       
 # swagger file creation from DeviceBuilder input format
 
 
 Tool chain:
 
-                         __________
-                        |          |
-                        | oneIOTa  |
-                        |__________|
-                             |
-                     resource|descriptions
-                             |
-                      _______v________                                          __________           _______________
-     input           |                |    introspection data (swagger.json)   |          |  cbor   |               |
-     description     |                |--------------------------------------->| swag2cbor|-------->|               |
-     --------------->|  DeviceBuilder |        ___________         __________  |__________|         | actual device |
-                     |                | code  |           |  src  |          |                      |               |
-                     |                |------>| swagger2x |------>| compiler |--------------------->|               |
-                     |________________| data  |___________|       |__________|     executable       |_______________|
-                                      (swagger)
+                       __________
+                      |          |
+                      | oneIOTa  |
+                      |__________|
+                           |
+              Resource Type|descriptions
+                           |
+                    _______v________                                          __________           _______________
+     input         |                |    introspection data (swagger.json)   |          |  cbor   |               |
+     description   |                |--------------------------------------->| swag2cbor|-------->|               |
+     ------------->|  DeviceBuilder |        ___________         __________  |__________|         | actual device |
+                   |                | code  |           |  src  |          |                      |               |
+                   |                |------>| swagger2x |------>| compiler |--------------------->|               |
+                   |________________| data  |___________|       |__________|     executable       |_______________|
+                                     (swagger)
                                        
                                       
      Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
@@ -136,7 +136,7 @@ The advantage of this format that it is:
       
 # Implemented tool features
 
-per resource (output file per detected and found resource)
+Per resource (output file per detected and found resource)
 - add default rt taken from oic/res
 - fix the href
 - replace enum of if from oic/res
@@ -153,7 +153,7 @@ merge different output files into 1 swagger file.
 
 # How it works
 
-- The oic/res file is read from disk
+- The oic/res response file is read from disk
 - All resources from core/security resources are ignored.
 - for all remaining resources    
   - the swagger file that belongs to the "rt" is looked up

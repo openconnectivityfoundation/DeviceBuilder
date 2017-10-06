@@ -25,6 +25,7 @@ import os
 import jsonschema
 import json
 import sys
+import traceback
 
 try: 
     import cbor
@@ -70,6 +71,7 @@ if (args.file) :
     
 if (args.cbor) :
 
+    cbor_raw = None
     try:
         cbor_raw = open(args.cbor, 'rb').read()
     except:
