@@ -7,14 +7,19 @@ The base function is to create an swagger file from OCF swagger type definitons 
 
 
 # Usage
-The tool is python3.5 code.
+The tools are python3.5 code.
 
 run from the commandline in the src directory:
 
 ```python3 DeviceBuilder.py```
 
+or 
 
-Running the above command gives all command line options available. 
+
+```python3 swag2cbor.py```
+
+
+Running the above commands gives all command line options available. 
 
 # swagger file creation from oic/res.
 
@@ -28,15 +33,16 @@ Tool chain:
                              |
                      resource|descriptions
                              |
-                      _______v________                                         _______________
-     oic/res         |                |      introspection data (swagger)     |               |
-     description     |                |-------------------------------------->|               |
-     --------------->|  DeviceBuilder |        ___________                    | actual device |
-                     |                | code  |           |                   |               |
-                     |                |------>| /dev/null |                   |               |
-                     |________________| data  |___________|                   |_______________|
-                                      (swagger)
-                                      
+                      _______v________                                    ___________           _______________
+     oic/res         |                | introspection data(swagger.json) |           |  cbor   |               |
+     description     |                |--------------------------------->| swag2cbor | ------->|               |
+     --------------->|  DeviceBuilder |            ___________           |___________|         | actual device |
+                     |                |  code     |           |                                |               |
+                     |                |---------->| /dev/null |                                |               |
+                     |________________|  data     |___________|                                |_______________|
+                                        (swagger)
+     
+     Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json     
                                       
 ## for introspection
 create introspection file from an oic/res (json) input file.
@@ -98,15 +104,18 @@ Tool chain:
                              |
                      resource|descriptions
                              |
-                      _______v________                                                      _______________
-     input           |                |         introspection data (swagger)               |               |
-     description     |                |--------------------------------------------------->|               |
-     --------------->|  DeviceBuilder |        ___________         __________              | actual device |
-                     |                | code  |           |  src  |          | executable  |               |
-                     |                |------>| swagger2x |------>| compiler |------------>|               |
-                     |________________| data  |___________|       |__________|             |_______________|
+                      _______v________                                          __________           _______________
+     input           |                |    introspection data (swagger.json)   |          |  cbor   |               |
+     description     |                |--------------------------------------->| swag2cbor|-------->|               |
+     --------------->|  DeviceBuilder |        ___________         __________  |__________|         | actual device |
+                     |                | code  |           |  src  |          |                      |               |
+                     |                |------>| swagger2x |------>| compiler |--------------------->|               |
+                     |________________| data  |___________|       |__________|     executable       |_______________|
                                       (swagger)
                                        
+                                      
+     Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
+     
 
 The DeviceBuilder input format is an json array with the next properties:
   -  "path" : string, required, must start with "/"

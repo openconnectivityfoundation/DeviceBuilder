@@ -2,7 +2,10 @@
 
 PYTHON_EXE=C:\\python35-32\\python3.exe
 DeviceBuilder=../src/deviceBuilder.py
+SWAG2CBOR=../src/swag2cbor.py
 
+#MODELS_DIR=./input_swagger
+MODELS_DIR=../../IoTDataModels
 OUTPUT_DIR=./out
 OUTPUT_DIR_DOCS=../test/$OUTPUT_DIR
 REF_DIR=./ref
@@ -46,6 +49,10 @@ function my_test_in_dir {
     
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    $PYTHON_EXE $SWAG2CBOR -file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json  #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    $PYTHON_EXE $SWAG2CBOR -cbor $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor.json
+    
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     
@@ -58,6 +65,11 @@ function my_test_in_dir_with_compare {
     
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    
+    $PYTHON_EXE $SWAG2CBOR -file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json  #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    $PYTHON_EXE $SWAG2CBOR -cbor $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor.json
+ 
     compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     
@@ -80,24 +92,24 @@ function oic_res_tests {
 
 TEST_CASE="oic_res_1"
 resfile=./input_oic_res/oic-res-response-binaryswitch.json
-my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir -ocfres $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 TEST_CASE="oic_res_2"
 resfile=./input_oic_res/oic-res-response-binaryswitch-href.json
-my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir -ocfres $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="oic_res_3"
 resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
-my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -remove_property step range precision
+my_test_in_dir -ocfres $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out -remove_property step range precision
 
 TEST_CASE="oic_res_4"
 resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
-my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -type int
+my_test_in_dir -ocfres $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out -type int
 
 TEST_CASE="oic_res_5"
 resfile=./input_oic_res/oic-res-response-binaryswitch-brightness.json
-my_test_in_dir -ocfres $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out -type int
+my_test_in_dir -ocfres $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out -type int
 
 TEST_CASE="oic_res_6"
 resfile=./input_oic_res/oic-res-response-testdevice.json
@@ -115,22 +127,27 @@ my_test -h
 
 TEST_CASE="lightdevice"
 resfile=./input_define_device/input-lightdevice.json
-my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="switch"
 resfile=./input_define_device/input-switch.json
-my_test_in_dir_with_compare -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir_with_compare -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="thermostat"
 resfile=./input_define_device/input-thermostat.json
-my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="coffeemachine"
 resfile=./input_define_device/input-coffeemachine.json
-my_test_in_dir -input $resfile -resource_dir ../../IoTDataModels -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+
+
+#TEST_CASE="cooktop"
+#resfile=./input_define_device/input-cooktop.json
+#my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 }
 

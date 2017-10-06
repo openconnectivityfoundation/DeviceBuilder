@@ -1,0 +1,33 @@
+[
+    {
+      "path" : "/heatingzonecollection",
+      "rt"   : [ "oic.r.heatingzonecollection" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "step", "precision"  ]
+    },
+    {
+      "path" : "/heatingzone1",
+      "rt"   : [ "oic.r.heatingzone" ],
+      "if"   : ["oic.if.baseline", "oic.if.s" ],
+      "remove_properties" : [ "range", "step", "precision", "value"  ]
+    },
+    {
+      "path" : "/heatingzone2",
+      "rt"   : [ "oic.r.heatingzone" ],
+      "if"   : ["oic.if.baseline", "oic.if.s" ],
+      "remove_properties" : [ "range", "step", "precision", "value"   ]
+    },
+    {
+      "path" : "/heatingzone3",
+      "rt"   : [ "oic.r.heatingzone" ],
+      "if"   : ["oic.if.baseline", "oic.if.s" ],
+      "remove_properties" : [ "range", "step", "precision", "value"   ]
+    },
+    {
+      "path" : "/heatingzone4",
+      "rt"   : [ "oic.r.heatingzone" ],
+      "if"   : ["oic.if.baseline", "oic.if.s" ],
+      "remove_properties" : [ "range", "step", "precision", "value"   ]
+    }
+
+]
