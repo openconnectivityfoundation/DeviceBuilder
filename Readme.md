@@ -67,7 +67,7 @@ The advantage of this input format is:
 note that this is done on all the resources in the same way.
 
 
-### Simplyfied oic/res input format
+### Simplified oic/res input format
   The ```simple input format``` is an stripped down version of oic/res json file.
   It still has all needed data to create an introspection file.
   The intention is that if you do not have an implementation yet, this file format can be used to create an introspection file.
