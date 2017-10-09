@@ -33,3 +33,11 @@ except:
     print ("Trying to Install required module: cbor ")
     os.system('python3 -m pip install cbor')
 import cbor
+
+try: 
+    import jsonschema
+except:
+    print("missing jsonschema:")
+    print ("Trying to Install required module: jsonschema ")
+    os.system('python3 -m pip install jsonschema')
+import jsonschema
