@@ -21,11 +21,21 @@
 #    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #############################
-
 #
+# usage
+# sh DeviceBuilder_NodeIotivityServer.sh <devicbuilder input file>  <output directory>
+# <devicbuilder input file>  : see https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/test/input_define_device for examples
+# <output directory> will be created
 #
+#  This script generates:
+#  - introspection file in json and cbor
+#  - swagger file for code generation
+#  - node.js code
 #
-#
+#  things one needs:
+#  - git
+#  - python3 installation
+#  - wb-swagger https://github.com/WAvdBeek/wb-swagger-node globally installed
 
 PYTHON_EXE=C:\\python35-32\\python3.exe
 DeviceBuilder=./src/deviceBuilder.py
@@ -62,12 +72,14 @@ echo "creating $OUTPUTDIR"
 mkdir -p $OUTPUTDIR
 cp $INPUTFILE $OUTPUTDIR
 
+$PYTHON_EXE ./src/install.py
 $PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELSDIR -out $OUTPUTDIR/out 
 wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/out_introspection_merged.swagger.json
 
 #-template_dir ../src/templates -template NodeIotivityServer -swagger ../test/in/test_swagger_1/test_swagger_1.swagger.json -out_dir $OUTPUT_DIR/$TEST_CAS
 mkdir -p $OUTPUTDIR/code
+$PYTHON_EXE $SWAGGER2XDIR/src/install.py
 $PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template NodeIotivityServer -swagger $OUTPUTDIR/out_codegeneration_merged.swagger.json -out_dir $OUTPUTDIR/code
 
 
