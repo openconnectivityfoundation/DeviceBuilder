@@ -36,6 +36,21 @@
 #  - git
 #  - python3 installation
 #  - wb-swagger https://github.com/WAvdBeek/wb-swagger-node globally installed
+#
+# example command:
+#$ sh DeviceBuilder_NodeIotivityServer.sh ./test/input_define_device/input-lightdevice.json ../out-device/light
+#
+# This will create an output folder 1 level higher than the github repo and should have the generated files in the light sub folder.
+# This will have :
+# -	Input-lightdevice.json (e.g. the input file…)
+# -	out_codegeneration_merged.swagger.json : the input file for swagger2x
+# -	out_introspection_merged.swagger.json : the introspection file in json 
+# -	out_introspection_merged.swagger.json.cbor : the introspection file in cbor
+# -	code (folder)
+#   - readme.txt
+#   - Server.js the node.js server that should work with IOTivity Node.
+
+
 
 PYTHON_EXE=C:\\python35-32\\python3.exe
 DeviceBuilder=./src/deviceBuilder.py
