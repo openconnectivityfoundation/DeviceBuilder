@@ -9,14 +9,16 @@ The base function is to create an swagger file from OCF swagger type definitons 
 # Usage
 The tools are python3.5 code.
 
-run from the commandline in the src directory:
+to install the dependencies run : ``` python3 src\install.py```
 
-```python3 DeviceBuilder.py```
+run the tool(s) from the commandline in the src directory (DeviceBuilder):
 
-or 
+```python3 DeviceBuilder.py -h```
+
+or (cbor conversion)
 
 
-```python3 swag2cbor.py```
+```python3 swag2cbor.py -h```
 
 
 Running the above commands gives all command line options available. 
