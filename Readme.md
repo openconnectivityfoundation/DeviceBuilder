@@ -167,4 +167,7 @@ merge different output files into 1 swagger file.
     - (remove unwanted (not needed) text descriptions)
   - merge all files into 1 output file
 
+  
+ ### documentation of the internals
+ https://openconnectivityfoundation.github.io/DeviceBuilder/
  
