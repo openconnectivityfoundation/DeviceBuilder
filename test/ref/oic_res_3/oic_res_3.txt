@@ -93,7 +93,6 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface10
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -172,4 +171,3 @@ erase_element: Cannot find matching key: precision
 remove_path_method
    href: /BinarySwitchResURI  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface10

@@ -92,38 +92,6 @@
       ],
       "type": "object"
     },
-    "BinarySwitch11": {
-      "properties": {
-        "precision": {
-          "description": "Accuracy granularity of the exposed value",
-          "readOnly": true,
-          "type": "number"
-        },
-        "range": {
-          "description": "The valid range for the value Property",
-          "items": {
-            "type": "integer"
-          },
-          "maxItems": 2,
-          "minItems": 2,
-          "readOnly": true,
-          "type": "array"
-        },
-        "step": {
-          "description": "Step value across the defined range",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "value": {
-          "description": "Status of the switch",
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "value"
-      ],
-      "type": "object"
-    },
     "Brightness": {
       "properties": {
         "brightness": {
@@ -225,42 +193,6 @@
       "in": "query",
       "name": "if",
       "type": "string"
-    },
-    "interface10": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
-    },
-    "interface20": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
-    },
-    "interface50": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
-    },
-    "interface60": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
     }
   },
   "paths": {
@@ -303,7 +235,7 @@
         "description": "Sets the current air flow values.\nOnly direction and speed may be set by an update operation.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface20"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",
@@ -462,7 +394,7 @@
         "description": "Sets the desired temperature value.\nIf a unit is included and the server does not support the unit indicated the request will fail.\nIf the units are omitted value is taken to be in C.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",
@@ -534,14 +466,14 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface50"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/BinarySwitch11"
+              "$ref": "#/definitions/BinarySwitch"
             },
             "x-example": {
               "id": "unique_example_id",
@@ -553,7 +485,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/BinarySwitch11"
+              "$ref": "#/definitions/BinarySwitch"
             },
             "x-example": {
               "id": "unique_example_id",
@@ -591,7 +523,7 @@
         "description": "Sets the desired brightness level.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface60"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",

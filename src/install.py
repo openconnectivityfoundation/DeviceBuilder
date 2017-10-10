@@ -41,3 +41,13 @@ except:
     print ("Trying to Install required module: jsonschema ")
     os.system('python3 -m pip install jsonschema')
 import jsonschema
+
+
+try: 
+    from deepdiff import DeepDiff
+except:
+    print("missing DeepDiff:")
+    print ("Trying to Install required module: DeepDiff ")
+    os.system('python3 -m pip install deepdiff')
+import deepdiff
+

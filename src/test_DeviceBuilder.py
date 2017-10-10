@@ -62,25 +62,28 @@ def test_find_files():
         DeviceBuilder.create_introspection(file_data, None, mydata, 0)
         DeviceBuilder.optimize_introspection(file_data)
 
-    file_data = DeviceBuilder.load_json("BinarySwitchResURI.swagger.json", "../test/input_swagger")
-    mydata = [['oic.r.switch.binary', '/binaryswitch', ['oic.if.baseline', 'oic.if.a'], None, ['range', 'step', 'id', 'precision'], None, 'BinarySwitchResURI.swagger.json']]    
-    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
-    DeviceBuilder.optimize_introspection(file_data)    
+    file_data1 = DeviceBuilder.load_json("BinarySwitchResURI.swagger.json", "../test/input_swagger")
+    mydata1 = [['oic.r.switch.binary', '/binaryswitch', ['oic.if.baseline', 'oic.if.a'], None, ['range', 'step', 'id', 'precision'], None, 'BinarySwitchResURI.swagger.json']]    
+    DeviceBuilder.create_introspection(file_data1, None, mydata1, 0)
+    DeviceBuilder.optimize_introspection(file_data1)    
         
-    file_data = DeviceBuilder.load_json("AccelerationResURI.swagger.json", "../test/input_swagger")
-    mydata = [[ "oic.r.sensor.acceleration"   ,"/blahblha", ["oic.if.a"], "number", ["value", "step"], ["post"] ]]
-    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
-    DeviceBuilder.optimize_introspection(file_data)    
+    file_data2 = DeviceBuilder.load_json("AccelerationResURI.swagger.json", "../test/input_swagger")
+    mydata2 = [[ "oic.r.sensor.acceleration"   ,"/blahblha", ["oic.if.a"], "number", ["value", "step"], ["post"] ]]
+    DeviceBuilder.create_introspection(file_data2, None, mydata2, 0)
+    DeviceBuilder.optimize_introspection(file_data2)  
+    DeviceBuilder.merge(file_data1, file_data2, 0)    
     
-    file_data = DeviceBuilder.load_json("AccelerationResURI.swagger.json", "../test/input_swagger")
-    mydata = [[ "oic.r.sensor.acceleration"   ,"/AccelerationResURI", ["oic.if.a"], "number", [], [] ]]
-    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
-    DeviceBuilder.optimize_introspection(file_data)    
+    file_data3 = DeviceBuilder.load_json("AccelerationResURI.swagger.json", "../test/input_swagger")
+    mydata3 = [[ "oic.r.sensor.acceleration"   ,"/AccelerationResURI", ["oic.if.a"], "number", [], [] ]]
+    DeviceBuilder.create_introspection(file_data3, None, mydata3, 0)
+    DeviceBuilder.optimize_introspection(file_data3)    
+    DeviceBuilder.merge(file_data1, file_data3, 1) 
             
-    file_data = DeviceBuilder.load_json("AirQualityCollectionResURI_if=oic.if.baseline.swagger.json", "../test/input_swagger")
-    mydata = [[ "oic.r.airqualitycollection","oic.wk.col"   ,"/blahblha", ["oic.if.a"], "number", [], [] ]]
-    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
-    DeviceBuilder.optimize_introspection(file_data)  
+    file_data4 = DeviceBuilder.load_json("AirQualityCollectionResURI_if=oic.if.baseline.swagger.json", "../test/input_swagger")
+    mydata4 = [[ "oic.r.airqualitycollection","oic.wk.col"   ,"/blahblha", ["oic.if.a"], "number", [], [] ]]
+    DeviceBuilder.create_introspection(file_data4, None, mydata4, 0)
+    DeviceBuilder.optimize_introspection(file_data4)  
+    DeviceBuilder.merge(file_data1, file_data4, 2) 
         
        
 def test_merge():
@@ -92,6 +95,7 @@ def test_merge():
     DeviceBuilder.merge(data1, data3, 1)
     data4 = DeviceBuilder.load_json("../test/input_swagger/ColourChromaResURI.swagger.json")
     DeviceBuilder.merge(data1, data4, 2)
+
     
     
 def test_main_app():

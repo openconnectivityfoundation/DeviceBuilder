@@ -83,24 +83,6 @@
       "in": "query",
       "name": "if",
       "type": "string"
-    },
-    "interface10": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
-    },
-    "interface20": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
     }
   },
   "paths": {
@@ -166,7 +148,7 @@
         "description": "This resource describes the colour using chroma conventions.\nProperties are hue, saturation, csc, and ct.\nHue and saturation are integer values as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\ncsc is the colour space coordinates in CIE colour space.\n  The first item in the array is the X coordinate.\n  The second item in the array is the Y coordinate.\nct is the Mired colour temperature.\nProvides the colour using chroma conventions.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface20"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {
@@ -241,7 +223,7 @@
         "description": "This resource describes a dimming function.\nThe value is an integer showing the current dimming level.\nIf step (from oic.r.baseresource) is present then it represents the increment between dimmer values.\nWhen range (from oic.r.baseresource) is omitted, then the range is [0,100].\nA value of 0 means total dimming; a value of 100 means no dimming.\nRetrieves the current dimming level.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           }
         ],
         "responses": {

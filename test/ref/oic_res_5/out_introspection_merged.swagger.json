@@ -137,15 +137,6 @@
       "in": "query",
       "name": "if",
       "type": "string"
-    },
-    "interface10": {
-      "enum": [
-        "oic.if.baseline",
-        "oic.if.a"
-      ],
-      "in": "query",
-      "name": "if",
-      "type": "string"
     }
   },
   "paths": {
@@ -170,7 +161,7 @@
         "description": "",
         "parameters": [
           {
-            "$ref": "#/parameters/interface10"
+            "$ref": "#/parameters/interface"
           },
           {
             "in": "body",

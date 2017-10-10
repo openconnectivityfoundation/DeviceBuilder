@@ -106,7 +106,6 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface10
 
 create_introspection index: 2 /colourchroma
 update_path_value:
@@ -138,7 +137,6 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface20
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -230,7 +228,6 @@ erase_element: Cannot find matching key: precision
 remove_path_method
    href: /dimming  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface10
 
 create_introspection index: 2 /colourchroma
 update_path_value:
@@ -259,4 +256,3 @@ erase_element: Cannot find matching key: id
 remove_path_method
    href: /colourchroma  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface20

@@ -141,9 +141,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /TemperatureResURI  type: integer
-update_definition_with_type  step
 update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.temperature  prop: None
   definition: #/definitions/Temperature
@@ -155,7 +155,6 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface10
 
 create_introspection index: 2 /AirFlowResURI
 update_path_value:
@@ -185,7 +184,6 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface20
 
 create_introspection index: 5 /bridge/binary-switch
 update_path_value:
@@ -214,9 +212,8 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface50
 merge: definition exist: BinarySwitch
-merge: parameter exist: BinarySwitch  adding as: BinarySwitch11
+merge: parameter exist: BinarySwitch  adding as: BinarySwitch00
 
 create_introspection index: 6 /bridge/light-brightness
 update_path_value:
@@ -234,8 +231,8 @@ update_parameters_with_if interface
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
 update_definition_with_type  value
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
@@ -246,7 +243,6 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface60
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -376,9 +372,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /TemperatureResURI  type: integer
-update_definition_with_type  step
 update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.temperature  prop: None
   definition: #/definitions/Temperature
@@ -386,7 +382,6 @@ remove_definition_properties
 remove_path_method
    href: /TemperatureResURI  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface10
 
 create_introspection index: 2 /AirFlowResURI
 update_path_value:
@@ -413,7 +408,6 @@ remove_definition_properties
 remove_path_method
    href: /AirFlowResURI  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface20
 
 create_introspection index: 5 /bridge/binary-switch
 update_path_value:
@@ -439,9 +433,8 @@ remove_definition_properties
 remove_path_method
    href: /bridge/binary-switch  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface50
 merge: definition exist: BinarySwitch
-merge: parameter exist: BinarySwitch  adding as: BinarySwitch11
+merge: parameter exist: BinarySwitch  adding as: BinarySwitch00
 
 create_introspection index: 6 /bridge/light-brightness
 update_path_value:
@@ -459,8 +452,8 @@ update_parameters_with_if interface
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
 update_definition_with_type  value
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
@@ -468,4 +461,3 @@ remove_definition_properties
 remove_path_method
    href: /bridge/light-brightness  method: None
 merge: parameter exist: interface
-merge: parameter exist: interface  adding as: interface60
