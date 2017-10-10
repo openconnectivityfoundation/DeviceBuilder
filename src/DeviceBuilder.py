@@ -674,18 +674,21 @@ def merge(merge_data, file_data, index):
             merge_data["parameters"][parameter] = parameter_item
         else:
             print ("merge: parameter exist:", parameter)
-            
             ddiff = DeepDiff(data, parameter_item, ignore_order=True)
             if ddiff != {}:
                 new_parameter = parameter + str(index) + str(local_index)
                 local_index = local_index + 1
                 print ("merge: parameter exist:", parameter, " adding as:", new_parameter)
-                merge_data["parameters"][new_parameter] = parameter_item
-                # fix the path data
-                search_parameter = "#/parameters/"+parameter
+                # fix the path data, do it 2 times..
+                search_parameter = "#/parameters/" + parameter
                 my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
-                # print (" -->", my_dict)
-                my_dict["$ref"] = "#/parameters/"+new_parameter
+                if my_dict is not None:
+                    my_dict["$ref"] = "#/parameters/" + new_parameter
+                my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
+                print (" parameter fix -->", my_dict)
+                if my_dict is not None:
+                    my_dict["$ref"] = "#/parameters/" + new_parameter
+                merge_data["parameters"][new_parameter] = parameter_item
 
     for definition, definiton_item in file_data["definitions"].items():
         data = merge_data["definitions"].get(definition)
@@ -693,21 +696,23 @@ def merge(merge_data, file_data, index):
             merge_data["definitions"][definition] = definiton_item
         else:
             print ("merge: definition exist:", definition)
-            new_definition = definition + str(local_index) + str(local_index)
-            local_index = local_index + 1
-            print ("merge: parameter exist:", definition, " adding as:", new_definition)
             ddiff = DeepDiff(data, definiton_item, ignore_order=True)
             if ddiff != {}:
-                merge_data["definitions"][new_definition] = definiton_item
+                new_definition = definition + str(local_index) + str(local_index)
+                local_index = local_index + 1
+                print ("merge: definition exist:", definition, " adding as:", new_definition)
+                
                 # fix the definition data
                 search_definition = "#/definitions/" + definition
                 my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
-                # print (" -->", my_dict)
+                print (" definition fix -->", my_dict)
                 my_dict["$ref"] = "#/definitions/" + new_definition
                 # try again for the other method
                 my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
                 if my_dict is not None:
                     my_dict["$ref"] = "#/definitions/" + new_definition
+                
+                merge_data["definitions"][new_definition] = definiton_item                
     
     for path, path_item in file_data["paths"].items():
         merge_data["paths"][path] = path_item

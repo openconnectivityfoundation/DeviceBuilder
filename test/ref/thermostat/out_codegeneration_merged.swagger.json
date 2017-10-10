@@ -109,7 +109,7 @@
         "description": "Sets the desired temperature value.\nIf a unit is included and the server does not support the unit indicated the request will fail.\nIf the units are omitted value is taken to be in C.\n",
         "parameters": [
           {
-            "$ref": "#/parameters/interface"
+            "$ref": "#/parameters/interface10"
           },
           {
             "in": "body",

@@ -92,8 +92,8 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
+ parameter fix --> {'$ref': '#/parameters/interface'}
 merge: definition exist: Temperature
-merge: parameter exist: Temperature  adding as: Temperature11
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -170,5 +170,5 @@ remove_path_method
    href: /actuatorthermostat  method: None
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
+ parameter fix --> {'$ref': '#/parameters/interface'}
 merge: definition exist: Temperature
-merge: parameter exist: Temperature  adding as: Temperature11

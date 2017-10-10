@@ -40,8 +40,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.s']
 update_definition_with_type
   href: /mypath  type: integer
-update_definition_with_type  step
 update_definition_with_type  range
+update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range']
   definition: #/definitions/BinarySwitch
@@ -82,8 +82,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.s']
 update_definition_with_type
   href: /mypath  type: integer
-update_definition_with_type  step
 update_definition_with_type  range
+update_definition_with_type  step
 remove_definition_properties
    rt: oic.r.switch.binary  prop: ['range']
   definition: #/definitions/BinarySwitch

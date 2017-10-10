@@ -80,8 +80,8 @@ update_definition_with_type
   href: /operationalstate  type: None
 remove_definition_properties
    rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Operation
   definition: #/definitions/OperationUpdate
+  definition: #/definitions/Operation
 remove_path_method
    href: /operationalstate  method: None
 optimize for introspection..
@@ -156,8 +156,8 @@ update_definition_with_type
   href: /operationalstate  type: None
 remove_definition_properties
    rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Operation
   definition: #/definitions/OperationUpdate
+  definition: #/definitions/Operation
 remove_path_method
    href: /operationalstate  method: None
 merge: parameter exist: interface

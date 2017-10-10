@@ -3,6 +3,7 @@
 PYTHON_EXE=C:\\python35-32\\python3.exe
 DeviceBuilder=../src/deviceBuilder.py
 SWAG2CBOR=../src/swag2cbor.py
+DIFF=../src/compareJson.py
 
 #MODELS_DIR=./input_swagger
 MODELS_DIR=../../IoTDataModels
@@ -36,6 +37,11 @@ function compare_file {
     #echo "blah"
 }
 
+function compare_json {
+    echo "comparing json ($TEST_CASE): " $1 $2
+    $PYTHON_EXE $DIFF -file1 $1 -file2 $2
+}
+
 
 function my_test {
     $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE$EXT 2>&1
@@ -53,6 +59,8 @@ function my_test_in_dir {
     $PYTHON_EXE $SWAG2CBOR -cbor $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor.json
     
+    compare_json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    compare_json $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     
