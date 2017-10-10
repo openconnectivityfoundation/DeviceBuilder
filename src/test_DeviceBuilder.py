@@ -26,8 +26,87 @@ import os
 import json
 from . import DeviceBuilder
 
-
+  
 def test_find_files():
-    
     found_files = DeviceBuilder.find_files(".","blah")  
     assert len(found_files) == 0
+    
+    
+def test_load_json():
+    data = DeviceBuilder.load_json("../examples/introspection-binaryswitch-sensor.txt")
+    data = DeviceBuilder.load_json("introspection-binaryswitch-sensor.txt", my_dir="../examples")
+    DeviceBuilder.write_json("blah", data)
+       
+def test_find_oic_res_resources():
+    myargs = DeviceBuilder.MyArgs()
+    data = DeviceBuilder.find_oic_res_resources("../test/input_oic_res/oic-res-response-binaryswitch.json", myargs)
+    print (data)
+    
+
+def test_find_input_resources():
+    myargs = DeviceBuilder.MyArgs()
+    data = DeviceBuilder.find_input_resources("../test/input_define_device/input-switch.json")
+    print (data)
+    
+def test_find_files():
+    myargs = DeviceBuilder.MyArgs()
+    myargs.my_print()
+    rt_values = DeviceBuilder.find_input_resources("../test/input_define_device/input-switch.json")
+    files_to_process = DeviceBuilder.find_files("../test/input_swagger",rt_values)
+    for my_file in files_to_process:
+        file_data = DeviceBuilder.load_json(my_file, "../test/input_swagger")
+        rt_values_file = DeviceBuilder.swagger_rt(file_data)
+        print ("  main: rt :", rt_values_file)
+        #[rt, href, if, type,[props to be removed], [methods to be removed]]
+        mydata = [ [["oic.r.xxx"]   ,"/blahblha", ["oic.if.a"], None, [], [] ]]
+        DeviceBuilder.create_introspection(file_data, None, mydata, 0)
+        DeviceBuilder.optimize_introspection(file_data)
+
+    file_data = DeviceBuilder.load_json("BinarySwitchResURI.swagger.json", "../test/input_swagger")
+    mydata = [['oic.r.switch.binary', '/binaryswitch', ['oic.if.baseline', 'oic.if.a'], None, ['range', 'step', 'id', 'precision'], None, 'BinarySwitchResURI.swagger.json']]    
+    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
+    DeviceBuilder.optimize_introspection(file_data)    
+        
+    file_data = DeviceBuilder.load_json("AccelerationResURI.swagger.json", "../test/input_swagger")
+    mydata = [[ "oic.r.sensor.acceleration"   ,"/blahblha", ["oic.if.a"], "number", ["value", "step"], ["post"] ]]
+    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
+    DeviceBuilder.optimize_introspection(file_data)    
+    
+    file_data = DeviceBuilder.load_json("AccelerationResURI.swagger.json", "../test/input_swagger")
+    mydata = [[ "oic.r.sensor.acceleration"   ,"/AccelerationResURI", ["oic.if.a"], "number", [], [] ]]
+    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
+    DeviceBuilder.optimize_introspection(file_data)    
+            
+    file_data = DeviceBuilder.load_json("AirQualityCollectionResURI_if=oic.if.baseline.swagger.json", "../test/input_swagger")
+    mydata = [[ "oic.r.airqualitycollection","oic.wk.col"   ,"/blahblha", ["oic.if.a"], "number", [], [] ]]
+    DeviceBuilder.create_introspection(file_data, None, mydata, 0)
+    DeviceBuilder.optimize_introspection(file_data)  
+        
+       
+def test_merge():
+    data1 = DeviceBuilder.load_json("../examples/introspection-binaryswitch-sensor.txt")
+    data2 = DeviceBuilder.load_json("introspection-binaryswitch-sensor.txt", my_dir="../examples")
+    DeviceBuilder.merge(data1, data2, 0)
+    
+    data3 = DeviceBuilder.load_json("../test/input_swagger/DimmingResURI.swagger.json")
+    DeviceBuilder.merge(data1, data3, 1)
+    data4 = DeviceBuilder.load_json("../test/input_swagger/ColourChromaResURI.swagger.json")
+    DeviceBuilder.merge(data1, data4, 2)
+    
+    
+def test_main_app():
+    myargs = DeviceBuilder.MyArgs()
+    myargs.resource_dir = "../test/input_swagger/"
+    data1 = DeviceBuilder.main_app(myargs, "introspection")
+    
+    myargs = DeviceBuilder.MyArgs()
+    myargs.resource_dir = "../test/input_swagger/"
+    myargs.input = "../test/input_define_device/input-switch.json"
+    data1 = DeviceBuilder.main_app(myargs, "introspection")
+    
+    myargs = DeviceBuilder.MyArgs()
+    myargs.resource_dir = "../test/input_swagger/"
+    myargs.ocfres = "../test/input_oic_res/oic-res-response-testdevice.json"
+    myargs.out = "../test/blah"
+    myargs.intermediate_files = True
+    data1 = DeviceBuilder.main_app(myargs, "introspection")
