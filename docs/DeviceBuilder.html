@@ -87,6 +87,11 @@ Data descriptors defined here:<br>
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl><dt><a name="-clear_descriptions"><strong>clear_descriptions</strong></a>(json_data)</dt><dd><tt>clear&nbsp;the&nbsp;descriptions&nbsp;e.g.&nbsp;set&nbsp;them&nbsp;on&nbsp;empty&nbsp;string&nbsp;e.g.&nbsp;""<br>
 :param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-collapse_allOf"><strong>collapse_allOf</strong></a>(json_data)</dt><dd><tt>collapse_allOf<br>
+-&nbsp;only&nbsp;collapses&nbsp;if&nbsp;the&nbsp;keys&nbsp;below&nbsp;allOf&nbsp;are&nbsp;not&nbsp;of&nbsp;[allOf,&nbsp;anyOf,&nbsp;oneOf]<br>
+e.g.<br>
+&nbsp;&nbsp;&nbsp;{&nbsp;oneOf&nbsp;[&nbsp;properties&nbsp;:&nbsp;{a,b},&nbsp;properties&nbsp;{a,c}&nbsp;&nbsp;]&nbsp;}&nbsp;&nbsp;&nbsp;==&gt;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;properties&nbsp;:&nbsp;{a,b,c&nbsp;}&nbsp;}&nbsp;<br>
+:param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file</tt></dd></dl>
  <dl><dt><a name="-create_introspection"><strong>create_introspection</strong></a>(json_data, rt_value_file, rt_values, index)</dt><dd><tt>create&nbsp;the&nbsp;introspection&nbsp;data,&nbsp;e.g.&nbsp;morph&nbsp;json_data.<br>
 :param&nbsp;json_data:&nbsp;the&nbsp;parsed&nbsp;swagger&nbsp;file<br>
 :param&nbsp;rt_value_file:&nbsp;the&nbsp;filename<br>
