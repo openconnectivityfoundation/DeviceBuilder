@@ -628,6 +628,59 @@ def update_path_value(json_data, rt_value_file, rt_values):
             print("update_path_value: already the same :", replacement)
 
 
+def collapse_allOf(json_data):
+    """
+    collapse_allOf
+    - only collapses if the keys below allOf are not of [allOf, anyOf, oneOf]
+    e.g.
+       { oneOf [ properties : {a,b}, properties {a,c}  ] }   ==>    {  properties : {a,b,c } } 
+    :param json_data: the parsed swagger file
+    """
+    print ("collapse_allOf:")
+    def_data = json_data["definitions"]
+    for def_name, def_item in def_data.items():
+        print ("  ",def_name)
+        handle_allof = False
+        new_props = {}
+        for prop_name, prop in def_item.items():
+            if prop_name == "allOf":
+                handle_allof = True
+                for item_id in prop:
+                    #print ("    collapse_allOf items:", item_id)
+                    for item_name, item in item_id.items():
+                        if item_name == "properties":
+                            # check if properties exist already
+                            if new_props.get("properties") is None:
+                                # no properties yet
+                                new_props[item_name] = item
+                            else:
+                                # add properties decendants to the existing properties key
+                                for prop_item_name, prop_item in item.items():
+                                   new_props["properties"][prop_item_name] = prop_item 
+                        elif item_name == "description":
+                            new_props[item_name] = item
+                        else:
+                            # check if properties exist already
+                            if new_props.get("properties") is None:
+                                # no properties yet
+                                new_props[item_name] = item
+                            else:
+                                # add properties decendants to the existing properties key
+                                if isinstance(item, dict): 
+                                    for prop_item_name, prop_item in item.items():
+                                       new_props["properties"][prop_item_name] = prop_item 
+                            
+                            
+                            #print ("    collapse_allOf item_name:", item_name)
+                        if item_name in ["oneOf", "anyOf", "allOf"]:
+                            handle_allof = False        
+        if handle_allof:
+            print (" processing: ", def_name)
+            #print ("   ", new_props)
+            def_data[def_name] = new_props
+            
+                            
+            
 def create_introspection(json_data, rt_value_file, rt_values, index):
     """
     create the introspection data, e.g. morph json_data.
@@ -640,7 +693,7 @@ def create_introspection(json_data, rt_value_file, rt_values, index):
     rt_single = [rt_values[index]]
     # if rt_single is not None:
     print("create_introspection index:", index, rt_single[0][index_href])
-    
+    collapse_allOf(json_data)
     update_path_value(json_data, rt_value_file, rt_single)
     update_definition_with_rt(json_data, rt_value_file, rt_single)
     update_definition_with_if(json_data, rt_value_file, rt_single)

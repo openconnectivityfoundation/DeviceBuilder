@@ -38,6 +38,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
  
 
 create_introspection index: 0 /BrightnessResURI
+collapse_allOf:
+   Brightness
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
@@ -64,6 +66,8 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /BinarySwitchResURI
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -118,6 +122,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
  
 
 create_introspection index: 0 /BrightnessResURI
+collapse_allOf:
+   Brightness
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
@@ -141,6 +147,8 @@ remove_path_method
    href: /BrightnessResURI  method: None
 
 create_introspection index: 1 /BinarySwitchResURI
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI

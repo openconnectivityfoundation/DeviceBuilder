@@ -33,6 +33,8 @@ processing files: ['TemperatureResURI.swagger.json']
  
 
 create_introspection index: 0 /sensorthermostat
+collapse_allOf:
+   Temperature
 update_path_value:
    rt: oic.r.temperature  href: /sensorthermostat
 update_path_value /TemperatureResURI
@@ -62,6 +64,8 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /actuatorthermostat
+collapse_allOf:
+   Temperature
 update_path_value:
    rt: oic.r.temperature  href: /actuatorthermostat
 update_path_value /TemperatureResURI
@@ -118,6 +122,8 @@ processing files: ['TemperatureResURI.swagger.json']
  
 
 create_introspection index: 0 /sensorthermostat
+collapse_allOf:
+   Temperature
 update_path_value:
    rt: oic.r.temperature  href: /sensorthermostat
 update_path_value /TemperatureResURI
@@ -144,6 +150,8 @@ remove_path_method
    href: /sensorthermostat  method: ['post']
 
 create_introspection index: 1 /actuatorthermostat
+collapse_allOf:
+   Temperature
 update_path_value:
    rt: oic.r.temperature  href: /actuatorthermostat
 update_path_value /TemperatureResURI

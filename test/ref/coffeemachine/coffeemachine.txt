@@ -36,6 +36,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
  
 
 create_introspection index: 0 /onoff
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /onoff
 update_path_value /BinarySwitchResURI
@@ -64,6 +66,9 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /operationalstate
+collapse_allOf:
+   OperationUpdate
+   Operation
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
 update_path_value /OperationalStateResURI
@@ -115,6 +120,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
  
 
 create_introspection index: 0 /onoff
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /onoff
 update_path_value /BinarySwitchResURI
@@ -140,6 +147,9 @@ remove_path_method
    href: /onoff  method: None
 
 create_introspection index: 1 /operationalstate
+collapse_allOf:
+   OperationUpdate
+   Operation
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
 update_path_value /OperationalStateResURI

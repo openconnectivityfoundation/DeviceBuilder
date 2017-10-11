@@ -46,6 +46,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
  
 
 create_introspection index: 0 /binaryswitch
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
@@ -76,6 +78,8 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /dimming
+collapse_allOf:
+   Dimming
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
@@ -108,6 +112,8 @@ erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 
 create_introspection index: 2 /colourchroma
+collapse_allOf:
+   ColourChroma
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI
@@ -174,6 +180,8 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
  
 
 create_introspection index: 0 /binaryswitch
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
@@ -201,6 +209,8 @@ remove_path_method
    href: /binaryswitch  method: None
 
 create_introspection index: 1 /dimming
+collapse_allOf:
+   Dimming
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
@@ -230,6 +240,8 @@ remove_path_method
 merge: parameter exist: interface
 
 create_introspection index: 2 /colourchroma
+collapse_allOf:
+   ColourChroma
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI

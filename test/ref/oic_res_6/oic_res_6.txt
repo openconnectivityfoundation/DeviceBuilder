@@ -100,6 +100,8 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
  
 
 create_introspection index: 0 /BinarySwitchResURI
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -114,8 +116,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: integer
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
@@ -127,6 +129,8 @@ erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /TemperatureResURI
+collapse_allOf:
+   Temperature
 update_path_value:
    rt: oic.r.temperature  href: /TemperatureResURI
 update_path_value /TemperatureResURI
@@ -142,8 +146,8 @@ update_parameters_with_if interface
 update_definition_with_type
   href: /TemperatureResURI  type: integer
 update_definition_with_type  step
-update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.temperature  prop: None
   definition: #/definitions/Temperature
@@ -157,6 +161,8 @@ erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 
 create_introspection index: 2 /AirFlowResURI
+collapse_allOf:
+   AirFlow
 update_path_value:
    rt: oic.r.airflow  href: /AirFlowResURI
 update_path_value /AirFlowResURI
@@ -172,8 +178,8 @@ update_parameters_with_if interface
 update_definition_with_type
   href: /AirFlowResURI  type: integer
 update_definition_with_type  step
-update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.airflow  prop: None
   definition: #/definitions/AirFlow
@@ -186,6 +192,8 @@ erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 
 create_introspection index: 5 /bridge/binary-switch
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /bridge/binary-switch
 update_path_value /BinarySwitchResURI
@@ -200,8 +208,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/binary-switch  type: integer
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
@@ -215,6 +223,8 @@ merge: parameter exist: interface
 merge: definition exist: BinarySwitch
 
 create_introspection index: 6 /bridge/light-brightness
+collapse_allOf:
+   Brightness
 update_path_value:
    rt: oic.r.light.brightness  href: /bridge/light-brightness
 update_path_value /BrightnessResURI
@@ -229,9 +239,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  value
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
@@ -333,6 +343,8 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
  
 
 create_introspection index: 0 /BinarySwitchResURI
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -347,8 +359,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: integer
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
@@ -357,6 +369,8 @@ remove_path_method
    href: /BinarySwitchResURI  method: None
 
 create_introspection index: 1 /TemperatureResURI
+collapse_allOf:
+   Temperature
 update_path_value:
    rt: oic.r.temperature  href: /TemperatureResURI
 update_path_value /TemperatureResURI
@@ -372,8 +386,8 @@ update_parameters_with_if interface
 update_definition_with_type
   href: /TemperatureResURI  type: integer
 update_definition_with_type  step
-update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.temperature  prop: None
   definition: #/definitions/Temperature
@@ -383,6 +397,8 @@ remove_path_method
 merge: parameter exist: interface
 
 create_introspection index: 2 /AirFlowResURI
+collapse_allOf:
+   AirFlow
 update_path_value:
    rt: oic.r.airflow  href: /AirFlowResURI
 update_path_value /AirFlowResURI
@@ -398,8 +414,8 @@ update_parameters_with_if interface
 update_definition_with_type
   href: /AirFlowResURI  type: integer
 update_definition_with_type  step
-update_definition_with_type  range
 update_definition_with_type  value
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.airflow  prop: None
   definition: #/definitions/AirFlow
@@ -409,6 +425,8 @@ remove_path_method
 merge: parameter exist: interface
 
 create_introspection index: 5 /bridge/binary-switch
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /bridge/binary-switch
 update_path_value /BinarySwitchResURI
@@ -423,8 +441,8 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/binary-switch  type: integer
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
 remove_definition_properties
    rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
@@ -435,6 +453,8 @@ merge: parameter exist: interface
 merge: definition exist: BinarySwitch
 
 create_introspection index: 6 /bridge/light-brightness
+collapse_allOf:
+   Brightness
 update_path_value:
    rt: oic.r.light.brightness  href: /bridge/light-brightness
 update_path_value /BrightnessResURI
@@ -449,9 +469,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  value
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  value
 remove_definition_properties
    rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness

@@ -151,11 +151,13 @@ my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_
 TEST_CASE="coffeemachine"
 resfile=./input_define_device/input-coffeemachine.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+}
 
+function deviceBuilder_tests2 {
 
-#TEST_CASE="cooktop"
-#resfile=./input_define_device/input-cooktop.json
-#my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+TEST_CASE="cooktop"
+resfile=./input_define_device/input-cooktop.json
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 }
 
@@ -170,4 +172,5 @@ fi
 
 generic_tests
 oic_res_tests
-deviceBuilder_tests  
+deviceBuilder_tests 
+deviceBuilder_tests2  

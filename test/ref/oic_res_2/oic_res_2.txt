@@ -35,6 +35,8 @@ processing files: ['BinarySwitchResURI.swagger.json']
  
 
 create_introspection index: 1 /myBinarySwitchResURI
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /myBinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -84,6 +86,8 @@ processing files: ['BinarySwitchResURI.swagger.json']
  
 
 create_introspection index: 1 /myBinarySwitchResURI
+collapse_allOf:
+   BinarySwitch
 update_path_value:
    rt: oic.r.switch.binary  href: /myBinarySwitchResURI
 update_path_value /BinarySwitchResURI
