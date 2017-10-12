@@ -105,7 +105,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
-update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -116,10 +116,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: integer
-update_definition_with_type  step
+  def_name BinarySwitch
 update_definition_with_type  range
+update_definition_with_type  precision
+update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method
@@ -134,7 +137,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.temperature  href: /TemperatureResURI
 update_path_value /TemperatureResURI
-update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
+ update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
 update_definition_with_rt
   rt: oic.r.temperature
 update_definition_with_if
@@ -145,11 +148,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /TemperatureResURI  type: integer
-update_definition_with_type  step
-update_definition_with_type  value
+  def_name Temperature
 update_definition_with_type  range
+update_definition_with_type  precision
+update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.temperature  prop: None
+  rt: oic.r.temperature  prop: None
   definition: #/definitions/Temperature
   definition: #/definitions/Temperature
 remove_path_method
@@ -166,7 +171,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.airflow  href: /AirFlowResURI
 update_path_value /AirFlowResURI
-update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
+ update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
 update_definition_with_rt
   rt: oic.r.airflow
 update_definition_with_if
@@ -177,11 +182,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /AirFlowResURI  type: integer
-update_definition_with_type  step
+  def_name AirFlow
+update_definition_with_type  precision
 update_definition_with_type  value
+update_definition_with_type  step
 update_definition_with_type  range
 remove_definition_properties
-   rt: oic.r.airflow  prop: None
+  rt: oic.r.airflow  prop: None
   definition: #/definitions/AirFlow
   definition: #/definitions/AirFlow
 remove_path_method
@@ -197,7 +204,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /bridge/binary-switch
 update_path_value /BinarySwitchResURI
-update_path_value :: /BinarySwitchResURI /bridge/binary-switch
+ update_path_value : /BinarySwitchResURI /bridge/binary-switch
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -208,10 +215,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/binary-switch  type: integer
-update_definition_with_type  step
+  def_name BinarySwitch
 update_definition_with_type  range
+update_definition_with_type  precision
+update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method
@@ -228,7 +238,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.light.brightness  href: /bridge/light-brightness
 update_path_value /BrightnessResURI
-update_path_value :: /BrightnessResURI /bridge/light-brightness
+ update_path_value : /BrightnessResURI /bridge/light-brightness
 update_definition_with_rt
   rt: oic.r.light.brightness
 update_definition_with_if
@@ -239,11 +249,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  step
+  def_name Brightness
 update_definition_with_type  range
+update_definition_with_type  precision
 update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.light.brightness  prop: None
+  rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
   definition: #/definitions/Brightness
 remove_path_method
@@ -348,7 +360,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
-update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -359,10 +371,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: integer
-update_definition_with_type  step
+  def_name BinarySwitch
 update_definition_with_type  range
+update_definition_with_type  precision
+update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method
@@ -374,7 +389,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.temperature  href: /TemperatureResURI
 update_path_value /TemperatureResURI
-update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
+ update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
 update_definition_with_rt
   rt: oic.r.temperature
 update_definition_with_if
@@ -385,11 +400,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /TemperatureResURI  type: integer
-update_definition_with_type  step
-update_definition_with_type  value
+  def_name Temperature
 update_definition_with_type  range
+update_definition_with_type  precision
+update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.temperature  prop: None
+  rt: oic.r.temperature  prop: None
   definition: #/definitions/Temperature
   definition: #/definitions/Temperature
 remove_path_method
@@ -402,7 +419,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.airflow  href: /AirFlowResURI
 update_path_value /AirFlowResURI
-update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
+ update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
 update_definition_with_rt
   rt: oic.r.airflow
 update_definition_with_if
@@ -413,11 +430,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /AirFlowResURI  type: integer
-update_definition_with_type  step
+  def_name AirFlow
+update_definition_with_type  precision
 update_definition_with_type  value
+update_definition_with_type  step
 update_definition_with_type  range
 remove_definition_properties
-   rt: oic.r.airflow  prop: None
+  rt: oic.r.airflow  prop: None
   definition: #/definitions/AirFlow
   definition: #/definitions/AirFlow
 remove_path_method
@@ -430,7 +449,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /bridge/binary-switch
 update_path_value /BinarySwitchResURI
-update_path_value :: /BinarySwitchResURI /bridge/binary-switch
+ update_path_value : /BinarySwitchResURI /bridge/binary-switch
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -441,10 +460,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/binary-switch  type: integer
-update_definition_with_type  step
+  def_name BinarySwitch
 update_definition_with_type  range
+update_definition_with_type  precision
+update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method
@@ -458,7 +480,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.light.brightness  href: /bridge/light-brightness
 update_path_value /BrightnessResURI
-update_path_value :: /BrightnessResURI /bridge/light-brightness
+ update_path_value : /BrightnessResURI /bridge/light-brightness
 update_definition_with_rt
   rt: oic.r.light.brightness
 update_definition_with_if
@@ -469,11 +491,13 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /bridge/light-brightness  type: integer
-update_definition_with_type  step
+  def_name Brightness
 update_definition_with_type  range
+update_definition_with_type  precision
 update_definition_with_type  value
+update_definition_with_type  step
 remove_definition_properties
-   rt: oic.r.light.brightness  prop: None
+  rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
   definition: #/definitions/Brightness
 remove_path_method

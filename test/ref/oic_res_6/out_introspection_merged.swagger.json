@@ -19,7 +19,7 @@
         "precision": {
           "description": "",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "",
@@ -65,7 +65,7 @@
         "precision": {
           "description": "",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "",
@@ -84,7 +84,7 @@
         },
         "value": {
           "description": "",
-          "type": "boolean"
+          "type": "integer"
         }
       },
       "required": [
@@ -103,7 +103,7 @@
         "precision": {
           "description": "",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "",
@@ -135,7 +135,7 @@
         "precision": {
           "description": "",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "",

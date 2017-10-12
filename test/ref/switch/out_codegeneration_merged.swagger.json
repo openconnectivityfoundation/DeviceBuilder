@@ -8,7 +8,7 @@
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "step": {
           "description": "Step value across the defined range",
@@ -17,7 +17,7 @@
         },
         "value": {
           "description": "Status of the switch",
-          "type": "boolean"
+          "type": "integer"
         }
       },
       "required": [

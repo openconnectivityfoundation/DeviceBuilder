@@ -40,7 +40,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
-update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -51,8 +51,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: None
+  def_name BinarySwitch
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method
@@ -91,7 +92,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
-update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -102,8 +103,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: None
+  def_name BinarySwitch
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method

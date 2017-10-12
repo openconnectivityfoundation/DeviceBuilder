@@ -58,14 +58,14 @@ processing files: ['HeatingZoneBaselineResURI.swagger.json', 'HeatingZoneResURI.
 
 create_introspection index: 0 /heatingzonecollection
 collapse_allOf:
-   HeatingZone-ll
    HeatingZone
  processing:  HeatingZone
+   HeatingZone-ll
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
 update_path_value /HeatingZoneBaselineResURI
 update_path_value /HeatingZoneLLResURI
-update_path_value :: /HeatingZoneBaselineResURI /heatingzonecollection
+ update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
 update_definition_with_if
@@ -79,8 +79,10 @@ update_parameters_with_if interface-ll
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /heatingzonecollection  type: None
+  def_name HeatingZone
+  def_name HeatingZone-ll
 remove_definition_properties
-   rt: oic.r.heatingzonecollection  prop: ['range', 'step', 'precision']
+  rt: oic.r.heatingzonecollection  prop: ['range', 'step', 'precision']
   definition: #/definitions/HeatingZone
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
@@ -98,7 +100,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone1
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone1
+ update_path_value : /HeatingZoneResURI /heatingzone1
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -109,8 +111,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone1  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone1  method: None
@@ -126,7 +129,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone2
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone2
+ update_path_value : /HeatingZoneResURI /heatingzone2
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -137,8 +140,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone2  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone2  method: None
@@ -155,7 +159,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone3
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone3
+ update_path_value : /HeatingZoneResURI /heatingzone3
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -166,8 +170,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone3  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone3  method: None
@@ -184,7 +189,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone4
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone4
+ update_path_value : /HeatingZoneResURI /heatingzone4
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -195,8 +200,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone4  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone4  method: None
@@ -255,14 +261,14 @@ processing files: ['HeatingZoneBaselineResURI.swagger.json', 'HeatingZoneResURI.
 
 create_introspection index: 0 /heatingzonecollection
 collapse_allOf:
-   HeatingZone-ll
    HeatingZone
  processing:  HeatingZone
+   HeatingZone-ll
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
 update_path_value /HeatingZoneBaselineResURI
 update_path_value /HeatingZoneLLResURI
-update_path_value :: /HeatingZoneBaselineResURI /heatingzonecollection
+ update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
 update_definition_with_if
@@ -276,8 +282,10 @@ update_parameters_with_if interface-ll
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /heatingzonecollection  type: None
+  def_name HeatingZone
+  def_name HeatingZone-ll
 remove_definition_properties
-   rt: oic.r.heatingzonecollection  prop: ['range', 'step', 'precision']
+  rt: oic.r.heatingzonecollection  prop: ['range', 'step', 'precision']
   definition: #/definitions/HeatingZone
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
@@ -291,7 +299,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone1
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone1
+ update_path_value : /HeatingZoneResURI /heatingzone1
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -302,8 +310,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone1  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone1  method: None
@@ -317,7 +326,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone2
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone2
+ update_path_value : /HeatingZoneResURI /heatingzone2
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -328,8 +337,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone2  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone2  method: None
@@ -344,7 +354,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone3
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone3
+ update_path_value : /HeatingZoneResURI /heatingzone3
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -355,8 +365,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone3  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone3  method: None
@@ -371,7 +382,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.heatingzone  href: /heatingzone4
 update_path_value /HeatingZoneResURI
-update_path_value :: /HeatingZoneResURI /heatingzone4
+ update_path_value : /HeatingZoneResURI /heatingzone4
 update_definition_with_rt
   rt: oic.r.heatingzone
 update_definition_with_if
@@ -382,8 +393,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone4  type: None
+  def_name HeatingZone
 remove_definition_properties
-   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
+  rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
   definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone4  method: None

@@ -35,6 +35,7 @@ except:
     print ("Trying to Install required module: DeepDiff ")
     os.system('python3 -m pip install deepdiff')
 import deepdiff
+from deepdiff import grep
 
 if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
@@ -457,15 +458,18 @@ def update_parameters_with_if(json_data, rt_value_file, rt_values):
 def update_definition_with_type(json_data, rt_value_file, rt_values):
     """
     update the defintion type values, e.g. override the type in an oneof construct
+    - updates to type, range, step if it contains oneOff subkey
     :param json_data: the parsed swagger file
     :param rt_value_file: not used
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
     """
     print ("update_definition_with_type")
+    
     for rt_value in rt_values:
         print ("  href:", rt_value[index_href], " type:", rt_value[index_type])
         
-    supported_types = ["integer", "number", "string", "boolean"]      
+    supported_types = ["integer", "number", "string", "boolean"]  
+    keys_to_handle = ["type", "step", "precision", "value"] # range needs to be handled differently since it is an array
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
@@ -493,30 +497,42 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
             pass
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
-        full_defname = "#/definitions/" + def_name        
+        full_defname = "#/definitions/" + def_name   
+        print ("  def_name", def_name)
         for entry in keyvaluepairs:
             if entry[2] == full_defname:
                 properties = def_item.get("properties")
                 my_type = entry[3][index_type]
                 if entry[3][index_type] not in supported_types:
+                    # invalid type
                     if my_type is not None:
                         print (" *** ERROR type is not valid:", entry[3][index_type],
                                " supported types:", supported_types)
-                else:
+                elif properties is not None:
+                    # properties is the top key 
                     my_type = entry[3][index_type]
-                    if properties is not None:
-                        for prop_name, prop in properties.items():
-                            one_off = prop.get("anyOf")
+                    for prop_name, prop in properties.items():
+                        one_off = prop.get("anyOf")
+                        if prop_name in keys_to_handle:
+                            print ("update_definition_with_type ", prop_name)
+                            prop["type"] = my_type
+                            if one_off is not None:
+                                prop.pop("anyOf")
+                        if prop_name == "range":
+                            one_off = prop["items"].get("anyOf")
                             if one_off is not None:
                                 print ("update_definition_with_type ", prop_name)
-                                prop.pop("anyOf")
-                                prop["type"] = my_type
-                            if prop_name == "range":
-                                one_off = prop["items"].get("anyOf")
-                                if one_off is not None:
-                                    print ("update_definition_with_type ", prop_name)
-                                    prop["items"].pop("anyOf")
-                                    prop["items"]["type"] = my_type
+                                prop["items"].pop("anyOf")
+                                prop["items"]["type"] = my_type
+
+                else :
+                    try:
+                        ds = def_item | grep("type")
+                        print (" ===> grep")
+                        print(ds)
+                    except:
+                        print (" ===> grep failed!!")
+                        pass
   
 
 def remove_definition_properties(json_data, rt_value_file, rt_values):
@@ -529,7 +545,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
     print ("remove_definition_properties")
     rt = None
     for rt_value in rt_values:
-        print ("   rt:", rt_value[index_rt], " prop:", rt_value[index_prop])
+        print ("  rt:", rt_value[index_rt], " prop:", rt_value[index_prop])
     
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs = []
@@ -621,11 +637,11 @@ def update_path_value(json_data, rt_value_file, rt_values):
         if replacement[1] != replacement[0]:
             old_path = replacement[0]
             new_path = replacement[1]
-            print ("update_path_value ::", old_path, new_path)
+            print (" update_path_value :", old_path, new_path)
             path_data[new_path] = path_data[old_path]
             path_data.pop(old_path)
         else:
-            print("update_path_value: already the same :", replacement)
+            print(" update_path_value: already the same :", replacement)
 
 
 def collapse_allOf(json_data):

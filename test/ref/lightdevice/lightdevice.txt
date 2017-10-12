@@ -51,7 +51,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
-update_path_value :: /BinarySwitchResURI /binaryswitch
+ update_path_value : /BinarySwitchResURI /binaryswitch
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -62,8 +62,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /binaryswitch  type: None
+  def_name BinarySwitch
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
+  rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
   definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: id
   definition: #/definitions/BinarySwitch
@@ -83,7 +84,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
-update_path_value :: /DimmingResURI /dimming
+ update_path_value : /DimmingResURI /dimming
 update_definition_with_rt
   rt: oic.r.light.dimming
 update_definition_with_if
@@ -94,8 +95,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /dimming  type: None
+  def_name Dimming
 remove_definition_properties
-   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
+  rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
   definition: #/definitions/Dimming
 erase_element: Cannot find matching key: id
   definition: #/definitions/Dimming
@@ -117,7 +119,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI
-update_path_value :: /ColourChromaResURI /colourchroma
+ update_path_value : /ColourChromaResURI /colourchroma
 update_definition_with_rt
   rt: oic.r.colour.chroma
 update_definition_with_if
@@ -128,8 +130,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /colourchroma  type: None
+  def_name ColourChroma
 remove_definition_properties
-   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
+  rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
   definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: id
   definition: #/definitions/ColourChroma
@@ -185,7 +188,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
-update_path_value :: /BinarySwitchResURI /binaryswitch
+ update_path_value : /BinarySwitchResURI /binaryswitch
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -196,8 +199,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /binaryswitch  type: None
+  def_name BinarySwitch
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
+  rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
   definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: id
   definition: #/definitions/BinarySwitch
@@ -214,7 +218,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
-update_path_value :: /DimmingResURI /dimming
+ update_path_value : /DimmingResURI /dimming
 update_definition_with_rt
   rt: oic.r.light.dimming
 update_definition_with_if
@@ -225,8 +229,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /dimming  type: None
+  def_name Dimming
 remove_definition_properties
-   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
+  rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
   definition: #/definitions/Dimming
 erase_element: Cannot find matching key: id
   definition: #/definitions/Dimming
@@ -245,7 +250,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI
-update_path_value :: /ColourChromaResURI /colourchroma
+ update_path_value : /ColourChromaResURI /colourchroma
 update_definition_with_rt
   rt: oic.r.colour.chroma
 update_definition_with_if
@@ -256,8 +261,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /colourchroma  type: None
+  def_name ColourChroma
 remove_definition_properties
-   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
+  rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
   definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: id
   definition: #/definitions/ColourChroma

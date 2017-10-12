@@ -8,7 +8,7 @@
         "precision": {
           "description": "",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "step": {
           "description": "",
@@ -17,7 +17,7 @@
         },
         "value": {
           "description": "",
-          "type": "boolean"
+          "type": "integer"
         }
       },
       "required": [

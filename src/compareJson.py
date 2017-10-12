@@ -40,6 +40,16 @@ if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
                     (sys.version_info[0], sys.version_info[1]))
  
+def json_print(data):
+    """
+    pretty print json
+    :param data: json to be printed
+    """
+    try:
+        json_string = json.dumps(data, indent=2)
+        print(json_string)
+    except:
+        print (data)
  
 def load_json(filename, my_dir=None):
     """
@@ -70,7 +80,8 @@ def compare_json(file1, file2):
     if ddiff == {}:
         print(" == EQUAL ==")
     else:
-        print(" Different: ", ddiff)
+        print(" == NOT EQUAL == ")
+        json_print (ddiff)
     
             
 #

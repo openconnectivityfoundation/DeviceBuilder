@@ -19,7 +19,7 @@
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "The valid range for the value Property",
@@ -65,7 +65,7 @@
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "The valid range for the value Property",
@@ -84,7 +84,7 @@
         },
         "value": {
           "description": "Status of the switch",
-          "type": "boolean"
+          "type": "integer"
         }
       },
       "required": [
@@ -103,7 +103,7 @@
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "The valid range for the value Property",
@@ -135,7 +135,7 @@
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "range": {
           "description": "The valid range for the value Property",

@@ -43,7 +43,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
-update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
+ update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
 update_definition_with_rt
   rt: oic.r.light.brightness
 update_definition_with_if
@@ -54,9 +54,10 @@ update_parameters_with_if interface
  replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: int
+  def_name Brightness
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
-   rt: oic.r.light.brightness  prop: None
+  rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
   definition: #/definitions/Brightness
 remove_path_method
@@ -71,7 +72,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
-update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -82,9 +83,10 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: int
+  def_name BinarySwitch
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method
@@ -127,7 +129,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
-update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
+ update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
 update_definition_with_rt
   rt: oic.r.light.brightness
 update_definition_with_if
@@ -138,9 +140,10 @@ update_parameters_with_if interface
  replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: int
+  def_name Brightness
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
-   rt: oic.r.light.brightness  prop: None
+  rt: oic.r.light.brightness  prop: None
   definition: #/definitions/Brightness
   definition: #/definitions/Brightness
 remove_path_method
@@ -152,7 +155,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
-update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -163,9 +166,10 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: int
+  def_name BinarySwitch
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: None
+  rt: oic.r.switch.binary  prop: None
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 remove_path_method

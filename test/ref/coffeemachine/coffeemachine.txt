@@ -41,7 +41,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /onoff
 update_path_value /BinarySwitchResURI
-update_path_value :: /BinarySwitchResURI /onoff
+ update_path_value : /BinarySwitchResURI /onoff
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -52,8 +52,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /onoff  type: None
+  def_name BinarySwitch
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
+  rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: range
@@ -72,7 +73,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
 update_path_value /OperationalStateResURI
-update_path_value :: /OperationalStateResURI /operationalstate
+ update_path_value : /OperationalStateResURI /operationalstate
 update_definition_with_rt
   rt: oic.r.operational.state
 update_definition_with_if
@@ -83,8 +84,10 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /operationalstate  type: None
+  def_name OperationUpdate
+  def_name Operation
 remove_definition_properties
-   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
+  rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
   definition: #/definitions/OperationUpdate
   definition: #/definitions/Operation
 remove_path_method
@@ -125,7 +128,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.switch.binary  href: /onoff
 update_path_value /BinarySwitchResURI
-update_path_value :: /BinarySwitchResURI /onoff
+ update_path_value : /BinarySwitchResURI /onoff
 update_definition_with_rt
   rt: oic.r.switch.binary
 update_definition_with_if
@@ -136,8 +139,9 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /onoff  type: None
+  def_name BinarySwitch
 remove_definition_properties
-   rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
+  rt: oic.r.switch.binary  prop: ['range', 'step', 'precision']
   definition: #/definitions/BinarySwitch
   definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: range
@@ -153,7 +157,7 @@ collapse_allOf:
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
 update_path_value /OperationalStateResURI
-update_path_value :: /OperationalStateResURI /operationalstate
+ update_path_value : /OperationalStateResURI /operationalstate
 update_definition_with_rt
   rt: oic.r.operational.state
 update_definition_with_if
@@ -164,8 +168,10 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /operationalstate  type: None
+  def_name OperationUpdate
+  def_name Operation
 remove_definition_properties
-   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
+  rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
   definition: #/definitions/OperationUpdate
   definition: #/definitions/Operation
 remove_path_method
