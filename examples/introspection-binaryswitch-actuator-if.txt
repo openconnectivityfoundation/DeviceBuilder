@@ -63,7 +63,6 @@
         },
         "rt" : {
           "type" : "array",
-          "readOnly": true,
           "items" : {
             "type" : "string",
             "maxLength" : 64
