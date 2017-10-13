@@ -10,6 +10,12 @@ These files are manually crafted.
 - introspection-binaryswitch-acutator.txt
 
   single binary switch, as actuator.
+  - no "if" on the wire
+
+- introspection-binaryswitch-acutator-if.txt
+
+  single binary switch, as actuator.
+  - "if" on the wire
 
 - introspection-binaryswitch-sensor.txt
 
