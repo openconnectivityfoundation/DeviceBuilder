@@ -9,6 +9,7 @@ remove_property     : None
 type                : None
 intermediate files  : False
 
+
 == INTROSPECTION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -22,6 +23,7 @@ processing files: ['TemperatureResURI.swagger.json']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
     methods (remove) : ['post']
+    rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
   rt                 : oic.r.temperature
     href             : /actuatorthermostat
@@ -29,12 +31,14 @@ processing files: ['TemperatureResURI.swagger.json']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
  
 
 create_introspection index: 0 /sensorthermostat
 collapse_allOf:
    Temperature
+handle_collections
 update_path_value:
    rt: oic.r.temperature  href: /sensorthermostat
 update_path_value /TemperatureResURI
@@ -67,6 +71,7 @@ erase_element: Cannot find matching key: x-example
 create_introspection index: 1 /actuatorthermostat
 collapse_allOf:
    Temperature
+handle_collections
 update_path_value:
    rt: oic.r.temperature  href: /actuatorthermostat
 update_path_value /TemperatureResURI
@@ -100,6 +105,7 @@ merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface10
  parameter fix --> {'$ref': '#/parameters/interface'}
 merge: definition exist: Temperature
+
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -113,6 +119,7 @@ processing files: ['TemperatureResURI.swagger.json']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
     methods (remove) : ['post']
+    rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
   rt                 : oic.r.temperature
     href             : /actuatorthermostat
@@ -120,12 +127,14 @@ processing files: ['TemperatureResURI.swagger.json']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
  
 
 create_introspection index: 0 /sensorthermostat
 collapse_allOf:
    Temperature
+handle_collections
 update_path_value:
    rt: oic.r.temperature  href: /sensorthermostat
 update_path_value /TemperatureResURI
@@ -155,6 +164,7 @@ remove_path_method
 create_introspection index: 1 /actuatorthermostat
 collapse_allOf:
    Temperature
+handle_collections
 update_path_value:
    rt: oic.r.temperature  href: /actuatorthermostat
 update_path_value /TemperatureResURI

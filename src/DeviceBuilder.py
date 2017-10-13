@@ -47,6 +47,8 @@ index_if = 2
 index_type = 3
 index_prop = 4
 index_method = 5 
+index_rts = 6 
+index_file = 7
 
 class MyArgs(object):
     def __init__(self):
@@ -187,7 +189,38 @@ def find_key_value(rec_dict, searchkey, target, depth=0):
                         r = find_key_value(entry, searchkey, target, depth+1)
                         if r is not None:
                             return r
+                               
+    
+def get_dict_recursively(search_dict, field):
+    """
+    Takes a dict with nested lists and dicts,
+    and searches all dicts for a key of the field
+    provided.
+    """
+    fields_found = []
 
+    try:
+        for key, value in search_dict.items():
+
+            if key == field:
+                fields_found.append([key, value, search_dict])
+
+            elif isinstance(value, dict):
+                results = get_dict_recursively(value, field)
+                for result in results:
+                    fields_found.append(result)
+
+            elif isinstance(value, list):
+                for item in value:
+                    if isinstance(item, dict):
+                        more_results = get_dict_recursively(item, field)
+                        for another_result in more_results:
+                            fields_found.append(another_result)
+    except:
+        traceback.print_exc()
+
+    return fields_found  
+    
                             
 def find_key_and_clean(rec_dict, search_key, depth=0):
     """
@@ -233,7 +266,7 @@ def find_oic_res_resources(filename, my_args):
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
                         if "oic.d." not in rt_value:
-                            found_rt_values.append([rt_value, href, prop_if, args_type, args_props, None])
+                            found_rt_values.append([rt_value, href, prop_if, args_type, args_props, None, None])
                         else:
                             print ("find_resources: device type rt (not handled):", rt_value)
                     else:
@@ -245,7 +278,7 @@ def find_input_resources(filename):
     """
     find the rt values for introspection, uses the ingore list and excludes oic.d and .com. in the rt values.
     :param filename: filename with oic/res response (json)
-    :return: array with found [rt, href, if, type,[props to be removed], [methods to be removed]] values
+    :return: array with found [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values]] values
     """
     rt_ingore_list = ["oic.wk.res", "oic.r.doxm", "oic.r.pstat", "oic.r.acl2", "oic.r.cred",
                       "oic.r.csr", "oic.r.crl", "oic.r.roles", "oic.wk.d", "oic.wk.p", "oic.wk.introspection"]
@@ -258,12 +291,13 @@ def find_input_resources(filename):
         my_type = entry.get("override_type")
         methods = entry.get("remove_methods")
         props = entry.get("remove_properties")
+        rts = entry.get("collection_rts_enum")
         if rt:
             for rt_value in rt:
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
                         if "oic.d." not in rt_value:
-                            found_rt_values.append([rt_value, href, prop_if, my_type, props, methods])
+                            found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts])
                         else:
                             print ("find_resources: device type rt (not handled):", rt_value)
                     else:
@@ -547,6 +581,9 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print ("  rt:", rt_value[index_rt], " prop:", rt_value[index_prop])
     
+    if rt_values[0][index_prop] == None :
+        return
+    
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
@@ -597,6 +634,10 @@ def remove_path_method(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print ("   href:", rt_value[index_href], " method:", rt_value[index_method])
     
+    #if rt_values[0][index_path] == None :
+    #    return
+    
+    
     # array of arrays of path, r, ref, rt_values
     # keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -618,7 +659,10 @@ def update_path_value(json_data, rt_value_file, rt_values):
     print ("update_path_value:")
     for rt_value in rt_values:
         print ("   rt:", rt_value[index_rt], " href:", rt_value[index_href])
-
+        
+    #if rt_values[0][index_path] == None :
+    #    return
+        
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
         print ("update_path_value", path)
@@ -662,7 +706,6 @@ def collapse_allOf(json_data):
             if prop_name == "allOf":
                 handle_allof = True
                 for item_id in prop:
-                    #print ("    collapse_allOf items:", item_id)
                     for item_name, item in item_id.items():
                         if item_name == "properties":
                             # check if properties exist already
@@ -684,10 +727,7 @@ def collapse_allOf(json_data):
                                 # add properties decendants to the existing properties key
                                 if isinstance(item, dict): 
                                     for prop_item_name, prop_item in item.items():
-                                       new_props["properties"][prop_item_name] = prop_item 
-                            
-                            
-                            #print ("    collapse_allOf item_name:", item_name)
+                                       new_props["properties"][prop_item_name] = prop_item
                         if item_name in ["oneOf", "anyOf", "allOf"]:
                             handle_allof = False        
         if handle_allof:
@@ -695,8 +735,67 @@ def collapse_allOf(json_data):
             #print ("   ", new_props)
             def_data[def_name] = new_props
             
-                            
             
+
+
+  
+def handle_collections(json_data, rt_value_file, rt_values):
+    """
+    handle collections
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
+    """
+    print("handle_collections")
+    #if rt_values[0][index_rts] == None :
+    #    return
+    #print("handle_collections: handling", rt_values[0][index_href])    
+    
+    # array of arrays of path, r, ref, rt_values
+    keyvaluepairs = []
+    for path, path_item in json_data["paths"].items():
+        found_rt = False
+        rt_f = None
+        try:
+            x_example = path_item["get"]["responses"]["200"]["x-example"]
+            rt = x_example.get("rt")
+            schema = path_item["get"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            if find_in_array(rt[0], rt_values):
+                for rt_f in rt_values:
+                    if rt_f[0] == rt[0]:
+                        keyvaluepairs.append([path, rt, ref, rt_f])
+                        found_rt = True
+        except:
+            pass
+        try:
+            schema = path_item["post"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            if found_rt:
+                keyvaluepairs.append([path, rt, ref, rt_f])
+        except:
+            pass    
+               
+    if rt_values[0][index_rts] == None:
+        return
+               
+    def_data = json_data["definitions"]
+    for def_name, def_item in def_data.items():
+        full_def_name = "#/definitions/" + def_name
+        for entry in keyvaluepairs:
+            if entry[2] == full_def_name:
+                # found entry
+                rd = get_dict_recursively (def_item, "rts")
+                newval = {'type': 'array', 'minItems': 1, 'items': {""},  'uniqueItems': True}
+                my_enum ={}
+                my_enum["enum"] = rt_values[0][index_rts]
+                newval["items"] = my_enum
+                for item in rd:
+                    print ("  replacing rts:", full_def_name)
+                    mydict = item[2]
+                    mydict[item[0]] = newval
+    
+    
 def create_introspection(json_data, rt_value_file, rt_values, index):
     """
     create the introspection data, e.g. morph json_data.
@@ -710,6 +809,7 @@ def create_introspection(json_data, rt_value_file, rt_values, index):
     # if rt_single is not None:
     print("create_introspection index:", index, rt_single[0][index_href])
     collapse_allOf(json_data)
+    handle_collections(json_data, rt_value_file, rt_single)
     update_path_value(json_data, rt_value_file, rt_single)
     update_definition_with_rt(json_data, rt_value_file, rt_single)
     update_definition_with_if(json_data, rt_value_file, rt_single)
@@ -817,27 +917,30 @@ def main_app(my_args, generation_type):
         rt_values_file = swagger_rt(file_data)
         print ("  main: rt :", rt_values_file)
         for rt in rt_values:
-            if rt[0] == rt_values_file[0]:
-                rt.append(my_file)
+            if rt[index_rt] == rt_values_file[0]:
+                rt.append(my_file)  
+            #else:
+            #    rt.append(None)
                 
     if rt_values is not None:           
         for rt in rt_values:
-            print ("  rt                 :", rt[0])
-            print ("    href             :", rt[1])
-            print ("    if               :", rt[2])
-            print ("    type (replace)   :", rt[3])
-            print ("    props (remove)   :", rt[4])
-            print ("    methods (remove) :", rt[5])
-            if len(rt) > 6:
-                print ("    basefile         :", rt[6])
-            else:
-                print("    no base file found! : ignored")
+            # always append one...
+            rt.append(None)
+            print ("  rt                 :", rt[index_rt])
+            print ("    href             :", rt[index_href])
+            print ("    if               :", rt[index_if])
+            print ("    type (replace)   :", rt[index_type])
+            print ("    props (remove)   :", rt[index_prop])
+            print ("    methods (remove) :", rt[index_method])
+            print ("    rts (enum)       :", rt[index_rts])
+            print ("    basefile         :", rt[index_file])
+                
         print(" ")   
             
         index = 0
         for rt in rt_values:
-            if len(rt) > 6:
-                file_data = load_json(rt[6], str(my_args.resource_dir))
+            if rt[index_file] is not None:
+                file_data = load_json(rt[index_file], str(my_args.resource_dir))
                 rt_values_file = swagger_rt(file_data)
                 create_introspection(file_data, rt_values_file, rt_values, index)
                 
@@ -903,14 +1006,16 @@ if __name__ == '__main__':
     myargs.my_print()
     
     try:
+        print ("")
         print ("== INTROSPECTION ==")
         main_app(myargs, "introspection")
         
+        print ("")
         print ("== CODE GENERATION ==")
         main_app(myargs, "codegeneration")
             
         
     except:
-        print ("error in ", args.ocfres)
+        #print ("error in ", args.ocfres)
         traceback.print_exc()
         pass

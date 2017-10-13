@@ -9,6 +9,7 @@ remove_property     : ['step', 'range', 'precision']
 type                : None
 intermediate files  : False
 
+
 == INTROSPECTION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -27,6 +28,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     type (replace)   : None
     props (remove)   : ['step', 'range', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BrightnessResURI.swagger.json
   rt                 : oic.r.switch.binary
     href             : /BinarySwitchResURI
@@ -34,12 +36,14 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     type (replace)   : None
     props (remove)   : ['step', 'range', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
 
 create_introspection index: 0 /BrightnessResURI
 collapse_allOf:
    Brightness
+handle_collections
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
@@ -71,6 +75,7 @@ erase_element: Cannot find matching key: x-example
 create_introspection index: 1 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -99,6 +104,7 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -117,6 +123,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     type (replace)   : None
     props (remove)   : ['step', 'range', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BrightnessResURI.swagger.json
   rt                 : oic.r.switch.binary
     href             : /BinarySwitchResURI
@@ -124,12 +131,14 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     type (replace)   : None
     props (remove)   : ['step', 'range', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
 
 create_introspection index: 0 /BrightnessResURI
 collapse_allOf:
    Brightness
+handle_collections
 update_path_value:
    rt: oic.r.light.brightness  href: /BrightnessResURI
 update_path_value /BrightnessResURI
@@ -158,6 +167,7 @@ remove_path_method
 create_introspection index: 1 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI

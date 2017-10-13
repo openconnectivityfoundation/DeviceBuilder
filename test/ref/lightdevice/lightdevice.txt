@@ -9,6 +9,7 @@ remove_property     : None
 type                : None
 intermediate files  : False
 
+
 == INTROSPECTION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -28,6 +29,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     type (replace)   : None
     props (remove)   : ['range', 'step', 'id', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
   rt                 : oic.r.light.dimming
     href             : /dimming
@@ -35,6 +37,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : DimmingResURI.swagger.json
   rt                 : oic.r.colour.chroma
     href             : /colourchroma
@@ -42,12 +45,14 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : ColourChromaResURI.swagger.json
  
 
 create_introspection index: 0 /binaryswitch
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
@@ -81,6 +86,7 @@ erase_element: Cannot find matching key: x-example
 create_introspection index: 1 /dimming
 collapse_allOf:
    Dimming
+handle_collections
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
@@ -116,6 +122,7 @@ merge: parameter exist: interface
 create_introspection index: 2 /colourchroma
 collapse_allOf:
    ColourChroma
+handle_collections
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI
@@ -146,6 +153,7 @@ optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -165,6 +173,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     type (replace)   : None
     props (remove)   : ['range', 'step', 'id', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
   rt                 : oic.r.light.dimming
     href             : /dimming
@@ -172,6 +181,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : DimmingResURI.swagger.json
   rt                 : oic.r.colour.chroma
     href             : /colourchroma
@@ -179,12 +189,14 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : ColourChromaResURI.swagger.json
  
 
 create_introspection index: 0 /binaryswitch
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /binaryswitch
 update_path_value /BinarySwitchResURI
@@ -215,6 +227,7 @@ remove_path_method
 create_introspection index: 1 /dimming
 collapse_allOf:
    Dimming
+handle_collections
 update_path_value:
    rt: oic.r.light.dimming  href: /dimming
 update_path_value /DimmingResURI
@@ -247,6 +260,7 @@ merge: parameter exist: interface
 create_introspection index: 2 /colourchroma
 collapse_allOf:
    ColourChroma
+handle_collections
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
 update_path_value /ColourChromaResURI

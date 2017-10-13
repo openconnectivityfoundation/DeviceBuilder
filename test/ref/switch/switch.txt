@@ -9,6 +9,7 @@ remove_property     : None
 type                : None
 intermediate files  : False
 
+
 == INTROSPECTION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -22,12 +23,14 @@ processing files: ['BinarySwitchResURI.swagger.json']
     type (replace)   : integer
     props (remove)   : ['range']
     methods (remove) : ['post']
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
 
 create_introspection index: 0 /mypath
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /mypath
 update_path_value /BinarySwitchResURI
@@ -56,6 +59,7 @@ remove_path_method
    href: /mypath  method: ['post']
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
+
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -69,12 +73,14 @@ processing files: ['BinarySwitchResURI.swagger.json']
     type (replace)   : integer
     props (remove)   : ['range']
     methods (remove) : ['post']
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
 
 create_introspection index: 0 /mypath
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /mypath
 update_path_value /BinarySwitchResURI

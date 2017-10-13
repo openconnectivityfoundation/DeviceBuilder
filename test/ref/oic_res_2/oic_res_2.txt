@@ -9,6 +9,7 @@ remove_property     : None
 type                : None
 intermediate files  : False
 
+
 == INTROSPECTION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -24,19 +25,22 @@ processing files: ['BinarySwitchResURI.swagger.json']
     type (replace)   : None
     props (remove)   : None
     methods (remove) : None
-    no base file found! : ignored
+    rts (enum)       : None
+    basefile         : None
   rt                 : oic.r.switch.binary
     href             : /myBinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : None
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
 
 create_introspection index: 1 /myBinarySwitchResURI
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /myBinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -54,13 +58,12 @@ update_definition_with_type
   def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
-  definition: #/definitions/BinarySwitch
-  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /myBinarySwitchResURI  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
+
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
 find_resources: vendor defined rt (not handled): x.com.vendor.device.eco.power
@@ -76,19 +79,22 @@ processing files: ['BinarySwitchResURI.swagger.json']
     type (replace)   : None
     props (remove)   : None
     methods (remove) : None
-    no base file found! : ignored
+    rts (enum)       : None
+    basefile         : None
   rt                 : oic.r.switch.binary
     href             : /myBinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : None
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
 
 create_introspection index: 1 /myBinarySwitchResURI
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /myBinarySwitchResURI
 update_path_value /BinarySwitchResURI
@@ -106,7 +112,5 @@ update_definition_with_type
   def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
-  definition: #/definitions/BinarySwitch
-  definition: #/definitions/BinarySwitch
 remove_path_method
    href: /myBinarySwitchResURI  method: None

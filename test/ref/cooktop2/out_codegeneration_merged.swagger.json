@@ -1,0 +1,622 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "HeatingZone": {
+      "description": "A collection is a set (array) of tagged-link or set (array) of simple links along with additional properties to describe the collection itself",
+      "properties": {
+        "drel": {
+          "description": "When specified this is the default relationship to use when an OIC Link does not specify an explicit relationship with *rel* parameter",
+          "type": "string"
+        },
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "links": {
+          "description": "All forms of links in a collection",
+          "oneOf": [
+            {
+              "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required",
+              "items": {
+                "properties": {
+                  "anchor": {
+                    "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                    "format": "uri",
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "di": {
+                    "description": "Unique identifier for device (UUID)",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                    "type": "string"
+                  },
+                  "eps": {
+                    "description": "the Endpoint information of the target Resource",
+                    "items": {
+                      "properties": {
+                        "ep": {
+                          "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "pri": {
+                          "description": "The priority among multiple Endpoints as specified in 10.2.3",
+                          "minimum": 1,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "href": {
+                    "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                    "format": "uri",
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "if": {
+                    "description": "The interface set supported by this resource",
+                    "items": {
+                      "enum": [
+                        "oic.if.baseline",
+                        "oic.if.ll",
+                        "oic.if.b",
+                        "oic.if.rw",
+                        "oic.if.r",
+                        "oic.if.a",
+                        "oic.if.s"
+                      ],
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "ins": {
+                    "description": "The instance identifier for this web link in an array of web links - used in collections",
+                    "oneOf": [
+                      {
+                        "description": "An ordinal number that is not repeated - must be unique in the collection context",
+                        "type": "integer"
+                      },
+                      {
+                        "description": "Any unique string including a URI",
+                        "format": "uri",
+                        "maxLength": 256,
+                        "type": "string"
+                      },
+                      {
+                        "description": "Unique identifier (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "p": {
+                    "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                    "properties": {
+                      "bm": {
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "bm"
+                    ],
+                    "type": "object"
+                  },
+                  "rel": {
+                    "description": "The relation of the target URI referenced by the link to the context URI",
+                    "oneOf": [
+                      {
+                        "default": [
+                          "hosts"
+                        ],
+                        "items": {
+                          "maxLength": 64,
+                          "type": "string"
+                        },
+                        "minItems": 1,
+                        "type": "array"
+                      },
+                      {
+                        "default": "hosts",
+                        "maxLength": 64,
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "rt": {
+                    "description": "Resource Type",
+                    "items": {
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "title": {
+                    "description": "A title for the link relation. Can be used by the UI to provide a context",
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "type": {
+                    "default": "application/cbor",
+                    "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                    "items": {
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "href",
+                  "rt",
+                  "if"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            }
+          ]
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "items": {
+            "enum": [
+              "oic.r.heatingzonecollection",
+              "oic.wk.col"
+            ]
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rts": {
+          "items": {
+            "enum": [
+              "oic.r.heatingzone"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
+    "HeatingZone-ll": {
+      "allOf": [
+        {
+          "description": "All forms of links in a collection",
+          "oneOf": [
+            {
+              "description": "A set (array) of simple or individual OIC Links. In addition to properties required for an OIC Link, the identifier for that link in this set is also required",
+              "items": {
+                "properties": {
+                  "anchor": {
+                    "description": "This is used to override the context URI e.g. override the URI of the containing collection",
+                    "format": "uri",
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "di": {
+                    "description": "Unique identifier for device (UUID)",
+                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                    "type": "string"
+                  },
+                  "eps": {
+                    "description": "the Endpoint information of the target Resource",
+                    "items": {
+                      "properties": {
+                        "ep": {
+                          "description": "URI with Transport Protocol Suites + Endpoint Locator as specified in 10.2.1",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "pri": {
+                          "description": "The priority among multiple Endpoints as specified in 10.2.3",
+                          "minimum": 1,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "href": {
+                    "description": "This is the target URI, it can be specified as a Relative Reference or fully-qualified URI. Relative Reference should be used along with the di parameter to make it unique.",
+                    "format": "uri",
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "if": {
+                    "description": "The interface set supported by this resource",
+                    "items": {
+                      "enum": [
+                        "oic.if.baseline",
+                        "oic.if.ll",
+                        "oic.if.b",
+                        "oic.if.rw",
+                        "oic.if.r",
+                        "oic.if.a",
+                        "oic.if.s"
+                      ],
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "ins": {
+                    "description": "The instance identifier for this web link in an array of web links - used in collections",
+                    "oneOf": [
+                      {
+                        "description": "An ordinal number that is not repeated - must be unique in the collection context",
+                        "type": "integer"
+                      },
+                      {
+                        "description": "Any unique string including a URI",
+                        "format": "uri",
+                        "maxLength": 256,
+                        "type": "string"
+                      },
+                      {
+                        "description": "Unique identifier (UUID)",
+                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "p": {
+                    "description": "Specifies the framework policies on the Resource referenced by the target URI",
+                    "properties": {
+                      "bm": {
+                        "description": "Specifies the framework policies on the Resource referenced by the target URI for e.g. observable and discoverable",
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "bm"
+                    ],
+                    "type": "object"
+                  },
+                  "rel": {
+                    "description": "The relation of the target URI referenced by the link to the context URI",
+                    "oneOf": [
+                      {
+                        "default": [
+                          "hosts"
+                        ],
+                        "items": {
+                          "maxLength": 64,
+                          "type": "string"
+                        },
+                        "minItems": 1,
+                        "type": "array"
+                      },
+                      {
+                        "default": "hosts",
+                        "maxLength": 64,
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "rt": {
+                    "description": "Resource Type",
+                    "items": {
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "title": {
+                    "description": "A title for the link relation. Can be used by the UI to provide a context",
+                    "maxLength": 64,
+                    "type": "string"
+                  },
+                  "type": {
+                    "default": "application/cbor",
+                    "description": "A hint at the representation of the resource referenced by the target URI. This represents the media types that are used for both accepting and emitting",
+                    "items": {
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "href",
+                  "rt",
+                  "if"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            }
+          ]
+        }
+      ]
+    },
+    "HeatingZone00": {
+      "properties": {
+        "heatinglevel": {
+          "description": "Current heating level for the zone indicated.",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "maxheatinglevel": {
+          "description": "Maximum heating level for the zone indicated.",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maxheatinglevel",
+        "heatinglevel"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    "title": "Heating Zone Collection",
+    "version": "OCF1.0-20160722"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface-baseline": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface-ll": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/HeatingZoneLLResURI": {
+      "get": {
+        "description": "This Resource provides information about the status of the heating zones of a Cook-Top.\nIt describes the case of a Cook-Top whose zones can be activated dynamically (i.e. the device implements pot recognition).\nThe resource is a collection of instances of oic.r.heatingzone detailing the individual cooktop zones\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-ll"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/HeatingZone-ll"
+            },
+            "x-example": [
+              {
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ],
+                "href": "/myZone1ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ]
+              },
+              {
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ],
+                "href": "/myZone2ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ]
+              },
+              {
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ],
+                "href": "/myZone3ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ]
+              },
+              {
+                "eps": [
+                  {
+                    "ep": "coaps://[fe80::b1d6]:1122"
+                  }
+                ],
+                "href": "/myZone4ResURI",
+                "if": [
+                  "oic.if.s"
+                ],
+                "rt": [
+                  "oic.r.heatingzone"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/heatingzone1": {
+      "get": {
+        "description": "This Resource provides information about the status of a heating zone of a Cook-Top.\nIt describes the case of a Cook-Top whose zones can be activated dynamically (i.e. the device implements pot recognition).\nmaxheatinglevel defines the max level for the heating zone\nheatinglevel is the current heating level of the zone\n  For each element the value range is from 0 (indication that the zone is not heating) to maxheatinglevel,\nRetrieves the current heating zone information.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/HeatingZone00"
+            },
+            "x-example": {
+              "heatinglevel": 0,
+              "id": "unique_example_id",
+              "maxheatinglevel": 6,
+              "rt": [
+                "oic.r.heatingzone"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/heatingzonecollection": {
+      "get": {
+        "description": "This Resource provides information about the status of the heating zones of a Cook-Top.\nIt describes the case of a Cook-Top whose zones can be activated dynamically (i.e. the device implements pot recognition).\nThe resource is a collection of instances of oic.r.heatingzone detailing the individual cooktop zones\nRetrieves the current heating zone information.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-baseline"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/HeatingZone"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "links": [
+                {
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ],
+                  "href": "/myZone1ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ]
+                },
+                {
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ],
+                  "href": "/myZone2ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ]
+                },
+                {
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ],
+                  "href": "/myZone3ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ]
+                },
+                {
+                  "eps": [
+                    {
+                      "ep": "coaps://[fe80::b1d6]:1122"
+                    }
+                  ],
+                  "href": "/myZone4ResURI",
+                  "if": [
+                    "oic.if.s",
+                    "oic.if.baseline"
+                  ],
+                  "rt": [
+                    "oic.r.heatingzone"
+                  ]
+                }
+              ],
+              "rt": [
+                "oic.r.heatingzonecollection",
+                "oic.wk.col"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}

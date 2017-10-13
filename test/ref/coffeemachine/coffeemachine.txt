@@ -9,6 +9,7 @@ remove_property     : None
 type                : None
 intermediate files  : False
 
+
 == INTROSPECTION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -25,6 +26,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
     type (replace)   : None
     props (remove)   : ['range', 'step', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
   rt                 : oic.r.operational.state
     href             : /operationalstate
@@ -32,12 +34,14 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : OperationalStateResURI.swagger.json
  
 
 create_introspection index: 0 /onoff
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /onoff
 update_path_value /BinarySwitchResURI
@@ -68,8 +72,9 @@ erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /operationalstate
 collapse_allOf:
-   OperationUpdate
    Operation
+   OperationUpdate
+handle_collections
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
 update_path_value /OperationalStateResURI
@@ -84,18 +89,19 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /operationalstate  type: None
-  def_name OperationUpdate
   def_name Operation
+  def_name OperationUpdate
 remove_definition_properties
   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/OperationUpdate
   definition: #/definitions/Operation
+  definition: #/definitions/OperationUpdate
 remove_path_method
    href: /operationalstate  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
@@ -112,6 +118,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
     type (replace)   : None
     props (remove)   : ['range', 'step', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
   rt                 : oic.r.operational.state
     href             : /operationalstate
@@ -119,12 +126,14 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
     methods (remove) : None
+    rts (enum)       : None
     basefile         : OperationalStateResURI.swagger.json
  
 
 create_introspection index: 0 /onoff
 collapse_allOf:
    BinarySwitch
+handle_collections
 update_path_value:
    rt: oic.r.switch.binary  href: /onoff
 update_path_value /BinarySwitchResURI
@@ -152,8 +161,9 @@ remove_path_method
 
 create_introspection index: 1 /operationalstate
 collapse_allOf:
-   OperationUpdate
    Operation
+   OperationUpdate
+handle_collections
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
 update_path_value /OperationalStateResURI
@@ -168,12 +178,12 @@ update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /operationalstate  type: None
-  def_name OperationUpdate
   def_name Operation
+  def_name OperationUpdate
 remove_definition_properties
   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/OperationUpdate
   definition: #/definitions/Operation
+  definition: #/definitions/OperationUpdate
 remove_path_method
    href: /operationalstate  method: None
 merge: parameter exist: interface

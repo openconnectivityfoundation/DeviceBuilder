@@ -159,6 +159,11 @@ TEST_CASE="cooktop"
 resfile=./input_define_device/input-cooktop.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
+
+TEST_CASE="cooktop2"
+resfile=./input_define_device/input-cooktop2.json
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+
 }
 
 if [ ! -f ../../IoTDataModels/README.md ]
