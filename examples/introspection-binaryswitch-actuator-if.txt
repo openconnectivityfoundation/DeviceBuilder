@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "title" : "Binary Switch - actuator",
-    "version" : "v1.1.0-20160519"
+    "version" : "v1.1.0-20171013"
   },
   "schemes" : ["http"],
   "consumes" : ["application/json"],
@@ -78,8 +78,8 @@
             "type" : "string",
             "maxLength" : 64,
             "enum" : [
-              "oic.r.a",
-              "oic.r.baseline"
+              "oic.if.a",
+              "oic.if.baseline"
             ]
           },
           "minItems" : 1,
