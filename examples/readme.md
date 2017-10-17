@@ -33,6 +33,10 @@ These files are manually crafted.
   
 - ctt_1 test device
 
+  Note that the responses have the "if" property, as currently being used in the binary switch.
+  All other optional properties are removed.
+  The temperature has only Temperature and units as properties.
+
     - Full light device (binary switch, dimming, colour chroma)
         - /binaryswitch
         - /dimming
