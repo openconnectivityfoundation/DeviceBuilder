@@ -29,3 +29,14 @@ These files are manually crafted.
 - introspection-binaryswitch-2x-actuator.txt
 
   binary switch, two as actuator.
+  
+  
+- ctt_1 test device
+
+    - Full light device (binary switch, dimming, colour chroma)
+        - /binaryswitch
+        - /dimming
+        - /colourchroma
+    - Temperature 2x , sensor and actuator
+        - /actuatorthermostat
+        - /sensorthermostat
