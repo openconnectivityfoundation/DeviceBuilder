@@ -1,0 +1,353 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "BinarySwitch": {
+      "properties": {
+        "value": {
+          "description": "",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "ColourChroma": {
+      "properties": {
+        "csc": {
+          "description": "",
+          "items": {
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "ct": {
+          "description": "",
+          "type": "integer"
+        },
+        "hue": {
+          "description": "",
+          "type": "integer"
+        },
+        "saturation": {
+          "description": "",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "hue",
+        "saturation",
+        "csc"
+      ],
+      "type": "object"
+    },
+    "Dimming": {
+      "properties": {
+        "dimmingSetting": {
+          "description": "",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dimmingSetting"
+      ],
+      "type": "object"
+    },
+    "Temperature": {
+      "properties": {
+        "temperature": {
+          "description": "",
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface30": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/actuatorthermostat": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    },
+    "/binaryswitch": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      }
+    },
+    "/colourchroma": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ColourChroma"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ColourChroma"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ColourChroma"
+            }
+          }
+        }
+      }
+    },
+    "/dimming": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            }
+          }
+        }
+      }
+    },
+    "/sensorthermostat": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface30"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}

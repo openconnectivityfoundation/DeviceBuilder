@@ -166,6 +166,15 @@ my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_
 
 }
 
+
+function deviceBuilder_ctt_tests {
+
+TEST_CASE="ctt_1"
+resfile=./input_define_device/ctt_1.json
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+
+}
+
 if [ ! -f ../../IoTDataModels/README.md ]
 then
 pushd `pwd`
@@ -179,3 +188,4 @@ generic_tests
 oic_res_tests
 deviceBuilder_tests 
 deviceBuilder_tests2  
+deviceBuilder_ctt_tests
