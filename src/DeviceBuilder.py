@@ -423,11 +423,26 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
     for def_name, def_item in def_data.items():
         full_def_name = "#/definitions/" + def_name
         for entry in keyvaluepairs:
-            if entry[0] == full_def_name:
+            if entry[2] == full_def_name:
                 # found entry
                 properties = def_item.get("properties")
+                rt_prop = properties.get("rt")
+                if rt_prop is None:
+                    print ("  update_definition_with_rt rt not found!, inserting..")
+                    properties["rt"] =  json.loads("""{
+                          "type" : "array",
+                          "items" : {
+                            "type" : "string",
+                            "maxLength" : 64
+                          },
+                          "minItems" : 1,
+                          "readOnly" : true,
+                          "default" : ["oic.r.switch.binary"]
+                        }""")
+                #print ("  ",properties["rt"])
+                
                 for prop_name, prop in properties.items():
-                    print ("update_definition_with_rt ", prop_name)
+                    print ("  update_definition_with_rt ", prop_name)
                     if prop_name == "rt":
                         prop["default"] = [entry[1]]
                              
@@ -463,10 +478,34 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                 # found entry
                 properties = def_item.get("properties")
                 if properties is not None:
+                    # found entry
+                    properties = def_item.get("properties")
+                    if_prop = properties.get("if")
+                    if if_prop is None:
+                        print ("  update_definition_with_if if not found!, inserting..")
+                        properties["if"] =  json.loads("""{
+                          "type" : "array",
+                          "readOnly": true,
+                          "items" : {
+                            "type" : "string",
+                            "maxLength" : 64,
+                            "enum" : [
+                              "oic.if.a",
+                              "oic.if.baseline"
+                            ]
+                          },
+                          "minItems" : 1,
+                          "maxItems" : 2,
+                          "uniqueItems" : true
+                        }""")
+                    #print ("  ",properties["if"])
+
                     for prop_name, prop in properties.items():
                         if prop_name == "if":
-                            print (" replacing if with", entry[3][index_if])
+                            print ("  replacing if with", entry[3][index_if])
                             prop["items"]["enum"] = entry[3][index_if]
+                            if len(entry[3][index_if]) != 2:
+                                prop["maxItems"] = len(entry[3][index_if])
                         
                         
 def update_parameters_with_if(json_data, rt_value_file, rt_values):

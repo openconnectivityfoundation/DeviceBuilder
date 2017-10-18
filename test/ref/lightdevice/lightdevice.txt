@@ -59,8 +59,16 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /binaryswitch
 update_definition_with_rt
   rt: oic.r.switch.binary
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
+  update_definition_with_rt  value
+  update_definition_with_rt  step
+  update_definition_with_rt  range
+  update_definition_with_rt  precision
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -93,8 +101,17 @@ update_path_value /DimmingResURI
  update_path_value : /DimmingResURI /dimming
 update_definition_with_rt
   rt: oic.r.light.dimming
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
+  update_definition_with_rt  precision
+  update_definition_with_rt  range
+  update_definition_with_rt  dimmingSetting
+  update_definition_with_rt  value
+  update_definition_with_rt  step
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -129,8 +146,20 @@ update_path_value /ColourChromaResURI
  update_path_value : /ColourChromaResURI /colourchroma
 update_definition_with_rt
   rt: oic.r.colour.chroma
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  hue
+  update_definition_with_rt  csc
+  update_definition_with_rt  precision
+  update_definition_with_rt  range
+  update_definition_with_rt  value
+  update_definition_with_rt  ct
+  update_definition_with_rt  saturation
 update_definition_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -203,8 +232,16 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /binaryswitch
 update_definition_with_rt
   rt: oic.r.switch.binary
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
+  update_definition_with_rt  value
+  update_definition_with_rt  step
+  update_definition_with_rt  range
+  update_definition_with_rt  precision
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -234,8 +271,17 @@ update_path_value /DimmingResURI
  update_path_value : /DimmingResURI /dimming
 update_definition_with_rt
   rt: oic.r.light.dimming
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
+  update_definition_with_rt  precision
+  update_definition_with_rt  range
+  update_definition_with_rt  dimmingSetting
+  update_definition_with_rt  value
+  update_definition_with_rt  step
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -267,8 +313,20 @@ update_path_value /ColourChromaResURI
  update_path_value : /ColourChromaResURI /colourchroma
 update_definition_with_rt
   rt: oic.r.colour.chroma
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  hue
+  update_definition_with_rt  csc
+  update_definition_with_rt  precision
+  update_definition_with_rt  range
+  update_definition_with_rt  value
+  update_definition_with_rt  ct
+  update_definition_with_rt  saturation
 update_definition_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface

@@ -5,6 +5,21 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
         "precision": {
           "description": "",
           "readOnly": true,
@@ -24,6 +39,20 @@
           },
           "maxItems": 2,
           "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.switch.binary"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
           "readOnly": true,
           "type": "array"
         },

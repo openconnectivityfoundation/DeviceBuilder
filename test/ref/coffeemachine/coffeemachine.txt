@@ -48,8 +48,16 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /onoff
 update_definition_with_rt
   rt: oic.r.switch.binary
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  value
+  update_definition_with_rt  range
+  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  precision
 update_definition_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -81,8 +89,23 @@ update_path_value /OperationalStateResURI
  update_path_value : /OperationalStateResURI /operationalstate
 update_definition_with_rt
   rt: oic.r.operational.state
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  machineStates
+  update_definition_with_rt  currentMachineState
+  update_definition_with_rt  jobStates
+  update_definition_with_rt  value
+  update_definition_with_rt  range
+  update_definition_with_rt  precision
+  update_definition_with_rt  currentJobState
+  update_definition_with_rt  remainingTime
+  update_definition_with_rt  step
+  update_definition_with_rt  rt
+  update_definition_with_rt  progressPercentage
+  update_definition_with_rt  runningTime
 update_definition_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -140,8 +163,16 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /onoff
 update_definition_with_rt
   rt: oic.r.switch.binary
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  value
+  update_definition_with_rt  range
+  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  precision
 update_definition_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
@@ -170,8 +201,23 @@ update_path_value /OperationalStateResURI
  update_path_value : /OperationalStateResURI /operationalstate
 update_definition_with_rt
   rt: oic.r.operational.state
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  machineStates
+  update_definition_with_rt  currentMachineState
+  update_definition_with_rt  jobStates
+  update_definition_with_rt  value
+  update_definition_with_rt  range
+  update_definition_with_rt  precision
+  update_definition_with_rt  currentJobState
+  update_definition_with_rt  remainingTime
+  update_definition_with_rt  step
+  update_definition_with_rt  rt
+  update_definition_with_rt  progressPercentage
+  update_definition_with_rt  runningTime
 update_definition_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface

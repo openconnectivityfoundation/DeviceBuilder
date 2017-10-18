@@ -5,6 +5,35 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.switch.binary"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
         "value": {
           "description": "Status of the switch",
           "type": "boolean"
@@ -36,10 +65,39 @@
           "description": "Hue as defined by the CIECAM02 model definition",
           "type": "integer"
         },
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
           "type": "number"
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.colour.chroma"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
         },
         "saturation": {
           "description": "Saturation as defined by the CIECAM02 model definition",
@@ -58,6 +116,35 @@
         "dimmingSetting": {
           "description": "Current dimming value",
           "type": "integer"
+        },
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.light.dimming"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
         }
       },
       "required": [

@@ -5,6 +5,21 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
@@ -24,6 +39,20 @@
           },
           "maxItems": 2,
           "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.switch.binary"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
           "readOnly": true,
           "type": "array"
         },
@@ -57,6 +86,21 @@
           "minimum": 0,
           "type": "integer"
         },
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.a",
+              "oic.if.baseline"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
         "precision": {
           "description": "Accuracy granularity of the exposed value",
           "readOnly": true,
@@ -76,6 +120,20 @@
           },
           "maxItems": 2,
           "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.light.brightness"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
           "readOnly": true,
           "type": "array"
         },

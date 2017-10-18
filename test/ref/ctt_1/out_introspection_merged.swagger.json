@@ -5,6 +5,35 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.switch.binary"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
         "value": {
           "description": "",
           "type": "boolean"
@@ -36,6 +65,35 @@
           "description": "",
           "type": "integer"
         },
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.colour.chroma"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
         "saturation": {
           "description": "",
           "type": "integer"
@@ -53,6 +111,35 @@
         "dimmingSetting": {
           "description": "",
           "type": "integer"
+        },
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.light.dimming"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
         }
       },
       "required": [
@@ -62,6 +149,85 @@
     },
     "Temperature": {
       "properties": {
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.temperature"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "temperature": {
+          "description": "",
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    },
+    "Temperature00": {
+      "properties": {
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.temperature"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
         "temperature": {
           "description": "",
           "type": "number"
@@ -155,7 +321,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature00"
             }
           }
         ],
@@ -169,7 +335,7 @@
           "403": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature00"
             }
           }
         }

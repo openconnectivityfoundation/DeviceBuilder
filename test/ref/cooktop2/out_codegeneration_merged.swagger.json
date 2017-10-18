@@ -186,6 +186,12 @@
           "type": "string"
         },
         "rt": {
+          "default": [
+            [
+              "oic.r.heatingzonecollection",
+              "oic.wk.col"
+            ]
+          ],
           "items": {
             "enum": [
               "oic.r.heatingzonecollection",
@@ -207,8 +213,7 @@
           "type": "array",
           "uniqueItems": true
         }
-      },
-      "type": "object"
+      }
     },
     "HeatingZone-ll": {
       "allOf": [
@@ -371,10 +376,39 @@
           "readOnly": true,
           "type": "integer"
         },
+        "if": {
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
         "maxheatinglevel": {
           "description": "Maximum heating level for the zone indicated.",
           "readOnly": true,
           "type": "integer"
+        },
+        "rt": {
+          "default": [
+            [
+              "oic.r.heatingzone"
+            ]
+          ],
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
         }
       },
       "required": [
