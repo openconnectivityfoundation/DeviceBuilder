@@ -187,10 +187,8 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.heatingzonecollection",
-              "oic.wk.col"
-            ]
+            "oic.r.heatingzonecollection",
+            "oic.wk.col"
           ],
           "items": {
             "enum": [
@@ -398,9 +396,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.heatingzone"
-            ]
+            "oic.r.heatingzone"
           ],
           "items": {
             "maxLength": 64,

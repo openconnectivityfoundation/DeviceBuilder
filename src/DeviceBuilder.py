@@ -444,7 +444,11 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                 for prop_name, prop in properties.items():
                     print ("  update_definition_with_rt ", prop_name)
                     if prop_name == "rt":
-                        prop["default"] = [entry[1]]
+                        # the default should be an array.
+                        if isinstance(entry[1], list):
+                            prop["default"] = entry[1]
+                        else:
+                            prop["default"] = [entry[1]]
                              
               
 def update_definition_with_if(json_data, rt_value_file, rt_values):

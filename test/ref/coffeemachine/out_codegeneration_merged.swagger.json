@@ -22,9 +22,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.switch.binary"
-            ]
+            "oic.r.switch.binary"
           ],
           "items": {
             "maxLength": 64,
@@ -97,9 +95,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.operational.state"
-            ]
+            "oic.r.operational.state"
           ],
           "items": {
             "maxLength": 64,

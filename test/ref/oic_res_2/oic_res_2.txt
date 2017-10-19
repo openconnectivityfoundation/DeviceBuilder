@@ -48,11 +48,11 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-  update_definition_with_rt  range
   update_definition_with_rt  step
-  update_definition_with_rt  value
   update_definition_with_rt  precision
+  update_definition_with_rt  value
+  update_definition_with_rt  range
+  update_definition_with_rt  rt
 update_definition_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -110,11 +110,11 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-  update_definition_with_rt  range
   update_definition_with_rt  step
-  update_definition_with_rt  value
   update_definition_with_rt  precision
+  update_definition_with_rt  value
+  update_definition_with_rt  range
+  update_definition_with_rt  rt
 update_definition_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..

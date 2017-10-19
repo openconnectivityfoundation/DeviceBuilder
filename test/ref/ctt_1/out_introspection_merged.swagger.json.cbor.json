@@ -22,9 +22,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.switch.binary"
-            ]
+            "oic.r.switch.binary"
           ],
           "items": {
             "maxLength": 64,
@@ -82,9 +80,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.colour.chroma"
-            ]
+            "oic.r.colour.chroma"
           ],
           "items": {
             "maxLength": 64,
@@ -129,9 +125,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.light.dimming"
-            ]
+            "oic.r.light.dimming"
           ],
           "items": {
             "maxLength": 64,
@@ -166,9 +160,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.temperature"
-            ]
+            "oic.r.temperature"
           ],
           "items": {
             "maxLength": 64,
@@ -216,9 +208,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.temperature"
-            ]
+            "oic.r.temperature"
           ],
           "items": {
             "maxLength": 64,
