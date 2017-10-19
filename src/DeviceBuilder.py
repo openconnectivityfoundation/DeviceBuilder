@@ -774,9 +774,6 @@ def collapse_allOf(json_data):
             #print ("   ", new_props)
             def_data[def_name] = new_props
             
-            
-
-
   
 def handle_collections(json_data, rt_value_file, rt_values):
     """
@@ -913,12 +910,15 @@ def merge(merge_data, file_data, index):
                 # fix the definition data
                 search_definition = "#/definitions/" + definition
                 my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
-                print (" definition fix -->", my_dict)
-                my_dict["$ref"] = "#/definitions/" + new_definition
-                # try again for the other method
-                my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
-                if my_dict is not None:
+                while my_dict is not None:
+                    print (" definition fix -->", my_dict)
                     my_dict["$ref"] = "#/definitions/" + new_definition
+                    my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
+                    
+                # try again for the other method
+                #my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
+                #if my_dict is not None:
+                #    my_dict["$ref"] = "#/definitions/" + new_definition
                 
                 merge_data["definitions"][new_definition] = definiton_item                
     

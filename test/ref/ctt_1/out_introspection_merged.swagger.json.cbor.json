@@ -299,13 +299,13 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature00"
             }
           },
           "403": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature00"
             }
           }
         }
@@ -329,7 +329,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature00"
             }
           },
           "403": {
