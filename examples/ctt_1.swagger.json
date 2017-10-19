@@ -59,7 +59,7 @@
         },
         "hue": {
           "description": "",
-          "type": "integer"
+          "type": "number"
         },
         "saturation": {
           "description": "",
@@ -112,7 +112,7 @@
             },
           "minItems" : 1,
           "readOnly": true,
-          "default" : ["oic.r.dimming"]
+          "default" : ["oic.r.light.dimming"]
         },
         "if" : {
           "type" : "array",
@@ -256,7 +256,7 @@
     }
   },
   "paths": {
-    "/actuatorthermostat": {
+    "/TemperatureResURI": {
       "get": {
         "description": "",
         "parameters": [
@@ -321,7 +321,7 @@
         }
       }
     },
-    "/binaryswitch": {
+    "/BinarySwitchResURI": {
       "get": {
         "description": "",
         "parameters": [
@@ -363,7 +363,7 @@
         }
       }
     },
-    "/colourchroma": {
+    "/ChromaResURI": {
       "get": {
         "description": "",
         "parameters": [
@@ -405,7 +405,7 @@
         }
       }
     },
-    "/dimming": {
+    "/DimmingResURI": {
       "get": {
         "description": "",
         "parameters": [
@@ -453,7 +453,7 @@
         }
       }
     },
-    "/sensorthermostat": {
+    "/TemperatureSensorURI": {
       "get": {
         "description": "",
         "parameters": [
