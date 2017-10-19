@@ -44,9 +44,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.switch.binary"
-            ]
+            "oic.r.switch.binary"
           ],
           "items": {
             "maxLength": 64,
@@ -125,9 +123,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.light.brightness"
-            ]
+            "oic.r.light.brightness"
           ],
           "items": {
             "maxLength": 64,

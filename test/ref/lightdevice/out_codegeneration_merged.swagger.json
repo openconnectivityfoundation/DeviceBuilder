@@ -57,11 +57,14 @@
         },
         "ct": {
           "description": "Mired colour temperature",
+          "minimum": 0,
           "type": "integer"
         },
         "hue": {
-          "description": "Hue as defined by the CIECAM02 model definition",
-          "type": "integer"
+          "description": "Hue angle as defined by the CIECAM02 model definition",
+          "maximum": 360,
+          "minimum": 0,
+          "type": "number"
         },
         "if": {
           "items": {
@@ -78,10 +81,12 @@
           "type": "array",
           "uniqueItems": true
         },
-        "precision": {
-          "description": "Accuracy granularity of the exposed value",
+        "maximumsaturation": {
+          "description": "Maximum supported value of Saturation for this Device",
+          "maximum": 32767,
+          "minimum": 0,
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "rt": {
           "default": [
@@ -97,15 +102,11 @@
         },
         "saturation": {
           "description": "Saturation as defined by the CIECAM02 model definition",
+          "maximum": 32767,
+          "minimum": 0,
           "type": "integer"
         }
-      },
-      "required": [
-        "hue",
-        "saturation",
-        "csc"
-      ],
-      "type": "object"
+      }
     },
     "Dimming": {
       "properties": {
@@ -226,7 +227,7 @@
     },
     "/colourchroma": {
       "get": {
-        "description": "This resource describes the colour using chroma conventions.\nProperties are hue, saturation, csc, and ct.\nHue and saturation are integer values as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\ncsc is the colour space coordinates in CIE colour space.\n  The first item in the array is the X coordinate.\n  The second item in the array is the Y coordinate.\nct is the Mired colour temperature.\nProvides the colour using chroma conventions.\n",
+        "description": "This resource describes the colour using chroma conventions.\nProperties are hue, saturation, csc, and ct.\nhue is the hue angle, it is an integer value as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\nsaturation is an integer value as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\nmaximumsaturation is the upper bound on the saturation supported by the Device.\n    If not present the maximum value for saturation is 32767.\ncsc is the colour space coordinates in CIE colour space.\n  The first item in the array is the X coordinate.\n  The second item in the array is the Y coordinate.\nct is the Mired colour temperature.\nProvides the colour using chroma conventions.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -244,8 +245,9 @@
                 0.51
               ],
               "ct": 457,
-              "hue": 13088,
+              "hue": 256.0,
               "id": "unique_example_id",
+              "maximumsaturation": 1000,
               "rt": [
                 "oic.r.colour.chroma"
               ],
@@ -273,7 +275,7 @@
                 0.51
               ],
               "ct": 457,
-              "hue": 13088,
+              "hue": 300.0,
               "id": "unique_example_id",
               "saturation": 212
             }
@@ -291,7 +293,7 @@
                 0.51
               ],
               "ct": 467,
-              "hue": 13088,
+              "hue": 300.0,
               "id": "unique_example_id",
               "saturation": 212
             }

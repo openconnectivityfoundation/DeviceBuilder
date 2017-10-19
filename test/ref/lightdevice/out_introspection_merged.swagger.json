@@ -57,11 +57,14 @@
         },
         "ct": {
           "description": "",
+          "minimum": 0,
           "type": "integer"
         },
         "hue": {
           "description": "",
-          "type": "integer"
+          "maximum": 360,
+          "minimum": 0,
+          "type": "number"
         },
         "if": {
           "items": {
@@ -78,10 +81,12 @@
           "type": "array",
           "uniqueItems": true
         },
-        "precision": {
+        "maximumsaturation": {
           "description": "",
+          "maximum": 32767,
+          "minimum": 0,
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "rt": {
           "default": [
@@ -97,15 +102,11 @@
         },
         "saturation": {
           "description": "",
+          "maximum": 32767,
+          "minimum": 0,
           "type": "integer"
         }
-      },
-      "required": [
-        "hue",
-        "saturation",
-        "csc"
-      ],
-      "type": "object"
+      }
     },
     "Dimming": {
       "properties": {

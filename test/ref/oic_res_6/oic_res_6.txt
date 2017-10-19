@@ -119,11 +119,11 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
   update_definition_with_rt  value
   update_definition_with_rt  precision
-  update_definition_with_rt  step
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -136,9 +136,9 @@ update_definition_with_type
   href: /BinarySwitchResURI  type: integer
   def_name BinarySwitch
 update_definition_with_type  step
+update_definition_with_type  precision
 update_definition_with_type  range
 update_definition_with_type  value
-update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
@@ -158,13 +158,13 @@ update_path_value /TemperatureResURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-  update_definition_with_rt  temperature
-  update_definition_with_rt  units
   update_definition_with_rt  step
+  update_definition_with_rt  temperature
+  update_definition_with_rt  precision
+  update_definition_with_rt  units
+  update_definition_with_rt  rt
   update_definition_with_rt  range
   update_definition_with_rt  value
-  update_definition_with_rt  precision
 update_definition_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -177,9 +177,9 @@ update_definition_with_type
   href: /TemperatureResURI  type: integer
   def_name Temperature
 update_definition_with_type  step
+update_definition_with_type  precision
 update_definition_with_type  range
 update_definition_with_type  value
-update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.temperature  prop: None
 remove_path_method
@@ -202,14 +202,14 @@ update_definition_with_rt
   rt: oic.r.airflow
   update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  automode
-  update_definition_with_rt  supporteddirections
   update_definition_with_rt  step
-  update_definition_with_rt  rt
   update_definition_with_rt  range
-  update_definition_with_rt  value
+  update_definition_with_rt  supporteddirections
   update_definition_with_rt  precision
-  update_definition_with_rt  direction
   update_definition_with_rt  speed
+  update_definition_with_rt  rt
+  update_definition_with_rt  direction
+  update_definition_with_rt  value
 update_definition_with_if
   href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -223,8 +223,8 @@ update_definition_with_type
   def_name AirFlow
 update_definition_with_type  step
 update_definition_with_type  range
-update_definition_with_type  value
 update_definition_with_type  precision
+update_definition_with_type  value
 remove_definition_properties
   rt: oic.r.airflow  prop: None
 remove_path_method
@@ -245,11 +245,11 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
   update_definition_with_rt  value
   update_definition_with_rt  precision
-  update_definition_with_rt  step
 update_definition_with_if
   href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -262,9 +262,9 @@ update_definition_with_type
   href: /bridge/binary-switch  type: integer
   def_name BinarySwitch
 update_definition_with_type  step
+update_definition_with_type  precision
 update_definition_with_type  range
 update_definition_with_type  value
-update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
@@ -286,12 +286,12 @@ update_path_value /BrightnessResURI
 update_definition_with_rt
   rt: oic.r.light.brightness
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-  update_definition_with_rt  brightness
   update_definition_with_rt  step
   update_definition_with_rt  range
-  update_definition_with_rt  value
   update_definition_with_rt  precision
+  update_definition_with_rt  rt
+  update_definition_with_rt  brightness
+  update_definition_with_rt  value
 update_definition_with_if
   href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -305,8 +305,8 @@ update_definition_with_type
   def_name Brightness
 update_definition_with_type  step
 update_definition_with_type  range
-update_definition_with_type  value
 update_definition_with_type  precision
+update_definition_with_type  value
 remove_definition_properties
   rt: oic.r.light.brightness  prop: None
 remove_path_method
@@ -425,11 +425,11 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
   update_definition_with_rt  value
   update_definition_with_rt  precision
-  update_definition_with_rt  step
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -442,9 +442,9 @@ update_definition_with_type
   href: /BinarySwitchResURI  type: integer
   def_name BinarySwitch
 update_definition_with_type  step
+update_definition_with_type  precision
 update_definition_with_type  range
 update_definition_with_type  value
-update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
@@ -461,13 +461,13 @@ update_path_value /TemperatureResURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-  update_definition_with_rt  temperature
-  update_definition_with_rt  units
   update_definition_with_rt  step
+  update_definition_with_rt  temperature
+  update_definition_with_rt  precision
+  update_definition_with_rt  units
+  update_definition_with_rt  rt
   update_definition_with_rt  range
   update_definition_with_rt  value
-  update_definition_with_rt  precision
 update_definition_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -480,9 +480,9 @@ update_definition_with_type
   href: /TemperatureResURI  type: integer
   def_name Temperature
 update_definition_with_type  step
+update_definition_with_type  precision
 update_definition_with_type  range
 update_definition_with_type  value
-update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.temperature  prop: None
 remove_path_method
@@ -501,14 +501,14 @@ update_definition_with_rt
   rt: oic.r.airflow
   update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  automode
-  update_definition_with_rt  supporteddirections
   update_definition_with_rt  step
-  update_definition_with_rt  rt
   update_definition_with_rt  range
-  update_definition_with_rt  value
+  update_definition_with_rt  supporteddirections
   update_definition_with_rt  precision
-  update_definition_with_rt  direction
   update_definition_with_rt  speed
+  update_definition_with_rt  rt
+  update_definition_with_rt  direction
+  update_definition_with_rt  value
 update_definition_with_if
   href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -522,8 +522,8 @@ update_definition_with_type
   def_name AirFlow
 update_definition_with_type  step
 update_definition_with_type  range
-update_definition_with_type  value
 update_definition_with_type  precision
+update_definition_with_type  value
 remove_definition_properties
   rt: oic.r.airflow  prop: None
 remove_path_method
@@ -541,11 +541,11 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
   update_definition_with_rt  value
   update_definition_with_rt  precision
-  update_definition_with_rt  step
 update_definition_with_if
   href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -558,9 +558,9 @@ update_definition_with_type
   href: /bridge/binary-switch  type: integer
   def_name BinarySwitch
 update_definition_with_type  step
+update_definition_with_type  precision
 update_definition_with_type  range
 update_definition_with_type  value
-update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
@@ -579,12 +579,12 @@ update_path_value /BrightnessResURI
 update_definition_with_rt
   rt: oic.r.light.brightness
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-  update_definition_with_rt  brightness
   update_definition_with_rt  step
   update_definition_with_rt  range
-  update_definition_with_rt  value
   update_definition_with_rt  precision
+  update_definition_with_rt  rt
+  update_definition_with_rt  brightness
+  update_definition_with_rt  value
 update_definition_with_if
   href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -598,8 +598,8 @@ update_definition_with_type
   def_name Brightness
 update_definition_with_type  step
 update_definition_with_type  range
-update_definition_with_type  value
 update_definition_with_type  precision
+update_definition_with_type  value
 remove_definition_properties
   rt: oic.r.light.brightness  prop: None
 remove_path_method

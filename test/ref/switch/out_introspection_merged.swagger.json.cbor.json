@@ -26,9 +26,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.switch.binary"
-            ]
+            "oic.r.switch.binary"
           ],
           "items": {
             "maxLength": 64,

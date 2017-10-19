@@ -22,9 +22,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.temperature"
-            ]
+            "oic.r.temperature"
           ],
           "items": {
             "maxLength": 64,
@@ -72,9 +70,7 @@
         },
         "rt": {
           "default": [
-            [
-              "oic.r.temperature"
-            ]
+            "oic.r.temperature"
           ],
           "items": {
             "maxLength": 64,
@@ -177,7 +173,7 @@
             "name": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature11"
             }
           }
         ],
@@ -185,13 +181,13 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature11"
             }
           },
           "403": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Temperature"
+              "$ref": "#/definitions/Temperature11"
             }
           }
         }

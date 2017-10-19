@@ -38,10 +38,10 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  step
-  update_definition_with_rt  rt
   update_definition_with_rt  precision
   update_definition_with_rt  value
+  update_definition_with_rt  step
+  update_definition_with_rt  rt
   update_definition_with_rt  range
 update_definition_with_if
   href: /mypath  if: ['oic.if.s']
@@ -55,9 +55,9 @@ update_definition_with_type
   href: /mypath  type: integer
   def_name BinarySwitch
 update_definition_with_type  value
-update_definition_with_type  precision
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range']
   definition: #/definitions/BinarySwitch
@@ -96,10 +96,10 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  step
-  update_definition_with_rt  rt
   update_definition_with_rt  precision
   update_definition_with_rt  value
+  update_definition_with_rt  step
+  update_definition_with_rt  rt
   update_definition_with_rt  range
 update_definition_with_if
   href: /mypath  if: ['oic.if.s']
@@ -113,9 +113,9 @@ update_definition_with_type
   href: /mypath  type: integer
   def_name BinarySwitch
 update_definition_with_type  value
-update_definition_with_type  precision
-update_definition_with_type  range
 update_definition_with_type  step
+update_definition_with_type  range
+update_definition_with_type  precision
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range']
   definition: #/definitions/BinarySwitch

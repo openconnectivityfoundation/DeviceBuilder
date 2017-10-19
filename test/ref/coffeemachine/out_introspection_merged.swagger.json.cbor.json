@@ -85,6 +85,8 @@
         },
         "progressPercentage": {
           "description": "",
+          "maximum": 100,
+          "minimum": 0,
           "readOnly": true,
           "type": "integer"
         },

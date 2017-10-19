@@ -27,7 +27,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
   main: File : TemperatureResURI.swagger.json
   main: rt : ['oic.r.temperature']
   rt                 : oic.r.switch.binary
-    href             : /binaryswitch
+    href             : /BinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'step', 'id', 'precision']
@@ -35,7 +35,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
   rt                 : oic.r.light.dimming
-    href             : /dimming
+    href             : /DimmingResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id', 'precision']
@@ -43,7 +43,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : DimmingResURI.swagger.json
   rt                 : oic.r.colour.chroma
-    href             : /colourchroma
+    href             : /ChromaResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id', 'precision']
@@ -51,7 +51,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : ColourChromaResURI.swagger.json
   rt                 : oic.r.temperature
-    href             : /sensorthermostat
+    href             : /TemperatureSensorURI
     if               : ['oic.if.baseline', 'oic.if.s']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
@@ -59,7 +59,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
   rt                 : oic.r.temperature
-    href             : /actuatorthermostat
+    href             : /TemperatureResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
@@ -68,32 +68,32 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     basefile         : TemperatureResURI.swagger.json
  
 
-create_introspection index: 0 /binaryswitch
+create_introspection index: 0 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
 update_path_value:
-   rt: oic.r.switch.binary  href: /binaryswitch
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
- update_path_value : /BinarySwitchResURI /binaryswitch
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
-  update_definition_with_rt  rt
   update_definition_with_rt  precision
+  update_definition_with_rt  rt
   update_definition_with_rt  value
   update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /binaryswitch  type: None
+  href: /BinarySwitchResURI  type: None
   def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
@@ -105,38 +105,38 @@ erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /binaryswitch  method: None
+   href: /BinarySwitchResURI  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
-create_introspection index: 1 /dimming
+create_introspection index: 1 /DimmingResURI
 collapse_allOf:
    Dimming
 handle_collections
 update_path_value:
-   rt: oic.r.light.dimming  href: /dimming
+   rt: oic.r.light.dimming  href: /DimmingResURI
 update_path_value /DimmingResURI
- update_path_value : /DimmingResURI /dimming
+ update_path_value: already the same : ['/DimmingResURI', '/DimmingResURI']
 update_definition_with_rt
   rt: oic.r.light.dimming
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  dimmingSetting
-  update_definition_with_rt  range
   update_definition_with_rt  precision
-  update_definition_with_rt  step
-  update_definition_with_rt  value
+  update_definition_with_rt  dimmingSetting
   update_definition_with_rt  rt
+  update_definition_with_rt  value
+  update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+  href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+  href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /dimming  type: None
+  href: /DimmingResURI  type: None
   def_name Dimming
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
@@ -149,47 +149,49 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /dimming  method: None
+   href: /DimmingResURI  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 
-create_introspection index: 2 /colourchroma
+create_introspection index: 2 /ChromaResURI
 collapse_allOf:
    ColourChroma
+ processing:  ColourChroma
 handle_collections
 update_path_value:
-   rt: oic.r.colour.chroma  href: /colourchroma
-update_path_value /ColourChromaResURI
- update_path_value : /ColourChromaResURI /colourchroma
+   rt: oic.r.colour.chroma  href: /ChromaResURI
+update_path_value /example/ColourChromaResURI
+ update_path_value : /example/ColourChromaResURI /ChromaResURI
 update_definition_with_rt
   rt: oic.r.colour.chroma
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  ct
-  update_definition_with_rt  hue
-  update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  saturation
-  update_definition_with_rt  step
+  update_definition_with_rt  maximumsaturation
   update_definition_with_rt  csc
-  update_definition_with_rt  value
-  update_definition_with_rt  range
+  update_definition_with_rt  rt
+  update_definition_with_rt  hue
+  update_definition_with_rt  saturation
+  update_definition_with_rt  ct
 update_definition_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /colourchroma  type: None
+  href: /ChromaResURI  type: None
   def_name ColourChroma
 remove_definition_properties
   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id', 'precision']
   definition: #/definitions/ColourChroma
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
   definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
@@ -197,40 +199,40 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /colourchroma  method: None
+   href: /ChromaResURI  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 
-create_introspection index: 3 /sensorthermostat
+create_introspection index: 3 /TemperatureSensorURI
 collapse_allOf:
    Temperature
 handle_collections
 update_path_value:
-   rt: oic.r.temperature  href: /sensorthermostat
+   rt: oic.r.temperature  href: /TemperatureSensorURI
 update_path_value /TemperatureResURI
- update_path_value : /TemperatureResURI /sensorthermostat
+ update_path_value : /TemperatureResURI /TemperatureSensorURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  units
-  update_definition_with_rt  range
   update_definition_with_rt  precision
-  update_definition_with_rt  step
+  update_definition_with_rt  rt
+  update_definition_with_rt  units
   update_definition_with_rt  temperature
   update_definition_with_rt  value
-  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+  href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if
-  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+  href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
-  href: /sensorthermostat  type: None
+  href: /TemperatureSensorURI  type: None
   def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
@@ -241,7 +243,7 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /sensorthermostat  method: ['post']
+   href: /TemperatureSensorURI  method: ['post']
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
@@ -249,34 +251,34 @@ merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface30
  parameter fix --> None
 
-create_introspection index: 4 /actuatorthermostat
+create_introspection index: 4 /TemperatureResURI
 collapse_allOf:
    Temperature
 handle_collections
 update_path_value:
-   rt: oic.r.temperature  href: /actuatorthermostat
+   rt: oic.r.temperature  href: /TemperatureResURI
 update_path_value /TemperatureResURI
- update_path_value : /TemperatureResURI /actuatorthermostat
+ update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  units
-  update_definition_with_rt  range
   update_definition_with_rt  precision
-  update_definition_with_rt  step
+  update_definition_with_rt  rt
+  update_definition_with_rt  units
   update_definition_with_rt  temperature
   update_definition_with_rt  value
-  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+  href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+  href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /actuatorthermostat  type: None
+  href: /TemperatureResURI  type: None
   def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
@@ -287,7 +289,7 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /actuatorthermostat  method: None
+   href: /TemperatureResURI  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
@@ -318,7 +320,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
   main: File : TemperatureResURI.swagger.json
   main: rt : ['oic.r.temperature']
   rt                 : oic.r.switch.binary
-    href             : /binaryswitch
+    href             : /BinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'step', 'id', 'precision']
@@ -326,7 +328,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
   rt                 : oic.r.light.dimming
-    href             : /dimming
+    href             : /DimmingResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id', 'precision']
@@ -334,7 +336,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : DimmingResURI.swagger.json
   rt                 : oic.r.colour.chroma
-    href             : /colourchroma
+    href             : /ChromaResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'step', 'value', 'id', 'precision']
@@ -342,7 +344,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : ColourChromaResURI.swagger.json
   rt                 : oic.r.temperature
-    href             : /sensorthermostat
+    href             : /TemperatureSensorURI
     if               : ['oic.if.baseline', 'oic.if.s']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
@@ -350,7 +352,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
   rt                 : oic.r.temperature
-    href             : /actuatorthermostat
+    href             : /TemperatureResURI
     if               : ['oic.if.baseline', 'oic.if.a']
     type (replace)   : None
     props (remove)   : ['range', 'value', 'step', 'precision']
@@ -359,32 +361,32 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     basefile         : TemperatureResURI.swagger.json
  
 
-create_introspection index: 0 /binaryswitch
+create_introspection index: 0 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
 update_path_value:
-   rt: oic.r.switch.binary  href: /binaryswitch
+   rt: oic.r.switch.binary  href: /BinarySwitchResURI
 update_path_value /BinarySwitchResURI
- update_path_value : /BinarySwitchResURI /binaryswitch
+ update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
-  update_definition_with_rt  rt
   update_definition_with_rt  precision
+  update_definition_with_rt  rt
   update_definition_with_rt  value
   update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
+  href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /binaryswitch  type: None
+  href: /BinarySwitchResURI  type: None
   def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
@@ -396,35 +398,35 @@ erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /binaryswitch  method: None
+   href: /BinarySwitchResURI  method: None
 
-create_introspection index: 1 /dimming
+create_introspection index: 1 /DimmingResURI
 collapse_allOf:
    Dimming
 handle_collections
 update_path_value:
-   rt: oic.r.light.dimming  href: /dimming
+   rt: oic.r.light.dimming  href: /DimmingResURI
 update_path_value /DimmingResURI
- update_path_value : /DimmingResURI /dimming
+ update_path_value: already the same : ['/DimmingResURI', '/DimmingResURI']
 update_definition_with_rt
   rt: oic.r.light.dimming
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  dimmingSetting
-  update_definition_with_rt  range
   update_definition_with_rt  precision
-  update_definition_with_rt  step
-  update_definition_with_rt  value
+  update_definition_with_rt  dimmingSetting
   update_definition_with_rt  rt
+  update_definition_with_rt  value
+  update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+  href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
+  href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /dimming  type: None
+  href: /DimmingResURI  type: None
   def_name Dimming
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
@@ -437,44 +439,46 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /dimming  method: None
+   href: /DimmingResURI  method: None
 merge: parameter exist: interface
 
-create_introspection index: 2 /colourchroma
+create_introspection index: 2 /ChromaResURI
 collapse_allOf:
    ColourChroma
+ processing:  ColourChroma
 handle_collections
 update_path_value:
-   rt: oic.r.colour.chroma  href: /colourchroma
-update_path_value /ColourChromaResURI
- update_path_value : /ColourChromaResURI /colourchroma
+   rt: oic.r.colour.chroma  href: /ChromaResURI
+update_path_value /example/ColourChromaResURI
+ update_path_value : /example/ColourChromaResURI /ChromaResURI
 update_definition_with_rt
   rt: oic.r.colour.chroma
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  ct
-  update_definition_with_rt  hue
-  update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  saturation
-  update_definition_with_rt  step
+  update_definition_with_rt  maximumsaturation
   update_definition_with_rt  csc
-  update_definition_with_rt  value
-  update_definition_with_rt  range
+  update_definition_with_rt  rt
+  update_definition_with_rt  hue
+  update_definition_with_rt  saturation
+  update_definition_with_rt  ct
 update_definition_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /colourchroma  type: None
+  href: /ChromaResURI  type: None
   def_name ColourChroma
 remove_definition_properties
   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id', 'precision']
   definition: #/definitions/ColourChroma
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
   definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
@@ -482,37 +486,37 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /colourchroma  method: None
+   href: /ChromaResURI  method: None
 merge: parameter exist: interface
 
-create_introspection index: 3 /sensorthermostat
+create_introspection index: 3 /TemperatureSensorURI
 collapse_allOf:
    Temperature
 handle_collections
 update_path_value:
-   rt: oic.r.temperature  href: /sensorthermostat
+   rt: oic.r.temperature  href: /TemperatureSensorURI
 update_path_value /TemperatureResURI
- update_path_value : /TemperatureResURI /sensorthermostat
+ update_path_value : /TemperatureResURI /TemperatureSensorURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  units
-  update_definition_with_rt  range
   update_definition_with_rt  precision
-  update_definition_with_rt  step
+  update_definition_with_rt  rt
+  update_definition_with_rt  units
   update_definition_with_rt  temperature
   update_definition_with_rt  value
-  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+  href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if
-  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+  href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
-  href: /sensorthermostat  type: None
+  href: /TemperatureSensorURI  type: None
   def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
@@ -523,39 +527,39 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /sensorthermostat  method: ['post']
+   href: /TemperatureSensorURI  method: ['post']
 merge: parameter exist: interface
 merge: parameter exist: interface  adding as: interface30
  parameter fix --> None
 
-create_introspection index: 4 /actuatorthermostat
+create_introspection index: 4 /TemperatureResURI
 collapse_allOf:
    Temperature
 handle_collections
 update_path_value:
-   rt: oic.r.temperature  href: /actuatorthermostat
+   rt: oic.r.temperature  href: /TemperatureResURI
 update_path_value /TemperatureResURI
- update_path_value : /TemperatureResURI /actuatorthermostat
+ update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  units
-  update_definition_with_rt  range
   update_definition_with_rt  precision
-  update_definition_with_rt  step
+  update_definition_with_rt  rt
+  update_definition_with_rt  units
   update_definition_with_rt  temperature
   update_definition_with_rt  value
-  update_definition_with_rt  rt
+  update_definition_with_rt  step
+  update_definition_with_rt  range
 update_definition_with_if
-  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+  href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
-  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+  href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
  replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
-  href: /actuatorthermostat  type: None
+  href: /TemperatureResURI  type: None
   def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
@@ -566,7 +570,7 @@ erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /actuatorthermostat  method: None
+   href: /TemperatureResURI  method: None
 merge: parameter exist: interface
 merge: definition exist: Temperature
 merge: definition exist: Temperature  adding as: Temperature00

@@ -57,11 +57,14 @@
         },
         "ct": {
           "description": "Mired colour temperature",
+          "minimum": 0,
           "type": "integer"
         },
         "hue": {
-          "description": "Hue as defined by the CIECAM02 model definition",
-          "type": "integer"
+          "description": "Hue angle as defined by the CIECAM02 model definition",
+          "maximum": 360,
+          "minimum": 0,
+          "type": "number"
         },
         "if": {
           "items": {
@@ -78,6 +81,13 @@
           "type": "array",
           "uniqueItems": true
         },
+        "maximumsaturation": {
+          "description": "Maximum supported value of Saturation for this Device",
+          "maximum": 32767,
+          "minimum": 0,
+          "readOnly": true,
+          "type": "integer"
+        },
         "rt": {
           "default": [
             "oic.r.colour.chroma"
@@ -92,14 +102,11 @@
         },
         "saturation": {
           "description": "Saturation as defined by the CIECAM02 model definition",
+          "maximum": 32767,
+          "minimum": 0,
           "type": "integer"
         }
       },
-      "required": [
-        "hue",
-        "saturation",
-        "csc"
-      ],
       "type": "object"
     },
     "Dimming": {
@@ -267,7 +274,212 @@
     }
   },
   "paths": {
-    "/actuatorthermostat": {
+    "/BinarySwitchResURI": {
+      "get": {
+        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "rt": [
+                "oic.r.switch.binary"
+              ],
+              "value": false
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    "/ChromaResURI": {
+      "get": {
+        "description": "This resource describes the colour using chroma conventions.\nProperties are hue, saturation, csc, and ct.\nhue is the hue angle, it is an integer value as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\nsaturation is an integer value as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\nmaximumsaturation is the upper bound on the saturation supported by the Device.\n    If not present the maximum value for saturation is 32767.\ncsc is the colour space coordinates in CIE colour space.\n  The first item in the array is the X coordinate.\n  The second item in the array is the Y coordinate.\nct is the Mired colour temperature.\nProvides the colour using chroma conventions.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ColourChroma"
+            },
+            "x-example": {
+              "csc": [
+                0.41,
+                0.51
+              ],
+              "ct": 457,
+              "hue": 256.0,
+              "id": "unique_example_id",
+              "maximumsaturation": 1000,
+              "rt": [
+                "oic.r.colour.chroma"
+              ],
+              "saturation": 212
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets current colour chroma values\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ColourChroma"
+            },
+            "x-example": {
+              "csc": [
+                0.41,
+                0.51
+              ],
+              "ct": 457,
+              "hue": 300.0,
+              "id": "unique_example_id",
+              "saturation": 212
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ColourChroma"
+            },
+            "x-example": {
+              "csc": [
+                0.41,
+                0.51
+              ],
+              "ct": 467,
+              "hue": 300.0,
+              "id": "unique_example_id",
+              "saturation": 212
+            }
+          }
+        }
+      }
+    },
+    "/DimmingResURI": {
+      "get": {
+        "description": "This resource describes a dimming function.\nThe value is an integer showing the current dimming level.\nIf step (from oic.r.baseresource) is present then it represents the increment between dimmer values.\nWhen range (from oic.r.baseresource) is omitted, then the range is [0,100].\nA value of 0 means total dimming; a value of 100 means no dimming.\nRetrieves the current dimming level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 30,
+              "id": "unique_example_id",
+              "range": [
+                0,
+                100
+              ],
+              "rt": [
+                "oic.r.light.dimming"
+              ],
+              "step": 5
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets the desired dimming level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 40,
+              "id": "unique_example_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates that the dimming was changed.\nThe new dimming level is provided in the response.\n",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 40,
+              "id": "unique_example_id"
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for dimmingSetting.\nThe server responds with the current resource representation.\n",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 40,
+              "id": "unique_example_id"
+            }
+          }
+        }
+      }
+    },
+    "/TemperatureResURI": {
       "get": {
         "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
         "parameters": [
@@ -366,211 +578,7 @@
         }
       }
     },
-    "/binaryswitch": {
-      "get": {
-        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "rt": [
-                "oic.r.switch.binary"
-              ],
-              "value": false
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "value": true
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/BinarySwitch"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "value": true
-            }
-          }
-        }
-      }
-    },
-    "/colourchroma": {
-      "get": {
-        "description": "This resource describes the colour using chroma conventions.\nProperties are hue, saturation, csc, and ct.\nHue and saturation are integer values as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\ncsc is the colour space coordinates in CIE colour space.\n  The first item in the array is the X coordinate.\n  The second item in the array is the Y coordinate.\nct is the Mired colour temperature.\nProvides the colour using chroma conventions.\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            },
-            "x-example": {
-              "csc": [
-                0.41,
-                0.51
-              ],
-              "ct": 457,
-              "hue": 13088,
-              "id": "unique_example_id",
-              "rt": [
-                "oic.r.colour.chroma"
-              ],
-              "saturation": 212
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Sets current colour chroma values\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            },
-            "x-example": {
-              "csc": [
-                0.41,
-                0.51
-              ],
-              "ct": 457,
-              "hue": 13088,
-              "id": "unique_example_id",
-              "saturation": 212
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            },
-            "x-example": {
-              "csc": [
-                0.41,
-                0.51
-              ],
-              "ct": 467,
-              "hue": 13088,
-              "id": "unique_example_id",
-              "saturation": 212
-            }
-          }
-        }
-      }
-    },
-    "/dimming": {
-      "get": {
-        "description": "This resource describes a dimming function.\nThe value is an integer showing the current dimming level.\nIf step (from oic.r.baseresource) is present then it represents the increment between dimmer values.\nWhen range (from oic.r.baseresource) is omitted, then the range is [0,100].\nA value of 0 means total dimming; a value of 100 means no dimming.\nRetrieves the current dimming level.\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 30,
-              "id": "unique_example_id",
-              "range": [
-                0,
-                100
-              ],
-              "rt": [
-                "oic.r.light.dimming"
-              ],
-              "step": 5
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Sets the desired dimming level.\n",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 40,
-              "id": "unique_example_id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Indicates that the dimming was changed.\nThe new dimming level is provided in the response.\n",
-            "schema": {
-              "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 40,
-              "id": "unique_example_id"
-            }
-          },
-          "403": {
-            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for dimmingSetting.\nThe server responds with the current resource representation.\n",
-            "schema": {
-              "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 40,
-              "id": "unique_example_id"
-            }
-          }
-        }
-      }
-    },
-    "/sensorthermostat": {
+    "/TemperatureSensorURI": {
       "get": {
         "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
         "parameters": [

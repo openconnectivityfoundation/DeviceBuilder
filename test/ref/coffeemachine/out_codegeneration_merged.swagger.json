@@ -85,6 +85,8 @@
         },
         "progressPercentage": {
           "description": "Percentage completeness of the current jobState",
+          "maximum": 100,
+          "minimum": 0,
           "readOnly": true,
           "type": "integer"
         },

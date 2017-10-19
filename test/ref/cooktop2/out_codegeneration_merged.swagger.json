@@ -432,6 +432,15 @@
       "name": "if",
       "type": "string"
     },
+    "interface-all": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
     "interface-baseline": {
       "enum": [
         "oic.if.baseline",

@@ -1,32 +1,32 @@
 [
 
     {
-      "path" : "/binaryswitch",
+      "path" : "/BinarySwitchResURI",
       "rt"   : [ "oic.r.switch.binary" ],
       "if"   : ["oic.if.baseline", "oic.if.a" ],
       "remove_properties" : [ "range", "step" , "id", "precision" ]
     },
      {
-      "path" : "/dimming",
+      "path" : "/DimmingResURI",
       "rt"   : [ "oic.r.light.dimming" ],
       "if"   : ["oic.if.baseline", "oic.if.a" ],
       "remove_properties" : [ "range", "step", "value" , "id" , "precision"]
     },
      {
-      "path" : "/colourchroma",
+      "path" : "/ChromaResURI",
       "rt"   : [ "oic.r.colour.chroma" ],
       "if"   : ["oic.if.baseline","oic.if.a" ],
       "remove_properties" : [ "range", "step", "value" , "id", "precision" ]
     },
-        {
-      "path" : "/sensorthermostat",
+    {
+      "path" : "/TemperatureSensorURI",
       "rt"   : [ "oic.r.temperature" ],
       "if"   : ["oic.if.baseline", "oic.if.s" ],
       "remove_properties" : [ "range", "value", "step", "precision"  ],    
       "remove_methods" : ["post"]
     },
     {
-      "path" : "/actuatorthermostat",
+      "path" : "/TemperatureResURI",
       "rt"   : [ "oic.r.temperature" ],
       "if"   : ["oic.if.baseline", "oic.if.a" ],
       "remove_properties" : [ "range", "value", "step", "precision"  ]
