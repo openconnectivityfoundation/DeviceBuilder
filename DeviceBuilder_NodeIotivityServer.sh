@@ -60,7 +60,8 @@ SWAGGER2X=$SWAGGER2XDIR/src/swagger2x.py
 
 INPUTFILE=$1
 OUTPUTDIR=$2
-MODELSDIR=../IoTDataModels
+MODELS_DIR=../IoTDataModels
+CORE_DIR=../Core
 
 echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
@@ -72,6 +73,22 @@ pushd `pwd`
 cd ..
 git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
 popd
+fi
+
+
+
+if [ ! -f $CORE_DIR/README.md ]
+then
+pushd `pwd`
+cd ..
+git clone https://github.com/openconnectivityfoundation/core.git --branch master
+popd
+fi
+
+if [ ! -f $MODELS_DIR/oic.wk.res.swagger.json ]
+then
+echo "copying $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
+cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
 fi
 
 
@@ -88,7 +105,7 @@ mkdir -p $OUTPUTDIR
 cp $INPUTFILE $OUTPUTDIR
 
 $PYTHON_EXE ./src/install.py
-$PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELSDIR -out $OUTPUTDIR/out 
+$PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out 
 wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/out_introspection_merged.swagger.json
 
