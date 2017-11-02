@@ -255,6 +255,7 @@ def find_oic_res_resources(filename, my_args):
     args_props = my_args.remove_property
     rt_ingore_list = ["oic.wk.res", "oic.r.doxm", "oic.r.pstat", "oic.r.acl2", "oic.r.cred",
                       "oic.r.csr", "oic.r.crl", "oic.r.roles", "oic.wk.d", "oic.wk.p", "oic.wk.introspection"]
+    # removed "oic.wk.p"
     json_data = load_json(filename)
     found_rt_values = []
     for entry in json_data[0].get("links"):
@@ -265,7 +266,7 @@ def find_oic_res_resources(filename, my_args):
             for rt_value in rt:
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
-                        if "oic.d." not in rt_value:
+                        if "oic." not in rt_value:
                             found_rt_values.append([rt_value, href, prop_if, args_type, args_props, None, None])
                         else:
                             print ("find_resources: device type rt (not handled):", rt_value)
@@ -280,8 +281,7 @@ def find_input_resources(filename):
     :param filename: filename with oic/res response (json)
     :return: array with found [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values]] values
     """
-    rt_ingore_list = ["oic.wk.res", "oic.r.doxm", "oic.r.pstat", "oic.r.acl2", "oic.r.cred",
-                      "oic.r.csr", "oic.r.crl", "oic.r.roles", "oic.wk.d", "oic.wk.p", "oic.wk.introspection"]
+    rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection"]
     json_data = load_json(filename)
     found_rt_values = []
     for entry in json_data:
@@ -296,10 +296,10 @@ def find_input_resources(filename):
             for rt_value in rt:
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
-                        if "oic.d." not in rt_value:
-                            found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts])
-                        else:
-                            print ("find_resources: device type rt (not handled):", rt_value)
+                        #if "oic." not in rt_value:
+                        found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts])
+                        #else:
+                        #    print ("find_resources: device type rt (not handled):", rt_value)
                     else:
                         print ("find_resources: vendor defined rt (not handled):", rt_value)
     return found_rt_values
@@ -439,7 +439,6 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                           "readOnly" : true,
                           "default" : ["oic.r.switch.binary"]
                         }""")
-                #print ("  ",properties["rt"])
                 
                 for prop_name, prop in properties.items():
                     print ("  update_definition_with_rt ", prop_name)
@@ -502,7 +501,6 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                           "maxItems" : 2,
                           "uniqueItems" : true
                         }""")
-                    #print ("  ",properties["if"])
 
                     for prop_name, prop in properties.items():
                         if prop_name == "if":

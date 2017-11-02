@@ -33,7 +33,7 @@
           "type": "array"
         },
         "value": {
-          "description": "Status of the switch",
+          "description": "",
           "type": "boolean"
         }
       },
@@ -45,7 +45,7 @@
     "ColourChroma": {
       "properties": {
         "csc": {
-          "description": "X and Y coordinates of the colour in CIE colour space",
+          "description": "",
           "items": {
             "maximum": 1,
             "minimum": 0,
@@ -56,12 +56,12 @@
           "type": "array"
         },
         "ct": {
-          "description": "Mired colour temperature",
+          "description": "",
           "minimum": 0,
           "type": "integer"
         },
         "hue": {
-          "description": "Hue angle as defined by the CIECAM02 model definition",
+          "description": "",
           "maximum": 360,
           "minimum": 0,
           "type": "number"
@@ -82,7 +82,7 @@
           "uniqueItems": true
         },
         "maximumsaturation": {
-          "description": "Maximum supported value of Saturation for this Device",
+          "description": "",
           "maximum": 32767,
           "minimum": 0,
           "readOnly": true,
@@ -101,17 +101,18 @@
           "type": "array"
         },
         "saturation": {
-          "description": "Saturation as defined by the CIECAM02 model definition",
+          "description": "",
           "maximum": 32767,
           "minimum": 0,
           "type": "integer"
         }
-      }
+      },
+      "type": "object"
     },
     "Dimming": {
       "properties": {
         "dimmingSetting": {
-          "description": "Current dimming value",
+          "description": "",
           "type": "integer"
         },
         "if": {
@@ -147,6 +148,138 @@
       ],
       "type": "object"
     },
+    "Platform": {
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            },
+            {
+              "description": "",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          ],
+          "description": "",
+          "readOnly": true
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.r"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "mndt": {
+          "allOf": [
+            {
+              "description": "",
+              "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$",
+              "type": "string"
+            },
+            {
+              "description": "",
+              "readOnly": true
+            }
+          ]
+        },
+        "mnfv": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnhw": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnml": {
+          "description": "",
+          "format": "uri",
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnmn": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnmo": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnos": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnpv": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnsl": {
+          "description": "",
+          "format": "uri",
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "pi": {
+          "allOf": [
+            {
+              "description": "",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            },
+            {
+              "description": "",
+              "readOnly": true
+            }
+          ]
+        },
+        "rt": {
+          "default": [
+            "oic.wk.p"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "st": {
+          "description": "",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "pi",
+        "mnmn"
+      ],
+      "type": "object"
+    },
     "Temperature": {
       "properties": {
         "if": {
@@ -177,11 +310,11 @@
           "type": "array"
         },
         "temperature": {
-          "description": "Current temperature setting or measurement",
+          "description": "",
           "type": "number"
         },
         "units": {
-          "description": "Units for the temperature value",
+          "description": "",
           "enum": [
             "C",
             "F",
@@ -225,11 +358,11 @@
           "type": "array"
         },
         "temperature": {
-          "description": "Current temperature setting or measurement",
+          "description": "",
           "type": "number"
         },
         "units": {
-          "description": "Units for the temperature value",
+          "description": "",
           "enum": [
             "C",
             "F",
@@ -246,8 +379,7 @@
   },
   "info": {
     "license": {
-      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
-      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
     },
     "title": "Binary Switch",
     "version": "v1.1.0-20160519"
@@ -270,12 +402,21 @@
       "in": "query",
       "name": "if",
       "type": "string"
+    },
+    "interface50": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.r"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
     }
   },
   "paths": {
     "/BinarySwitchResURI": {
       "get": {
-        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -286,13 +427,6 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/BinarySwitch"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "rt": [
-                "oic.r.switch.binary"
-              ],
-              "value": false
             }
           }
         }
@@ -309,10 +443,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/BinarySwitch"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "value": true
             }
           }
         ],
@@ -321,10 +451,6 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/BinarySwitch"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "value": true
             }
           }
         }
@@ -332,7 +458,7 @@
     },
     "/ChromaResURI": {
       "get": {
-        "description": "This resource describes the colour using chroma conventions.\nProperties are hue, saturation, csc, and ct.\nhue is the hue angle, it is an integer value as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\nsaturation is an integer value as defined by the CIECAM02 model definition (see reference [CIE CIE159:2004]).\nmaximumsaturation is the upper bound on the saturation supported by the Device.\n    If not present the maximum value for saturation is 32767.\ncsc is the colour space coordinates in CIE colour space.\n  The first item in the array is the X coordinate.\n  The second item in the array is the Y coordinate.\nct is the Mired colour temperature.\nProvides the colour using chroma conventions.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -343,26 +469,12 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/ColourChroma"
-            },
-            "x-example": {
-              "csc": [
-                0.41,
-                0.51
-              ],
-              "ct": 457,
-              "hue": 256.0,
-              "id": "unique_example_id",
-              "maximumsaturation": 1000,
-              "rt": [
-                "oic.r.colour.chroma"
-              ],
-              "saturation": 212
             }
           }
         }
       },
       "post": {
-        "description": "Sets current colour chroma values\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -373,16 +485,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/ColourChroma"
-            },
-            "x-example": {
-              "csc": [
-                0.41,
-                0.51
-              ],
-              "ct": 457,
-              "hue": 300.0,
-              "id": "unique_example_id",
-              "saturation": 212
             }
           }
         ],
@@ -391,16 +493,6 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/ColourChroma"
-            },
-            "x-example": {
-              "csc": [
-                0.41,
-                0.51
-              ],
-              "ct": 467,
-              "hue": 300.0,
-              "id": "unique_example_id",
-              "saturation": 212
             }
           }
         }
@@ -408,7 +500,7 @@
     },
     "/DimmingResURI": {
       "get": {
-        "description": "This resource describes a dimming function.\nThe value is an integer showing the current dimming level.\nIf step (from oic.r.baseresource) is present then it represents the increment between dimmer values.\nWhen range (from oic.r.baseresource) is omitted, then the range is [0,100].\nA value of 0 means total dimming; a value of 100 means no dimming.\nRetrieves the current dimming level.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -419,24 +511,12 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 30,
-              "id": "unique_example_id",
-              "range": [
-                0,
-                100
-              ],
-              "rt": [
-                "oic.r.light.dimming"
-              ],
-              "step": 5
             }
           }
         }
       },
       "post": {
-        "description": "Sets the desired dimming level.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -447,32 +527,20 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 40,
-              "id": "unique_example_id"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Indicates that the dimming was changed.\nThe new dimming level is provided in the response.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 40,
-              "id": "unique_example_id"
             }
           },
           "403": {
-            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for dimmingSetting.\nThe server responds with the current resource representation.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/Dimming"
-            },
-            "x-example": {
-              "dimmingSetting": 40,
-              "id": "unique_example_id"
             }
           }
         }
@@ -480,13 +548,13 @@
     },
     "/TemperatureResURI": {
       "get": {
-        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
           },
           {
-            "description": "Units",
+            "description": "",
             "enum": [
               "C",
               "F",
@@ -502,35 +570,18 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/Temperature00"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "range": [
-                0.0,
-                100.0
-              ],
-              "rt": [
-                "oic.r.temperature"
-              ],
-              "temperature": 20.0,
-              "units": "C"
             }
           },
           "403": {
-            "description": "This response is generated by the OIC Server when the client sends:\n  A retrieve with q queryParameter indicating a unit that the server does not support.\nThe server responds with the current resource representation including the\nunits property illustrating the supported units and the error.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/Temperature00"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "temperature": 20.0,
-              "units": "C"
             }
           }
         }
       },
       "post": {
-        "description": "Sets the desired temperature value.\nIf a unit is included and the server does not support the unit indicated the request will fail.\nIf the units are omitted value is taken to be in C.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface"
@@ -541,10 +592,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/Temperature00"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "temperature": 18.0
             }
           }
         ],
@@ -553,25 +600,12 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/Temperature00"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "temperature": 18.0
             }
           },
           "403": {
-            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for temperature.\n  An update with an unsupported unit for this server.\nThe server responds with the current resource representation including\nthe range property illustrating the supported range and the error.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/Temperature00"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "range": [
-                0.0,
-                100.0
-              ],
-              "temperature": 20.0,
-              "units": "C"
             }
           }
         }
@@ -579,13 +613,13 @@
     },
     "/TemperatureSensorURI": {
       "get": {
-        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/parameters/interface30"
           },
           {
-            "description": "Units",
+            "description": "",
             "enum": [
               "C",
               "F",
@@ -601,29 +635,30 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/Temperature"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "range": [
-                0.0,
-                100.0
-              ],
-              "rt": [
-                "oic.r.temperature"
-              ],
-              "temperature": 20.0,
-              "units": "C"
             }
           },
           "403": {
-            "description": "This response is generated by the OIC Server when the client sends:\n  A retrieve with q queryParameter indicating a unit that the server does not support.\nThe server responds with the current resource representation including the\nunits property illustrating the supported units and the error.\n",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/Temperature"
-            },
-            "x-example": {
-              "id": "unique_example_id",
-              "temperature": 20.0,
-              "units": "C"
+            }
+          }
+        }
+      }
+    },
+    "/oic/p": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Platform"
             }
           }
         }

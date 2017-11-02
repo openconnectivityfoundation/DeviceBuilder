@@ -1,0 +1,139 @@
+**************************
+*** DeviceBuilder (v1) ***
+**************************
+out                 : ./out/ctt_client/out
+resource dir        : ../../IoTDataModels
+oic/res file        : None
+input file          : ./input_define_device/ctt_client.json
+remove_property     : None
+type                : None
+intermediate files  : False
+
+
+== INTROSPECTION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['oic.wk.p.swagger.json']
+
+  main: File : oic.wk.p.swagger.json
+  main: rt : ['oic.wk.p']
+  rt                 : oic.wk.p
+    href             : /oic/p
+    if               : ['oic.if.baseline', 'oic.if.r']
+    type (replace)   : None
+    props (remove)   : ['n', 'range', 'value', 'step', 'precision', 'vid']
+    methods (remove) : None
+    rts (enum)       : None
+    basefile         : oic.wk.p.swagger.json
+ 
+
+create_introspection index: 0 /oic/p
+collapse_allOf:
+   Platform
+handle_collections
+update_path_value:
+   rt: oic.wk.p  href: /oic/p
+update_path_value /oic/p
+ update_path_value: already the same : ['/oic/p', '/oic/p']
+update_definition_with_rt
+  rt: oic.wk.p
+  update_definition_with_rt  n
+  update_definition_with_rt  mndt
+  update_definition_with_rt  pi
+  update_definition_with_rt  mnsl
+  update_definition_with_rt  mnml
+  update_definition_with_rt  mnos
+  update_definition_with_rt  mnfv
+  update_definition_with_rt  vid
+  update_definition_with_rt  mnpv
+  update_definition_with_rt  id
+  update_definition_with_rt  mnmn
+  update_definition_with_rt  st
+  update_definition_with_rt  rt
+  update_definition_with_rt  mnhw
+  update_definition_with_rt  if
+  update_definition_with_rt  mnmo
+update_definition_with_if
+  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
+  replacing if with ['oic.if.baseline', 'oic.if.r']
+update_parameters_with_if
+  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.r']
+update_definition_with_type
+  href: /oic/p  type: None
+  def_name Platform
+remove_definition_properties
+  rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
+  definition: #/definitions/Platform
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
+remove_path_method
+   href: /oic/p  method: None
+optimize for introspection..
+erase_element: Cannot find matching key: x-example
+
+== CODE GENERATION ==
+handling resources (overview):
+find_files: directory: ../../IoTDataModels
+processing files: ['oic.wk.p.swagger.json']
+
+  main: File : oic.wk.p.swagger.json
+  main: rt : ['oic.wk.p']
+  rt                 : oic.wk.p
+    href             : /oic/p
+    if               : ['oic.if.baseline', 'oic.if.r']
+    type (replace)   : None
+    props (remove)   : ['n', 'range', 'value', 'step', 'precision', 'vid']
+    methods (remove) : None
+    rts (enum)       : None
+    basefile         : oic.wk.p.swagger.json
+ 
+
+create_introspection index: 0 /oic/p
+collapse_allOf:
+   Platform
+handle_collections
+update_path_value:
+   rt: oic.wk.p  href: /oic/p
+update_path_value /oic/p
+ update_path_value: already the same : ['/oic/p', '/oic/p']
+update_definition_with_rt
+  rt: oic.wk.p
+  update_definition_with_rt  n
+  update_definition_with_rt  mndt
+  update_definition_with_rt  pi
+  update_definition_with_rt  mnsl
+  update_definition_with_rt  mnml
+  update_definition_with_rt  mnos
+  update_definition_with_rt  mnfv
+  update_definition_with_rt  vid
+  update_definition_with_rt  mnpv
+  update_definition_with_rt  id
+  update_definition_with_rt  mnmn
+  update_definition_with_rt  st
+  update_definition_with_rt  rt
+  update_definition_with_rt  mnhw
+  update_definition_with_rt  if
+  update_definition_with_rt  mnmo
+update_definition_with_if
+  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
+  replacing if with ['oic.if.baseline', 'oic.if.r']
+update_parameters_with_if
+  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
+update_parameters_with_if interface
+ replacing if with ['oic.if.baseline', 'oic.if.r']
+update_definition_with_type
+  href: /oic/p  type: None
+  def_name Platform
+remove_definition_properties
+  rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
+  definition: #/definitions/Platform
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
+remove_path_method
+   href: /oic/p  method: None

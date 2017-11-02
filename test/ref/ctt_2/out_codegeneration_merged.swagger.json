@@ -106,7 +106,8 @@
           "minimum": 0,
           "type": "integer"
         }
-      }
+      },
+      "type": "object"
     },
     "Dimming": {
       "properties": {
@@ -144,6 +145,138 @@
       },
       "required": [
         "dimmingSetting"
+      ],
+      "type": "object"
+    },
+    "Platform": {
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            },
+            {
+              "description": "Format pattern according to IETF RFC 4122.",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          ],
+          "description": "Instance ID of this specific resource",
+          "readOnly": true
+        },
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.r"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "mndt": {
+          "allOf": [
+            {
+              "description": "Format pattern as defined in ISO 8601. The format is [yyyy]-[mm]-[dd].",
+              "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$",
+              "type": "string"
+            },
+            {
+              "description": "Manufacturing Date in ISO8601 format.",
+              "readOnly": true
+            }
+          ]
+        },
+        "mnfv": {
+          "description": "Manufacturer's firmware version",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnhw": {
+          "description": "Platform Hardware Version",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnml": {
+          "description": "Manufacturer's URL",
+          "format": "uri",
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnmn": {
+          "description": "Manufacturer Name",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnmo": {
+          "description": "Model number as designated by the manufacturer",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnos": {
+          "description": "Platform Resident OS Version",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnpv": {
+          "description": "Platform Version",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnsl": {
+          "description": "Manufacturer's Support Information URL",
+          "format": "uri",
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "pi": {
+          "allOf": [
+            {
+              "description": "Format pattern according to IETF RFC 4122.",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            },
+            {
+              "description": "Platform Identifier",
+              "readOnly": true
+            }
+          ]
+        },
+        "rt": {
+          "default": [
+            "oic.wk.p"
+          ],
+          "description": "Resource Type of the Resource",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "st": {
+          "description": "Reference time for the device in ISO8601 format.",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "pi",
+        "mnmn"
       ],
       "type": "object"
     },
@@ -266,6 +399,15 @@
       "enum": [
         "oic.if.baseline",
         "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface50": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.r"
       ],
       "in": "query",
       "name": "if",
@@ -624,6 +766,31 @@
               "id": "unique_example_id",
               "temperature": 20.0,
               "units": "C"
+            }
+          }
+        }
+      }
+    },
+    "/oic/p": {
+      "get": {
+        "description": "Known resource that is defines the platform on which an Server is hosted.\nAllows for platform specific information to be discovered.\nRetrieve the information about the Platform\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Platform"
+            },
+            "x-example": {
+              "mnmn": "Acme, Inc",
+              "pi": "54919CA5-4101-4AE4-595B-353C51AA983C",
+              "rt": [
+                "oic.wk.p"
+              ]
             }
           }
         }
