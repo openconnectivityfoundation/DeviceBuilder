@@ -11,6 +11,33 @@ Examples of introspection files
   can be used if no introspection data is needed.
   - manually crafted
   
+- introspection-client-iotivity-oic-p
+
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-client-iotivity-oic-p.txt
+
+  IOTivity response of /oic/p, which also includes optional properties:
+
+    ```
+    {
+      "rt" : ["oic.wk.p"],
+      "if" : ["oic.if.baseline", "oic.if.r"],
+      "st" : "2016-06-20T10:10:10Z",
+      "mnsl" : "support.default-vendor.com",
+      "mnfv" : "1.1.1",
+      "mnhw" : "1.1.0",
+      "mnos" : "10",
+      "mnpv" : "0.0.1",
+      "mndt" : "2016-06-01",
+      "mnmo" : "ABCDE00004",
+      "mnml" : "www.default-vendor.com",
+      "mnmn" : "Vendor",
+      "pi" : "436f6e66-6f72-6d61-6e63-6553696d756c"
+    }
+    ```   
+  This means that the client needs to convey the DDI file with oic/p indicating the implemented properties in /oic/p.  
+  This IDD file contains the IOTivity IDD with all implemented optional properties, (e.g. only optional property not implemented is "vid")
+  - generated
+  
 - introspection-binaryswitch-acutator.txt
 
   https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator.txt
@@ -52,6 +79,8 @@ Examples of introspection files
   
 - ctt_1 test device
 
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/ctt_1.swagger.json
+
   Note that the responses have the "if" property, as currently being used in the binary switch.
   All other optional properties are removed.
   The temperature has only Temperature and units as properties.
@@ -67,30 +96,5 @@ Examples of introspection files
    Note this example does not have oic/p as implemented by IOTivity
    - manually crafted
 
-- introspection-client-iotivity-oic-p
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-client-iotivity-oic-p.txt
-
-  IOTivity response of /oic/p, which also includes optional properties:
-
-    ```
-    {
-      "rt" : ["oic.wk.p"],
-      "if" : ["oic.if.baseline", "oic.if.r"],
-      "st" : "2016-06-20T10:10:10Z",
-      "mnsl" : "support.default-vendor.com",
-      "mnfv" : "1.1.1",
-      "mnhw" : "1.1.0",
-      "mnos" : "10",
-      "mnpv" : "0.0.1",
-      "mndt" : "2016-06-01",
-      "mnmo" : "ABCDE00004",
-      "mnml" : "www.default-vendor.com",
-      "mnmn" : "Vendor",
-      "pi" : "436f6e66-6f72-6d61-6e63-6553696d756c"
-    }
-    ```   
-  This means that the client needs to convey the DDI file with oic/p indicating the implemented properties in /oic/p.  
-  This IDD file contains the IOTivity IDD with all implemented optional properties, (e.g. only optional property not implemented is "vid")
-  - generated
         
