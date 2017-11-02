@@ -44,3 +44,30 @@ These files are manually crafted.
     - Temperature 2x , sensor and actuator
         - /actuatorthermostat
         - /sensorthermostat
+        
+   Note this example does not have oic/p as implemented by IOTivity
+
+- introspection-client-iotivity-oic-p
+
+    IOTivity response of /oic/p, which also includes optional properties:
+
+    ```
+    {
+      "rt" : ["oic.wk.p"],
+      "if" : ["oic.if.baseline", "oic.if.r"],
+      "st" : "2016-06-20T10:10:10Z",
+      "mnsl" : "support.default-vendor.com",
+      "mnfv" : "1.1.1",
+      "mnhw" : "1.1.0",
+      "mnos" : "10",
+      "mnpv" : "0.0.1",
+      "mndt" : "2016-06-01",
+      "mnmo" : "ABCDE00004",
+      "mnml" : "www.default-vendor.com",
+      "mnmn" : "Vendor",
+      "pi" : "436f6e66-6f72-6d61-6e63-6553696d756c"
+    }
+    ```   
+    This means that the client needs to convey the DDI file with oic/p indicating the implemented properties in /oic/p.  
+    This IDD file contains the IOTivity IDD with all implemented optional properties, (e.g. only optional property not implemented is "vid")
+        
