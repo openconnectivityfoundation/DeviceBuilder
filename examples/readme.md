@@ -93,8 +93,29 @@ Examples of introspection files
         - /actuatorthermostat
         - /sensorthermostat
         
-   Note this example does not have oic/p as implemented by IOTivity
+   Note this example does __not have__ oic/p as implemented by IOTivity
    - manually crafted
 
 
+- ctt_2 test device
+
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/ctt_2.swagger.json
+
+  Note that the responses have the "if" property, as currently being used in the binary switch.
+  All other optional properties are removed.
+  The temperature has only Temperature and units as properties.
+
+    - Full light device (binary switch, dimming, colour chroma)
+        - /binaryswitch
+        - /dimming
+        - /colourchroma
+    - Temperature 2x , sensor and actuator
+        - /actuatorthermostat
+        - /sensorthermostat
+        
+   Note this example __has__ oic/p described as implemented by IOTivity
+   - generated
+
+
+        
         
