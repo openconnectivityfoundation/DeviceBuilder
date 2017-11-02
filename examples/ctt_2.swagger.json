@@ -106,7 +106,13 @@
           "minimum": 0,
           "type": "integer"
         }
-      }
+      },
+      "required": [
+        "hue",
+        "saturation",
+        "csc"
+      ],
+      "type": "object"
     },
     "Dimming": {
       "properties": {
