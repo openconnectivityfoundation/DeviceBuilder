@@ -96,12 +96,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "n": {
-          "description": "",
-          "maxLength": 64,
-          "readOnly": true,
-          "type": "string"
-        },
         "pi": {
           "allOf": [
             {
