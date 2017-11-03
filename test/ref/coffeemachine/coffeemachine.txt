@@ -72,8 +72,8 @@ erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /operationalstate
 collapse_allOf:
-   Operation
    OperationUpdate
+   Operation
 handle_collections
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
@@ -168,8 +168,8 @@ remove_path_method
 
 create_introspection index: 1 /operationalstate
 collapse_allOf:
-   Operation
    OperationUpdate
+   Operation
 handle_collections
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate

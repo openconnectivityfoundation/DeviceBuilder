@@ -69,8 +69,8 @@ collapse_allOf:
 handle_collections
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
-update_path_value /HeatingZoneBaselineResURI
 update_path_value /HeatingZoneLLResURI
+update_path_value /HeatingZoneBaselineResURI
  update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
@@ -80,9 +80,9 @@ update_definition_with_if
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface-baseline
 update_parameters_with_if interface-all
 update_parameters_with_if interface-ll
+update_parameters_with_if interface-baseline
 update_definition_with_type
   href: /heatingzonecollection  type: None
 remove_definition_properties
@@ -93,9 +93,9 @@ erase_element: Cannot find matching key: precision
 remove_path_method
    href: /heatingzonecollection  method: None
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 erase_element : could not delete: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /heatingzone1
 collapse_allOf:
@@ -279,8 +279,8 @@ collapse_allOf:
 handle_collections
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
-update_path_value /HeatingZoneBaselineResURI
 update_path_value /HeatingZoneLLResURI
+update_path_value /HeatingZoneBaselineResURI
  update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
@@ -290,9 +290,9 @@ update_definition_with_if
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface-baseline
 update_parameters_with_if interface-all
 update_parameters_with_if interface-ll
+update_parameters_with_if interface-baseline
 update_definition_with_type
   href: /heatingzonecollection  type: None
 remove_definition_properties

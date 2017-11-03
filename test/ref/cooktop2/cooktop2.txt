@@ -40,14 +40,14 @@ processing files: ['HeatingZoneBaselineResURI.swagger.json', 'HeatingZoneResURI.
 
 create_introspection index: 0 /heatingzonecollection
 collapse_allOf:
-   HeatingZone
    HeatingZone-ll
+   HeatingZone
 handle_collections
   replacing rts: #/definitions/HeatingZone
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
-update_path_value /HeatingZoneLLResURI
 update_path_value /HeatingZoneBaselineResURI
+update_path_value /HeatingZoneLLResURI
  update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
@@ -58,8 +58,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface-baseline
-update_parameters_with_if interface-all
 update_parameters_with_if interface-ll
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /heatingzonecollection  type: None
 remove_definition_properties
@@ -134,14 +134,14 @@ processing files: ['HeatingZoneBaselineResURI.swagger.json', 'HeatingZoneResURI.
 
 create_introspection index: 0 /heatingzonecollection
 collapse_allOf:
-   HeatingZone
    HeatingZone-ll
+   HeatingZone
 handle_collections
   replacing rts: #/definitions/HeatingZone
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
-update_path_value /HeatingZoneLLResURI
 update_path_value /HeatingZoneBaselineResURI
+update_path_value /HeatingZoneLLResURI
  update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
@@ -152,8 +152,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface-baseline
-update_parameters_with_if interface-all
 update_parameters_with_if interface-ll
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /heatingzonecollection  type: None
 remove_definition_properties

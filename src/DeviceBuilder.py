@@ -202,6 +202,8 @@ def get_dict_recursively(search_dict, field):
     Takes a dict with nested lists and dicts,
     and searches all dicts for a key of the field
     provided.
+    :param search_dict: dict to search
+    :param field: key to search
     """
     fields_found = []
 
@@ -226,7 +228,7 @@ def get_dict_recursively(search_dict, field):
         traceback.print_exc()
 
     return fields_found  
-    
+        
                             
 def find_key_and_clean(rec_dict, search_key, depth=0):
     """
@@ -366,7 +368,47 @@ def find_files(dirname, rt_values):
                 if find_in_array(rt_file, rt_values):
                     found_file.append(myfile)
     return found_file
-            
+        
+
+def remove_unused_defintions(json_data):
+    """
+    remove unused definitions
+    - defintions that are not referenced
+    """
+    print ("remove_unused_defintions")
+    def_data = json_data["definitions"]
+    to_remove = []
+    for def_name, def_item in def_data.items():
+        full_def_name = "#/definitions/" + def_name
+        value = find_key_value(json_data, "$ref", full_def_name)
+        if value is None:
+            # not found, e.g. can be removed
+            to_remove.append(def_name)
+        
+    for item in to_remove:
+        print ("  remove_unused_defintions removing :", item)
+        erase_element(def_data, item, erase_entry=True)
+    
+    
+def remove_unused_parameters(json_data):
+    """
+    remove unused definitions
+    - defintions that are not referenced
+    """
+    print ("remove_unused_parameters")
+    paths_data = json_data["paths"]
+    par_data = json_data["parameters"]
+    to_remove = []
+    for par_name, par_item in par_data.items():
+        full_par_name = "#/parameters/" + par_name
+        value = find_key_value(json_data, "$ref", full_par_name)
+        if value is None:
+            # not found, e.g. can be removed
+            to_remove.append(par_name)
+    
+    for item in to_remove:
+        print ("  remove_unused_parameters removing :", item)
+        erase_element(par_data, item, erase_entry=True)
     
 def remove_for_optimize(json_data):
     """
@@ -432,31 +474,30 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
             if entry[2] == full_def_name:
                 # found entry
                 properties = def_item.get("properties")
-                rt_prop = None
                 if properties is not None:
                     rt_prop = properties.get("rt")
-                if rt_prop is None:
-                    print ("  update_definition_with_rt rt not found!, inserting..")
-                    properties["rt"] =  json.loads("""{
-                          "type" : "array",
-                          "items" : {
-                            "type" : "string",
-                            "maxLength" : 64
-                          },
-                          "minItems" : 1,
-                          "readOnly" : true,
-                          "default" : ["oic.r.switch.binary"]
-                        }""")
-                
-                for prop_name, prop in properties.items():
-                    #print ("  update_definition_with_rt ", prop_name)
-                    if prop_name == "rt":
-                        print ("  update_definition_with_rt ", prop_name)
-                        # the default should be an array.
-                        if isinstance(entry[1], list):
-                            prop["default"] = entry[1]
-                        else:
-                            prop["default"] = [entry[1]]
+                    if rt_prop is None:
+                        print ("  update_definition_with_rt rt not found!, inserting..")
+                        properties["rt"] =  json.loads("""{
+                              "type" : "array",
+                              "items" : {
+                                "type" : "string",
+                                "maxLength" : 64
+                              },
+                              "minItems" : 1,
+                              "readOnly" : true,
+                              "default" : ["oic.r.switch.binary"]
+                            }""")
+                    
+                    for prop_name, prop in properties.items():
+                        #print ("  update_definition_with_rt ", prop_name)
+                        if prop_name == "rt":
+                            print ("  update_definition_with_rt ", prop_name)
+                            # the default should be an array.
+                            if isinstance(entry[1], list):
+                                prop["default"] = entry[1]
+                            else:
+                                prop["default"] = [entry[1]]
                              
               
 def update_definition_with_if(json_data, rt_value_file, rt_values):
@@ -688,11 +729,7 @@ def remove_path_method(json_data, rt_value_file, rt_values):
     print ("remove_path_method")
     for rt_value in rt_values:
         print ("   href:", rt_value[index_href], " method:", rt_value[index_method])
-    
-    #if rt_values[0][index_path] == None :
-    #    return
-    
-    
+        
     # array of arrays of path, r, ref, rt_values
     # keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -714,10 +751,7 @@ def update_path_value(json_data, rt_value_file, rt_values):
     print ("update_path_value:")
     for rt_value in rt_values:
         print ("   rt:", rt_value[index_rt], " href:", rt_value[index_href])
-        
-    #if rt_values[0][index_path] == None :
-    #    return
-        
+                
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
         print ("update_path_value", path)
@@ -788,7 +822,6 @@ def collapse_allOf(json_data):
         if handle_allof:
             if VERBOSE:
                 print (" processing: ", def_name)
-            #print ("   ", new_props)
             def_data[def_name] = new_props
             
   
@@ -800,9 +833,6 @@ def handle_collections(json_data, rt_value_file, rt_values):
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
     """
     print("handle_collections")
-    #if rt_values[0][index_rts] == None :
-    #    return
-    #print("handle_collections: handling", rt_values[0][index_href])    
     
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs = []
@@ -857,7 +887,6 @@ def create_introspection(json_data, rt_value_file, rt_values, index):
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
     """
     print ("")
-    # print("create_introspection index:", index)
     rt_single = [rt_values[index]]
     # if rt_single is not None:
     print("create_introspection index:", index, rt_single[0][index_href])
@@ -880,6 +909,8 @@ def optimize_introspection(json_data):
     """
     remove_for_optimize(json_data)
     clear_descriptions(json_data)
+    #remove_unused_defintions(json_data)
+    #remove_unused_parameters(json_data)
            
 
 def merge(merge_data, file_data, index):

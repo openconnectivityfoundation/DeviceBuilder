@@ -106,7 +106,8 @@
           "minimum": 0,
           "type": "integer"
         }
-      }
+      },
+      "type": "object"
     },
     "Dimming": {
       "properties": {
