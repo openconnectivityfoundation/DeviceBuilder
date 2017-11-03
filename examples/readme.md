@@ -49,7 +49,7 @@ Examples of introspection files
     
 - introspection-binaryswitch-actuator-oic-p.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator-oic-p.txt
   
   single binary switch, as actuator.
   - includes /oic/p as implemented in IOTivity.
