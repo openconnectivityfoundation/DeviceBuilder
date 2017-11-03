@@ -128,4 +128,19 @@ Examples of introspection files
 
 
         
+# validation of swagger introspection files
+validation can be done with the tool chain available at:
+        
+https://github.com/WAvdBeek/wb-swagger-node
+        
+please follow the install instructions as available.
+
+validation changes wrt swagger2.0 validation:
+- allows oneOf/allOf/anyOf constructs in the defintion part of the swagger file.
+
+Note that this only validates if the structure/content of the introspection device data file is valid. 
+It does not check if the contents of the introspection device data actually presents the device itself.
+please use the CTT for that purpose.
+
+
         
