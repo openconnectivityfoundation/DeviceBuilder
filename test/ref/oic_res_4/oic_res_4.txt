@@ -51,12 +51,7 @@ update_path_value /BrightnessResURI
 update_definition_with_rt
   rt: oic.r.light.brightness
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  brightness
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  step
-  update_definition_with_rt  value
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
   update_definition_with_if if not found!, inserting..
@@ -64,10 +59,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
 update_parameters_with_if interface
- replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: int
-  def_name Brightness
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
   rt: oic.r.light.brightness  prop: None
@@ -88,11 +81,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  step
-  update_definition_with_rt  value
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -100,10 +89,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: int
-  def_name BinarySwitch
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
@@ -155,12 +142,7 @@ update_path_value /BrightnessResURI
 update_definition_with_rt
   rt: oic.r.light.brightness
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  brightness
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  step
-  update_definition_with_rt  value
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
   update_definition_with_if if not found!, inserting..
@@ -168,10 +150,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
 update_parameters_with_if interface
- replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: int
-  def_name Brightness
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
   rt: oic.r.light.brightness  prop: None
@@ -189,11 +169,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  step
-  update_definition_with_rt  value
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -201,10 +177,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: int
-  def_name BinarySwitch
  *** ERROR type is not valid: int  supported types: ['integer', 'number', 'string', 'boolean']
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None

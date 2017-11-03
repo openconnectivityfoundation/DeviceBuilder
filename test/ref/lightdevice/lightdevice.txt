@@ -61,10 +61,6 @@ update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
-  update_definition_with_rt  step
-  update_definition_with_rt  value
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -72,15 +68,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /binaryswitch  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: id
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
@@ -102,12 +94,7 @@ update_path_value /DimmingResURI
 update_definition_with_rt
   rt: oic.r.light.dimming
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  step
   update_definition_with_rt  rt
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
-  update_definition_with_rt  dimmingSetting
-  update_definition_with_rt  value
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -115,15 +102,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /dimming  type: None
-  def_name Dimming
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: id
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -139,7 +122,6 @@ merge: parameter exist: interface
 create_introspection index: 2 /colourchroma
 collapse_allOf:
    ColourChroma
- processing:  ColourChroma
 handle_collections
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
@@ -148,12 +130,7 @@ update_path_value /example/ColourChromaResURI
 update_definition_with_rt
   rt: oic.r.colour.chroma
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  maximumsaturation
-  update_definition_with_rt  hue
-  update_definition_with_rt  saturation
   update_definition_with_rt  rt
-  update_definition_with_rt  ct
-  update_definition_with_rt  csc
 update_definition_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -161,18 +138,14 @@ update_definition_with_if
 update_parameters_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /colourchroma  type: None
-  def_name ColourChroma
 remove_definition_properties
   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -235,10 +208,6 @@ update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
-  update_definition_with_rt  step
-  update_definition_with_rt  value
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -246,15 +215,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /binaryswitch  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: id
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
@@ -273,12 +238,7 @@ update_path_value /DimmingResURI
 update_definition_with_rt
   rt: oic.r.light.dimming
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  step
   update_definition_with_rt  rt
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
-  update_definition_with_rt  dimmingSetting
-  update_definition_with_rt  value
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -286,15 +246,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /dimming  type: None
-  def_name Dimming
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: id
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -307,7 +263,6 @@ merge: parameter exist: interface
 create_introspection index: 2 /colourchroma
 collapse_allOf:
    ColourChroma
- processing:  ColourChroma
 handle_collections
 update_path_value:
    rt: oic.r.colour.chroma  href: /colourchroma
@@ -316,12 +271,7 @@ update_path_value /example/ColourChromaResURI
 update_definition_with_rt
   rt: oic.r.colour.chroma
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  maximumsaturation
-  update_definition_with_rt  hue
-  update_definition_with_rt  saturation
   update_definition_with_rt  rt
-  update_definition_with_rt  ct
-  update_definition_with_rt  csc
 update_definition_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -329,18 +279,14 @@ update_definition_with_if
 update_parameters_with_if
   href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /colourchroma  type: None
-  def_name ColourChroma
 remove_definition_properties
   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value

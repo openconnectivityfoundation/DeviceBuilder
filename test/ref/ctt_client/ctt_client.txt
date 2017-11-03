@@ -37,35 +37,17 @@ update_path_value /oic/p
  update_path_value: already the same : ['/oic/p', '/oic/p']
 update_definition_with_rt
   rt: oic.wk.p
-  update_definition_with_rt  n
-  update_definition_with_rt  mndt
-  update_definition_with_rt  pi
-  update_definition_with_rt  mnsl
-  update_definition_with_rt  mnml
-  update_definition_with_rt  mnos
-  update_definition_with_rt  mnfv
-  update_definition_with_rt  vid
-  update_definition_with_rt  mnpv
-  update_definition_with_rt  id
-  update_definition_with_rt  mnmn
-  update_definition_with_rt  st
   update_definition_with_rt  rt
-  update_definition_with_rt  mnhw
-  update_definition_with_rt  if
-  update_definition_with_rt  mnmo
 update_definition_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
   replacing if with ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.r']
 update_definition_with_type
   href: /oic/p  type: None
-  def_name Platform
 remove_definition_properties
   rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
-  definition: #/definitions/Platform
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
@@ -102,35 +84,17 @@ update_path_value /oic/p
  update_path_value: already the same : ['/oic/p', '/oic/p']
 update_definition_with_rt
   rt: oic.wk.p
-  update_definition_with_rt  n
-  update_definition_with_rt  mndt
-  update_definition_with_rt  pi
-  update_definition_with_rt  mnsl
-  update_definition_with_rt  mnml
-  update_definition_with_rt  mnos
-  update_definition_with_rt  mnfv
-  update_definition_with_rt  vid
-  update_definition_with_rt  mnpv
-  update_definition_with_rt  id
-  update_definition_with_rt  mnmn
-  update_definition_with_rt  st
   update_definition_with_rt  rt
-  update_definition_with_rt  mnhw
-  update_definition_with_rt  if
-  update_definition_with_rt  mnmo
 update_definition_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
   replacing if with ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.r']
 update_definition_with_type
   href: /oic/p  type: None
-  def_name Platform
 remove_definition_properties
   rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
-  definition: #/definitions/Platform
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step

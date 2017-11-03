@@ -50,6 +50,8 @@ index_method = 5
 index_rts = 6 
 index_file = 7
 
+VERBOSE=False
+
 class MyArgs(object):
     def __init__(self):
         self.type = None
@@ -137,8 +139,12 @@ def erase_element(d, k, erase_entry=False):
                     else:
                         kill_list.append(key)
                 for key in kill_list:
+                    if VERBOSE:
+                        print("erase_element: pop:", key)
                     descendant.pop(key)
             else:
+                if VERBOSE:
+                    print("erase_element: pop:", key)
                 d.pop(k)
             if erase_entry:
                 try:
@@ -254,8 +260,8 @@ def find_oic_res_resources(filename, my_args):
     args_type = my_args.type
     args_props = my_args.remove_property
     rt_ingore_list = ["oic.wk.res", "oic.r.doxm", "oic.r.pstat", "oic.r.acl2", "oic.r.cred",
-                      "oic.r.csr", "oic.r.crl", "oic.r.roles", "oic.wk.d", "oic.wk.p", "oic.wk.introspection"]
-    # removed "oic.wk.p"
+                      "oic.r.csr", "oic.r.crl", "oic.r.roles", "oic.wk.d", "oic.wk.p", "oic.wk.introspection", "oic.wk.rd"]
+
     json_data = load_json(filename)
     found_rt_values = []
     for entry in json_data[0].get("links"):
@@ -266,7 +272,7 @@ def find_oic_res_resources(filename, my_args):
             for rt_value in rt:
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
-                        if "oic." not in rt_value:
+                        if "oic.d." not in rt_value:
                             found_rt_values.append([rt_value, href, prop_if, args_type, args_props, None, None])
                         else:
                             print ("find_resources: device type rt (not handled):", rt_value)
@@ -426,7 +432,9 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
             if entry[2] == full_def_name:
                 # found entry
                 properties = def_item.get("properties")
-                rt_prop = properties.get("rt")
+                rt_prop = None
+                if properties is not None:
+                    rt_prop = properties.get("rt")
                 if rt_prop is None:
                     print ("  update_definition_with_rt rt not found!, inserting..")
                     properties["rt"] =  json.loads("""{
@@ -441,8 +449,9 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                         }""")
                 
                 for prop_name, prop in properties.items():
-                    print ("  update_definition_with_rt ", prop_name)
+                    #print ("  update_definition_with_rt ", prop_name)
                     if prop_name == "rt":
+                        print ("  update_definition_with_rt ", prop_name)
                         # the default should be an array.
                         if isinstance(entry[1], list):
                             prop["default"] = entry[1]
@@ -526,7 +535,8 @@ def update_parameters_with_if(json_data, rt_value_file, rt_values):
         print ("update_parameters_with_if", param_name)
         for prop_name, prop in param_item.items():
             if prop_name == "name" and prop == "if":
-                print (" replacing if with", rt_value[index_if])
+                if VERBOSE:
+                    print (" replacing if with", rt_value[index_if])
                 param_item["enum"] = rt_value[index_if]
 
 
@@ -573,7 +583,8 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
         full_defname = "#/definitions/" + def_name   
-        print ("  def_name", def_name)
+        if VERBOSE:
+            print ("  def_name", def_name)
         for entry in keyvaluepairs:
             if entry[2] == full_defname:
                 properties = def_item.get("properties")
@@ -589,14 +600,16 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                     for prop_name, prop in properties.items():
                         one_off = prop.get("anyOf")
                         if prop_name in keys_to_handle:
-                            print ("update_definition_with_type ", prop_name)
+                            if VERBOSE:
+                                print ("update_definition_with_type ", prop_name)
                             prop["type"] = my_type
                             if one_off is not None:
                                 prop.pop("anyOf")
                         if prop_name == "range":
                             one_off = prop["items"].get("anyOf")
                             if one_off is not None:
-                                print ("update_definition_with_type ", prop_name)
+                                if VERBOSE:
+                                    print ("update_definition_with_type ", prop_name)
                                 prop["items"].pop("anyOf")
                                 prop["items"]["type"] = my_type
 
@@ -655,7 +668,8 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
         full_def_name = "#/definitions/" + def_name
         for entry in keyvaluepairs:
             if entry[2] == full_def_name:
-                print ("  definition:", full_def_name)
+                if VERBOSE:
+                    print ("  definition:", full_def_name)
                 # found entry
                 properties = def_item.get("properties")
                 remove_list = entry[3][index_prop]
@@ -772,7 +786,8 @@ def collapse_allOf(json_data):
                         if item_name in ["oneOf", "anyOf", "allOf"]:
                             handle_allof = False        
         if handle_allof:
-            print (" processing: ", def_name)
+            if VERBOSE:
+                print (" processing: ", def_name)
             #print ("   ", new_props)
             def_data[def_name] = new_props
             
@@ -913,15 +928,11 @@ def merge(merge_data, file_data, index):
                 search_definition = "#/definitions/" + definition
                 my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
                 while my_dict is not None:
-                    print (" definition fix -->", my_dict)
+                    if VERBOSE:
+                        print (" definition fix -->", my_dict)
                     my_dict["$ref"] = "#/definitions/" + new_definition
                     my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
-                    
-                # try again for the other method
-                #my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
-                #if my_dict is not None:
-                #    my_dict["$ref"] = "#/definitions/" + new_definition
-                
+                                    
                 merge_data["definitions"][new_definition] = definiton_item                
     
     for path, path_item in file_data["paths"].items():
@@ -1013,7 +1024,7 @@ if __name__ == '__main__':
     print ("**************************")
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-ver", "--verbose", help="Execute in verbose mode", action='store_true')
+    parser.add_argument("-ver", "--verbose", default=False, help="Execute in verbose mode", action='store_true')
 
     parser.add_argument("-ocfres", "--ocfres", default=None,
                          help="ocf/res input", nargs='?', const="", required=False)
@@ -1044,6 +1055,7 @@ if __name__ == '__main__':
     myargs.type = args.type
     myargs.intermediate_files = args.intermediate_files
 
+    VERBOSE = args.verbose
     myargs.my_print()
     
     try:

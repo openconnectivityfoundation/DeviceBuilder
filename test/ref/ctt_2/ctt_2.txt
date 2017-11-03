@@ -90,11 +90,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  step
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -102,15 +98,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: id
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
@@ -132,12 +124,7 @@ update_path_value /DimmingResURI
 update_definition_with_rt
   rt: oic.r.light.dimming
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  dimmingSetting
-  update_definition_with_rt  step
 update_definition_with_if
   href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -145,15 +132,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /DimmingResURI  type: None
-  def_name Dimming
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: id
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -169,7 +152,6 @@ merge: parameter exist: interface
 create_introspection index: 2 /ChromaResURI
 collapse_allOf:
    ColourChroma
- processing:  ColourChroma
 handle_collections
 update_path_value:
    rt: oic.r.colour.chroma  href: /ChromaResURI
@@ -178,11 +160,6 @@ update_path_value /example/ColourChromaResURI
 update_definition_with_rt
   rt: oic.r.colour.chroma
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  csc
-  update_definition_with_rt  hue
-  update_definition_with_rt  maximumsaturation
-  update_definition_with_rt  saturation
-  update_definition_with_rt  ct
   update_definition_with_rt  rt
 update_definition_with_if
   href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -191,19 +168,15 @@ update_definition_with_if
 update_parameters_with_if
   href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /ChromaResURI  type: None
-  def_name ColourChroma
 remove_definition_properties
   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id', 'precision']
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -227,13 +200,7 @@ update_path_value /TemperatureResURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  temperature
-  update_definition_with_rt  units
-  update_definition_with_rt  step
 update_definition_with_if
   href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
   update_definition_with_if if not found!, inserting..
@@ -241,14 +208,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /TemperatureSensorURI  type: None
-  def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Temperature
-  definition: #/definitions/Temperature
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
@@ -273,13 +236,7 @@ update_path_value /TemperatureResURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  temperature
-  update_definition_with_rt  units
-  update_definition_with_rt  step
 update_definition_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -287,14 +244,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /TemperatureResURI  type: None
-  def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Temperature
-  definition: #/definitions/Temperature
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
@@ -308,11 +261,6 @@ erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: definition exist: Temperature
 merge: definition exist: Temperature  adding as: Temperature00
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
 
 create_introspection index: 5 /oic/p
 collapse_allOf:
@@ -324,35 +272,17 @@ update_path_value /oic/p
  update_path_value: already the same : ['/oic/p', '/oic/p']
 update_definition_with_rt
   rt: oic.wk.p
-  update_definition_with_rt  st
   update_definition_with_rt  rt
-  update_definition_with_rt  mnmn
-  update_definition_with_rt  mnos
-  update_definition_with_rt  mnsl
-  update_definition_with_rt  mnml
-  update_definition_with_rt  id
-  update_definition_with_rt  mnpv
-  update_definition_with_rt  pi
-  update_definition_with_rt  vid
-  update_definition_with_rt  mndt
-  update_definition_with_rt  mnhw
-  update_definition_with_rt  n
-  update_definition_with_rt  if
-  update_definition_with_rt  mnmo
-  update_definition_with_rt  mnfv
 update_definition_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
   replacing if with ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.r']
 update_definition_with_type
   href: /oic/p  type: None
-  def_name Platform
 remove_definition_properties
   rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
-  definition: #/definitions/Platform
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
@@ -445,11 +375,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  step
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -457,15 +383,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: id
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
@@ -484,12 +406,7 @@ update_path_value /DimmingResURI
 update_definition_with_rt
   rt: oic.r.light.dimming
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  dimmingSetting
-  update_definition_with_rt  step
 update_definition_with_if
   href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -497,15 +414,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /DimmingResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /DimmingResURI  type: None
-  def_name Dimming
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: id
-  definition: #/definitions/Dimming
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -518,7 +431,6 @@ merge: parameter exist: interface
 create_introspection index: 2 /ChromaResURI
 collapse_allOf:
    ColourChroma
- processing:  ColourChroma
 handle_collections
 update_path_value:
    rt: oic.r.colour.chroma  href: /ChromaResURI
@@ -527,11 +439,6 @@ update_path_value /example/ColourChromaResURI
 update_definition_with_rt
   rt: oic.r.colour.chroma
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  csc
-  update_definition_with_rt  hue
-  update_definition_with_rt  maximumsaturation
-  update_definition_with_rt  saturation
-  update_definition_with_rt  ct
   update_definition_with_rt  rt
 update_definition_with_if
   href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -540,19 +447,15 @@ update_definition_with_if
 update_parameters_with_if
   href: /ChromaResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /ChromaResURI  type: None
-  def_name ColourChroma
 remove_definition_properties
   rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id', 'precision']
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
-  definition: #/definitions/ColourChroma
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -573,13 +476,7 @@ update_path_value /TemperatureResURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  temperature
-  update_definition_with_rt  units
-  update_definition_with_rt  step
 update_definition_with_if
   href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
   update_definition_with_if if not found!, inserting..
@@ -587,14 +484,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /TemperatureSensorURI  if: ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /TemperatureSensorURI  type: None
-  def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Temperature
-  definition: #/definitions/Temperature
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
@@ -616,13 +509,7 @@ update_path_value /TemperatureResURI
 update_definition_with_rt
   rt: oic.r.temperature
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  range
   update_definition_with_rt  rt
-  update_definition_with_rt  precision
-  update_definition_with_rt  value
-  update_definition_with_rt  temperature
-  update_definition_with_rt  units
-  update_definition_with_rt  step
 update_definition_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -630,14 +517,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /TemperatureResURI  type: None
-  def_name Temperature
 remove_definition_properties
   rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
-  definition: #/definitions/Temperature
-  definition: #/definitions/Temperature
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step
@@ -647,11 +530,6 @@ remove_path_method
 merge: parameter exist: interface
 merge: definition exist: Temperature
 merge: definition exist: Temperature  adding as: Temperature00
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
- definition fix --> {'$ref': '#/definitions/Temperature'}
 
 create_introspection index: 5 /oic/p
 collapse_allOf:
@@ -663,35 +541,17 @@ update_path_value /oic/p
  update_path_value: already the same : ['/oic/p', '/oic/p']
 update_definition_with_rt
   rt: oic.wk.p
-  update_definition_with_rt  st
   update_definition_with_rt  rt
-  update_definition_with_rt  mnmn
-  update_definition_with_rt  mnos
-  update_definition_with_rt  mnsl
-  update_definition_with_rt  mnml
-  update_definition_with_rt  id
-  update_definition_with_rt  mnpv
-  update_definition_with_rt  pi
-  update_definition_with_rt  vid
-  update_definition_with_rt  mndt
-  update_definition_with_rt  mnhw
-  update_definition_with_rt  n
-  update_definition_with_rt  if
-  update_definition_with_rt  mnmo
-  update_definition_with_rt  mnfv
 update_definition_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
   replacing if with ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if
   href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.r']
 update_definition_with_type
   href: /oic/p  type: None
-  def_name Platform
 remove_definition_properties
   rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
-  definition: #/definitions/Platform
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: value
 erase_element: Cannot find matching key: step

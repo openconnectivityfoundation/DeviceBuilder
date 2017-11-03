@@ -19,14 +19,6 @@ processing files: ['BinarySwitchResURI.swagger.json']
 
   main: File : BinarySwitchResURI.swagger.json
   main: rt : ['oic.r.switch.binary']
-  rt                 : oic.wk.rd
-    href             : /oic/rd
-    if               : ['oic.if.baseline']
-    type (replace)   : None
-    props (remove)   : None
-    methods (remove) : None
-    rts (enum)       : None
-    basefile         : None
   rt                 : oic.r.switch.binary
     href             : /myBinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -37,7 +29,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     basefile         : BinarySwitchResURI.swagger.json
  
 
-create_introspection index: 1 /myBinarySwitchResURI
+create_introspection index: 0 /myBinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -48,11 +40,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  step
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  value
 update_definition_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -60,10 +48,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /myBinarySwitchResURI  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
@@ -81,14 +67,6 @@ processing files: ['BinarySwitchResURI.swagger.json']
 
   main: File : BinarySwitchResURI.swagger.json
   main: rt : ['oic.r.switch.binary']
-  rt                 : oic.wk.rd
-    href             : /oic/rd
-    if               : ['oic.if.baseline']
-    type (replace)   : None
-    props (remove)   : None
-    methods (remove) : None
-    rts (enum)       : None
-    basefile         : None
   rt                 : oic.r.switch.binary
     href             : /myBinarySwitchResURI
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -99,7 +77,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     basefile         : BinarySwitchResURI.swagger.json
  
 
-create_introspection index: 1 /myBinarySwitchResURI
+create_introspection index: 0 /myBinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -110,11 +88,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  step
-  update_definition_with_rt  range
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  value
 update_definition_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -122,10 +96,8 @@ update_definition_with_if
 update_parameters_with_if
   href: /myBinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /myBinarySwitchResURI  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method

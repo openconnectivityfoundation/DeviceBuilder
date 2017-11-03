@@ -40,44 +40,30 @@ processing files: ['HeatingZoneBaselineResURI.swagger.json', 'HeatingZoneResURI.
 
 create_introspection index: 0 /heatingzonecollection
 collapse_allOf:
-   HeatingZone-ll
    HeatingZone
- processing:  HeatingZone
+   HeatingZone-ll
 handle_collections
   replacing rts: #/definitions/HeatingZone
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
-update_path_value /HeatingZoneBaselineResURI
 update_path_value /HeatingZoneLLResURI
+update_path_value /HeatingZoneBaselineResURI
  update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
-  update_definition_with_rt  id
   update_definition_with_rt  rt
-  update_definition_with_rt  links
-  update_definition_with_rt  n
-  update_definition_with_rt  drel
-  update_definition_with_rt  if
-  update_definition_with_rt  rts
-  update_definition_with_rt  di
 update_definition_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface-ll
- replacing if with ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface-all
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface-baseline
- replacing if with ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface-all
+update_parameters_with_if interface-ll
 update_definition_with_type
   href: /heatingzonecollection  type: None
-  def_name HeatingZone-ll
-  def_name HeatingZone
 remove_definition_properties
   rt: oic.r.heatingzonecollection  prop: ['range', 'step', 'precision', 'di']
-  definition: #/definitions/HeatingZone
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
@@ -99,13 +85,7 @@ update_path_value /HeatingZoneResURI
 update_definition_with_rt
   rt: oic.r.heatingzone
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  value
-  update_definition_with_rt  range
-  update_definition_with_rt  maxheatinglevel
-  update_definition_with_rt  step
   update_definition_with_rt  rt
-  update_definition_with_rt  heatinglevel
-  update_definition_with_rt  precision
 update_definition_with_if
   href: /heatingzone1  if: ['oic.if.baseline', 'oic.if.s']
   update_definition_with_if if not found!, inserting..
@@ -113,20 +93,16 @@ update_definition_with_if
 update_parameters_with_if
   href: /heatingzone1  if: ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone1  type: None
-  def_name HeatingZone
 remove_definition_properties
   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
-  definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone1  method: None
 optimize for introspection..
 erase_element: Cannot find matching key: x-example
 merge: definition exist: HeatingZone
 merge: definition exist: HeatingZone  adding as: HeatingZone00
- definition fix --> {'$ref': '#/definitions/HeatingZone'}
 
 == CODE GENERATION ==
 handling resources (overview):
@@ -158,44 +134,30 @@ processing files: ['HeatingZoneBaselineResURI.swagger.json', 'HeatingZoneResURI.
 
 create_introspection index: 0 /heatingzonecollection
 collapse_allOf:
-   HeatingZone-ll
    HeatingZone
- processing:  HeatingZone
+   HeatingZone-ll
 handle_collections
   replacing rts: #/definitions/HeatingZone
 update_path_value:
    rt: oic.r.heatingzonecollection  href: /heatingzonecollection
-update_path_value /HeatingZoneBaselineResURI
 update_path_value /HeatingZoneLLResURI
+update_path_value /HeatingZoneBaselineResURI
  update_path_value : /HeatingZoneBaselineResURI /heatingzonecollection
 update_definition_with_rt
   rt: oic.r.heatingzonecollection
-  update_definition_with_rt  id
   update_definition_with_rt  rt
-  update_definition_with_rt  links
-  update_definition_with_rt  n
-  update_definition_with_rt  drel
-  update_definition_with_rt  if
-  update_definition_with_rt  rts
-  update_definition_with_rt  di
 update_definition_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /heatingzonecollection  if: ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface-ll
- replacing if with ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface-all
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface-baseline
- replacing if with ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface-all
+update_parameters_with_if interface-ll
 update_definition_with_type
   href: /heatingzonecollection  type: None
-  def_name HeatingZone-ll
-  def_name HeatingZone
 remove_definition_properties
   rt: oic.r.heatingzonecollection  prop: ['range', 'step', 'precision', 'di']
-  definition: #/definitions/HeatingZone
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
@@ -213,13 +175,7 @@ update_path_value /HeatingZoneResURI
 update_definition_with_rt
   rt: oic.r.heatingzone
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  value
-  update_definition_with_rt  range
-  update_definition_with_rt  maxheatinglevel
-  update_definition_with_rt  step
   update_definition_with_rt  rt
-  update_definition_with_rt  heatinglevel
-  update_definition_with_rt  precision
 update_definition_with_if
   href: /heatingzone1  if: ['oic.if.baseline', 'oic.if.s']
   update_definition_with_if if not found!, inserting..
@@ -227,15 +183,11 @@ update_definition_with_if
 update_parameters_with_if
   href: /heatingzone1  if: ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.s']
 update_definition_with_type
   href: /heatingzone1  type: None
-  def_name HeatingZone
 remove_definition_properties
   rt: oic.r.heatingzone  prop: ['range', 'step', 'precision', 'value']
-  definition: #/definitions/HeatingZone
 remove_path_method
    href: /heatingzone1  method: None
 merge: definition exist: HeatingZone
 merge: definition exist: HeatingZone  adding as: HeatingZone00
- definition fix --> {'$ref': '#/definitions/HeatingZone'}

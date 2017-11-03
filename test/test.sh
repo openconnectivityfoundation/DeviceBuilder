@@ -173,6 +173,15 @@ TEST_CASE="ctt_1"
 resfile=./input_define_device/ctt_1.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
+TEST_CASE="ctt_2"
+resfile=./input_define_device/ctt_2.json
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+
+
+TEST_CASE="ctt_client"
+resfile=./input_define_device/ctt_client.json
+my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+
 }
 
 if [ ! -f ../../IoTDataModels/README.md ]

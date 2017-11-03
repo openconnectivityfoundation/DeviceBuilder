@@ -211,7 +211,8 @@
           "type": "array",
           "uniqueItems": true
         }
-      }
+      },
+      "type": "object"
     },
     "HeatingZone-ll": {
       "allOf": [

@@ -51,12 +51,7 @@ update_path_value /BrightnessResURI
 update_definition_with_rt
   rt: oic.r.light.brightness
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  brightness
-  update_definition_with_rt  value
-  update_definition_with_rt  step
-  update_definition_with_rt  range
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
   update_definition_with_if if not found!, inserting..
@@ -64,14 +59,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
 update_parameters_with_if interface
- replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: None
-  def_name Brightness
 remove_definition_properties
   rt: oic.r.light.brightness  prop: ['step', 'range', 'precision']
-  definition: #/definitions/Brightness
-  definition: #/definitions/Brightness
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: precision
@@ -92,11 +83,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  step
-  update_definition_with_rt  range
-  update_definition_with_rt  value
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -104,14 +91,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['step', 'range', 'precision']
-  definition: #/definitions/BinarySwitch
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: precision
@@ -163,12 +146,7 @@ update_path_value /BrightnessResURI
 update_definition_with_rt
   rt: oic.r.light.brightness
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  brightness
-  update_definition_with_rt  value
-  update_definition_with_rt  step
-  update_definition_with_rt  range
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
   update_definition_with_if if not found!, inserting..
@@ -176,14 +154,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
 update_parameters_with_if interface
- replacing if with ['oic.if.a', 'oic.if.baseline']
 update_definition_with_type
   href: /BrightnessResURI  type: None
-  def_name Brightness
 remove_definition_properties
   rt: oic.r.light.brightness  prop: ['step', 'range', 'precision']
-  definition: #/definitions/Brightness
-  definition: #/definitions/Brightness
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: precision
@@ -201,11 +175,7 @@ update_path_value /BinarySwitchResURI
 update_definition_with_rt
   rt: oic.r.switch.binary
   update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  precision
   update_definition_with_rt  rt
-  update_definition_with_rt  step
-  update_definition_with_rt  range
-  update_definition_with_rt  value
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
   update_definition_with_if if not found!, inserting..
@@ -213,14 +183,10 @@ update_definition_with_if
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if interface
- replacing if with ['oic.if.baseline', 'oic.if.a']
 update_definition_with_type
   href: /BinarySwitchResURI  type: None
-  def_name BinarySwitch
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['step', 'range', 'precision']
-  definition: #/definitions/BinarySwitch
-  definition: #/definitions/BinarySwitch
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: precision
