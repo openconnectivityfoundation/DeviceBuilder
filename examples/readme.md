@@ -38,7 +38,7 @@ Examples of introspection files
   This IDD file contains the IOTivity IDD with all implemented optional properties, (e.g. only optional property not implemented is "vid")
   - generated
   
-- introspection-binaryswitch-acutator.txt
+- introspection-binaryswitch-actuator.txt
 
   https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator.txt
   
@@ -46,7 +46,17 @@ Examples of introspection files
   - no "if" on the wire
   - manually crafted
 
-- introspection-binaryswitch-acutator-if.txt
+    
+- introspection-binaryswitch-actuator-oic-p.txt
+
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator.txt
+  
+  single binary switch, as actuator.
+  - includes /oic/p as implemented in IOTivity.
+  - no "if" on the wire
+  - manually crafted
+  
+- introspection-binaryswitch-actuator-if.txt
 
   https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator-if.txt
 
