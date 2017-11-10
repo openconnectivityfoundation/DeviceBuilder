@@ -326,6 +326,19 @@
             "K"
           ],
           "readOnly": true
+        },
+        "range": {
+          "type": "array",
+          "description": "The valid range for the value Property",
+          "readOnly": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "anyOf": [
+              {"type": "number"},
+              {"type": "integer"}
+            ]
+          }
         }
       },
       "required": [
