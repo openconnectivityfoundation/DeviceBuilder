@@ -87,6 +87,17 @@ Examples of introspection files
   - manually crafted
   
   
+- binary_switch_if_with_p.txt
+
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/binary_switch_if_with_p.txt
+  
+  binary switch,  as actuator.
+  - has if property
+  - has oic/p as used in IOTivity
+  - manually crafted
+  
+
+  
 - ctt_1 test device
 
   https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/ctt_1.swagger.json
