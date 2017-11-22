@@ -96,7 +96,7 @@ if [ ! -f $SWAGGER2X ]
 then
 pushd `pwd`
 cd ..
-git clone https://github.com/OpenInterConnect/swagger2x.git --branch master
+git clone https://github.com/openconnectivityfoundation/swagger2x.git --branch master
 popd
 fi
 
