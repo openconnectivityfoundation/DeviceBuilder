@@ -53,7 +53,7 @@
 
 
 PYTHON_EXE=C:\\python35-32\\python3.exe
-DeviceBuilder=./src/deviceBuilder.py
+DeviceBuilder=./src/DeviceBuilder.py
 SWAG2CBOR=./src/swag2cbor.py
 SWAGGER2XDIR=../swagger2x
 SWAGGER2X=$SWAGGER2XDIR/src/swagger2x.py
@@ -61,7 +61,7 @@ SWAGGER2X=$SWAGGER2XDIR/src/swagger2x.py
 INPUTFILE=$1
 OUTPUTDIR=$2
 MODELS_DIR=../IoTDataModels
-CORE_DIR=../Core
+CORE_DIR=../core
 
 echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
