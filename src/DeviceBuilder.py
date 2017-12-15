@@ -373,7 +373,7 @@ def find_files(dirname, rt_values):
 def remove_unused_defintions(json_data):
     """
     remove unused definitions
-    - defintions that are not referenced
+    - definitions that are not referenced
     """
     print ("remove_unused_defintions")
     def_data = json_data["definitions"]
@@ -393,7 +393,7 @@ def remove_unused_defintions(json_data):
 def remove_unused_parameters(json_data):
     """
     remove unused definitions
-    - defintions that are not referenced
+    - definitions that are not referenced
     """
     print ("remove_unused_parameters")
     paths_data = json_data["paths"]
@@ -415,7 +415,7 @@ def remove_for_optimize(json_data):
     remove things from the swagger file
     - license data
     - x-examples in responses
-    - x-examples in body defintions (parameters)
+    - x-examples in body definitions (parameters)
     :param json_data: the swagger file
     """
     info_dict = json_data["info"]["license"]
@@ -444,7 +444,7 @@ def clear_descriptions(json_data):
               
 def update_definition_with_rt(json_data, rt_value_file, rt_values):
     """
-    update the defintion section with the default rt value as array
+    update the definition section with the default rt value as array
     :param json_data: the parsed swagger file
     :param rt_value_file: not used
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
@@ -502,7 +502,7 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
               
 def update_definition_with_if(json_data, rt_value_file, rt_values):
     """
-    update the defintion if enum with the values of rt_values
+    update the definition if enum with the values of rt_values
     :param json_data: the parsed swagger file
     :param rt_value_file: not used
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
@@ -562,7 +562,7 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                         
 def update_parameters_with_if(json_data, rt_value_file, rt_values):
     """
-    update the defintion if enum with the values of rt_values
+    update the definition if enum with the values of rt_values
     :param json_data: the parsed swagger file
     :param rt_value_file: not used
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],..]
@@ -583,7 +583,7 @@ def update_parameters_with_if(json_data, rt_value_file, rt_values):
 
 def update_definition_with_type(json_data, rt_value_file, rt_values):
     """
-    update the defintion type values, e.g. override the type in an oneof construct
+    update the definition type values, e.g. override the type in an oneof construct
     - updates to type, range, step if it contains oneOff subkey
     :param json_data: the parsed swagger file
     :param rt_value_file: not used
@@ -666,7 +666,7 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
 
 def remove_definition_properties(json_data, rt_value_file, rt_values):
     """
-    remove the defintion properties as indicated in the values of rt_values
+    remove the definition properties as indicated in the values of rt_values
     :param json_data: the parsed swagger file
     :param rt_value_file: not used
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
@@ -879,6 +879,36 @@ def handle_collections(json_data, rt_value_file, rt_values):
                     mydict[item[0]] = newval
     
     
+def create_code_generation(json_data, rt_value_file, rt_values, index):
+    """
+    create the introspection data, e.g. morph json_data.
+    :param json_data: the parsed swagger file
+    :param rt_value_file: the filename
+    :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
+    """
+    print ("")
+    rt_single = [rt_values[index]]
+    
+    # this should 
+    rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
+    if rt_single[0][index_rt] in rt_ingore_list :
+        print("create_code_generation ignored:", rt_single[0][index_rt])
+        json_data = None
+        return
+    
+    # if rt_single is not None:
+    print("create_code_generation index:", index, rt_single[0][index_href])
+    collapse_allOf(json_data)
+    handle_collections(json_data, rt_value_file, rt_single)
+    update_path_value(json_data, rt_value_file, rt_single)
+    update_definition_with_rt(json_data, rt_value_file, rt_single)
+    update_definition_with_if(json_data, rt_value_file, rt_single)
+    update_parameters_with_if(json_data, rt_value_file, rt_single)
+    update_definition_with_type(json_data, rt_value_file, rt_single)
+    remove_definition_properties(json_data, rt_value_file, rt_single)
+    remove_path_method(json_data, rt_value_file, rt_single)
+    
+    
 def create_introspection(json_data, rt_value_file, rt_values, index):
     """
     create the introspection data, e.g. morph json_data.
@@ -900,7 +930,6 @@ def create_introspection(json_data, rt_value_file, rt_values, index):
     remove_definition_properties(json_data, rt_value_file, rt_single)
     remove_path_method(json_data, rt_value_file, rt_single)
     
-    
 def optimize_introspection(json_data):    
     """
     optimize the json
@@ -915,12 +944,16 @@ def optimize_introspection(json_data):
 
 def merge(merge_data, file_data, index):
     """
-    merge the file_data (paths and defintions) into merge_data
+    merge the file_data (paths and definitions) into merge_data
     :param merge_data: the data that will be used to merge into
     :param file_data: the data to merge
     :param index: index counter of the index that is being merged
     """
     local_index = 0
+    if file_data is None:
+        print (" merge: data ignored, is empty")
+        return
+    
     for parameter, parameter_item in file_data["parameters"].items():
         data = merge_data["parameters"].get(parameter)
         if data is None:
@@ -1025,12 +1058,20 @@ def main_app(my_args, generation_type):
             if rt[index_file] is not None:
                 file_data = load_json(rt[index_file], str(my_args.resource_dir))
                 rt_values_file = swagger_rt(file_data)
-                create_introspection(file_data, rt_values_file, rt_values, index)
+                
                 
                 if "introspection" == generation_type:
                     print ("optimize for introspection..")
+                    create_introspection(file_data, rt_values_file, rt_values, index)
                     optimize_introspection(file_data)
-                
+                else:
+                    create_code_generation(file_data, rt_values_file, rt_values, index)
+                    rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
+                    rt_single = [rt_values[index]]
+                    if rt_single[0][index_rt] in rt_ingore_list :
+                        print("merge ignored:", rt_single[0][index_rt])
+                        file_data = None
+                    
                 if write_intermediate:
                     file_to_write = str(my_args.out) + "_" + generation_type + "_" + str(index) +"_"+rt[6]
                     write_json(file_to_write, file_data)
