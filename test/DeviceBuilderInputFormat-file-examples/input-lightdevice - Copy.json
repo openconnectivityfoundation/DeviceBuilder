@@ -1,0 +1,28 @@
+[
+
+    {
+      "path" : "/binaryswitch",
+      "rt"   : [ "oic.r.switch.binary" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "step" , "id", "precision" ]
+    },
+     {
+      "path" : "/dimming",
+      "rt"   : [ "oic.r.light.dimming" ],
+      "if"   : ["oic.if.baseline", "oic.if.a" ],
+      "remove_properties" : [ "range", "step", "value" , "id" , "precision"]
+    },
+     {
+      "path" : "/colourchroma",
+      "rt"   : [ "oic.r.colour.chroma" ],
+      "if"   : ["oic.if.baseline","oic.if.a" ],
+      "remove_properties" : [ "range", "step", "value" , "id" ]
+    },
+    {
+      "path" : "/oic/p",
+      "rt"   : [ "oic.wk.p" ],
+      "if"   : ["oic.if.baseline", "oic.if.r" ],
+      "remove_properties" : [ "n", "range", "value", "step", "precision", "vid"  ]
+    }
+
+]

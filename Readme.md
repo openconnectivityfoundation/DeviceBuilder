@@ -1,7 +1,7 @@
 # DeviceBuilder
 
 This tool has various functions to work with OCF swagger type definitions.
-The base function is to 
+The base function is to:
 - create an single swagger file from OCF swagger type definitions (oneIOTa, Core,...)
 This swagger definition file of an full device (application level resources) can be used for:
 - code generation (as input of swagger2x) 
