@@ -38,6 +38,7 @@ Examples of DeviceBuilderInput Format.
 
 
 - input-lightdevice.json
+    The minimal light device, implementing only on/off.
 
     https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice.json
   
@@ -66,11 +67,12 @@ Examples of DeviceBuilderInput Format.
   
   
   
-- input-lightdevice.json
+- input-lightdevice-dimming.json
+    The light device implementing on/off and dimming
 
     https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming.json
   
-    - define resource for oic.d.light 
+    - resource list for oic.d.light 
         - resource type : oic.r.switch.binary
         - resource type : oic.r.light.dimming
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.

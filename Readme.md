@@ -14,12 +14,13 @@ Typical flow to define an OCF device using DeviceBuilder is:
     - add optional resources to the device
         - this can be any resource described in oneIOTa, www.oneIOTa.org
     - create the input for the DeviceBuilder
-        - see xxx
+        - see https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples
     - determine which code generator needs to be used
         - C++ code (for Linux, Windows,..)
-    - run the tool chain script
-        - scripts in the main directory of the DeviceBuilder repo:
-            - xxx
+    - run one the tool chain script
+        - scripts in the main directory of the DeviceBuilder repo
+        - these are bash scripts.
+        
 
 
             
@@ -59,7 +60,7 @@ additional manual steps:
 - edit build files in IOTivity (see additional instructions that are supplied with generated with the code)
 - build
 - test against CTT (see additional instructions that are supplied with the generated code)
-    - using the gnerated PICS file.
+    - using the generated PICS file.
 
             
             
@@ -82,7 +83,10 @@ or (cbor conversion)
 Running the above commands gives all command line options available. 
 
 # swagger file creation from oic/res.
-
+Running DeviceBuilder gives the 2 swagger files:
+- The Introspection Device Data (IDD) swagger file
+- The swagger file representing the device.
+The swagger file is ignored.
 
 Tool chain:
 
@@ -122,13 +126,13 @@ The advantage of this input format is:
 - can be used for existing devices, e.g. just retrieve the oic/res of an existing device
 
 ### Options needed to run the tool (oic/res response):
-- introspection : output base file
+- introspection : output base file, more files are generated with different extensions.
 - ocfres: the oic/res output in json
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)
 
 
 ### Optional options depended on the wanted output:
-- remove_property : array of properties that needs to be removed, e.g. range, step, etc that are not implemented
+- remove_property : array of properties that needs to be removed, for example the properties "range", "step", etc that will not be part of the implementation
 - type: if the resource is multi-valued, e.g. oneOf(integer,number) then one force an single type for this
 note that this is done on all the resources in the same way.
 
@@ -152,20 +156,6 @@ note that the generation works for:
 - works for collections, but without batch interface
   - the batch introduces the next level of resources, which is not handled in the format.
       
-# swagger file creation from DeviceBuilder input format
-
-
-
-The DeviceBuilder input format is an json array with the next properties:
-  -  "path" : string, required, must start with "/"
-  -  "rt"   : array of strings, required, the resource type that needs to be populated
-  -  "if"   : array of strings, required, the interfaces that needs to be supported
-  -  "remove_properties" : array of strings, optional, e.g. can be omitted, properties that will be removed: "range", "step" "value".
-  -  "remove_methods" : array of strings, optional, e.g. can be omitted, methods that will be removed:  "get" "post"
-  -  "override_type" :   string, optional, e.g. can be omitted, override the value type: "integer" or "number" or "string"
-
-The advantage of this format that it is:
-- instructions per resource instance to change things.
 
 ### Options needed to run the tool (deviceBuilder):
 - introspection : output base file
@@ -173,7 +163,8 @@ The advantage of this format that it is:
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)      
       
       
-# Implemented tool features
+# Implemented DeviceBuilder features
+This is about the DeviceBuilder python code.
 
 Per resource (output file per detected and found resource)
 - add default rt taken from oic/res
