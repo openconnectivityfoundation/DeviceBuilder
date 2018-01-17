@@ -1,12 +1,70 @@
 # DeviceBuilder
 
-This tool has various functions to work with OCF swagger type defintions.
-The base function is to create an swagger file from OCF swagger type definitons that can be used for:
+This tool has various functions to work with OCF swagger type definitions.
+The base function is to 
+- create an single swagger file from OCF swagger type definitions (oneIOTa, Core,...)
+This swagger definition file of an full device (application level resources) can be used for:
 - code generation (as input of swagger2x) 
 - generate introspection file.
 
+Typical flow to define an OCF device using DeviceBuilder is:
+- determine device type
+    - see for list of devices: https://openconnectivity.org/specs/OCF_Device_Specification_v1.3.0.pdf 
+    - this determines the mandatory resources that has to be implemented.
+    - add optional resources to the device
+        - this can be any resource described in oneIOTa, www.oneIOTa.org
+    - create the input for the DeviceBuilder
+        - see xxx
+    - determine which code generator needs to be used
+        - C++ code (for Linux, Windows,..)
+    - run the tool chain script
+        - scripts in the main directory of the DeviceBuilder repo:
+            - xxx
 
-# Usage
+
+            
+The tool chain script implements the following tool chain to generate code.
+
+
+                       __________
+                      |          |
+                      | oneIOTa  |
+                      |__________|
+                           |
+              Resource Type|descriptions
+                           |
+                    _______v________                                          __________           _______________
+     input         |                |    introspection data (swagger.json)   |          |  cbor   |               |
+     description   |                |--------------------------------------->| swag2cbor|-------->|               |
+     ------------->|  DeviceBuilder |        ___________         __________  |__________|         | actual device |
+                   |                | code  |           |  src  |          |                      |               |
+                   |                |------>| swagger2x |------>| compiler |--------------------->|               |
+                   |________________| data  |___________|       |__________|     executable       |_______________|
+                                     (swagger)
+                                       
+                                      
+     Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
+     
+
+ The generated code depends on the available code generation templates in swagger2x.
+ The script installs:
+ - github repos:
+    - swagger2x
+    - oneIOTa - resource data models
+    - core - core resource models
+ - installs needed python (3.5) packages.
+    
+additional manual steps:
+- download IOTivity 
+- edit build files in IOTivity (see additional instructions that are supplied with generated with the code)
+- build
+- test against CTT (see additional instructions that are supplied with the generated code)
+    - using the gnerated PICS file.
+
+            
+            
+
+# Usage of the individual tools
 The tools are python3.5 code.
 
 to install the dependencies run : ``` python3 src\install.py```
@@ -69,7 +127,7 @@ The advantage of this input format is:
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)
 
 
-### Optional options dependend on the wanted output:
+### Optional options depended on the wanted output:
 - remove_property : array of properties that needs to be removed, e.g. range, step, etc that are not implemented
 - type: if the resource is multi-valued, e.g. oneOf(integer,number) then one force an single type for this
 note that this is done on all the resources in the same way.
@@ -97,27 +155,6 @@ note that the generation works for:
 # swagger file creation from DeviceBuilder input format
 
 
-Tool chain:
-
-                       __________
-                      |          |
-                      | oneIOTa  |
-                      |__________|
-                           |
-              Resource Type|descriptions
-                           |
-                    _______v________                                          __________           _______________
-     input         |                |    introspection data (swagger.json)   |          |  cbor   |               |
-     description   |                |--------------------------------------->| swag2cbor|-------->|               |
-     ------------->|  DeviceBuilder |        ___________         __________  |__________|         | actual device |
-                   |                | code  |           |  src  |          |                      |               |
-                   |                |------>| swagger2x |------>| compiler |--------------------->|               |
-                   |________________| data  |___________|       |__________|     executable       |_______________|
-                                     (swagger)
-                                       
-                                      
-     Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
-     
 
 The DeviceBuilder input format is an json array with the next properties:
   -  "path" : string, required, must start with "/"
@@ -142,14 +179,14 @@ Per resource (output file per detected and found resource)
 - add default rt taken from oic/res
 - fix the href
 - replace enum of if from oic/res
-- remove properties: n, value, range, precision, step as commandline option
+- remove properties: n, value, range, precision, step as command line option
 - collapse/replace oneOf of types per property in definition part by the given argument
 - for introspection:
     - remove the x-examples
     - clear the descriptions (e.g. make string empty)
 merge different output files into 1 swagger file.
 
-## Optimisations (introspection):
+## Optimizations (introspection):
 - clean descriptions (e.g. make them empty string, so that swagger is still valid)
 - removal of x-examples
 
