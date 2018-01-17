@@ -1,0 +1,15 @@
+[
+
+    {
+      "path" : "/binaryswitch",
+      "rt"   : [ "oic.r.switch.binary" ],
+      "if"   : ["oic.if.a", "oic.if.baseline" ],
+      "remove_properties" : [ "range", "step" , "id", "precision" ]
+    },
+    {
+      "path" : "/oic/p",
+      "rt"   : [ "oic.wk.p" ],
+      "if"   : ["oic.if.baseline", "oic.if.r" ],
+      "remove_properties" : [ "n", "range", "value", "step", "precision", "vid"  ]
+    }
+]
