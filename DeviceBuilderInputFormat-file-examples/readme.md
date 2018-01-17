@@ -34,7 +34,7 @@ The advantage of this format that it is:
 - format may change by adding new fields to introduce new features to the tool
 
 
-Examples of DeviceBuilderInput Format.
+Examples of DeviceBuilderInput Format:
 
 
 - input-lightdevice.json
@@ -45,30 +45,30 @@ Examples of DeviceBuilderInput Format.
     - minimal define resource for oic.d.light 
         - resource type : oic.r.switch.binary
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.
- ```
- [
+         ```
+         [
 
-    {
-      "path" : "/binaryswitch",
-      "rt"   : [ "oic.r.switch.binary" ],
-      "if"   : ["oic.if.a", "oic.if.baseline" ],
-      "remove_properties" : [ "range", "step" , "id", "precision" ]
-    },
-    {
-      "path" : "/oic/p",
-      "rt"   : [ "oic.wk.p" ],
-      "if"   : ["oic.if.baseline", "oic.if.r" ],
-      "remove_properties" : [ "n", "range", "value", "step", "precision", "vid"  ]
-    }
-]
+            {
+              "path" : "/binaryswitch",
+              "rt"   : [ "oic.r.switch.binary" ],
+              "if"   : ["oic.if.a", "oic.if.baseline" ],
+              "remove_properties" : [ "range", "step" , "id", "precision" ]
+            },
+            {
+              "path" : "/oic/p",
+              "rt"   : [ "oic.wk.p" ],
+              "if"   : ["oic.if.baseline", "oic.if.r" ],
+              "remove_properties" : [ "n", "range", "value", "step", "precision", "vid"  ]
+            }
+        ]
 
-```
+        ```
 
   
   
   
 - input-lightdevice-dimming.json
-    The light device implementing on/off and dimming
+    The light device implementing on/off and dimming.
 
     https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming.json
   
