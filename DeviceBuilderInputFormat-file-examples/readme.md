@@ -1,5 +1,11 @@
 # DeviceBuilder Input File examples
 
+The DeviceBuilder Input format is to list all resources that needs to be included in the device that will make up the application.
+E.g. the resources that will be sensor/actuators/etc. that make up the functionality of the device.
+The format supports additional information per resource to that the OCF data model can be changed.
+The changes that are allowed are limited, the result still needs to be OCF compliant. So optional properties, methods etc can be removed from the resource.
+The property that is being used to find the resource is the rt value, the rt value being used as lookup towards the oneIOTa/Core github repos where the resource will be pulled from.
+To use the properties to change the resource one needs to know what the resource implements. 
 
 The DeviceBuilder input format is an json array that define each resource separately
 the following properties are defined:
