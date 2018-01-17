@@ -134,34 +134,34 @@ my_test -h
 
 
 TEST_CASE="lightdevice"
-resfile=./input_define_device/input-lightdevice.json
+resfile=./input_DeviceBuilderInputFormat/input-lightdevice.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="switch"
-resfile=./input_define_device/input-switch.json
+resfile=./input_DeviceBuilderInputFormat/input-switch.json
 my_test_in_dir_with_compare -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="thermostat"
-resfile=./input_define_device/input-thermostat.json
+resfile=./input_DeviceBuilderInputFormat/input-thermostat.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="coffeemachine"
-resfile=./input_define_device/input-coffeemachine.json
+resfile=./input_DeviceBuilderInputFormat/input-coffeemachine.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 }
 
 function deviceBuilder_tests2 {
 
 TEST_CASE="cooktop"
-resfile=./input_define_device/input-cooktop.json
+resfile=./input_DeviceBuilderInputFormat/input-cooktop.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="cooktop2"
-resfile=./input_define_device/input-cooktop2.json
+resfile=./input_DeviceBuilderInputFormat/input-cooktop2.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 }
@@ -170,16 +170,16 @@ my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_
 function deviceBuilder_ctt_tests {
 
 TEST_CASE="ctt_1"
-resfile=./input_define_device/ctt_1.json
+resfile=./input_DeviceBuilderInputFormat/ctt_1.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 TEST_CASE="ctt_2"
-resfile=./input_define_device/ctt_2.json
+resfile=./input_DeviceBuilderInputFormat/ctt_2.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 
 TEST_CASE="ctt_client"
-resfile=./input_define_device/ctt_client.json
+resfile=./input_DeviceBuilderInputFormat/ctt_client.json
 my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 }
