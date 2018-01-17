@@ -44,7 +44,7 @@ Examples of DeviceBuilderInput Format.
     - minimal define resource for oic.d.light 
         - resource type : oic.r.switch.binary
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.
-  ```
+ ```
  [
 
     {
@@ -61,8 +61,9 @@ Examples of DeviceBuilderInput Format.
     }
 ]
 
-  ```
+```
 
+  
   
   
 - input-lightdevice.json
