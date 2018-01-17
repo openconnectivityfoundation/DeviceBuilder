@@ -5,7 +5,7 @@ Examples of introspection files
 
 - introspection-empty.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/ctt_1.swagger.json
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/ctt_1.swagger.json
   
   an swagger2.0 file with no paths and no defintions
   can be used if no introspection data is needed.
@@ -13,7 +13,7 @@ Examples of introspection files
   
 - introspection-client-iotivity-oic-p
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-client-iotivity-oic-p.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-client-iotivity-oic-p.txt
 
   IOTivity response of /oic/p, which also includes optional properties:
 
@@ -40,7 +40,7 @@ Examples of introspection files
   
 - introspection-binaryswitch-actuator.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-binaryswitch-actuator.txt
   
   single binary switch, as actuator.
   - no "if" on the wire
@@ -49,7 +49,7 @@ Examples of introspection files
     
 - introspection-binaryswitch-actuator-oic-p.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator-oic-p.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-binaryswitch-actuator-oic-p.txt
   
   single binary switch, as actuator.
   - includes /oic/p as implemented in IOTivity.
@@ -58,7 +58,7 @@ Examples of introspection files
   
 - introspection-binaryswitch-actuator-if.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator-if.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-binaryswitch-actuator-if.txt
 
   single binary switch, as actuator.
   - "if" on the wire
@@ -66,7 +66,7 @@ Examples of introspection files
 
 - introspection-binaryswitch-sensor.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-sensor.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-binaryswitch-sensor.txt
 
   single binary switch, as sensor e.g. no update mechanism. 
   - manually crafted
@@ -74,14 +74,14 @@ Examples of introspection files
  
 - introspection-binaryswitch-actuator-sensor.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-actuator-sensor.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-binaryswitch-actuator-sensor.txt
 
   binary switch, one as sensor (no update) and one as actuator.
   - manually crafted
   
 - introspection-binaryswitch-2x-actuator.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/introspection-binaryswitch-2x-actuator.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/introspection-binaryswitch-2x-actuator.txt
   
   binary switch, two as actuator.
   - manually crafted
@@ -89,7 +89,7 @@ Examples of introspection files
   
 - binary_switch_if_with_p.txt
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/binary_switch_if_with_p.txt
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/binary_switch_if_with_p.txt
   
   binary switch,  as actuator.
   - has if property
@@ -100,7 +100,7 @@ Examples of introspection files
   
 - ctt_1 test device
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/ctt_1.swagger.json
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/ctt_1.swagger.json
 
   Note that the responses have the "if" property, as currently being used in the binary switch.
   All other optional properties are removed.
@@ -120,7 +120,7 @@ Examples of introspection files
 
 - ctt_2 test device
 
-  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/examples/ctt_2.swagger.json
+  https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/introspection-examples/ctt_2.swagger.json
 
   Note that the responses have the "if" property, as currently being used in the binary switch.
   All other optional properties are removed.
@@ -147,7 +147,7 @@ https://github.com/WAvdBeek/wb-swagger-node
 please follow the install instructions as available.
 
 validation changes wrt swagger2.0 validation:
-- allows oneOf/allOf/anyOf constructs in the defintion part of the swagger file.
+- allows oneOf/allOf/anyOf constructs in the definition part of the swagger file.
 
 Note that this only validates if the structure/content of the introspection device data file is valid. 
 It does not check if the contents of the introspection device data actually presents the device itself.
