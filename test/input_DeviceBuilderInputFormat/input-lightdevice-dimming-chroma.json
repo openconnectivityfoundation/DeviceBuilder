@@ -16,7 +16,7 @@
       "path" : "/colourchroma",
       "rt"   : [ "oic.r.colour.chroma" ],
       "if"   : ["oic.if.baseline","oic.if.a" ],
-      "remove_properties" : [ "range", "step", "value" , "id" ]
+      "remove_properties" : [ "range", "step", "value" , "id", "precision", "maximumsaturation" ]
     },
     {
       "path" : "/oic/p",
