@@ -1,0 +1,252 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "BinarySwitch": {
+      "properties": {
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.switch.binary"
+          ],
+          "description": "Resource Type",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "value": {
+          "description": "Status of the switch",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "Dimming": {
+      "properties": {
+        "dimmingSetting": {
+          "description": "Current dimming value",
+          "type": "integer"
+        },
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.light.dimming"
+          ],
+          "description": "Resource Type",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "required": [
+        "dimmingSetting"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.\n        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/binaryswitch": {
+      "get": {
+        "description": "This resource describes a binary switch (on/off).\nThe value is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "rt": [
+                "oic.r.switch.binary"
+              ],
+              "value": false
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    "/dimming": {
+      "get": {
+        "description": "This resource describes a dimming function.\nThe value is an integer showing the current dimming level.\nIf step (from oic.r.baseresource) is present then it represents the increment between dimmer values.\nWhen range (from oic.r.baseresource) is omitted, then the range is [0,100].\nA value of 0 means total dimming; a value of 100 means no dimming.\nRetrieves the current dimming level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 30,
+              "id": "unique_example_id",
+              "range": [
+                0,
+                100
+              ],
+              "rt": [
+                "oic.r.light.dimming"
+              ],
+              "step": 5
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets the desired dimming level.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 40,
+              "id": "unique_example_id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates that the dimming was changed.\nThe new dimming level is provided in the response.\n",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 40,
+              "id": "unique_example_id"
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:\n  An update with an out of range property value for dimmingSetting.\nThe server responds with the current resource representation.\n",
+            "schema": {
+              "$ref": "#/definitions/Dimming"
+            },
+            "x-example": {
+              "dimmingSetting": 40,
+              "id": "unique_example_id"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}
