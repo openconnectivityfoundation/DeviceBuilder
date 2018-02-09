@@ -47,30 +47,38 @@ The tool chain script implements the following tool chain to generate code:
      Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
      this depends on the implementation of the stack, IOTivity reads CBOR as input file.
      
-Currently available scripts are:
+
+The generated code depends on the available code generation templates in swagger2x.
+  
+Currently available DeviceBuilder scripts are:
 -  DeviceBuilder_C++IotivityServer.sh
     - C++ code generation for the C++ IOTivity API
-    - see: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/C%2B%2BIotivityServer
+    - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/C%2B%2BIotivityServer
 -  DeviceBuilder_NodeIotivityServer.sh
     - javascript code generation for the node.js IOTivity API
-    - see: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/NodeIotivityServer
-     
-
- The generated code depends on the available code generation templates in swagger2x.
- The script installs:
+    - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/NodeIotivityServer
+ 
+ 
+ The DeviceBuilder script installs the following components:
  - github repos:
-    - swagger2x
+    - swagger2x - the code generation tool
         https://github.com/openconnectivityfoundation/swagger2x
     - oneIOTa - resource data models
         https://github.com/OpenInterConnect/IoTDataModels
     - core - core resource models
         https://github.com/openconnectivityfoundation/core
  - installs needed python (3.5) packages.
+ Note that this only works if one has already downloaded/cloned the DeviceBuilder github repo.
+ 
     
-additional manual steps:
+Additional manual steps to build the generated code:
 - download IOTivity 
-- edit build files in IOTivity (see additional instructions that are supplied with generated with the code)
+  - see: https://www.iotivity.org/documentation
+- edit build files in IOTivity 
+    - see additional instructions that are supplied with generated with the code.
 - build
+    - instructions vary according the used platform
+    - see read me file with the generated code
 - test against CTT (see additional instructions that are supplied with the generated code)
     - using the generated PICS file.
 
