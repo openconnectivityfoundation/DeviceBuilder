@@ -117,395 +117,6 @@ class Resource
 
   
 
-class c_binaryswitchResource : public Resource
-{
-    public:
-        /*
-        * constructor
-        */
-        c_binaryswitchResource()
-        {
-            std::cout << "- Running: c_binaryswitchResource constructor" << std::endl;
-            std::string resourceURI = "/binaryswitch";
-            
-            // initialize member variables /binaryswitch
-            
-            
-            
-             
-            // initialize vector rt
-            
-            m_var_value_rt.push_back("oic.r.switch.binary"); 
-            
-            
-            
-            
-            m_var_value_n = "";  // current value of property "n"  
-            
-            
-            
-            
-             
-            // initialize vector if
-            
-            m_var_value_if.push_back("oic.if.baseline"); 
-            m_var_value_if.push_back("oic.if.a"); 
-            
-            m_var_value_value = true; // current value of property "value" 
-            
-            
-             
-            
-        
-            EntityHandler cb = std::bind(&c_binaryswitchResource::entityHandler, this,PH::_1);
-            //uint8_t resourceProperty = 0;
-            OCStackResult result = OCPlatform::registerResource(m_resourceHandle,
-                resourceURI,
-                m_RESOURCE_TYPE[0],
-                m_RESOURCE_INTERFACE[0],
-                cb,
-                OC_DISCOVERABLE | OC_OBSERVABLE | OC_SECURE );
-                
-            // add the additional interfaces
-            std::cout << "\t" << "# resource interfaces: " << m_nr_resource_interfaces << std::endl;
-            std::cout << "\t" << "# resource types     : " << m_nr_resource_types << std::endl;
-            for( int a = 1; a < m_nr_resource_interfaces; a++)
-            {
-                OCStackResult result1 = OCBindResourceInterfaceToResource(m_resourceHandle, m_RESOURCE_INTERFACE[a].c_str());
-                if (result1 != OC_STACK_OK)
-                    std::cerr << "Could not bind interface:" << m_RESOURCE_INTERFACE[a] << std::endl;
-            }
-            // add the additional resource types
-            for( int a = 1; a < m_nr_resource_types; a++ )
-            {
-                OCStackResult result2 = OCBindResourceTypeToResource(m_resourceHandle, m_RESOURCE_TYPE[a].c_str());
-                if (result2 != OC_STACK_OK)
-                    std::cerr << "Could not bind resource type:" << m_RESOURCE_INTERFACE[a] << std::endl;
-            }    
-
-            if(OC_STACK_OK != result)
-            {
-                throw std::runtime_error(
-                    std::string("c_binaryswitchResource failed to start")+std::to_string(result));
-            }
-        }
-    private:
-     
-        /*
-        * function to make the payload for the retrieve function (e.g. GET) /binaryswitch
-        * @param queries  the query parameters for this call
-        */
-        OCRepresentation get(QueryParamsMap queries)
-        {        
-            OC_UNUSED(queries);
-             
-            m_rep.setValue(m_var_name_rt,  m_var_value_rt );  
-            m_rep.setValue(m_var_name_n, m_var_value_n );  
-            m_rep.setValue(m_var_name_if,  m_var_value_if ); 
-            m_rep.setValue(m_var_name_value, m_var_value_value ); 
-        
-            return m_rep;
-        }
-     
-        /*
-        * function to parse the payload for the update function (e.g. POST) /binaryswitch
-        * @param queries  the query parameters for this call
-        * @param rep  the response to get the property values from
-        * @return OCEntityHandlerResult ok or not ok indication
-        */
-        OCEntityHandlerResult post(QueryParamsMap queries, const OCRepresentation& rep)
-        {
-            OCEntityHandlerResult ehResult = OC_EH_OK;
-            OC_UNUSED(queries);
-             
-             
-             
-            
-            try {
-                if (rep.hasAttribute(m_var_name_value))
-                {
-                    // value exist in payload
-                    
-                }  
-            }
-            catch (std::exception& e)
-            {
-                std::cout << e.what() << std::endl;
-            } 
-             
-            // TODO add check on array contents out of range, etc..
-            
-            if (ehResult == OC_EH_OK)
-            {
-                // no error: assign the variables
-                 
-                // array only works for integer, boolean, numbers and strings
-                // TODO: make it also work with array of objects
-                try {
-                    if (rep.hasAttribute(m_var_name_rt))
-                    {
-                        rep.getValue(m_var_name_rt, m_var_value_rt);
-                        int first = 1;
-                        std::cout << "\t\t" << "property 'rt' : " ;
-                        for(auto myvar: m_var_value_rt)
-                        {
-                            if(first)
-                            {
-                                std::cout << myvar;
-                                first = 0;
-                            }
-                            else
-                            {
-                                std::cout << "," << myvar;
-                            }
-                        }
-                        std::cout <<  std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
-                try {
-                    if (rep.getValue(m_var_name_n, m_var_value_n ))
-                    {
-                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
-                // array only works for integer, boolean, numbers and strings
-                // TODO: make it also work with array of objects
-                try {
-                    if (rep.hasAttribute(m_var_name_if))
-                    {
-                        rep.getValue(m_var_name_if, m_var_value_if);
-                        int first = 1;
-                        std::cout << "\t\t" << "property 'if' : " ;
-                        for(auto myvar: m_var_value_if)
-                        {
-                            if(first)
-                            {
-                                std::cout << myvar;
-                                first = 0;
-                            }
-                            else
-                            {
-                                std::cout << "," << myvar;
-                            }
-                        }
-                        std::cout <<  std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'if' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-            
-                try {
-                    if (rep.getValue(m_var_name_value, m_var_value_value ))
-                    {
-                        std::cout << "\t\t" << "property 'value': " << m_var_value_value << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'value' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-            
-            }            
-            return ehResult;            
-        }
-    // resource types and interfaces as array..
-        std::string m_RESOURCE_TYPE[1] = {"oic.r.switch.binary"}; // rt value (as an array)
-        std::string m_RESOURCE_INTERFACE[2] = {"oic.if.baseline","oic.if.a"}; // interface if (as an array) 
-        std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
-        int m_nr_resource_types = 1;
-        int m_nr_resource_interfaces = 2;
-        ObservationIds m_interestedObservers;        
-        
-        // member variables for path: /binaryswitch
-        
-        std::vector<std::string>  m_var_value_rt;
-        std::string m_var_name_rt = "rt"; // the name for the attribute
-        
-        std::string m_var_value_n; // the value for the attribute
-        std::string m_var_name_n = "n"; // the name for the attribute
-        
-        
-        std::vector<std::string>  m_var_value_if;
-        std::string m_var_name_if = "if"; // the name for the attribute
-        
-        bool m_var_value_value; // the value for the attribute
-        std::string m_var_name_value = "value"; // the name for the attribute
-        protected:
-        /*
-        * function to check if the interface is
-        * @param  interface_name the interface name used during the request
-        * @return true: updatable interface
-        */
-        bool in_updatable_interfaces(std::string interface_name)
-        {
-            for (int i=0; i<3; i++)
-            {
-                if (m_IF_UPDATE[i].compare(interface_name) == 0)
-                    return true;
-            }
-            return false;
-        }
-    
-        /*
-        * the entity handler for this resource
-        * @param request the incoming request to handle
-        * @return OCEntityHandlerResult ok or not ok indication
-        */
-        virtual OCEntityHandlerResult entityHandler(std::shared_ptr<OCResourceRequest> request)
-        {
-            OCEntityHandlerResult ehResult = OC_EH_ERROR;
-            //std::cout << "In entity handler for c_binaryswitchResource " << std::endl;
-                          
-            if(request)
-            {
-                std::cout << "In entity handler for c_binaryswitchResource, URI is : "
-                          << request->getResourceUri() << std::endl;
-                          
-                // Check for query params (if any)
-                QueryParamsMap queries = request->getQueryParameters();
-                if (!queries.empty())
-                {
-                    std::cout << "\nQuery processing up to entityHandler" << std::endl;
-                }
-                for (auto it : queries)
-                {
-                    std::cout << "Query key: " << it.first << " value : " << it.second
-                            << std::endl;
-                } 
-                // get the value, so that we can AND it to check which flags are set
-                int requestFlag = request->getRequestHandlerFlag();                
-
-                if(requestFlag & RequestHandlerFlag::RequestFlag)
-                {
-                    // request flag is set
-                    auto pResponse = std::make_shared<OC::OCResourceResponse>();
-                    pResponse->setRequestHandle(request->getRequestHandle());
-                    pResponse->setResourceHandle(request->getResourceHandle());
-
-                    if(request->getRequestType() == "GET")
-                    {
-                        std::cout<<"c_binaryswitchResource Get Request"<< std::endl;
-
-                        pResponse->setResourceRepresentation(get(queries), "");
-                        if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
-                        {
-                            ehResult = OC_EH_OK;
-                        }
-                    }
-     
-                    else if(request->getRequestType() == "POST")
-                    {
-                        std::cout <<"c_binaryswitchResource Post Request"<<std::endl;
-                        bool  handle_post = true; 
-
-                        if (queries.size() > 0)
-                        {
-                            for (const auto &eachQuery : queries)
-                            {
-                                std::string key = eachQuery.first;
-                                if (key.compare(INTERFACE_KEY) == 0)
-                                {
-                                    std::string value = eachQuery.second;
-                                    if (in_updatable_interfaces(value) == false)
-                                    {
-                                        std::cout << "Update request received via interface: " << value
-                                                    << " . This interface is not authorized to update resource!!" << std::endl;
-                                        pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_FORBIDDEN);
-                                        handle_post = false;
-                                        ehResult = OC_EH_ERROR;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        if (handle_post)
-                        {
-                            ehResult = post(queries, request->getResourceRepresentation());
-                            if (ehResult == OC_EH_OK)
-                            {
-                                pResponse->setResourceRepresentation(get(queries), "");
-                            }
-                            else
-                            {
-                                 pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_ERROR);
-                            }
-                            if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
-                            {                                
-                                // TODO: if there are observers inform the observers
-                                //OCStackResult sResult;
-                                // update all observers with the new value
-                                // not sure if this is an blocking call
-                                //sResult = OCPlatform::notifyListOfObservers(   m_resourceHandle,
-                                //                                               m_interestedObservers,
-                                //                                               pResponse);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        std::cout << "c_binaryswitchResource unsupported request type (delete,put,..)"
-                            << request->getRequestType() << std::endl;
-                        pResponse->setResponseResult(OC_EH_ERROR);
-                        OCPlatform::sendResponse(pResponse);
-                        ehResult = OC_EH_ERROR;
-                    }
-                }
-                
-                if(requestFlag & RequestHandlerFlag::ObserverFlag)
-                {
-                    // observe flag is set
-                    std::cout << "\t\trequestFlag : Observer\n" << std::endl;
-                    ObservationInfo observationInfo = request->getObservationInfo();
-                    if(ObserveAction::ObserveRegister == observationInfo.action)
-                    {
-                        // add observer
-                        m_interestedObservers.push_back(observationInfo.obsId);
-                    }
-                    else if(ObserveAction::ObserveUnregister == observationInfo.action)
-                    {
-                        // delete observer
-                        m_interestedObservers.erase(std::remove(
-                                                                    m_interestedObservers.begin(),
-                                                                    m_interestedObservers.end(),
-                                                                    observationInfo.obsId),
-                                                                    m_interestedObservers.end());
-                    } 
-                    ehResult = OC_EH_OK;                    
-                }
-            }
-            return ehResult;
-        }
-};
-  
-
 class c_dimmingResource : public Resource
 {
     public:
@@ -526,16 +137,16 @@ class c_dimmingResource : public Resource
             
             
             
-            m_var_value_n = "";  // current value of property "n"  
-            
-            
-            
-            
              
             // initialize vector if
             
             m_var_value_if.push_back("oic.if.baseline"); 
             m_var_value_if.push_back("oic.if.a"); 
+            
+            
+            
+            
+            m_var_value_n = "";  // current value of property "n"  
             
             
             
@@ -589,8 +200,8 @@ class c_dimmingResource : public Resource
             OC_UNUSED(queries);
              
             m_rep.setValue(m_var_name_dimmingSetting, m_var_value_dimmingSetting );  
-            m_rep.setValue(m_var_name_n, m_var_value_n );  
             m_rep.setValue(m_var_name_if,  m_var_value_if );  
+            m_rep.setValue(m_var_name_n, m_var_value_n );  
             m_rep.setValue(m_var_name_rt,  m_var_value_rt ); 
         
             return m_rep;
@@ -651,21 +262,6 @@ class c_dimmingResource : public Resource
                     std::cout << e.what() << std::endl;
                 }
              
-                try {
-                    if (rep.getValue(m_var_name_n, m_var_value_n ))
-                    {
-                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
                 // array only works for integer, boolean, numbers and strings
                 // TODO: make it also work with array of objects
                 try {
@@ -691,6 +287,21 @@ class c_dimmingResource : public Resource
                     else
                     {
                         std::cout << "\t\t" << "property 'if' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                try {
+                    if (rep.getValue(m_var_name_n, m_var_value_n ))
+                    {
+                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -745,12 +356,12 @@ class c_dimmingResource : public Resource
         int m_var_value_dimmingSetting; // the value for the attribute
         std::string m_var_name_dimmingSetting = "dimmingSetting"; // the name for the attribute
         
-        std::string m_var_value_n; // the value for the attribute
-        std::string m_var_name_n = "n"; // the name for the attribute
-        
         
         std::vector<std::string>  m_var_value_if;
         std::string m_var_name_if = "if"; // the name for the attribute
+        
+        std::string m_var_value_n; // the value for the attribute
+        std::string m_var_name_n = "n"; // the name for the attribute
         
         
         std::vector<std::string>  m_var_value_rt;
@@ -901,6 +512,395 @@ class c_dimmingResource : public Resource
             return ehResult;
         }
 };
+  
+
+class c_binaryswitchResource : public Resource
+{
+    public:
+        /*
+        * constructor
+        */
+        c_binaryswitchResource()
+        {
+            std::cout << "- Running: c_binaryswitchResource constructor" << std::endl;
+            std::string resourceURI = "/binaryswitch";
+            
+            // initialize member variables /binaryswitch
+            
+            
+            
+             
+            // initialize vector if
+            
+            m_var_value_if.push_back("oic.if.baseline"); 
+            m_var_value_if.push_back("oic.if.a"); 
+            
+            
+            
+            
+            m_var_value_n = "";  // current value of property "n"  
+            
+            
+            
+            
+             
+            // initialize vector rt
+            
+            m_var_value_rt.push_back("oic.r.switch.binary"); 
+            
+            m_var_value_value = true; // current value of property "value" 
+            
+            
+             
+            
+        
+            EntityHandler cb = std::bind(&c_binaryswitchResource::entityHandler, this,PH::_1);
+            //uint8_t resourceProperty = 0;
+            OCStackResult result = OCPlatform::registerResource(m_resourceHandle,
+                resourceURI,
+                m_RESOURCE_TYPE[0],
+                m_RESOURCE_INTERFACE[0],
+                cb,
+                OC_DISCOVERABLE | OC_OBSERVABLE | OC_SECURE );
+                
+            // add the additional interfaces
+            std::cout << "\t" << "# resource interfaces: " << m_nr_resource_interfaces << std::endl;
+            std::cout << "\t" << "# resource types     : " << m_nr_resource_types << std::endl;
+            for( int a = 1; a < m_nr_resource_interfaces; a++)
+            {
+                OCStackResult result1 = OCBindResourceInterfaceToResource(m_resourceHandle, m_RESOURCE_INTERFACE[a].c_str());
+                if (result1 != OC_STACK_OK)
+                    std::cerr << "Could not bind interface:" << m_RESOURCE_INTERFACE[a] << std::endl;
+            }
+            // add the additional resource types
+            for( int a = 1; a < m_nr_resource_types; a++ )
+            {
+                OCStackResult result2 = OCBindResourceTypeToResource(m_resourceHandle, m_RESOURCE_TYPE[a].c_str());
+                if (result2 != OC_STACK_OK)
+                    std::cerr << "Could not bind resource type:" << m_RESOURCE_INTERFACE[a] << std::endl;
+            }    
+
+            if(OC_STACK_OK != result)
+            {
+                throw std::runtime_error(
+                    std::string("c_binaryswitchResource failed to start")+std::to_string(result));
+            }
+        }
+    private:
+     
+        /*
+        * function to make the payload for the retrieve function (e.g. GET) /binaryswitch
+        * @param queries  the query parameters for this call
+        */
+        OCRepresentation get(QueryParamsMap queries)
+        {        
+            OC_UNUSED(queries);
+             
+            m_rep.setValue(m_var_name_if,  m_var_value_if );  
+            m_rep.setValue(m_var_name_n, m_var_value_n );  
+            m_rep.setValue(m_var_name_rt,  m_var_value_rt ); 
+            m_rep.setValue(m_var_name_value, m_var_value_value ); 
+        
+            return m_rep;
+        }
+     
+        /*
+        * function to parse the payload for the update function (e.g. POST) /binaryswitch
+        * @param queries  the query parameters for this call
+        * @param rep  the response to get the property values from
+        * @return OCEntityHandlerResult ok or not ok indication
+        */
+        OCEntityHandlerResult post(QueryParamsMap queries, const OCRepresentation& rep)
+        {
+            OCEntityHandlerResult ehResult = OC_EH_OK;
+            OC_UNUSED(queries);
+             
+             
+             
+            
+            try {
+                if (rep.hasAttribute(m_var_name_value))
+                {
+                    // value exist in payload
+                    
+                }  
+            }
+            catch (std::exception& e)
+            {
+                std::cout << e.what() << std::endl;
+            } 
+             
+            // TODO add check on array contents out of range, etc..
+            
+            if (ehResult == OC_EH_OK)
+            {
+                // no error: assign the variables
+                 
+                // array only works for integer, boolean, numbers and strings
+                // TODO: make it also work with array of objects
+                try {
+                    if (rep.hasAttribute(m_var_name_if))
+                    {
+                        rep.getValue(m_var_name_if, m_var_value_if);
+                        int first = 1;
+                        std::cout << "\t\t" << "property 'if' : " ;
+                        for(auto myvar: m_var_value_if)
+                        {
+                            if(first)
+                            {
+                                std::cout << myvar;
+                                first = 0;
+                            }
+                            else
+                            {
+                                std::cout << "," << myvar;
+                            }
+                        }
+                        std::cout <<  std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'if' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                try {
+                    if (rep.getValue(m_var_name_n, m_var_value_n ))
+                    {
+                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                // array only works for integer, boolean, numbers and strings
+                // TODO: make it also work with array of objects
+                try {
+                    if (rep.hasAttribute(m_var_name_rt))
+                    {
+                        rep.getValue(m_var_name_rt, m_var_value_rt);
+                        int first = 1;
+                        std::cout << "\t\t" << "property 'rt' : " ;
+                        for(auto myvar: m_var_value_rt)
+                        {
+                            if(first)
+                            {
+                                std::cout << myvar;
+                                first = 0;
+                            }
+                            else
+                            {
+                                std::cout << "," << myvar;
+                            }
+                        }
+                        std::cout <<  std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+            
+                try {
+                    if (rep.getValue(m_var_name_value, m_var_value_value ))
+                    {
+                        std::cout << "\t\t" << "property 'value': " << m_var_value_value << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'value' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+            
+            }            
+            return ehResult;            
+        }
+    // resource types and interfaces as array..
+        std::string m_RESOURCE_TYPE[1] = {"oic.r.switch.binary"}; // rt value (as an array)
+        std::string m_RESOURCE_INTERFACE[2] = {"oic.if.baseline","oic.if.a"}; // interface if (as an array) 
+        std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
+        int m_nr_resource_types = 1;
+        int m_nr_resource_interfaces = 2;
+        ObservationIds m_interestedObservers;        
+        
+        // member variables for path: /binaryswitch
+        
+        std::vector<std::string>  m_var_value_if;
+        std::string m_var_name_if = "if"; // the name for the attribute
+        
+        std::string m_var_value_n; // the value for the attribute
+        std::string m_var_name_n = "n"; // the name for the attribute
+        
+        
+        std::vector<std::string>  m_var_value_rt;
+        std::string m_var_name_rt = "rt"; // the name for the attribute
+        
+        bool m_var_value_value; // the value for the attribute
+        std::string m_var_name_value = "value"; // the name for the attribute
+        protected:
+        /*
+        * function to check if the interface is
+        * @param  interface_name the interface name used during the request
+        * @return true: updatable interface
+        */
+        bool in_updatable_interfaces(std::string interface_name)
+        {
+            for (int i=0; i<3; i++)
+            {
+                if (m_IF_UPDATE[i].compare(interface_name) == 0)
+                    return true;
+            }
+            return false;
+        }
+    
+        /*
+        * the entity handler for this resource
+        * @param request the incoming request to handle
+        * @return OCEntityHandlerResult ok or not ok indication
+        */
+        virtual OCEntityHandlerResult entityHandler(std::shared_ptr<OCResourceRequest> request)
+        {
+            OCEntityHandlerResult ehResult = OC_EH_ERROR;
+            //std::cout << "In entity handler for c_binaryswitchResource " << std::endl;
+                          
+            if(request)
+            {
+                std::cout << "In entity handler for c_binaryswitchResource, URI is : "
+                          << request->getResourceUri() << std::endl;
+                          
+                // Check for query params (if any)
+                QueryParamsMap queries = request->getQueryParameters();
+                if (!queries.empty())
+                {
+                    std::cout << "\nQuery processing up to entityHandler" << std::endl;
+                }
+                for (auto it : queries)
+                {
+                    std::cout << "Query key: " << it.first << " value : " << it.second
+                            << std::endl;
+                } 
+                // get the value, so that we can AND it to check which flags are set
+                int requestFlag = request->getRequestHandlerFlag();                
+
+                if(requestFlag & RequestHandlerFlag::RequestFlag)
+                {
+                    // request flag is set
+                    auto pResponse = std::make_shared<OC::OCResourceResponse>();
+                    pResponse->setRequestHandle(request->getRequestHandle());
+                    pResponse->setResourceHandle(request->getResourceHandle());
+
+                    if(request->getRequestType() == "GET")
+                    {
+                        std::cout<<"c_binaryswitchResource Get Request"<< std::endl;
+
+                        pResponse->setResourceRepresentation(get(queries), "");
+                        if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
+                        {
+                            ehResult = OC_EH_OK;
+                        }
+                    }
+     
+                    else if(request->getRequestType() == "POST")
+                    {
+                        std::cout <<"c_binaryswitchResource Post Request"<<std::endl;
+                        bool  handle_post = true; 
+
+                        if (queries.size() > 0)
+                        {
+                            for (const auto &eachQuery : queries)
+                            {
+                                std::string key = eachQuery.first;
+                                if (key.compare(INTERFACE_KEY) == 0)
+                                {
+                                    std::string value = eachQuery.second;
+                                    if (in_updatable_interfaces(value) == false)
+                                    {
+                                        std::cout << "Update request received via interface: " << value
+                                                    << " . This interface is not authorized to update resource!!" << std::endl;
+                                        pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_FORBIDDEN);
+                                        handle_post = false;
+                                        ehResult = OC_EH_ERROR;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (handle_post)
+                        {
+                            ehResult = post(queries, request->getResourceRepresentation());
+                            if (ehResult == OC_EH_OK)
+                            {
+                                pResponse->setResourceRepresentation(get(queries), "");
+                            }
+                            else
+                            {
+                                 pResponse->setResponseResult(OCEntityHandlerResult::OC_EH_ERROR);
+                            }
+                            if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
+                            {                                
+                                // TODO: if there are observers inform the observers
+                                //OCStackResult sResult;
+                                // update all observers with the new value
+                                // not sure if this is an blocking call
+                                //sResult = OCPlatform::notifyListOfObservers(   m_resourceHandle,
+                                //                                               m_interestedObservers,
+                                //                                               pResponse);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "c_binaryswitchResource unsupported request type (delete,put,..)"
+                            << request->getRequestType() << std::endl;
+                        pResponse->setResponseResult(OC_EH_ERROR);
+                        OCPlatform::sendResponse(pResponse);
+                        ehResult = OC_EH_ERROR;
+                    }
+                }
+                
+                if(requestFlag & RequestHandlerFlag::ObserverFlag)
+                {
+                    // observe flag is set
+                    std::cout << "\t\trequestFlag : Observer\n" << std::endl;
+                    ObservationInfo observationInfo = request->getObservationInfo();
+                    if(ObserveAction::ObserveRegister == observationInfo.action)
+                    {
+                        // add observer
+                        m_interestedObservers.push_back(observationInfo.obsId);
+                    }
+                    else if(ObserveAction::ObserveUnregister == observationInfo.action)
+                    {
+                        // delete observer
+                        m_interestedObservers.erase(std::remove(
+                                                                    m_interestedObservers.begin(),
+                                                                    m_interestedObservers.end(),
+                                                                    observationInfo.obsId),
+                                                                    m_interestedObservers.end());
+                    } 
+                    ehResult = OC_EH_OK;                    
+                }
+            }
+            return ehResult;
+        }
+};
 
 
 class IoTServer
@@ -912,8 +912,8 @@ class IoTServer
         */
         IoTServer()
             :
-    m_binaryswitchInstance(),
-    m_dimmingInstance()
+    m_dimmingInstance(),
+    m_binaryswitchInstance()
     
         {
             std::cout << "Running IoTServer constructor" << std::endl;
@@ -932,9 +932,9 @@ class IoTServer
     
     private:
   
-        c_binaryswitchResource  m_binaryswitchInstance;
-  
         c_dimmingResource  m_dimmingInstance;
+  
+        c_binaryswitchResource  m_binaryswitchInstance;
 };
 
 

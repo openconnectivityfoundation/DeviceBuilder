@@ -65,11 +65,15 @@ std::string  gDeviceName = "Binary Switch";
 std::string  gDeviceType = "oic.d.light";
 std::string  gSpecVersion = "ocf.1.0.0";
 //std::vector<std::string> gDataModelVersions = {"ocf.res.1.1.0", "ocf.sh.1.1.0"};
+#if defined(_WIN32)
 #pragma warning( push ) 
 #pragma warning( disable : 4592)
+#endif
 std::vector<std::string> gDataModelVersions = {"ocf.res.1.3.0", "ocf.sh.1.3.0"};
 //std::vector<std::string> gDataModelVersions = {"ocf.res.1.3.0", "ocf.dev.1.3.0"};
+#if defined(_WIN32)
 #pragma warning( pop )
+#endif
 
 std::string  gProtocolIndependentID = "fa008167-3bbf-4c9d-8604-c9bcb96cb712";
 // OCPlatformInfo Contains all the platform info to be stored
@@ -113,30 +117,27 @@ class Resource
 
   
 
-class c_dimmingResource : public Resource
+class c_binaryswitchResource : public Resource
 {
     public:
         /*
         * constructor
         */
-        c_dimmingResource()
+        c_binaryswitchResource()
         {
-            std::cout << "- Running: c_dimmingResource constructor" << std::endl;
-            std::string resourceURI = "/dimming";
+            std::cout << "- Running: c_binaryswitchResource constructor" << std::endl;
+            std::string resourceURI = "/binaryswitch";
             
-            // initialize member variables /dimming
-            
+            // initialize member variables /binaryswitch
+            m_var_value_value = true; // current value of property "value" 
             
             
              
-            // initialize vector rt
-            
-            m_var_value_rt.push_back("oic.r.light.dimming"); 
             
             
             
-            m_var_value_dimmingSetting = 0; // current value of property "dimmingSetting" 
-             
+            
+            m_var_value_n = "";  // current value of property "n"  
             
             
             
@@ -150,10 +151,13 @@ class c_dimmingResource : public Resource
             
             
             
-            m_var_value_n = "";  // current value of property "n"  
+             
+            // initialize vector rt
+            
+            m_var_value_rt.push_back("oic.r.switch.binary"); 
             
         
-            EntityHandler cb = std::bind(&c_dimmingResource::entityHandler, this,PH::_1);
+            EntityHandler cb = std::bind(&c_binaryswitchResource::entityHandler, this,PH::_1);
             //uint8_t resourceProperty = 0;
             OCStackResult result = OCPlatform::registerResource(m_resourceHandle,
                 resourceURI,
@@ -182,28 +186,29 @@ class c_dimmingResource : public Resource
             if(OC_STACK_OK != result)
             {
                 throw std::runtime_error(
-                    std::string("c_dimmingResource failed to start")+std::to_string(result));
+                    std::string("c_binaryswitchResource failed to start")+std::to_string(result));
             }
         }
     private:
      
         /*
-        * function to make the payload for the retrieve function (e.g. GET) /dimming
+        * function to make the payload for the retrieve function (e.g. GET) /binaryswitch
         * @param queries  the query parameters for this call
         */
         OCRepresentation get(QueryParamsMap queries)
         {        
-             
-            m_rep.setValue(m_var_name_rt,  m_var_value_rt );  
-            m_rep.setValue(m_var_name_dimmingSetting, m_var_value_dimmingSetting );  
+            OC_UNUSED(queries);
+            
+            m_rep.setValue(m_var_name_value, m_var_value_value );  
+            m_rep.setValue(m_var_name_n, m_var_value_n );  
             m_rep.setValue(m_var_name_if,  m_var_value_if );  
-            m_rep.setValue(m_var_name_n, m_var_value_n ); 
+            m_rep.setValue(m_var_name_rt,  m_var_value_rt ); 
         
             return m_rep;
         }
      
         /*
-        * function to parse the payload for the update function (e.g. POST) /dimming
+        * function to parse the payload for the update function (e.g. POST) /binaryswitch
         * @param queries  the query parameters for this call
         * @param rep  the response to get the property values from
         * @return OCEntityHandlerResult ok or not ok indication
@@ -211,21 +216,14 @@ class c_dimmingResource : public Resource
         OCEntityHandlerResult post(QueryParamsMap queries, const OCRepresentation& rep)
         {
             OCEntityHandlerResult ehResult = OC_EH_OK;
-             
-             
-            try {
-                if (rep.hasAttribute(m_var_name_dimmingSetting))
-                {
-                    // allocate the variable
-                    int value;
-                    // get the actual value from the payload
-                    rep.getValue(m_var_name_dimmingSetting, value);
+            OC_UNUSED(queries);
             
+            try {
+                if (rep.hasAttribute(m_var_name_value))
+                {
                     // value exist in payload
                     
-                    
-                    
-                }
+                }  
             }
             catch (std::exception& e)
             {
@@ -234,37 +232,21 @@ class c_dimmingResource : public Resource
              
              
              
+             
             // TODO add check on array contents out of range, etc..
             
             if (ehResult == OC_EH_OK)
             {
                 // no error: assign the variables
-                 
-                // array only works for integer, boolean, numbers and strings
-                // TODO: make it also work with array of objects
+                
                 try {
-                    if (rep.hasAttribute(m_var_name_rt))
+                    if (rep.getValue(m_var_name_value, m_var_value_value ))
                     {
-                        rep.getValue(m_var_name_rt, m_var_value_rt);
-                        int first = 1;
-                        std::cout << "\t\t" << "property 'rt' : " ;
-                        for(auto myvar: m_var_value_rt)
-                        {
-                            if(first)
-                            {
-                                std::cout << myvar;
-                                first = 0;
-                            }
-                            else
-                            {
-                                std::cout << "," << myvar;
-                            }
-                        }
-                        std::cout <<  std::endl;
+                        std::cout << "\t\t" << "property 'value': " << m_var_value_value << std::endl;
                     }
                     else
                     {
-                        std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
+                        std::cout << "\t\t" << "property 'value' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -273,14 +255,13 @@ class c_dimmingResource : public Resource
                 }
              
                 try {
-                    // value exist in payload
-                    if (rep.getValue(m_var_name_dimmingSetting, m_var_value_dimmingSetting ))
+                    if (rep.getValue(m_var_name_n, m_var_value_n ))
                     {
-                        std::cout << "\t\t" << "property 'dimmingSetting': " << m_var_value_dimmingSetting << std::endl;
+                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
                     }
                     else
                     {
-                        std::cout << "\t\t" << "property 'dimmingSetting' not found in the representation" << std::endl;
+                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -320,14 +301,31 @@ class c_dimmingResource : public Resource
                     std::cout << e.what() << std::endl;
                 }
              
+                // array only works for integer, boolean, numbers and strings
+                // TODO: make it also work with array of objects
                 try {
-                    if (rep.getValue(m_var_name_n, m_var_value_n ))
+                    if (rep.hasAttribute(m_var_name_rt))
                     {
-                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
+                        rep.getValue(m_var_name_rt, m_var_value_rt);
+                        int first = 1;
+                        std::cout << "\t\t" << "property 'rt' : " ;
+                        for(auto myvar: m_var_value_rt)
+                        {
+                            if(first)
+                            {
+                                std::cout << myvar;
+                                first = 0;
+                            }
+                            else
+                            {
+                                std::cout << "," << myvar;
+                            }
+                        }
+                        std::cout <<  std::endl;
                     }
                     else
                     {
-                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+                        std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -339,27 +337,27 @@ class c_dimmingResource : public Resource
             return ehResult;            
         }
     // resource types and interfaces as array..
-        std::string m_RESOURCE_TYPE[1] = {"oic.r.light.dimming"}; // rt value (as an array)
+        std::string m_RESOURCE_TYPE[1] = {"oic.r.switch.binary"}; // rt value (as an array)
         std::string m_RESOURCE_INTERFACE[2] = {"oic.if.baseline","oic.if.a"}; // interface if (as an array) 
         std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
         int m_nr_resource_types = 1;
         int m_nr_resource_interfaces = 2;
         ObservationIds m_interestedObservers;        
         
-        // member variables for path: /dimming
+        // member variables for path: /binaryswitch
+        bool m_var_value_value; // the value for the attribute
+        std::string m_var_name_value = "value"; // the name for the attribute
         
-        std::vector<std::string>  m_var_value_rt;
-        std::string m_var_name_rt = "rt"; // the name for the attribute
-        
-        int m_var_value_dimmingSetting; // the value for the attribute
-        std::string m_var_name_dimmingSetting = "dimmingSetting"; // the name for the attribute
+        std::string m_var_value_n; // the value for the attribute
+        std::string m_var_name_n = "n"; // the name for the attribute
         
         
         std::vector<std::string>  m_var_value_if;
         std::string m_var_name_if = "if"; // the name for the attribute
         
-        std::string m_var_value_n; // the value for the attribute
-        std::string m_var_name_n = "n"; // the name for the attribute
+        
+        std::vector<std::string>  m_var_value_rt;
+        std::string m_var_name_rt = "rt"; // the name for the attribute
         protected:
         /*
         * function to check if the interface is
@@ -384,11 +382,11 @@ class c_dimmingResource : public Resource
         virtual OCEntityHandlerResult entityHandler(std::shared_ptr<OCResourceRequest> request)
         {
             OCEntityHandlerResult ehResult = OC_EH_ERROR;
-            //std::cout << "In entity handler for c_dimmingResource " << std::endl;
+            //std::cout << "In entity handler for c_binaryswitchResource " << std::endl;
                           
             if(request)
             {
-                std::cout << "In entity handler for c_dimmingResource, URI is : "
+                std::cout << "In entity handler for c_binaryswitchResource, URI is : "
                           << request->getResourceUri() << std::endl;
                           
                 // Check for query params (if any)
@@ -414,7 +412,7 @@ class c_dimmingResource : public Resource
 
                     if(request->getRequestType() == "GET")
                     {
-                        std::cout<<"c_dimmingResource Get Request"<< std::endl;
+                        std::cout<<"c_binaryswitchResource Get Request"<< std::endl;
 
                         pResponse->setResourceRepresentation(get(queries), "");
                         if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
@@ -425,7 +423,7 @@ class c_dimmingResource : public Resource
      
                     else if(request->getRequestType() == "POST")
                     {
-                        std::cout <<"c_dimmingResource Post Request"<<std::endl;
+                        std::cout <<"c_binaryswitchResource Post Request"<<std::endl;
                         bool  handle_post = true; 
 
                         if (queries.size() > 0)
@@ -473,7 +471,7 @@ class c_dimmingResource : public Resource
                     }
                     else
                     {
-                        std::cout << "c_dimmingResource unsupported request type (delete,put,..)"
+                        std::cout << "c_binaryswitchResource unsupported request type (delete,put,..)"
                             << request->getRequestType() << std::endl;
                         pResponse->setResponseResult(OC_EH_ERROR);
                         OCPlatform::sendResponse(pResponse);
@@ -521,22 +519,6 @@ class c_colourchromaResource : public Resource
             
             // initialize member variables /colourchroma
             
-            
-            
-             
-            // initialize vector csc
-            
-            
-            m_var_value_csc.push_back(0.41);
-            
-            m_var_value_csc.push_back(0.51);
-            
-            
-            
-            
-            m_var_value_n = "";  // current value of property "n"  
-            
-            
             m_var_value_precision = 0.0; // current value of property "precision" 
             
              
@@ -551,17 +533,19 @@ class c_colourchromaResource : public Resource
             
             
             
+            m_var_value_maximumsaturation = 0; // current value of property "maximumsaturation" 
+             
+            
+            
+            
             
              
-            // initialize vector if
-            
-            m_var_value_if.push_back("oic.if.baseline"); 
-            m_var_value_if.push_back("oic.if.a"); 
+            // initialize vector csc
             
             
+            m_var_value_csc.push_back(0.41);
             
-            m_var_value_ct = 0; // current value of property "ct" 
-             
+            m_var_value_csc.push_back(0.51);
             
             
             
@@ -570,8 +554,22 @@ class c_colourchromaResource : public Resource
             
             
             
-            m_var_value_maximumsaturation = 0; // current value of property "maximumsaturation" 
+            
+            m_var_value_n = "";  // current value of property "n"  
+            
+            
+            
+            m_var_value_ct = 0; // current value of property "ct" 
              
+            
+            
+            
+            
+             
+            // initialize vector if
+            
+            m_var_value_if.push_back("oic.if.baseline"); 
+            m_var_value_if.push_back("oic.if.a"); 
             
             
             m_var_value_hue = 0.0; // current value of property "hue" 
@@ -619,15 +617,16 @@ class c_colourchromaResource : public Resource
         */
         OCRepresentation get(QueryParamsMap queries)
         {        
-             
-            m_rep.setValue(m_var_name_csc,  m_var_value_csc );  
-            m_rep.setValue(m_var_name_n, m_var_value_n ); 
+            OC_UNUSED(queries);
+            
             m_rep.setValue(m_var_name_precision, m_var_value_precision );  
             m_rep.setValue(m_var_name_rt,  m_var_value_rt );  
-            m_rep.setValue(m_var_name_if,  m_var_value_if );  
-            m_rep.setValue(m_var_name_ct, m_var_value_ct );  
+            m_rep.setValue(m_var_name_maximumsaturation, m_var_value_maximumsaturation );  
+            m_rep.setValue(m_var_name_csc,  m_var_value_csc );  
             m_rep.setValue(m_var_name_saturation, m_var_value_saturation );  
-            m_rep.setValue(m_var_name_maximumsaturation, m_var_value_maximumsaturation ); 
+            m_rep.setValue(m_var_name_n, m_var_value_n );  
+            m_rep.setValue(m_var_name_ct, m_var_value_ct );  
+            m_rep.setValue(m_var_name_if,  m_var_value_if ); 
             m_rep.setValue(m_var_name_hue, m_var_value_hue ); 
         
             return m_rep;
@@ -642,8 +641,7 @@ class c_colourchromaResource : public Resource
         OCEntityHandlerResult post(QueryParamsMap queries, const OCRepresentation& rep)
         {
             OCEntityHandlerResult ehResult = OC_EH_OK;
-             
-             
+            OC_UNUSED(queries);
             
             try {
                 if (rep.hasAttribute(m_var_name_precision))
@@ -667,50 +665,6 @@ class c_colourchromaResource : public Resource
                 std::cout << e.what() << std::endl;
             } 
              
-             
-             
-            try {
-                if (rep.hasAttribute(m_var_name_ct))
-                {
-                    // allocate the variable
-                    int value;
-                    // get the actual value from the payload
-                    rep.getValue(m_var_name_ct, value);
-            
-                    // value exist in payload
-                    
-                    
-                    
-                }
-            }
-            catch (std::exception& e)
-            {
-                std::cout << e.what() << std::endl;
-            } 
-             
-            try {
-                if (rep.hasAttribute(m_var_name_saturation))
-                {
-                    // allocate the variable
-                    int value;
-                    // get the actual value from the payload
-                    rep.getValue(m_var_name_saturation, value);
-            
-                    // value exist in payload
-                    
-                    
-                    if ( value > 32767 )
-                    {
-                        // check the maximum range
-                        std::cout << "\t\t" << "property 'saturation' value exceed max :" << 32767 << " value: " <<value << std::endl;
-                        ehResult = OC_EH_ERROR;
-                    }
-                }
-            }
-            catch (std::exception& e)
-            {
-                std::cout << e.what() << std::endl;
-            } 
              
             try {
                 if (rep.hasAttribute(m_var_name_maximumsaturation))
@@ -739,6 +693,52 @@ class c_colourchromaResource : public Resource
             {
                 std::cout << e.what() << std::endl;
             } 
+             
+             
+            try {
+                if (rep.hasAttribute(m_var_name_saturation))
+                {
+                    // allocate the variable
+                    int value;
+                    // get the actual value from the payload
+                    rep.getValue(m_var_name_saturation, value);
+            
+                    // value exist in payload
+                    
+                    
+                    if ( value > 32767 )
+                    {
+                        // check the maximum range
+                        std::cout << "\t\t" << "property 'saturation' value exceed max :" << 32767 << " value: " <<value << std::endl;
+                        ehResult = OC_EH_ERROR;
+                    }
+                }
+            }
+            catch (std::exception& e)
+            {
+                std::cout << e.what() << std::endl;
+            } 
+             
+             
+            try {
+                if (rep.hasAttribute(m_var_name_ct))
+                {
+                    // allocate the variable
+                    int value;
+                    // get the actual value from the payload
+                    rep.getValue(m_var_name_ct, value);
+            
+                    // value exist in payload
+                    
+                    
+                    
+                }
+            }
+            catch (std::exception& e)
+            {
+                std::cout << e.what() << std::endl;
+            } 
+             
             
             try {
                 if (rep.hasAttribute(m_var_name_hue))
@@ -768,54 +768,7 @@ class c_colourchromaResource : public Resource
             if (ehResult == OC_EH_OK)
             {
                 // no error: assign the variables
-                 
-                // array only works for integer, boolean, numbers and strings
-                // TODO: make it also work with array of objects
-                try {
-                    if (rep.hasAttribute(m_var_name_csc))
-                    {
-                        rep.getValue(m_var_name_csc, m_var_value_csc);
-                        int first = 1;
-                        std::cout << "\t\t" << "property 'csc' : " ;
-                        for(auto myvar: m_var_value_csc)
-                        {
-                            if(first)
-                            {
-                                std::cout << myvar;
-                                first = 0;
-                            }
-                            else
-                            {
-                                std::cout << "," << myvar;
-                            }
-                        }
-                        std::cout <<  std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'csc' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
-                try {
-                    if (rep.getValue(m_var_name_n, m_var_value_n ))
-                    {
-                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-            
+                
                 try {
                     // value exist in payload
                     if (rep.getValue(m_var_name_precision, m_var_value_precision ))
@@ -864,6 +817,101 @@ class c_colourchromaResource : public Resource
                     std::cout << e.what() << std::endl;
                 }
              
+                try {
+                    // value exist in payload
+                    if (rep.getValue(m_var_name_maximumsaturation, m_var_value_maximumsaturation ))
+                    {
+                        std::cout << "\t\t" << "property 'maximumsaturation': " << m_var_value_maximumsaturation << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'maximumsaturation' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                // array only works for integer, boolean, numbers and strings
+                // TODO: make it also work with array of objects
+                try {
+                    if (rep.hasAttribute(m_var_name_csc))
+                    {
+                        rep.getValue(m_var_name_csc, m_var_value_csc);
+                        int first = 1;
+                        std::cout << "\t\t" << "property 'csc' : " ;
+                        for(auto myvar: m_var_value_csc)
+                        {
+                            if(first)
+                            {
+                                std::cout << myvar;
+                                first = 0;
+                            }
+                            else
+                            {
+                                std::cout << "," << myvar;
+                            }
+                        }
+                        std::cout <<  std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'csc' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                try {
+                    // value exist in payload
+                    if (rep.getValue(m_var_name_saturation, m_var_value_saturation ))
+                    {
+                        std::cout << "\t\t" << "property 'saturation': " << m_var_value_saturation << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'saturation' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                try {
+                    if (rep.getValue(m_var_name_n, m_var_value_n ))
+                    {
+                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
+                try {
+                    // value exist in payload
+                    if (rep.getValue(m_var_name_ct, m_var_value_ct ))
+                    {
+                        std::cout << "\t\t" << "property 'ct': " << m_var_value_ct << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'ct' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+             
                 // array only works for integer, boolean, numbers and strings
                 // TODO: make it also work with array of objects
                 try {
@@ -889,54 +937,6 @@ class c_colourchromaResource : public Resource
                     else
                     {
                         std::cout << "\t\t" << "property 'if' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
-                try {
-                    // value exist in payload
-                    if (rep.getValue(m_var_name_ct, m_var_value_ct ))
-                    {
-                        std::cout << "\t\t" << "property 'ct': " << m_var_value_ct << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'ct' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
-                try {
-                    // value exist in payload
-                    if (rep.getValue(m_var_name_saturation, m_var_value_saturation ))
-                    {
-                        std::cout << "\t\t" << "property 'saturation': " << m_var_value_saturation << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'saturation' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
-             
-                try {
-                    // value exist in payload
-                    if (rep.getValue(m_var_name_maximumsaturation, m_var_value_maximumsaturation ))
-                    {
-                        std::cout << "\t\t" << "property 'maximumsaturation': " << m_var_value_maximumsaturation << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'maximumsaturation' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -972,13 +972,6 @@ class c_colourchromaResource : public Resource
         ObservationIds m_interestedObservers;        
         
         // member variables for path: /colourchroma
-        
-        std::vector<double>  m_var_value_csc;
-        std::string m_var_name_csc = "csc"; // the name for the attribute
-        
-        std::string m_var_value_n; // the value for the attribute
-        std::string m_var_name_n = "n"; // the name for the attribute
-        
         double m_var_value_precision; // the value for the attribute
         std::string m_var_name_precision = "precision"; // the name for the attribute
         
@@ -986,18 +979,25 @@ class c_colourchromaResource : public Resource
         std::vector<std::string>  m_var_value_rt;
         std::string m_var_name_rt = "rt"; // the name for the attribute
         
+        int m_var_value_maximumsaturation; // the value for the attribute
+        std::string m_var_name_maximumsaturation = "maximumsaturation"; // the name for the attribute
         
-        std::vector<std::string>  m_var_value_if;
-        std::string m_var_name_if = "if"; // the name for the attribute
         
-        int m_var_value_ct; // the value for the attribute
-        std::string m_var_name_ct = "ct"; // the name for the attribute
+        std::vector<double>  m_var_value_csc;
+        std::string m_var_name_csc = "csc"; // the name for the attribute
         
         int m_var_value_saturation; // the value for the attribute
         std::string m_var_name_saturation = "saturation"; // the name for the attribute
         
-        int m_var_value_maximumsaturation; // the value for the attribute
-        std::string m_var_name_maximumsaturation = "maximumsaturation"; // the name for the attribute
+        std::string m_var_value_n; // the value for the attribute
+        std::string m_var_name_n = "n"; // the name for the attribute
+        
+        int m_var_value_ct; // the value for the attribute
+        std::string m_var_name_ct = "ct"; // the name for the attribute
+        
+        
+        std::vector<std::string>  m_var_value_if;
+        std::string m_var_name_if = "if"; // the name for the attribute
         
         double m_var_value_hue; // the value for the attribute
         std::string m_var_name_hue = "hue"; // the name for the attribute
@@ -1149,25 +1149,22 @@ class c_colourchromaResource : public Resource
 };
   
 
-class c_binaryswitchResource : public Resource
+class c_dimmingResource : public Resource
 {
     public:
         /*
         * constructor
         */
-        c_binaryswitchResource()
+        c_dimmingResource()
         {
-            std::cout << "- Running: c_binaryswitchResource constructor" << std::endl;
-            std::string resourceURI = "/binaryswitch";
+            std::cout << "- Running: c_dimmingResource constructor" << std::endl;
+            std::string resourceURI = "/dimming";
             
-            // initialize member variables /binaryswitch
+            // initialize member variables /dimming
             
             
             
-             
-            // initialize vector rt
-            
-            m_var_value_rt.push_back("oic.r.switch.binary"); 
+            m_var_value_n = "";  // current value of property "n"  
             
             
             
@@ -1178,18 +1175,21 @@ class c_binaryswitchResource : public Resource
             m_var_value_if.push_back("oic.if.baseline"); 
             m_var_value_if.push_back("oic.if.a"); 
             
-            m_var_value_value = true; // current value of property "value" 
+            
             
             
              
+            // initialize vector rt
+            
+            m_var_value_rt.push_back("oic.r.light.dimming"); 
             
             
             
-            
-            m_var_value_n = "";  // current value of property "n"  
+            m_var_value_dimmingSetting = 0; // current value of property "dimmingSetting" 
+             
             
         
-            EntityHandler cb = std::bind(&c_binaryswitchResource::entityHandler, this,PH::_1);
+            EntityHandler cb = std::bind(&c_dimmingResource::entityHandler, this,PH::_1);
             //uint8_t resourceProperty = 0;
             OCStackResult result = OCPlatform::registerResource(m_resourceHandle,
                 resourceURI,
@@ -1218,28 +1218,29 @@ class c_binaryswitchResource : public Resource
             if(OC_STACK_OK != result)
             {
                 throw std::runtime_error(
-                    std::string("c_binaryswitchResource failed to start")+std::to_string(result));
+                    std::string("c_dimmingResource failed to start")+std::to_string(result));
             }
         }
     private:
      
         /*
-        * function to make the payload for the retrieve function (e.g. GET) /binaryswitch
+        * function to make the payload for the retrieve function (e.g. GET) /dimming
         * @param queries  the query parameters for this call
         */
         OCRepresentation get(QueryParamsMap queries)
         {        
+            OC_UNUSED(queries);
              
+            m_rep.setValue(m_var_name_n, m_var_value_n );  
+            m_rep.setValue(m_var_name_if,  m_var_value_if );  
             m_rep.setValue(m_var_name_rt,  m_var_value_rt );  
-            m_rep.setValue(m_var_name_if,  m_var_value_if ); 
-            m_rep.setValue(m_var_name_value, m_var_value_value );  
-            m_rep.setValue(m_var_name_n, m_var_value_n ); 
+            m_rep.setValue(m_var_name_dimmingSetting, m_var_value_dimmingSetting ); 
         
             return m_rep;
         }
      
         /*
-        * function to parse the payload for the update function (e.g. POST) /binaryswitch
+        * function to parse the payload for the update function (e.g. POST) /dimming
         * @param queries  the query parameters for this call
         * @param rep  the response to get the property values from
         * @return OCEntityHandlerResult ok or not ok indication
@@ -1247,21 +1248,29 @@ class c_binaryswitchResource : public Resource
         OCEntityHandlerResult post(QueryParamsMap queries, const OCRepresentation& rep)
         {
             OCEntityHandlerResult ehResult = OC_EH_OK;
+            OC_UNUSED(queries);
              
              
-            
+             
+             
             try {
-                if (rep.hasAttribute(m_var_name_value))
+                if (rep.hasAttribute(m_var_name_dimmingSetting))
                 {
+                    // allocate the variable
+                    int value;
+                    // get the actual value from the payload
+                    rep.getValue(m_var_name_dimmingSetting, value);
+            
                     // value exist in payload
                     
-                }  
+                    
+                    
+                }
             }
             catch (std::exception& e)
             {
                 std::cout << e.what() << std::endl;
             } 
-             
              
             // TODO add check on array contents out of range, etc..
             
@@ -1269,31 +1278,14 @@ class c_binaryswitchResource : public Resource
             {
                 // no error: assign the variables
                  
-                // array only works for integer, boolean, numbers and strings
-                // TODO: make it also work with array of objects
                 try {
-                    if (rep.hasAttribute(m_var_name_rt))
+                    if (rep.getValue(m_var_name_n, m_var_value_n ))
                     {
-                        rep.getValue(m_var_name_rt, m_var_value_rt);
-                        int first = 1;
-                        std::cout << "\t\t" << "property 'rt' : " ;
-                        for(auto myvar: m_var_value_rt)
-                        {
-                            if(first)
-                            {
-                                std::cout << myvar;
-                                first = 0;
-                            }
-                            else
-                            {
-                                std::cout << "," << myvar;
-                            }
-                        }
-                        std::cout <<  std::endl;
+                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
                     }
                     else
                     {
-                        std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
+                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -1332,15 +1324,32 @@ class c_binaryswitchResource : public Resource
                 {
                     std::cout << e.what() << std::endl;
                 }
-            
+             
+                // array only works for integer, boolean, numbers and strings
+                // TODO: make it also work with array of objects
                 try {
-                    if (rep.getValue(m_var_name_value, m_var_value_value ))
+                    if (rep.hasAttribute(m_var_name_rt))
                     {
-                        std::cout << "\t\t" << "property 'value': " << m_var_value_value << std::endl;
+                        rep.getValue(m_var_name_rt, m_var_value_rt);
+                        int first = 1;
+                        std::cout << "\t\t" << "property 'rt' : " ;
+                        for(auto myvar: m_var_value_rt)
+                        {
+                            if(first)
+                            {
+                                std::cout << myvar;
+                                first = 0;
+                            }
+                            else
+                            {
+                                std::cout << "," << myvar;
+                            }
+                        }
+                        std::cout <<  std::endl;
                     }
                     else
                     {
-                        std::cout << "\t\t" << "property 'value' not found in the representation" << std::endl;
+                        std::cout << "\t\t" << "property 'rt' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -1349,13 +1358,14 @@ class c_binaryswitchResource : public Resource
                 }
              
                 try {
-                    if (rep.getValue(m_var_name_n, m_var_value_n ))
+                    // value exist in payload
+                    if (rep.getValue(m_var_name_dimmingSetting, m_var_value_dimmingSetting ))
                     {
-                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
+                        std::cout << "\t\t" << "property 'dimmingSetting': " << m_var_value_dimmingSetting << std::endl;
                     }
                     else
                     {
-                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+                        std::cout << "\t\t" << "property 'dimmingSetting' not found in the representation" << std::endl;
                     }
                 }
                 catch (std::exception& e)
@@ -1367,27 +1377,27 @@ class c_binaryswitchResource : public Resource
             return ehResult;            
         }
     // resource types and interfaces as array..
-        std::string m_RESOURCE_TYPE[1] = {"oic.r.switch.binary"}; // rt value (as an array)
+        std::string m_RESOURCE_TYPE[1] = {"oic.r.light.dimming"}; // rt value (as an array)
         std::string m_RESOURCE_INTERFACE[2] = {"oic.if.baseline","oic.if.a"}; // interface if (as an array) 
         std::string m_IF_UPDATE[3] = {"oic.if.a", "oic.if.rw", "oic.if.baseline"}; // updateble interfaces
         int m_nr_resource_types = 1;
         int m_nr_resource_interfaces = 2;
         ObservationIds m_interestedObservers;        
         
-        // member variables for path: /binaryswitch
-        
-        std::vector<std::string>  m_var_value_rt;
-        std::string m_var_name_rt = "rt"; // the name for the attribute
+        // member variables for path: /dimming
+        std::string m_var_value_n; // the value for the attribute
+        std::string m_var_name_n = "n"; // the name for the attribute
         
         
         std::vector<std::string>  m_var_value_if;
         std::string m_var_name_if = "if"; // the name for the attribute
         
-        bool m_var_value_value; // the value for the attribute
-        std::string m_var_name_value = "value"; // the name for the attribute
         
-        std::string m_var_value_n; // the value for the attribute
-        std::string m_var_name_n = "n"; // the name for the attribute
+        std::vector<std::string>  m_var_value_rt;
+        std::string m_var_name_rt = "rt"; // the name for the attribute
+        
+        int m_var_value_dimmingSetting; // the value for the attribute
+        std::string m_var_name_dimmingSetting = "dimmingSetting"; // the name for the attribute
         protected:
         /*
         * function to check if the interface is
@@ -1412,11 +1422,11 @@ class c_binaryswitchResource : public Resource
         virtual OCEntityHandlerResult entityHandler(std::shared_ptr<OCResourceRequest> request)
         {
             OCEntityHandlerResult ehResult = OC_EH_ERROR;
-            //std::cout << "In entity handler for c_binaryswitchResource " << std::endl;
+            //std::cout << "In entity handler for c_dimmingResource " << std::endl;
                           
             if(request)
             {
-                std::cout << "In entity handler for c_binaryswitchResource, URI is : "
+                std::cout << "In entity handler for c_dimmingResource, URI is : "
                           << request->getResourceUri() << std::endl;
                           
                 // Check for query params (if any)
@@ -1442,7 +1452,7 @@ class c_binaryswitchResource : public Resource
 
                     if(request->getRequestType() == "GET")
                     {
-                        std::cout<<"c_binaryswitchResource Get Request"<< std::endl;
+                        std::cout<<"c_dimmingResource Get Request"<< std::endl;
 
                         pResponse->setResourceRepresentation(get(queries), "");
                         if(OC_STACK_OK == OCPlatform::sendResponse(pResponse))
@@ -1453,7 +1463,7 @@ class c_binaryswitchResource : public Resource
      
                     else if(request->getRequestType() == "POST")
                     {
-                        std::cout <<"c_binaryswitchResource Post Request"<<std::endl;
+                        std::cout <<"c_dimmingResource Post Request"<<std::endl;
                         bool  handle_post = true; 
 
                         if (queries.size() > 0)
@@ -1501,7 +1511,7 @@ class c_binaryswitchResource : public Resource
                     }
                     else
                     {
-                        std::cout << "c_binaryswitchResource unsupported request type (delete,put,..)"
+                        std::cout << "c_dimmingResource unsupported request type (delete,put,..)"
                             << request->getRequestType() << std::endl;
                         pResponse->setResponseResult(OC_EH_ERROR);
                         OCPlatform::sendResponse(pResponse);
@@ -1545,9 +1555,9 @@ class IoTServer
         */
         IoTServer()
             :
-    m_dimmingInstance(),
+    m_binaryswitchInstance(),
     m_colourchromaInstance(),
-    m_binaryswitchInstance()
+    m_dimmingInstance()
     
         {
             std::cout << "Running IoTServer constructor" << std::endl;
@@ -1566,16 +1576,16 @@ class IoTServer
     
     private:
   
-        c_dimmingResource  m_dimmingInstance;
+        c_binaryswitchResource  m_binaryswitchInstance;
   
         c_colourchromaResource  m_colourchromaInstance;
   
-        c_binaryswitchResource  m_binaryswitchInstance;
+        c_dimmingResource  m_dimmingInstance;
 };
 
 
 /**
-*  intialize platform
+*  initialize platform
 *  initializes the oic/p resource
 */
 void initializePlatform()
@@ -1747,12 +1757,13 @@ FILE* server_fopen(const char* path, const char* mode)
 }
 
 
-#ifdef LINUX
+#ifdef __unix__
 // global needs static, otherwise it can be compiled out and then Ctrl-C does not work
 static int quit = 0;
 // handler for the signal to stop the application
 void handle_signal(int signal)
 {
+    OC_UNUSED(signal);
     quit = 1;
 }
 #endif
@@ -1778,7 +1789,7 @@ int main()
     std::cout << "platform independent: " <<  gProtocolIndependentID << std::endl;
 
 
-#ifdef LINUX
+#ifdef __unix__
     struct sigaction sa;
     sigfillset(&sa.sa_mask);
     sa.sa_flags = 0;
@@ -1792,8 +1803,7 @@ int main()
         usleep(2000000);
     }
     while (quit != 1);
-    // delete the server
-    delete IoTServer;
+    
 #endif
     
     

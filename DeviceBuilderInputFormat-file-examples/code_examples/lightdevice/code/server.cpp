@@ -65,11 +65,15 @@ std::string  gDeviceName = "Binary Switch";
 std::string  gDeviceType = "oic.d.light";
 std::string  gSpecVersion = "ocf.1.0.0";
 //std::vector<std::string> gDataModelVersions = {"ocf.res.1.1.0", "ocf.sh.1.1.0"};
+#if defined(_WIN32)
 #pragma warning( push ) 
 #pragma warning( disable : 4592)
+#endif
 std::vector<std::string> gDataModelVersions = {"ocf.res.1.3.0", "ocf.sh.1.3.0"};
 //std::vector<std::string> gDataModelVersions = {"ocf.res.1.3.0", "ocf.dev.1.3.0"};
+#if defined(_WIN32)
 #pragma warning( pop )
+#endif
 
 std::string  gProtocolIndependentID = "fa008167-3bbf-4c9d-8604-c9bcb96cb712";
 // OCPlatformInfo Contains all the platform info to be stored
@@ -125,6 +129,11 @@ class c_binaryswitchResource : public Resource
             std::string resourceURI = "/binaryswitch";
             
             // initialize member variables /binaryswitch
+            
+            
+            
+            m_var_value_n = "";  // current value of property "n"  
+            
             m_var_value_value = true; // current value of property "value" 
             
             
@@ -146,11 +155,6 @@ class c_binaryswitchResource : public Resource
             
             m_var_value_if.push_back("oic.if.a"); 
             m_var_value_if.push_back("oic.if.baseline"); 
-            
-            
-            
-            
-            m_var_value_n = "";  // current value of property "n"  
             
         
             EntityHandler cb = std::bind(&c_binaryswitchResource::entityHandler, this,PH::_1);
@@ -193,11 +197,12 @@ class c_binaryswitchResource : public Resource
         */
         OCRepresentation get(QueryParamsMap queries)
         {        
-            
+            OC_UNUSED(queries);
+             
+            m_rep.setValue(m_var_name_n, m_var_value_n ); 
             m_rep.setValue(m_var_name_value, m_var_value_value );  
             m_rep.setValue(m_var_name_rt,  m_var_value_rt );  
-            m_rep.setValue(m_var_name_if,  m_var_value_if );  
-            m_rep.setValue(m_var_name_n, m_var_value_n ); 
+            m_rep.setValue(m_var_name_if,  m_var_value_if ); 
         
             return m_rep;
         }
@@ -211,6 +216,8 @@ class c_binaryswitchResource : public Resource
         OCEntityHandlerResult post(QueryParamsMap queries, const OCRepresentation& rep)
         {
             OCEntityHandlerResult ehResult = OC_EH_OK;
+            OC_UNUSED(queries);
+             
             
             try {
                 if (rep.hasAttribute(m_var_name_value))
@@ -226,13 +233,27 @@ class c_binaryswitchResource : public Resource
              
              
              
-             
             // TODO add check on array contents out of range, etc..
             
             if (ehResult == OC_EH_OK)
             {
                 // no error: assign the variables
-                
+                 
+                try {
+                    if (rep.getValue(m_var_name_n, m_var_value_n ))
+                    {
+                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
+                    }
+                    else
+                    {
+                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
+                    }
+                }
+                catch (std::exception& e)
+                {
+                    std::cout << e.what() << std::endl;
+                }
+            
                 try {
                     if (rep.getValue(m_var_name_value, m_var_value_value ))
                     {
@@ -311,21 +332,6 @@ class c_binaryswitchResource : public Resource
                 {
                     std::cout << e.what() << std::endl;
                 }
-             
-                try {
-                    if (rep.getValue(m_var_name_n, m_var_value_n ))
-                    {
-                        std::cout << "\t\t" << "property 'n' : " << m_var_value_n << std::endl;
-                    }
-                    else
-                    {
-                        std::cout << "\t\t" << "property 'n' not found in the representation" << std::endl;
-                    }
-                }
-                catch (std::exception& e)
-                {
-                    std::cout << e.what() << std::endl;
-                }
             
             }            
             return ehResult;            
@@ -339,6 +345,9 @@ class c_binaryswitchResource : public Resource
         ObservationIds m_interestedObservers;        
         
         // member variables for path: /binaryswitch
+        std::string m_var_value_n; // the value for the attribute
+        std::string m_var_name_n = "n"; // the name for the attribute
+        
         bool m_var_value_value; // the value for the attribute
         std::string m_var_name_value = "value"; // the name for the attribute
         
@@ -349,9 +358,6 @@ class c_binaryswitchResource : public Resource
         
         std::vector<std::string>  m_var_value_if;
         std::string m_var_name_if = "if"; // the name for the attribute
-        
-        std::string m_var_value_n; // the value for the attribute
-        std::string m_var_name_n = "n"; // the name for the attribute
         protected:
         /*
         * function to check if the interface is
@@ -533,7 +539,7 @@ class IoTServer
 
 
 /**
-*  intialize platform
+*  initialize platform
 *  initializes the oic/p resource
 */
 void initializePlatform()
@@ -705,12 +711,13 @@ FILE* server_fopen(const char* path, const char* mode)
 }
 
 
-#ifdef LINUX
+#ifdef __unix__
 // global needs static, otherwise it can be compiled out and then Ctrl-C does not work
 static int quit = 0;
 // handler for the signal to stop the application
 void handle_signal(int signal)
 {
+    OC_UNUSED(signal);
     quit = 1;
 }
 #endif
@@ -736,7 +743,7 @@ int main()
     std::cout << "platform independent: " <<  gProtocolIndependentID << std::endl;
 
 
-#ifdef LINUX
+#ifdef __unix__
     struct sigaction sa;
     sigfillset(&sa.sa_mask);
     sa.sa_flags = 0;
@@ -750,8 +757,7 @@ int main()
         usleep(2000000);
     }
     while (quit != 1);
-    // delete the server
-    delete IoTServer;
+    
 #endif
     
     
