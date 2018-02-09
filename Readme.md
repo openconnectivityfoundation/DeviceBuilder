@@ -24,7 +24,7 @@ Typical flow to define an OCF device using DeviceBuilder is:
 
 
             
-The tool chain script implements the following tool chain to generate code.
+The tool chain script implements the following tool chain to generate code:
 
 
                        __________
@@ -45,14 +45,26 @@ The tool chain script implements the following tool chain to generate code.
                                        
                                       
      Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
+     this depends on the implementation of the stack, IOTivity reads CBOR as input file.
+     
+Currently available scripts are:
+-  DeviceBuilder_C++IotivityServer.sh
+    - C++ code generation for the C++ IOTivity API
+    - see: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/C%2B%2BIotivityServer
+-  DeviceBuilder_NodeIotivityServer.sh
+    - javascript code generation for the node.js IOTivity API
+    - see: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/NodeIotivityServer
      
 
  The generated code depends on the available code generation templates in swagger2x.
  The script installs:
  - github repos:
     - swagger2x
+        https://github.com/openconnectivityfoundation/swagger2x
     - oneIOTa - resource data models
+        https://github.com/OpenInterConnect/IoTDataModels
     - core - core resource models
+        https://github.com/openconnectivityfoundation/core
  - installs needed python (3.5) packages.
     
 additional manual steps:
