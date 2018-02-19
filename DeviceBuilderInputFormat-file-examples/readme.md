@@ -46,7 +46,8 @@ Examples of DeviceBuilderInput Format:
 - input-lightdevice.json
     The minimal light device, implementing only binary switch (on/off).
 
-    https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice.json
+    - input file
+        https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice.json
   
     - minimal define resource for oic.d.light 
         - resource type : oic.r.switch.binary
@@ -70,13 +71,22 @@ Examples of DeviceBuilderInput Format:
 
         ```
 
+    - deviceBuilder command
+        creates output directory outside the github tree.
+        ```
+        sh DeviceBuilder_C++IotivityServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice.json  ../lightdevice "oic.d.light"
+        ```
+    - generated code folder available at:
+        - actual copy of the generated data 
+        -  https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples/code_examples/lightdevice
   
   
   
 - input-lightdevice-dimming.json
     The light device implementing binary switch (on/off), and dimming.
 
-    https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming.json
+    -input file
+        https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming.json
   
     - resource list for oic.d.light 
         - resource type : oic.r.switch.binary
@@ -84,15 +94,34 @@ Examples of DeviceBuilderInput Format:
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.
     
     
+    - deviceBuilder command
+        creates output directory outside the github tree.
+        ```
+        sh DeviceBuilder_C++IotivityServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice-dimming.json  ../lightdevice-dimming "oic.d.light"
+        ```
+    - generated code folder available at:
+        - actual copy of the generated data 
+        - https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples/code_examples/lightdevice-dimming
     
   
 - input-lightdevice-dimming.json
     The light device implementing binary switch (on/off), dimming and colour chroma.
 
-    https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming-chroma.json
+    - input file
+        https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming-chroma.json
   
     - resource list for oic.d.light 
         - resource type : oic.r.switch.binary
         - resource type : oic.r.light.dimming
         - resource type : oic.r.colour.chroma
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.
+    
+    
+    - deviceBuilder command
+        creates output directory outside the github tree.
+        ```
+        sh DeviceBuilder_C++IotivityServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice-dimming-chroma.json  ../input-lightdevice-dimming-chroma "oic.d.light"
+        ```
+    - generated code folder available at:
+        - actual copy of the generated data 
+        - https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples/code_examples/lightdevice-dimming-chroma
