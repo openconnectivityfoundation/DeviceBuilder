@@ -47,6 +47,7 @@ Examples of DeviceBuilderInput Format:
     The minimal light device, implementing only binary switch (on/off).
 
     - input file
+    
         https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice.json
   
     - minimal define resource for oic.d.light 
@@ -72,7 +73,9 @@ Examples of DeviceBuilderInput Format:
         ```
 
     - deviceBuilder command
-        creates output directory outside the github tree.
+        - Invoked from the top level github repo, where the script resides
+        - Creates output directory outside the github tree.
+        
         ```
         sh DeviceBuilder_C++IotivityServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice.json  ../lightdevice "oic.d.light"
         ```
@@ -86,6 +89,7 @@ Examples of DeviceBuilderInput Format:
     The light device implementing binary switch (on/off), and dimming.
 
     -input file
+    
         https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming.json
   
     - resource list for oic.d.light 
@@ -95,7 +99,9 @@ Examples of DeviceBuilderInput Format:
     
     
     - deviceBuilder command
-        creates output directory outside the github tree.
+        - Invoked from the top level github repo, where the script resides
+        - Creates output directory outside the github tree.
+        
         ```
         sh DeviceBuilder_C++IotivityServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice-dimming.json  ../lightdevice-dimming "oic.d.light"
         ```
@@ -108,6 +114,7 @@ Examples of DeviceBuilderInput Format:
     The light device implementing binary switch (on/off), dimming and colour chroma.
 
     - input file
+    
         https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming-chroma.json
   
     - resource list for oic.d.light 
@@ -118,7 +125,9 @@ Examples of DeviceBuilderInput Format:
     
     
     - deviceBuilder command
-        creates output directory outside the github tree.
+        - Invoked from the top level github repo, where the script resides
+        - Creates output directory outside the github tree.
+        
         ```
         sh DeviceBuilder_C++IotivityServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice-dimming-chroma.json  ../input-lightdevice-dimming-chroma "oic.d.light"
         ```
