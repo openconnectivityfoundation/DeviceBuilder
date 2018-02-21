@@ -31,7 +31,7 @@ try:
 except:
     print("missing cbor:")
     print ("Trying to Install required module: cbor ")
-    os.system('python3 -m pip install cbor')
+    os.system('python3 -m pip install --user cbor')
 import cbor
 
 try: 
@@ -39,7 +39,7 @@ try:
 except:
     print("missing jsonschema:")
     print ("Trying to Install required module: jsonschema ")
-    os.system('python3 -m pip install jsonschema')
+    os.system('python3 -m pip install --user jsonschema')
 import jsonschema
 
 
@@ -48,6 +48,6 @@ try:
 except:
     print("missing DeepDiff:")
     print ("Trying to Install required module: DeepDiff ")
-    os.system('python3 -m pip install deepdiff')
+    os.system('python3 -m pip install --user deepdiff')
 import deepdiff
 
