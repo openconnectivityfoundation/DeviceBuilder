@@ -52,7 +52,7 @@
 
 
 
-PYTHON_EXE=C:\\python35-32\\python3.exe
+PYTHON_EXE=python3
 DeviceBuilder=./src/DeviceBuilder.py
 SWAG2CBOR=./src/swag2cbor.py
 SWAGGER2XDIR=../swagger2x
