@@ -44,7 +44,7 @@
 # This will have :
 # -	Input-lightdevice.json (e.g. the input file…)
 # -	out_codegeneration_merged.swagger.json : the input file for swagger2x
-# -	out_introspection_merged.swagger.json : the introspection file in json 
+# -	out_introspection_merged.swagger.json : the introspection file in json
 # -	out_introspection_merged.swagger.json.cbor : the introspection file in cbor
 # -	code (folder)
 #   - readme.txt
@@ -52,8 +52,8 @@
 
 
 
-PYTHON_EXE=C:\\python35-32\\python3.exe
-DeviceBuilder=./src/deviceBuilder.py
+PYTHON_EXE=python3
+DeviceBuilder=./src/DeviceBuilder.py
 SWAG2CBOR=./src/swag2cbor.py
 SWAGGER2XDIR=../swagger2x
 SWAGGER2X=$SWAGGER2XDIR/src/swagger2x.py
@@ -108,7 +108,7 @@ cp $INPUTFILE $OUTPUTDIR
 mkdir -p $OUTPUTDIR/code
 
 $PYTHON_EXE ./src/install.py
-$PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out 
+$PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out
 wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/out_introspection_merged.swagger.json
 cp $OUTPUTDIR/out_introspection_merged.swagger.json.cbor $OUTPUTDIR/code/server_introspection.dat
@@ -120,6 +120,3 @@ $PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template C++Io
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/code/svr_server.json
 cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat
 cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat-org
-
-
-

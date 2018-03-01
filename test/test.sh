@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PYTHON_EXE=C:\\python35-32\\python3.exe
-DeviceBuilder=../src/deviceBuilder.py
+DeviceBuilder=../src/DeviceBuilder.py
 SWAG2CBOR=../src/swag2cbor.py
 DIFF=../src/compareJson.py
 
@@ -46,42 +46,42 @@ function compare_json {
 function my_test {
     $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE$EXT 2>&1
     compare_output
-} 
+}
 
 function my_test_in_dir {
     mkdir -p $OUTPUT_DIR/$TEST_CASE
     $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     compare_file $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT $REF_DIR/$TEST_CASE/$TEST_CASE$EXT
-    
-    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
+
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     $PYTHON_EXE $SWAG2CBOR -file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json  #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     $PYTHON_EXE $SWAG2CBOR -cbor $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor.json
-    
+
     compare_json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     compare_json $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
-    
-} 
+
+}
 
 function my_test_in_dir_with_compare {
     mkdir -p $OUTPUT_DIR/$TEST_CASE
     $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     compare_file $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT $REF_DIR/$TEST_CASE/$TEST_CASE$EXT
-    
-    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json    
+
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
-    
+
     $PYTHON_EXE $SWAG2CBOR -file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json  #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     $PYTHON_EXE $SWAG2CBOR -cbor $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
     compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor.json
- 
+
     compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
-    
-} 
+
+}
 
 
 
@@ -195,6 +195,6 @@ fi
 
 generic_tests
 oic_res_tests
-deviceBuilder_tests 
-deviceBuilder_tests2  
+deviceBuilder_tests
+deviceBuilder_tests2
 deviceBuilder_ctt_tests
