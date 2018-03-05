@@ -86,11 +86,11 @@ git clone https://github.com/openconnectivityfoundation/core.git --branch master
 popd
 fi
 
-if [ ! -f $MODELS_DIR/oic.wk.res.swagger.json ]
-then
+#if [ ! -f $MODELS_DIR/oic.wk.res.swagger.json ]
+#then
 echo "copying $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
 cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
-fi
+#fi
 
 
 if [ ! -f $SWAGGER2X ]
@@ -117,6 +117,7 @@ cp $OUTPUTDIR/out_introspection_merged.swagger.json.cbor $OUTPUTDIR/code/server_
 $PYTHON_EXE $SWAGGER2XDIR/src/install.py
 $PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template C++IotivityServer -swagger $OUTPUTDIR/out_codegeneration_merged.swagger.json -out_dir $OUTPUTDIR/code  -devicetype $DEVICETYPE
 
-$PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/code/svr_server.json
-cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat
-cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat-org
+# not used yet
+#$PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/code/svr_server.json
+#cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat
+#cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat-org
