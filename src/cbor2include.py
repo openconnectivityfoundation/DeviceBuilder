@@ -57,20 +57,27 @@ if (args.file) :
     if args.verbose:
         print("size:", size_cbor)
     
-    f.write("// introscpection data\n")
-    f.write("// input file = ")
+    f.write("#ifndef INTROSPECTION_INCLUDE_H\n")
+    f.write("#define INTROSPECTION_INCLUDE_H\n")
+    
+    #ifndef CONFIG_H
+#define CONFIG_H
+    
+    
+    f.write("/* introspcection data\n")
+    f.write(" input file = ")
     f.write(args.file)
     f.write("\n")
     
-    f.write("// date")
+    f.write(" date ")
     f.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
-    f.write("\n\n")
+    f.write(" */\n\n")
     
-    f.write("#define CBOR_SIZE ")
+    f.write("#define introspection_data_size ")
     f.write(str(size_cbor))
-    f.write("  // size of the CBOR\n")
+    f.write("  /* size of the CBOR */\n")
     
-    f.write("uint8_t introspection_data[] = {\n")
+    f.write("extern uint8_t introspection_data[] = {\n")
     counter = 0
     for item in cbor_data[:-1]:
         counter += 1
@@ -84,6 +91,7 @@ if (args.file) :
     f.write(hex(int(cbor_data[len(cbor_data)-1])))
    
     f.write("};\n\n")
+    f.write("#endif /* INTROSPECTION_INCLUDE_H */\n")
     f.close()
     
 
