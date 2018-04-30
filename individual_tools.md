@@ -5,6 +5,12 @@ The tools are python3.5 code.
 
 to install the dependencies run : ``` python3 src\install.py```
 
+tools currently available are:
+- DeviceBuilder
+- swag2cbor
+- cbor2include
+
+
 run the tool(s) from the commandline in the src directory (DeviceBuilder):
 
 ```python3 DeviceBuilder.py -h```
@@ -13,6 +19,10 @@ or (cbor conversion)
 
 
 ```python3 swag2cbor.py -h```
+
+or (include file generation of the introspection file)
+
+```python3 cbor2include.py -h```
 
 
 Running the above commands gives all command line options available. 
@@ -133,4 +143,18 @@ merge different output files into 1 swagger file.
   
  ### documentation of the internals
  https://openconnectivityfoundation.github.io/DeviceBuilder/
+ 
+ 
+ # swag2cbor
+ 
+ This tool converts swagger (e.g. read json) into cbor.
+ also the tool can convert the cbor back to json.
+ 
+ # cbor2include
+ 
+ This tool converts cbor (e.g. a binary file) into a c-style include file.
+ The binary data is presented as a array with hex values.
+ This file can be included in C/C++ code.
+ 
+ The name of the output file is "<inputfilename>.h" e.g. suffixed with ".h"
  
