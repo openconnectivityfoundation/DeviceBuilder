@@ -1,0 +1,7 @@
+
+cbor==1.0.0
+deepdiff==3.3.0
+setuptools>=18.5
+Jinja2==2.8
+jsonschema==2.5.1
+

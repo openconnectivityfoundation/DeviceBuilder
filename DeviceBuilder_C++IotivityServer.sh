@@ -57,6 +57,7 @@ DeviceBuilder=./src/DeviceBuilder.py
 SWAG2CBOR=./src/swag2cbor.py
 SWAGGER2XDIR=../swagger2x
 SWAGGER2X=$SWAGGER2XDIR/src/swagger2x.py
+PIP3=pip3
 
 INPUTFILE=$1
 OUTPUTDIR=$2
@@ -67,6 +68,7 @@ CORE_DIR=../Core
 echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
 
+$PIP3 install -U -r requirements.txt
 
 if [ ! -f $MODELS_DIR/README.md ]
 then
@@ -75,8 +77,6 @@ cd ..
 git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
 cd $ORGDIR
 fi
-
-
 
 if [ ! -f $CORE_DIR/README.md ]
 then
@@ -107,14 +107,14 @@ cp $INPUTFILE $OUTPUTDIR
 
 mkdir -p $OUTPUTDIR/code
 
-$PYTHON_EXE ./src/install.py
+#$PYTHON_EXE ./src/install.py
 $PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out
 wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/out_introspection_merged.swagger.json
 cp $OUTPUTDIR/out_introspection_merged.swagger.json.cbor $OUTPUTDIR/code/server_introspection.dat
 
 
-$PYTHON_EXE $SWAGGER2XDIR/src/install.py
+#$PYTHON_EXE $SWAGGER2XDIR/src/install.py
 $PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template C++IotivityServer -swagger $OUTPUTDIR/out_codegeneration_merged.swagger.json -out_dir $OUTPUTDIR/code  -devicetype $DEVICETYPE
 
 # not used yet
