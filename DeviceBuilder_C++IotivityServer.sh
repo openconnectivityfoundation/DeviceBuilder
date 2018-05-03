@@ -23,7 +23,7 @@
 #############################
 #
 # usage
-# sh DeviceBuilder_NodeIotivityServer.sh <devicbuilder input file>  <output directory> <device type>
+# sh DeviceBuilder_C++IotivityServer.sh <devicbuilder input file>  <output directory> <device type>
 # <devicbuilder input file>  : see https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/test/input_define_device for examples
 # <output directory> will be created
 #
@@ -70,20 +70,20 @@ echo "output folder:" $OUTPUTDIR
 
 if [ ! -f $MODELS_DIR/README.md ]
 then
-pushd `pwd`
+ORGDIR=`pwd`
 cd ..
 git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
-popd
+cd $ORGDIR
 fi
 
 
 
 if [ ! -f $CORE_DIR/README.md ]
 then
-pushd `pwd`
+ORGDIR=`pwd`
 cd ..
 git clone https://github.com/openconnectivityfoundation/core.git --branch master
-popd
+cd $ORGDIR
 fi
 
 #if [ ! -f $MODELS_DIR/oic.wk.res.swagger.json ]
@@ -95,10 +95,10 @@ cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
 
 if [ ! -f $SWAGGER2X ]
 then
-pushd `pwd`
+ORGDIR=`pwd`
 cd ..
 git clone https://github.com/openconnectivityfoundation/swagger2x.git --branch master
-popd
+cd $ORGDIR
 fi
 
 echo "creating $OUTPUTDIR"
