@@ -79,8 +79,16 @@ if stringContain "not found" $PIP_INSTALLED;then
 else
     echo "pip3 installed: $PIP_INSTALLED"
 fi 
-echo "== installing python dependencies"
-$PIP3 install -U -r requirements.txt
+
+`$PYTHON_EXE -c "import sys, pkgutil; sys.exit(0 if pkgutil.find_loader('cbor') else 1)"`
+PyPACKAGE_INSTALLED=$?
+if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
+    echo "== installing python dependencies" $PyPACKAGE_INSTALLED
+    $PIP3 install -U -r requirements.txt
+else
+    echo "python package cbor installed, assuming all other packages are installed too"
+    echo "if not run on the commandline: $PIP3 install -U -r requirements.txt"
+fi 
 
 if [ ! -f $MODELS_DIR/README.md ]
 then
@@ -122,17 +130,17 @@ cp $INPUTFILE $OUTPUTDIR
 
 mkdir -p $OUTPUTDIR/code
 
-#$PYTHON_EXE ./src/install.py
 $PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out
-wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
+WB_INSTALLED=`which wb-swagger`
+if stringContain "not found" $WB_INSTALLED;then 
+    echo "== wb-swagger not installed, see https://github.com/WAvdBeek/wb-swagger-tools to install"
+else
+    echo "wb-swagger installed: verifying generated swagger"
+    wb-swagger validate $OUTPUTDIR/out_introspection_merged.swagger.json
+fi 
 $PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/out_introspection_merged.swagger.json
 cp $OUTPUTDIR/out_introspection_merged.swagger.json.cbor $OUTPUTDIR/code/server_introspection.dat
 
 
-#$PYTHON_EXE $SWAGGER2XDIR/src/install.py
 $PYTHON_EXE $SWAGGER2X -template_dir $SWAGGER2XDIR/src/templates -template C++IotivityServer -swagger $OUTPUTDIR/out_codegeneration_merged.swagger.json -out_dir $OUTPUTDIR/code  -devicetype $DEVICETYPE
 
-# not used yet
-#$PYTHON_EXE $SWAG2CBOR -file $OUTPUTDIR/code/svr_server.json
-#cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat
-#cp $OUTPUTDIR/code/svr_server.json.cbor $OUTPUTDIR/code/server_security.dat-org
