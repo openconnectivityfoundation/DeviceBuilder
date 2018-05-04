@@ -70,12 +70,15 @@ echo "output folder:" $OUTPUTDIR
 
 PIP_INSTALLED=`which pip3`
 if [[ $PIP_INSTALLED = *"not found"* ]]; then
-  sudo apt install python3-pip 
+    echo "== installing pip3"
+    sudo apt install python3-pip 
 fi 
+echo "== installing python dependencies"
 $PIP3 install -U -r requirements.txt
 
 if [ ! -f $MODELS_DIR/README.md ]
 then
+echo "== installing oneIOTa models"
 ORGDIR=`pwd`
 cd ..
 git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
@@ -84,6 +87,7 @@ fi
 
 if [ ! -f $CORE_DIR/README.md ]
 then
+echo "== installing core models"
 ORGDIR=`pwd`
 cd ..
 git clone https://github.com/openconnectivityfoundation/core.git --branch master
@@ -99,6 +103,7 @@ cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
 
 if [ ! -f $SWAGGER2X ]
 then
+echo "== installing swagger2x"
 ORGDIR=`pwd`
 cd ..
 git clone https://github.com/openconnectivityfoundation/swagger2x.git --branch master
