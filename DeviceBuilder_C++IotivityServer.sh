@@ -73,9 +73,11 @@ echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
 
 PIP_INSTALLED=`which pip3`
-if stringContain "not found" $PIP_INSTALLED 'echo "My String"';then 
+if stringContain "not found" $PIP_INSTALLED;then 
     echo "== installing pip3"
     sudo apt install python3-pip 
+else
+    echo "pip3 installed: $PIP_INSTALLED"
 fi 
 echo "== installing python dependencies"
 $PIP3 install -U -r requirements.txt
