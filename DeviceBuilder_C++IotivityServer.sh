@@ -65,11 +65,15 @@ DEVICETYPE=$3
 MODELS_DIR=../IoTDataModels
 CORE_DIR=../Core
 
+
+stringContain() { [ -z "${2##*$1*}" ]; }
+
+
 echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
 
 PIP_INSTALLED=`which pip3`
-if [[ $PIP_INSTALLED = *"not found"* ]]; then
+if stringContain "not found" $PIP_INSTALLED 'echo "My String"';then 
     echo "== installing pip3"
     sudo apt install python3-pip 
 fi 
