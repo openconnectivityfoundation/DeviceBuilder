@@ -68,6 +68,11 @@ CORE_DIR=../Core
 echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
 
+PIP_INSTALLED=`which pip3`
+if [[ -z "${param// }" ]]
+then
+   sudo apt install python3-pip 
+fi 
 $PIP3 install -U -r requirements.txt
 
 if [ ! -f $MODELS_DIR/README.md ]
