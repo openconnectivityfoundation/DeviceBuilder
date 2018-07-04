@@ -63,7 +63,7 @@ INPUTFILE=$1
 OUTPUTDIR=$2
 DEVICETYPE=$3
 MODELS_DIR=../IoTDataModels
-CORE_DIR=../Core
+CORE_DIR=../core
 
 
 stringContain() { [ -z "${2##*$1*}" ]; }
