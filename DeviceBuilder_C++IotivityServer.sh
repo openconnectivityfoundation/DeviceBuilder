@@ -80,6 +80,9 @@ else
     echo "pip3 installed: $PIP_INSTALLED"
 fi 
 
+#
+# multiple checks on what is already there. 
+#
 `$PYTHON_EXE -c "import sys, pkgutil; sys.exit(0 if pkgutil.find_loader('cbor') else 1)"`
 PyPACKAGE_INSTALLED=$?
 if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
@@ -87,6 +90,26 @@ if [ $PyPACKAGE_INSTALLED -eq 1 ];then
     $PIP3 install -U -r requirements.txt
 else
     echo "python package cbor installed, assuming all other packages are installed too"
+    echo "if not run on the commandline: $PIP3 install -U -r requirements.txt"
+fi 
+
+`$PYTHON_EXE -c "import sys, pkgutil; sys.exit(0 if pkgutil.find_loader('Jinja2') else 1)"`
+PyPACKAGE_INSTALLED=$?
+if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
+    echo "== installing python dependencies" $PyPACKAGE_INSTALLED
+    $PIP3 install -U -r requirements.txt
+else
+    echo "python package Jinja2 installed, assuming all other packages are installed too"
+    echo "if not run on the commandline: $PIP3 install -U -r requirements.txt"
+fi 
+
+`$PYTHON_EXE -c "import sys, pkgutil; sys.exit(0 if pkgutil.find_loader('deepdiff') else 1)"`
+PyPACKAGE_INSTALLED=$?
+if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
+    echo "== installing python dependencies" $PyPACKAGE_INSTALLED
+    $PIP3 install -U -r requirements.txt
+else
+    echo "python package deepdiff installed, assuming all other packages are installed too"
     echo "if not run on the commandline: $PIP3 install -U -r requirements.txt"
 fi 
 
