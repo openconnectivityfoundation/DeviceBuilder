@@ -118,7 +118,7 @@ then
 echo "== installing oneIOTa models"
 ORGDIR=`pwd`
 cd ..
-git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
+git clone https://github.com/openconnectivityfoundation/IoTDataModels.git --branch master
 cd $ORGDIR
 fi
 

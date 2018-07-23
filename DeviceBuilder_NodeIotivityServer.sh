@@ -71,7 +71,7 @@ if [ ! -f $MODELS_DIR/README.md ]
 then
 pushd `pwd`
 cd ..
-git clone https://github.com/OpenInterConnect/IoTDataModels.git --branch master
+git clone https://github.com/openconnectivityfoundation/IoTDataModels.git --branch master
 popd
 fi
 
