@@ -87,6 +87,7 @@ fi
 PyPACKAGE_INSTALLED=$?
 if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
     echo "== installing python dependencies" $PyPACKAGE_INSTALLED
+    $PIP3 install -U -r requirements-setuptools.txt
     $PIP3 install -U -r requirements.txt
 else
     echo "python package cbor installed, assuming all other packages are installed too"
@@ -97,6 +98,7 @@ fi
 PyPACKAGE_INSTALLED=$?
 if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
     echo "== installing python dependencies" $PyPACKAGE_INSTALLED
+    $PIP3 install -U -r requirements-setuptools.txt
     $PIP3 install -U -r requirements.txt
 else
     echo "python package Jinja2 installed, assuming all other packages are installed too"
@@ -107,6 +109,7 @@ fi
 PyPACKAGE_INSTALLED=$?
 if [ $PyPACKAGE_INSTALLED -eq 1 ];then 
     echo "== installing python dependencies" $PyPACKAGE_INSTALLED
+    $PIP3 install -U -r requirements-setuptools.txt
     $PIP3 install -U -r requirements.txt
 else
     echo "python package deepdiff installed, assuming all other packages are installed too"
