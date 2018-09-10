@@ -75,7 +75,7 @@ echo "output folder:" $OUTPUTDIR
 PIP_INSTALLED=`which pip3`
 if stringContain "not found" $PIP_INSTALLED;then 
     echo "== installing pip3"
-    sudo apt install python3-pip 
+    sudo apt-get -y install python3-pip 
 else
     echo "pip3 installed: $PIP_INSTALLED"
 fi 
