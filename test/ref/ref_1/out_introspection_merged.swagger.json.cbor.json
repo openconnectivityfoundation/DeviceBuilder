@@ -1,0 +1,263 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "Temperature": {
+      "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.temperature"
+          ],
+          "description": "",
+          "items": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            }
+          ],
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "temperature": {
+          "description": "",
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    },
+    "Temperature11": {
+      "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.temperature"
+          ],
+          "description": "",
+          "items": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            }
+          ],
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "temperature": {
+          "description": "",
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "title": "OICTemperature",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface10": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/actuatorthermostat": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            }
+          }
+        }
+      }
+    },
+    "/sensorthermostat": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}

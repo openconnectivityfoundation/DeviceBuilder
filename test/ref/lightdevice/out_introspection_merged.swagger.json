@@ -6,24 +6,29 @@
     "BinarySwitch": {
       "properties": {
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.switch.binary"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -42,73 +47,6 @@
       ],
       "type": "object"
     },
-    "ColourChroma": {
-      "properties": {
-        "csc": {
-          "description": "",
-          "items": {
-            "maximum": 1,
-            "minimum": 0,
-            "type": "number"
-          },
-          "maxItems": 2,
-          "minItems": 2,
-          "type": "array"
-        },
-        "ct": {
-          "description": "",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "hue": {
-          "description": "",
-          "maximum": 360,
-          "minimum": 0,
-          "type": "number"
-        },
-        "if": {
-          "items": {
-            "enum": [
-              "oic.if.baseline",
-              "oic.if.a"
-            ],
-            "maxLength": 64,
-            "type": "string"
-          },
-          "maxItems": 2,
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
-        },
-        "maximumsaturation": {
-          "description": "",
-          "maximum": 32767,
-          "minimum": 0,
-          "readOnly": true,
-          "type": "integer"
-        },
-        "rt": {
-          "default": [
-            "oic.r.colour.chroma"
-          ],
-          "items": {
-            "maxLength": 64,
-            "type": "string"
-          },
-          "minItems": 1,
-          "readOnly": true,
-          "type": "array"
-        },
-        "saturation": {
-          "description": "",
-          "maximum": 32767,
-          "minimum": 0,
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "Dimming": {
       "properties": {
         "dimmingSetting": {
@@ -116,24 +54,29 @@
           "type": "integer"
         },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.light.dimming"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -147,6 +90,128 @@
         "dimmingSetting"
       ],
       "type": "object"
+    },
+    "Platform": {
+      "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.r"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "mndt": {
+          "allOf": [
+            {
+              "description": "",
+              "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|2[0-9]|1[0-9]|0[1-9])$",
+              "type": "string"
+            },
+            {
+              "description": "",
+              "readOnly": true
+            }
+          ]
+        },
+        "mnfv": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnhw": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnml": {
+          "description": "",
+          "format": "uri",
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnmn": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnmo": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnos": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnpv": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "mnsl": {
+          "description": "",
+          "format": "uri",
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "pi": {
+          "allOf": [
+            {
+              "description": "",
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            },
+            {
+              "description": "",
+              "readOnly": true
+            }
+          ]
+        },
+        "rt": {
+          "default": [
+            "oic.wk.p"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "st": {
+          "description": "",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "pi",
+        "mnmn"
+      ]
     }
   },
   "info": {
@@ -161,6 +226,15 @@
       "enum": [
         "oic.if.baseline",
         "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface20": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.r"
       ],
       "in": "query",
       "name": "if",
@@ -210,48 +284,6 @@
         }
       }
     },
-    "/colourchroma": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "$ref": "#/parameters/interface"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/ColourChroma"
-            }
-          }
-        }
-      }
-    },
     "/dimming": {
       "get": {
         "description": "",
@@ -295,6 +327,24 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/Dimming"
+            }
+          }
+        }
+      }
+    },
+    "/oic/p": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface20"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Platform"
             }
           }
         }

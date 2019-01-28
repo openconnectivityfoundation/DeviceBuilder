@@ -1,0 +1,222 @@
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
+out                 : ./out/ref_1/out
+resource dir        : ./input_swagger
+oic/res file        : None
+input file          : ./input_DeviceBuilderInputFormat/input-thermostat.json
+remove_property     : None
+type                : None
+intermediate files  : False
+
+
+== INTROSPECTION ==
+handling resources (overview):
+find_files: directory: ./input_swagger
+processing files: ['TemperatureResURI.swagger.json']
+
+  main: File : TemperatureResURI.swagger.json
+  main: rt : ['oic.r.temperature']
+  rt                 : oic.r.temperature
+    href             : /sensorthermostat
+    if               : ['oic.if.baseline', 'oic.if.s']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : ['post']
+    rts (enum)       : None
+    basefile         : TemperatureResURI.swagger.json
+  rt                 : oic.r.temperature
+    href             : /actuatorthermostat
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : None
+    rts (enum)       : None
+    basefile         : TemperatureResURI.swagger.json
+ 
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: id
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: n
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+optimize for introspection..
+
+create_introspection index: 0 /sensorthermostat
+collapse_allOf:
+   Temperature
+handle_collections
+update_path_value:
+   rt: oic.r.temperature  href: /sensorthermostat
+update_path_value /TemperatureResURI
+ update_path_value : /TemperatureResURI /sensorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+  update_definition_with_rt  rt
+update_definition_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+  replacing if with ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if interface
+update_definition_with_type
+  href: /sensorthermostat  type: None
+remove_definition_properties
+  rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
+remove_path_method
+   href: /sensorthermostat  method: ['post']
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: id
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: n
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+optimize for introspection..
+
+create_introspection index: 1 /actuatorthermostat
+collapse_allOf:
+   Temperature
+handle_collections
+update_path_value:
+   rt: oic.r.temperature  href: /actuatorthermostat
+update_path_value /TemperatureResURI
+ update_path_value : /TemperatureResURI /actuatorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+  update_definition_with_rt  rt
+update_definition_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+  replacing if with ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+update_definition_with_type
+  href: /actuatorthermostat  type: None
+remove_definition_properties
+  rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
+remove_path_method
+   href: /actuatorthermostat  method: None
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ parameter fix --> {'$ref': '#/parameters/interface'}
+merge: definition exist: Temperature
+merge: definition exist: Temperature  adding as: Temperature11
+
+== CODE GENERATION ==
+handling resources (overview):
+find_files: directory: ./input_swagger
+processing files: ['TemperatureResURI.swagger.json']
+
+  main: File : TemperatureResURI.swagger.json
+  main: rt : ['oic.r.temperature']
+  rt                 : oic.r.temperature
+    href             : /sensorthermostat
+    if               : ['oic.if.baseline', 'oic.if.s']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : ['post']
+    rts (enum)       : None
+    basefile         : TemperatureResURI.swagger.json
+  rt                 : oic.r.temperature
+    href             : /actuatorthermostat
+    if               : ['oic.if.baseline', 'oic.if.a']
+    type (replace)   : None
+    props (remove)   : ['range', 'value', 'step', 'precision']
+    methods (remove) : None
+    rts (enum)       : None
+    basefile         : TemperatureResURI.swagger.json
+ 
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: id
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: n
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+
+create_code_generation index: 0 /sensorthermostat
+collapse_allOf:
+   Temperature
+handle_collections
+update_path_value:
+   rt: oic.r.temperature  href: /sensorthermostat
+update_path_value /TemperatureResURI
+ update_path_value : /TemperatureResURI /sensorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+  update_definition_with_rt  rt
+update_definition_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+  replacing if with ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if
+  href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
+update_parameters_with_if interface
+update_definition_with_type
+  href: /sensorthermostat  type: None
+remove_definition_properties
+  rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
+remove_path_method
+   href: /sensorthermostat  method: ['post']
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: id
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/id
+resolve_ref: found external $ref:  https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+resolve_ref: url: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json
+resolve_ref: key: n
+resolve_ref: fixing $ref: https://openconnectivityfoundation.github.io/core/schemas/oic.common.properties.core-schema.json#/definitions/n
+
+create_code_generation index: 1 /actuatorthermostat
+collapse_allOf:
+   Temperature
+handle_collections
+update_path_value:
+   rt: oic.r.temperature  href: /actuatorthermostat
+update_path_value /TemperatureResURI
+ update_path_value : /TemperatureResURI /actuatorthermostat
+update_definition_with_rt
+  rt: oic.r.temperature
+  update_definition_with_rt  rt
+update_definition_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+  replacing if with ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if
+  href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
+update_parameters_with_if interface
+update_definition_with_type
+  href: /actuatorthermostat  type: None
+remove_definition_properties
+  rt: oic.r.temperature  prop: ['range', 'value', 'step', 'precision']
+erase_element: Cannot find matching key: range
+erase_element: Cannot find matching key: value
+erase_element: Cannot find matching key: step
+erase_element: Cannot find matching key: precision
+remove_path_method
+   href: /actuatorthermostat  method: None
+merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface10
+ parameter fix --> {'$ref': '#/parameters/interface'}
+merge: definition exist: Temperature
+merge: definition exist: Temperature  adding as: Temperature11

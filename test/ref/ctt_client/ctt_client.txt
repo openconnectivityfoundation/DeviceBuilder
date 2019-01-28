@@ -1,10 +1,10 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/ctt_client/out
 resource dir        : ../../IoTDataModels
 oic/res file        : None
-input file          : ./input_define_device/ctt_client.json
+input file          : ./input_DeviceBuilderInputFormat/ctt_client.json
 remove_property     : None
 type                : None
 intermediate files  : False
@@ -26,6 +26,7 @@ processing files: ['oic.wk.p.swagger.json']
     rts (enum)       : None
     basefile         : oic.wk.p.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /oic/p
 collapse_allOf:
@@ -54,7 +55,6 @@ erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
    href: /oic/p  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 
 == CODE GENERATION ==
@@ -74,30 +74,5 @@ processing files: ['oic.wk.p.swagger.json']
     basefile         : oic.wk.p.swagger.json
  
 
-create_introspection index: 0 /oic/p
-collapse_allOf:
-   Platform
-handle_collections
-update_path_value:
-   rt: oic.wk.p  href: /oic/p
-update_path_value /oic/p
- update_path_value: already the same : ['/oic/p', '/oic/p']
-update_definition_with_rt
-  rt: oic.wk.p
-  update_definition_with_rt  rt
-update_definition_with_if
-  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
-  replacing if with ['oic.if.baseline', 'oic.if.r']
-update_parameters_with_if
-  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
-update_parameters_with_if interface
-update_definition_with_type
-  href: /oic/p  type: None
-remove_definition_properties
-  rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: precision
-remove_path_method
-   href: /oic/p  method: None
+create_code_generation ignored: oic.wk.p
+merge ignored: oic.wk.p

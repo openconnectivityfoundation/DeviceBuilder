@@ -4,12 +4,7 @@
   ],
   "definitions": {
     "HeatingZone": {
-      "description": "",
       "properties": {
-        "drel": {
-          "description": "",
-          "type": "string"
-        },
         "id": {
           "description": "",
           "maxLength": 64,
@@ -31,153 +26,132 @@
         },
         "links": {
           "description": "",
-          "oneOf": [
-            {
-              "description": "",
-              "items": {
+          "items": {
+            "properties": {
+              "anchor": {
+                "description": "",
+                "format": "uri",
+                "maxLength": 256,
+                "type": "string"
+              },
+              "di": {
+                "description": "",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              },
+              "eps": {
+                "description": "",
+                "items": {
+                  "properties": {
+                    "ep": {
+                      "description": "",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "pri": {
+                      "description": "",
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "href": {
+                "description": "",
+                "format": "uri",
+                "maxLength": 256,
+                "type": "string"
+              },
+              "if": {
+                "description": "",
+                "items": {
+                  "enum": [
+                    "oic.if.baseline",
+                    "oic.if.ll",
+                    "oic.if.b",
+                    "oic.if.rw",
+                    "oic.if.r",
+                    "oic.if.a",
+                    "oic.if.s"
+                  ],
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "ins": {
+                "description": "",
+                "type": "integer"
+              },
+              "p": {
+                "description": "",
                 "properties": {
-                  "anchor": {
+                  "bm": {
                     "description": "",
-                    "format": "uri",
-                    "maxLength": 256,
-                    "type": "string"
-                  },
-                  "di": {
-                    "description": "",
-                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                    "type": "string"
-                  },
-                  "eps": {
-                    "description": "",
-                    "items": {
-                      "properties": {
-                        "ep": {
-                          "description": "",
-                          "format": "uri",
-                          "type": "string"
-                        },
-                        "pri": {
-                          "description": "",
-                          "minimum": 1,
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "type": "array"
-                  },
-                  "href": {
-                    "description": "",
-                    "format": "uri",
-                    "maxLength": 256,
-                    "type": "string"
-                  },
-                  "if": {
-                    "description": "",
-                    "items": {
-                      "enum": [
-                        "oic.if.baseline",
-                        "oic.if.ll",
-                        "oic.if.b",
-                        "oic.if.rw",
-                        "oic.if.r",
-                        "oic.if.a",
-                        "oic.if.s"
-                      ],
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                  },
-                  "ins": {
-                    "description": "",
-                    "oneOf": [
-                      {
-                        "description": "",
-                        "type": "integer"
-                      },
-                      {
-                        "description": "",
-                        "format": "uri",
-                        "maxLength": 256,
-                        "type": "string"
-                      },
-                      {
-                        "description": "",
-                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "p": {
-                    "description": "",
-                    "properties": {
-                      "bm": {
-                        "description": "",
-                        "type": "integer"
-                      }
-                    },
-                    "required": [
-                      "bm"
-                    ],
-                    "type": "object"
-                  },
-                  "rel": {
-                    "description": "",
-                    "oneOf": [
-                      {
-                        "default": [
-                          "hosts"
-                        ],
-                        "items": {
-                          "maxLength": 64,
-                          "type": "string"
-                        },
-                        "minItems": 1,
-                        "type": "array"
-                      },
-                      {
-                        "default": "hosts",
-                        "maxLength": 64,
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "rt": {
-                    "description": "",
-                    "items": {
-                      "maxLength": 64,
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                  },
-                  "title": {
-                    "description": "",
-                    "maxLength": 64,
-                    "type": "string"
-                  },
-                  "type": {
-                    "default": "application/cbor",
-                    "description": "",
-                    "items": {
-                      "maxLength": 64,
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
+                    "type": "integer"
                   }
                 },
                 "required": [
-                  "href",
-                  "rt",
-                  "if"
+                  "bm"
                 ],
                 "type": "object"
               },
-              "type": "array"
-            }
-          ]
+              "rel": {
+                "description": "",
+                "oneOf": [
+                  {
+                    "default": [
+                      "hosts"
+                    ],
+                    "items": {
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  {
+                    "default": "hosts",
+                    "maxLength": 64,
+                    "type": "string"
+                  }
+                ]
+              },
+              "rt": {
+                "description": "",
+                "items": {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "title": {
+                "description": "",
+                "maxLength": 64,
+                "type": "string"
+              },
+              "type": {
+                "default": "application/cbor",
+                "description": "",
+                "items": {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "href",
+              "rt",
+              "if"
+            ],
+            "type": "object"
+          },
+          "type": "array"
         },
         "n": {
           "description": "",
@@ -194,7 +168,8 @@
             "enum": [
               "oic.r.heatingzonecollection",
               "oic.wk.col"
-            ]
+            ],
+            "type": "string"
           },
           "maxItems": 2,
           "minItems": 2,
@@ -211,161 +186,137 @@
           "type": "array",
           "uniqueItems": true
         }
-      }
+      },
+      "type": "object"
     },
     "HeatingZone-ll": {
-      "allOf": [
-        {
-          "description": "",
-          "oneOf": [
-            {
-              "description": "",
-              "items": {
-                "properties": {
-                  "anchor": {
-                    "description": "",
-                    "format": "uri",
-                    "maxLength": 256,
-                    "type": "string"
-                  },
-                  "di": {
-                    "description": "",
-                    "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                    "type": "string"
-                  },
-                  "eps": {
-                    "description": "",
-                    "items": {
-                      "properties": {
-                        "ep": {
-                          "description": "",
-                          "format": "uri",
-                          "type": "string"
-                        },
-                        "pri": {
-                          "description": "",
-                          "minimum": 1,
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "type": "array"
-                  },
-                  "href": {
-                    "description": "",
-                    "format": "uri",
-                    "maxLength": 256,
-                    "type": "string"
-                  },
-                  "if": {
-                    "description": "",
-                    "items": {
-                      "enum": [
-                        "oic.if.baseline",
-                        "oic.if.ll",
-                        "oic.if.b",
-                        "oic.if.rw",
-                        "oic.if.r",
-                        "oic.if.a",
-                        "oic.if.s"
-                      ],
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                  },
-                  "ins": {
-                    "description": "",
-                    "oneOf": [
-                      {
-                        "description": "",
-                        "type": "integer"
-                      },
-                      {
-                        "description": "",
-                        "format": "uri",
-                        "maxLength": 256,
-                        "type": "string"
-                      },
-                      {
-                        "description": "",
-                        "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "p": {
-                    "description": "",
-                    "properties": {
-                      "bm": {
-                        "description": "",
-                        "type": "integer"
-                      }
-                    },
-                    "required": [
-                      "bm"
-                    ],
-                    "type": "object"
-                  },
-                  "rel": {
-                    "description": "",
-                    "oneOf": [
-                      {
-                        "default": [
-                          "hosts"
-                        ],
-                        "items": {
-                          "maxLength": 64,
-                          "type": "string"
-                        },
-                        "minItems": 1,
-                        "type": "array"
-                      },
-                      {
-                        "default": "hosts",
-                        "maxLength": 64,
-                        "type": "string"
-                      }
-                    ]
-                  },
-                  "rt": {
-                    "description": "",
-                    "items": {
-                      "maxLength": 64,
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                  },
-                  "title": {
-                    "description": "",
-                    "maxLength": 64,
-                    "type": "string"
-                  },
-                  "type": {
-                    "default": "application/cbor",
-                    "description": "",
-                    "items": {
-                      "maxLength": 64,
-                      "type": "string"
-                    },
-                    "minItems": 1,
-                    "type": "array"
-                  }
+      "items": {
+        "properties": {
+          "anchor": {
+            "description": "",
+            "format": "uri",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "di": {
+            "description": "",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+            "type": "string"
+          },
+          "eps": {
+            "description": "",
+            "items": {
+              "properties": {
+                "ep": {
+                  "description": "",
+                  "format": "uri",
+                  "type": "string"
                 },
-                "required": [
-                  "href",
-                  "rt",
-                  "if"
-                ],
-                "type": "object"
+                "pri": {
+                  "description": "",
+                  "minimum": 1,
+                  "type": "integer"
+                }
               },
-              "type": "array"
-            }
-          ]
-        }
-      ]
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "href": {
+            "description": "",
+            "format": "uri",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "if": {
+            "description": "",
+            "items": {
+              "enum": [
+                "oic.if.baseline",
+                "oic.if.ll",
+                "oic.if.b",
+                "oic.if.rw",
+                "oic.if.r",
+                "oic.if.a",
+                "oic.if.s"
+              ],
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "ins": {
+            "description": "",
+            "type": "integer"
+          },
+          "p": {
+            "description": "",
+            "properties": {
+              "bm": {
+                "description": "",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "bm"
+            ],
+            "type": "object"
+          },
+          "rel": {
+            "description": "",
+            "oneOf": [
+              {
+                "default": [
+                  "hosts"
+                ],
+                "items": {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "default": "hosts",
+                "maxLength": 64,
+                "type": "string"
+              }
+            ]
+          },
+          "rt": {
+            "description": "",
+            "items": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "title": {
+            "description": "",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "type": {
+            "default": "application/cbor",
+            "description": "",
+            "items": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "href",
+          "rt",
+          "if"
+        ],
+        "type": "object"
+      },
+      "title": "Heating Zone Collection Link List Schema (auto merged)",
+      "type": "array"
     },
     "HeatingZone00": {
       "properties": {
@@ -374,30 +325,41 @@
           "readOnly": true,
           "type": "integer"
         },
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.s"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
         },
         "maxheatinglevel": {
           "description": "",
           "readOnly": true,
           "type": "integer"
         },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "rt": {
           "default": [
             "oic.r.heatingzone"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -411,6 +373,495 @@
         "maxheatinglevel",
         "heatinglevel"
       ],
+      "type": "object"
+    },
+    "heatingzonecollection-ll": {
+      "items": {
+        "properties": {
+          "anchor": {
+            "description": "",
+            "format": "uri",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "di": {
+            "description": "",
+            "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+            "type": "string"
+          },
+          "eps": {
+            "description": "",
+            "items": {
+              "properties": {
+                "ep": {
+                  "description": "",
+                  "format": "uri",
+                  "type": "string"
+                },
+                "pri": {
+                  "description": "",
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "href": {
+            "description": "",
+            "format": "uri",
+            "maxLength": 256,
+            "type": "string"
+          },
+          "if": {
+            "description": "",
+            "items": {
+              "enum": [
+                "oic.if.baseline",
+                "oic.if.ll",
+                "oic.if.b",
+                "oic.if.rw",
+                "oic.if.r",
+                "oic.if.a",
+                "oic.if.s"
+              ],
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "ins": {
+            "description": "",
+            "type": "integer"
+          },
+          "p": {
+            "description": "",
+            "properties": {
+              "bm": {
+                "description": "",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "bm"
+            ],
+            "type": "object"
+          },
+          "rel": {
+            "description": "",
+            "oneOf": [
+              {
+                "default": [
+                  "hosts"
+                ],
+                "items": {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "default": "hosts",
+                "maxLength": 64,
+                "type": "string"
+              }
+            ]
+          },
+          "rt": {
+            "description": "",
+            "items": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "title": {
+            "description": "",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "type": {
+            "default": "application/cbor",
+            "description": "",
+            "items": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "href",
+          "rt",
+          "if"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "oic.collection.links.arrayoflinks": {
+      "properties": {
+        "links": {
+          "description": "",
+          "items": {
+            "properties": {
+              "anchor": {
+                "description": "",
+                "format": "uri",
+                "maxLength": 256,
+                "type": "string"
+              },
+              "di": {
+                "description": "",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              },
+              "eps": {
+                "description": "",
+                "items": {
+                  "properties": {
+                    "ep": {
+                      "description": "",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "pri": {
+                      "description": "",
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "href": {
+                "description": "",
+                "format": "uri",
+                "maxLength": 256,
+                "type": "string"
+              },
+              "if": {
+                "description": "",
+                "items": {
+                  "enum": [
+                    "oic.if.baseline",
+                    "oic.if.ll",
+                    "oic.if.b",
+                    "oic.if.rw",
+                    "oic.if.r",
+                    "oic.if.a",
+                    "oic.if.s"
+                  ],
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "ins": {
+                "description": "",
+                "type": "integer"
+              },
+              "p": {
+                "description": "",
+                "properties": {
+                  "bm": {
+                    "description": "",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "bm"
+                ],
+                "type": "object"
+              },
+              "rel": {
+                "description": "",
+                "oneOf": [
+                  {
+                    "default": [
+                      "hosts"
+                    ],
+                    "items": {
+                      "maxLength": 64,
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  {
+                    "default": "hosts",
+                    "maxLength": 64,
+                    "type": "string"
+                  }
+                ]
+              },
+              "rt": {
+                "description": "",
+                "items": {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "title": {
+                "description": "",
+                "maxLength": 64,
+                "type": "string"
+              },
+              "type": {
+                "default": "application/cbor",
+                "description": "",
+                "items": {
+                  "maxLength": 64,
+                  "type": "string"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "href",
+              "rt",
+              "if"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      }
+    },
+    "oic.collection.properties": {
+      "description": "",
+      "properties": {
+        "rts": {
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "oic.core": {
+      "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.ll",
+              "oic.if.b",
+              "oic.if.lb",
+              "oic.if.rw",
+              "oic.if.r",
+              "oic.if.a",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "oic.oic-link": {
+      "properties": {
+        "anchor": {
+          "description": "",
+          "format": "uri",
+          "maxLength": 256,
+          "type": "string"
+        },
+        "di": {
+          "description": "",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+          "type": "string"
+        },
+        "eps": {
+          "description": "",
+          "items": {
+            "properties": {
+              "ep": {
+                "description": "",
+                "format": "uri",
+                "type": "string"
+              },
+              "pri": {
+                "description": "",
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "href": {
+          "description": "",
+          "format": "uri",
+          "maxLength": 256,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.ll",
+              "oic.if.b",
+              "oic.if.rw",
+              "oic.if.r",
+              "oic.if.a",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "ins": {
+          "description": "",
+          "type": "integer"
+        },
+        "p": {
+          "description": "",
+          "properties": {
+            "bm": {
+              "description": "",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "bm"
+          ],
+          "type": "object"
+        },
+        "rel": {
+          "description": "",
+          "oneOf": [
+            {
+              "default": [
+                "hosts"
+              ],
+              "items": {
+                "maxLength": 64,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "default": "hosts",
+              "maxLength": 64,
+              "type": "string"
+            }
+          ]
+        },
+        "rt": {
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "title": {
+          "description": "",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "type": {
+          "default": "application/cbor",
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "href",
+        "rt",
+        "if"
+      ],
+      "type": "object"
+    },
+    "oic.r.heatingzonecollection": {
+      "properties": {
+        "rt": {
+          "items": {
+            "enum": [
+              "oic.r.heatingzonecollection",
+              "oic.wk.col"
+            ],
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rts": {
+          "items": {
+            "anyOf": [
+              {
+                "enum": [
+                  "oic.r.heatingzone",
+                  "oic.r.value.conditional"
+                ],
+                "type": "string"
+              },
+              {
+                "enum": [
+                  "oic.r.heatingzone"
+                ],
+                "type": "string"
+              }
+            ]
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
       "type": "object"
     }
   },
@@ -460,7 +911,7 @@
     }
   },
   "paths": {
-    "/HeatingZoneLLResURI": {
+    "/HeatingZoneResURI?if=oic.if.ll": {
       "get": {
         "description": "",
         "parameters": [

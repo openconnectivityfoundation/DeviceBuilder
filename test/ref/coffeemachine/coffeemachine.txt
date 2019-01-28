@@ -1,10 +1,10 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/coffeemachine/out
 resource dir        : ../../IoTDataModels
 oic/res file        : None
-input file          : ./input_define_device/input-coffeemachine.json
+input file          : ./input_DeviceBuilderInputFormat/input-coffeemachine.json
 remove_property     : None
 type                : None
 intermediate files  : False
@@ -37,6 +37,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
     rts (enum)       : None
     basefile         : OperationalStateResURI.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /onoff
 collapse_allOf:
@@ -48,11 +49,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /onoff
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
@@ -66,14 +65,14 @@ erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
    href: /onoff  method: None
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /operationalstate
 collapse_allOf:
-   OperationUpdate
    Operation
+   OperationUpdate
 handle_collections
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
@@ -81,11 +80,9 @@ update_path_value /OperationalStateResURI
  update_path_value : /OperationalStateResURI /operationalstate
 update_definition_with_rt
   rt: oic.r.operational.state
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
@@ -94,17 +91,8 @@ update_definition_with_type
   href: /operationalstate  type: None
 remove_definition_properties
   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: precision
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: precision
 remove_path_method
    href: /operationalstate  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
@@ -137,7 +125,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'OperationalStateResURI.sw
     basefile         : OperationalStateResURI.swagger.json
  
 
-create_introspection index: 0 /onoff
+create_code_generation index: 0 /onoff
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -147,11 +135,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /onoff
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /onoff  if: ['oic.if.baseline', 'oic.if.a']
@@ -166,10 +152,10 @@ erase_element: Cannot find matching key: precision
 remove_path_method
    href: /onoff  method: None
 
-create_introspection index: 1 /operationalstate
+create_code_generation index: 1 /operationalstate
 collapse_allOf:
-   OperationUpdate
    Operation
+   OperationUpdate
 handle_collections
 update_path_value:
    rt: oic.r.operational.state  href: /operationalstate
@@ -177,11 +163,9 @@ update_path_value /OperationalStateResURI
  update_path_value : /OperationalStateResURI /operationalstate
 update_definition_with_rt
   rt: oic.r.operational.state
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /operationalstate  if: ['oic.if.baseline', 'oic.if.a']
@@ -190,14 +174,6 @@ update_definition_with_type
   href: /operationalstate  type: None
 remove_definition_properties
   rt: oic.r.operational.state  prop: ['range', 'value', 'step', 'precision']
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: precision
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: precision
 remove_path_method
    href: /operationalstate  method: None
 merge: parameter exist: interface

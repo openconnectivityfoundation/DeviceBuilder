@@ -5,25 +5,36 @@
   "definitions": {
     "Temperature": {
       "properties": {
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "The interface set supported by this resource",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.s"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.temperature"
           ],
+          "description": "Resource Type",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -43,7 +54,8 @@
             "F",
             "K"
           ],
-          "readOnly": true
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
@@ -53,25 +65,36 @@
     },
     "Temperature11": {
       "properties": {
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "The interface set supported by this resource",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.temperature"
           ],
+          "description": "Resource Type",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -91,7 +114,8 @@
             "F",
             "K"
           ],
-          "readOnly": true
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
@@ -131,7 +155,7 @@
   "paths": {
     "/actuatorthermostat": {
       "get": {
-        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
+        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\nIt is recommended to return always the units Property in the result.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface10"
@@ -230,7 +254,7 @@
     },
     "/sensorthermostat": {
       "get": {
-        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\n",
+        "description": "This resource describes a sensed or actuated Temperature value.\nThe temperature describes the current value measured.\nThe units is a single value that is one of C, F or K.\nIt provides the unit of measurement for the temperature value.\nIt is a read-only value that is provided by the server.\nIf the units Property is missing the default is Celsius [C].\nWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.\nRetrieves the current temperature value.\nA client can specify the units for the requested temperature by use of a query parameter.\nIf no query parameter is provided the server provides its default measure or set value.\nIt is recommended to return always the units Property in the result.\n",
         "parameters": [
           {
             "$ref": "#/parameters/interface"

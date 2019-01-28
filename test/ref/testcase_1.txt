@@ -1,7 +1,7 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
-usage: deviceBuilder.py [-h] [-ver] [-ocfres [OCFRES]] [-input [INPUT]] -out
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
+usage: DeviceBuilder.py [-h] [-ver] [-ocfres [OCFRES]] [-input [INPUT]] -out
                         [OUT] [-intermediate_files INTERMEDIATE_FILES]
                         [-resource_dir [RESOURCE_DIR]]
                         [-remove_property [REMOVE_PROPERTY [REMOVE_PROPERTY ...]]]

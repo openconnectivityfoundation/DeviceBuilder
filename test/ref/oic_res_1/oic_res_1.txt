@@ -1,6 +1,6 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/oic_res_1/out
 resource dir        : ../../IoTDataModels
 oic/res file        : ./input_oic_res/oic-res-response-binaryswitch.json
@@ -28,6 +28,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /BinarySwitchResURI
 collapse_allOf:
@@ -39,11 +40,9 @@ update_path_value /BinarySwitchResURI
  update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -54,7 +53,6 @@ remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
    href: /BinarySwitchResURI  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 
@@ -77,7 +75,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     basefile         : BinarySwitchResURI.swagger.json
  
 
-create_introspection index: 0 /BinarySwitchResURI
+create_code_generation index: 0 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -87,11 +85,9 @@ update_path_value /BinarySwitchResURI
  update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']

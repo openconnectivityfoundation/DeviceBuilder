@@ -5,25 +5,36 @@
   "definitions": {
     "Temperature": {
       "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.s"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.temperature"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -43,7 +54,8 @@
             "F",
             "K"
           ],
-          "readOnly": true
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
@@ -53,25 +65,36 @@
     },
     "Temperature11": {
       "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.temperature"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -91,7 +114,8 @@
             "F",
             "K"
           ],
-          "readOnly": true
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [

@@ -1,10 +1,10 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/thermostat/out
 resource dir        : ../../IoTDataModels
 oic/res file        : None
-input file          : ./input_define_device/input-thermostat.json
+input file          : ./input_DeviceBuilderInputFormat/input-thermostat.json
 remove_property     : None
 type                : None
 intermediate files  : False
@@ -34,6 +34,7 @@ processing files: ['TemperatureResURI.swagger.json']
     rts (enum)       : None
     basefile         : TemperatureResURI.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /sensorthermostat
 collapse_allOf:
@@ -45,11 +46,9 @@ update_path_value /TemperatureResURI
  update_path_value : /TemperatureResURI /sensorthermostat
 update_definition_with_rt
   rt: oic.r.temperature
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if
   href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
@@ -64,9 +63,9 @@ erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
    href: /sensorthermostat  method: ['post']
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /actuatorthermostat
 collapse_allOf:
@@ -78,11 +77,9 @@ update_path_value /TemperatureResURI
  update_path_value : /TemperatureResURI /actuatorthermostat
 update_definition_with_rt
   rt: oic.r.temperature
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
@@ -97,7 +94,6 @@ erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: precision
 remove_path_method
    href: /actuatorthermostat  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
@@ -132,7 +128,7 @@ processing files: ['TemperatureResURI.swagger.json']
     basefile         : TemperatureResURI.swagger.json
  
 
-create_introspection index: 0 /sensorthermostat
+create_code_generation index: 0 /sensorthermostat
 collapse_allOf:
    Temperature
 handle_collections
@@ -142,11 +138,9 @@ update_path_value /TemperatureResURI
  update_path_value : /TemperatureResURI /sensorthermostat
 update_definition_with_rt
   rt: oic.r.temperature
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.s']
 update_parameters_with_if
   href: /sensorthermostat  if: ['oic.if.baseline', 'oic.if.s']
@@ -162,7 +156,7 @@ erase_element: Cannot find matching key: precision
 remove_path_method
    href: /sensorthermostat  method: ['post']
 
-create_introspection index: 1 /actuatorthermostat
+create_code_generation index: 1 /actuatorthermostat
 collapse_allOf:
    Temperature
 handle_collections
@@ -172,11 +166,9 @@ update_path_value /TemperatureResURI
  update_path_value : /TemperatureResURI /actuatorthermostat
 update_definition_with_rt
   rt: oic.r.temperature
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /actuatorthermostat  if: ['oic.if.baseline', 'oic.if.a']

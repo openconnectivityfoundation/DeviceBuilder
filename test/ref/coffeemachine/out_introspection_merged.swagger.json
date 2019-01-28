@@ -5,25 +5,36 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.switch.binary"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -52,20 +63,24 @@
           "description": "",
           "type": "string"
         },
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
         },
         "jobStates": {
           "description": "",
@@ -83,6 +98,12 @@
           "readOnly": true,
           "type": "array"
         },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "progressPercentage": {
           "description": "",
           "maximum": 100,
@@ -99,6 +120,7 @@
           "default": [
             "oic.r.operational.state"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -128,6 +150,47 @@
         "currentMachineState": {
           "description": "",
           "type": "string"
+        },
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.ll",
+              "oic.if.b",
+              "oic.if.lb",
+              "oic.if.rw",
+              "oic.if.r",
+              "oic.if.a",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"

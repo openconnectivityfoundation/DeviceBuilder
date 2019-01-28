@@ -1,6 +1,6 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/oic_res_6/out
 resource dir        : ../../IoTDataModels
 oic/res file        : ./input_oic_res/oic-res-response-testdevice.json
@@ -113,6 +113,7 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
     rts (enum)       : None
     basefile         : oic.wk.col.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /BinarySwitchResURI
 collapse_allOf:
@@ -124,11 +125,9 @@ update_path_value /BinarySwitchResURI
  update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -139,9 +138,9 @@ remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
    href: /BinarySwitchResURI  method: None
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /TemperatureResURI
 collapse_allOf:
@@ -153,11 +152,9 @@ update_path_value /TemperatureResURI
  update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
 update_definition_with_rt
   rt: oic.r.temperature
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -168,11 +165,11 @@ remove_definition_properties
   rt: oic.r.temperature  prop: None
 remove_path_method
    href: /TemperatureResURI  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+optimize for introspection..
 
 create_introspection index: 2 /AirFlowResURI
 collapse_allOf:
@@ -184,11 +181,9 @@ update_path_value /AirFlowResURI
  update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
 update_definition_with_rt
   rt: oic.r.airflow
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -199,20 +194,20 @@ remove_definition_properties
   rt: oic.r.airflow  prop: None
 remove_path_method
    href: /AirFlowResURI  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+optimize for introspection..
 
 create_introspection index: 3 /ConfigurationResURI
 collapse_allOf:
-   Update
    Configuration
+   Update
 handle_collections
 update_path_value:
    rt: oic.wk.con  href: /ConfigurationResURI
-update_path_value /example/DeviceConfigurationResURI
- update_path_value : /example/DeviceConfigurationResURI /ConfigurationResURI
+update_path_value /exampleDeviceConfigurationResURI
+ update_path_value : /exampleDeviceConfigurationResURI /ConfigurationResURI
 update_definition_with_rt
   rt: oic.wk.con
   update_definition_with_rt  rt
@@ -221,66 +216,97 @@ update_definition_with_if
   replacing if with ['oic.if.baseline', 'oic.if.rw']
 update_parameters_with_if
   href: /ConfigurationResURI  if: ['oic.if.baseline', 'oic.if.rw']
-update_parameters_with_if interface-all
 update_parameters_with_if interface-rw
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /ConfigurationResURI  type: integer
 remove_definition_properties
   rt: oic.wk.con  prop: None
 remove_path_method
    href: /ConfigurationResURI  method: None
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/uuid
+resolve_ref: key: uuid
+resolve_ref: fixing $ref: #/definitions/uuid
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.core/properties/rt
+resolve_ref: key: oic.core
+resolve_ref: key: properties
+resolve_ref: key: rt
+resolve_ref: fixing $ref: #/definitions/oic.core/properties/rt
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 
 create_introspection index: 4 /vendor/aircon/collection/extra
 collapse_allOf:
-   slinks
+   sbaseline
    sbatch-retrieve
    sbatch-update
-   sbaseline
+   slinks
+   oic.wk.col-batch-update
+   uuid
+   oic.collection.properties
+   oic.core
+   oic.batch-update.item
+   oic.collection.linksexpanded
+   oic.collection.links
+   oic.oic-link
 handle_collections
 update_path_value:
    rt: oic.wk.col  href: /vendor/aircon/collection/extra
-update_path_value /CollectionLinkListInterfaceURI
-update_path_value /CollectionBatchInterfaceURI
 update_path_value /CollectionBaselineInterfaceURI
+update_path_value /CollectionBatchInterfaceURI
+update_path_value /CollectionLinkListInterfaceURI
  update_path_value : /CollectionBaselineInterfaceURI /vendor/aircon/collection/extra
 update_definition_with_rt
   rt: oic.wk.col
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
 update_definition_with_if
   href: /vendor/aircon/collection/extra  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
 update_parameters_with_if
   href: /vendor/aircon/collection/extra  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
-update_parameters_with_if interface-b
 update_parameters_with_if interface-ll
-update_parameters_with_if interface-all
+update_parameters_with_if interface-b
 update_parameters_with_if interface-baseline
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /vendor/aircon/collection/extra  type: integer
- ===> grep
-{'matched_paths': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['type']", "root['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['title']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['type']", "root['items']['properties']['href']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['items']['type']", "root['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['type']", "root['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['minItems']", "root['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['href']['type']", "root['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['if']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['id']['anyOf'][1]['type']", "root['items']['properties']['eps']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']", "root['items']['properties']['n']['type']", "root['items']['type']", "root['items']['properties']['rts']['allOf'][0]['items']['type']", "root['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['type']['minItems']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['default']", "root['items']['properties']['eps']['type']", "root['items']['properties']['type']['default']", "root['items']['properties']['type']['items']", "root['items']['properties']['rts']['allOf'][0]['type']", "root['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['rt']['items']['type']", "root['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['type']", "root['items']['properties']['rt']['type']", "root['items']['properties']['type']['type']", "root['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['p']['type']", "root['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['type']", "root['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['id']['anyOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['type']", "root['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['type']", "root['items']['properties']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['title']['type']"}, 'matched_values': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['rts']['allOf'][1]['description']", "root['items']['properties']['type']['description']", "root['items']['properties']['rt']['description']", "root['items']['properties']['rts']['allOf'][0]['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['description']"}}
 remove_definition_properties
   rt: oic.wk.col  prop: None
 remove_path_method
    href: /vendor/aircon/collection/extra  method: None
-optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 erase_element : could not delete: x-example
-erase_element: Cannot find matching key: x-example
+erase_element : could not delete: x-example
+erase_element : could not delete: x-example
+erase_element : could not delete: x-example
 erase_element : could not delete: x-example
 erase_element : could not delete: x-example
 erase_element: Cannot find matching key: x-example
-erase_element : could not delete: x-example
-erase_element : could not delete: x-example
 erase_element: Cannot find matching key: x-example
-erase_element : could not delete: x-example
 merge: parameter exist: interface-all
 merge: parameter exist: interface-all  adding as: interface-all40
  parameter fix --> None
+optimize for introspection..
 
 create_introspection index: 5 /bridge/binary-switch
 collapse_allOf:
@@ -292,11 +318,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /bridge/binary-switch
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
@@ -307,11 +331,11 @@ remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
    href: /bridge/binary-switch  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
 merge: definition exist: BinarySwitch
+optimize for introspection..
 
 create_introspection index: 6 /bridge/light-brightness
 collapse_allOf:
@@ -323,11 +347,9 @@ update_path_value /BrightnessResURI
  update_path_value : /BrightnessResURI /bridge/light-brightness
 update_definition_with_rt
   rt: oic.r.light.brightness
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
@@ -338,72 +360,111 @@ remove_definition_properties
   rt: oic.r.light.brightness  prop: None
 remove_path_method
    href: /bridge/light-brightness  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/uuid
+resolve_ref: key: uuid
+resolve_ref: fixing $ref: #/definitions/uuid
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.core/properties/rt
+resolve_ref: key: oic.core
+resolve_ref: key: properties
+resolve_ref: key: rt
+resolve_ref: fixing $ref: #/definitions/oic.core/properties/rt
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+optimize for introspection..
 
 create_introspection index: 7 /bridge/root
 collapse_allOf:
-   slinks
+   sbaseline
    sbatch-retrieve
    sbatch-update
-   sbaseline
+   slinks
+   oic.wk.col-batch-update
+   uuid
+   oic.collection.properties
+   oic.core
+   oic.batch-update.item
+   oic.collection.linksexpanded
+   oic.collection.links
+   oic.oic-link
 handle_collections
 update_path_value:
    rt: oic.wk.col  href: /bridge/root
-update_path_value /CollectionLinkListInterfaceURI
-update_path_value /CollectionBatchInterfaceURI
 update_path_value /CollectionBaselineInterfaceURI
+update_path_value /CollectionBatchInterfaceURI
+update_path_value /CollectionLinkListInterfaceURI
  update_path_value : /CollectionBaselineInterfaceURI /bridge/root
 update_definition_with_rt
   rt: oic.wk.col
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
 update_definition_with_if
   href: /bridge/root  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
 update_parameters_with_if
   href: /bridge/root  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
-update_parameters_with_if interface-b
 update_parameters_with_if interface-ll
-update_parameters_with_if interface-all
+update_parameters_with_if interface-b
 update_parameters_with_if interface-baseline
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /bridge/root  type: integer
- ===> grep
-{'matched_paths': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['type']", "root['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['title']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['type']", "root['items']['properties']['href']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['items']['type']", "root['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['type']", "root['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['minItems']", "root['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['href']['type']", "root['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['if']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['id']['anyOf'][1]['type']", "root['items']['properties']['eps']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']", "root['items']['properties']['n']['type']", "root['items']['type']", "root['items']['properties']['rts']['allOf'][0]['items']['type']", "root['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['type']['minItems']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['default']", "root['items']['properties']['eps']['type']", "root['items']['properties']['type']['default']", "root['items']['properties']['type']['items']", "root['items']['properties']['rts']['allOf'][0]['type']", "root['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['rt']['items']['type']", "root['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['type']", "root['items']['properties']['rt']['type']", "root['items']['properties']['type']['type']", "root['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['p']['type']", "root['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['type']", "root['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['id']['anyOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['type']", "root['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['type']", "root['items']['properties']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['title']['type']"}, 'matched_values': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['rts']['allOf'][1]['description']", "root['items']['properties']['type']['description']", "root['items']['properties']['rt']['description']", "root['items']['properties']['rts']['allOf'][0]['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['description']"}}
 remove_definition_properties
   rt: oic.wk.col  prop: None
 remove_path_method
    href: /bridge/root  method: None
-optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 erase_element : could not delete: x-example
-erase_element: Cannot find matching key: x-example
+erase_element : could not delete: x-example
+erase_element : could not delete: x-example
+erase_element : could not delete: x-example
 erase_element : could not delete: x-example
 erase_element : could not delete: x-example
 erase_element: Cannot find matching key: x-example
-erase_element : could not delete: x-example
-erase_element : could not delete: x-example
 erase_element: Cannot find matching key: x-example
-erase_element : could not delete: x-example
-merge: parameter exist: interface-b
-merge: parameter exist: interface-b  adding as: interface-b70
- parameter fix --> {'$ref': '#/parameters/interface-b'}
 merge: parameter exist: interface-ll
-merge: parameter exist: interface-ll  adding as: interface-ll71
+merge: parameter exist: interface-ll  adding as: interface-ll70
  parameter fix --> None
-merge: parameter exist: interface-all
-merge: parameter exist: interface-all  adding as: interface-all72
+merge: parameter exist: interface-b
+merge: parameter exist: interface-b  adding as: interface-b71
  parameter fix --> None
 merge: parameter exist: interface-baseline
-merge: parameter exist: interface-baseline  adding as: interface-baseline73
- parameter fix --> {'$ref': '#/parameters/interface-baseline'}
-merge: definition exist: slinks
+merge: parameter exist: interface-baseline  adding as: interface-baseline72
+ parameter fix --> None
+merge: parameter exist: interface-all
+merge: parameter exist: interface-all  adding as: interface-all73
+ parameter fix --> None
+merge: definition exist: sbaseline
+merge: definition exist: sbaseline  adding as: sbaseline44
 merge: definition exist: sbatch-retrieve
 merge: definition exist: sbatch-update
-merge: definition exist: sbaseline
+merge: definition exist: slinks
+merge: definition exist: oic.wk.col-batch-update
+merge: definition exist: uuid
+merge: definition exist: oic.collection.properties
+merge: definition exist: oic.core
+merge: definition exist: oic.batch-update.item
+merge: definition exist: oic.collection.linksexpanded
+merge: definition exist: oic.collection.links
+merge: definition exist: oic.oic-link
 
 == CODE GENERATION ==
 find_resources: device type rt (not handled): oic.d.airconditioner
@@ -509,7 +570,7 @@ processing files: ['AirFlowResURI.swagger.json', 'AirQualityBaselineResURI.swagg
     basefile         : oic.wk.col.swagger.json
  
 
-create_introspection index: 0 /BinarySwitchResURI
+create_code_generation index: 0 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -519,11 +580,9 @@ update_path_value /BinarySwitchResURI
  update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -535,7 +594,7 @@ remove_definition_properties
 remove_path_method
    href: /BinarySwitchResURI  method: None
 
-create_introspection index: 1 /TemperatureResURI
+create_code_generation index: 1 /TemperatureResURI
 collapse_allOf:
    Temperature
 handle_collections
@@ -545,11 +604,9 @@ update_path_value /TemperatureResURI
  update_path_value: already the same : ['/TemperatureResURI', '/TemperatureResURI']
 update_definition_with_rt
   rt: oic.r.temperature
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /TemperatureResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -562,7 +619,7 @@ remove_path_method
    href: /TemperatureResURI  method: None
 merge: parameter exist: interface
 
-create_introspection index: 2 /AirFlowResURI
+create_code_generation index: 2 /AirFlowResURI
 collapse_allOf:
    AirFlow
 handle_collections
@@ -572,11 +629,9 @@ update_path_value /AirFlowResURI
  update_path_value: already the same : ['/AirFlowResURI', '/AirFlowResURI']
 update_definition_with_rt
   rt: oic.r.airflow
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /AirFlowResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -589,15 +644,15 @@ remove_path_method
    href: /AirFlowResURI  method: None
 merge: parameter exist: interface
 
-create_introspection index: 3 /ConfigurationResURI
+create_code_generation index: 3 /ConfigurationResURI
 collapse_allOf:
-   Update
    Configuration
+   Update
 handle_collections
 update_path_value:
    rt: oic.wk.con  href: /ConfigurationResURI
-update_path_value /example/DeviceConfigurationResURI
- update_path_value : /example/DeviceConfigurationResURI /ConfigurationResURI
+update_path_value /exampleDeviceConfigurationResURI
+ update_path_value : /exampleDeviceConfigurationResURI /ConfigurationResURI
 update_definition_with_rt
   rt: oic.wk.con
   update_definition_with_rt  rt
@@ -606,42 +661,78 @@ update_definition_with_if
   replacing if with ['oic.if.baseline', 'oic.if.rw']
 update_parameters_with_if
   href: /ConfigurationResURI  if: ['oic.if.baseline', 'oic.if.rw']
-update_parameters_with_if interface-all
 update_parameters_with_if interface-rw
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /ConfigurationResURI  type: integer
 remove_definition_properties
   rt: oic.wk.con  prop: None
 remove_path_method
    href: /ConfigurationResURI  method: None
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/uuid
+resolve_ref: key: uuid
+resolve_ref: fixing $ref: #/definitions/uuid
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.core/properties/rt
+resolve_ref: key: oic.core
+resolve_ref: key: properties
+resolve_ref: key: rt
+resolve_ref: fixing $ref: #/definitions/oic.core/properties/rt
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
 
-create_introspection index: 4 /vendor/aircon/collection/extra
+create_code_generation index: 4 /vendor/aircon/collection/extra
 collapse_allOf:
-   slinks
+   sbaseline
    sbatch-retrieve
    sbatch-update
-   sbaseline
+   slinks
+   oic.wk.col-batch-update
+   uuid
+   oic.collection.properties
+   oic.core
+   oic.batch-update.item
+   oic.collection.linksexpanded
+   oic.collection.links
+   oic.oic-link
 handle_collections
 update_path_value:
    rt: oic.wk.col  href: /vendor/aircon/collection/extra
-update_path_value /CollectionLinkListInterfaceURI
-update_path_value /CollectionBatchInterfaceURI
 update_path_value /CollectionBaselineInterfaceURI
+update_path_value /CollectionBatchInterfaceURI
+update_path_value /CollectionLinkListInterfaceURI
  update_path_value : /CollectionBaselineInterfaceURI /vendor/aircon/collection/extra
 update_definition_with_rt
   rt: oic.wk.col
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
 update_definition_with_if
   href: /vendor/aircon/collection/extra  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
 update_parameters_with_if
   href: /vendor/aircon/collection/extra  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.b']
-update_parameters_with_if interface-b
 update_parameters_with_if interface-ll
-update_parameters_with_if interface-all
+update_parameters_with_if interface-b
 update_parameters_with_if interface-baseline
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /vendor/aircon/collection/extra  type: integer
- ===> grep
-{'matched_paths': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['type']", "root['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['title']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['type']", "root['items']['properties']['href']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['items']['type']", "root['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['type']", "root['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['minItems']", "root['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['href']['type']", "root['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['if']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['id']['anyOf'][1]['type']", "root['items']['properties']['eps']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']", "root['items']['properties']['n']['type']", "root['items']['type']", "root['items']['properties']['rts']['allOf'][0]['items']['type']", "root['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['type']['minItems']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['default']", "root['items']['properties']['eps']['type']", "root['items']['properties']['type']['default']", "root['items']['properties']['type']['items']", "root['items']['properties']['rts']['allOf'][0]['type']", "root['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['rt']['items']['type']", "root['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['type']", "root['items']['properties']['rt']['type']", "root['items']['properties']['type']['type']", "root['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['p']['type']", "root['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['type']", "root['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['id']['anyOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['type']", "root['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['type']", "root['items']['properties']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['title']['type']"}, 'matched_values': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['rts']['allOf'][1]['description']", "root['items']['properties']['type']['description']", "root['items']['properties']['rt']['description']", "root['items']['properties']['rts']['allOf'][0]['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['description']"}}
 remove_definition_properties
   rt: oic.wk.col  prop: None
 remove_path_method
@@ -650,7 +741,7 @@ merge: parameter exist: interface-all
 merge: parameter exist: interface-all  adding as: interface-all40
  parameter fix --> None
 
-create_introspection index: 5 /bridge/binary-switch
+create_code_generation index: 5 /bridge/binary-switch
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -660,11 +751,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /bridge/binary-switch
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /bridge/binary-switch  if: ['oic.if.baseline', 'oic.if.a']
@@ -678,7 +767,7 @@ remove_path_method
 merge: parameter exist: interface
 merge: definition exist: BinarySwitch
 
-create_introspection index: 6 /bridge/light-brightness
+create_code_generation index: 6 /bridge/light-brightness
 collapse_allOf:
    Brightness
 handle_collections
@@ -688,11 +777,9 @@ update_path_value /BrightnessResURI
  update_path_value : /BrightnessResURI /bridge/light-brightness
 update_definition_with_rt
   rt: oic.r.light.brightness
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /bridge/light-brightness  if: ['oic.if.baseline', 'oic.if.a']
@@ -704,51 +791,96 @@ remove_definition_properties
 remove_path_method
    href: /bridge/light-brightness  method: None
 merge: parameter exist: interface
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/uuid
+resolve_ref: key: uuid
+resolve_ref: fixing $ref: #/definitions/uuid
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
+resolve_ref: found local $ref: #/definitions/oic.batch-update.item
+resolve_ref: key: oic.batch-update.item
+resolve_ref: fixing $ref: #/definitions/oic.batch-update.item
+resolve_ref: found local $ref: #/definitions/oic.core/properties/rt
+resolve_ref: key: oic.core
+resolve_ref: key: properties
+resolve_ref: key: rt
+resolve_ref: fixing $ref: #/definitions/oic.core/properties/rt
+resolve_ref: found local $ref: #/definitions/oic.oic-link
+resolve_ref: key: oic.oic-link
+resolve_ref: fixing $ref: #/definitions/oic.oic-link
 
-create_introspection index: 7 /bridge/root
+create_code_generation index: 7 /bridge/root
 collapse_allOf:
-   slinks
+   sbaseline
    sbatch-retrieve
    sbatch-update
-   sbaseline
+   slinks
+   oic.wk.col-batch-update
+   uuid
+   oic.collection.properties
+   oic.core
+   oic.batch-update.item
+   oic.collection.linksexpanded
+   oic.collection.links
+   oic.oic-link
 handle_collections
 update_path_value:
    rt: oic.wk.col  href: /bridge/root
-update_path_value /CollectionLinkListInterfaceURI
-update_path_value /CollectionBatchInterfaceURI
 update_path_value /CollectionBaselineInterfaceURI
+update_path_value /CollectionBatchInterfaceURI
+update_path_value /CollectionLinkListInterfaceURI
  update_path_value : /CollectionBaselineInterfaceURI /bridge/root
 update_definition_with_rt
   rt: oic.wk.col
+  update_definition_with_rt rt not found!, inserting..
+  update_definition_with_rt  rt
 update_definition_with_if
   href: /bridge/root  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
+  update_definition_with_if if not found!, inserting..
+  replacing if with ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
 update_parameters_with_if
   href: /bridge/root  if: ['oic.if.baseline', 'oic.if.ll', 'oic.if.r']
-update_parameters_with_if interface-b
 update_parameters_with_if interface-ll
-update_parameters_with_if interface-all
+update_parameters_with_if interface-b
 update_parameters_with_if interface-baseline
+update_parameters_with_if interface-all
 update_definition_with_type
   href: /bridge/root  type: integer
- ===> grep
-{'matched_paths': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['type']", "root['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['title']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['type']", "root['items']['properties']['href']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['items']['type']", "root['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['type']", "root['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['pri']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['maxLength']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['minItems']", "root['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['href']['type']", "root['items']['properties']['rel']['oneOf'][1]['type']", "root['items']['properties']['if']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['id']['anyOf'][1]['type']", "root['items']['properties']['eps']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']", "root['items']['properties']['n']['type']", "root['items']['type']", "root['items']['properties']['rts']['allOf'][0]['items']['type']", "root['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['di']['allOf'][0]['type']", "root['items']['properties']['type']['minItems']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['default']", "root['items']['properties']['eps']['type']", "root['items']['properties']['type']['default']", "root['items']['properties']['type']['items']", "root['items']['properties']['rts']['allOf'][0]['type']", "root['items']['properties']['eps']['items']['properties']['ep']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['p']['properties']['bm']['type']", "root['items']['properties']['rt']['items']['type']", "root['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['items']['type']", "root['items']['properties']['rt']['type']", "root['items']['properties']['type']['type']", "root['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['p']['type']", "root['items']['properties']['type']['items']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['anchor']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['type']", "root['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['id']['anyOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rel']['oneOf'][0]['items']['type']", "root['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['if']['type']", "root['items']['properties']['links']['oneOf'][0]['type']", "root['items']['properties']['rel']['oneOf'][0]['type']", "root['items']['properties']['ins']['oneOf'][2]['allOf'][0]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['ins']['oneOf'][1]['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['eps']['type']", "root['items']['properties']['type']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['title']['type']"}, 'matched_values': {"root['items']['properties']['links']['oneOf'][0]['items']['properties']['type']['description']", "root['items']['properties']['rts']['allOf'][1]['description']", "root['items']['properties']['type']['description']", "root['items']['properties']['rt']['description']", "root['items']['properties']['rts']['allOf'][0]['description']", "root['items']['properties']['links']['oneOf'][0]['items']['properties']['rt']['description']"}}
 remove_definition_properties
   rt: oic.wk.col  prop: None
 remove_path_method
    href: /bridge/root  method: None
-merge: parameter exist: interface-b
-merge: parameter exist: interface-b  adding as: interface-b70
- parameter fix --> {'$ref': '#/parameters/interface-b'}
 merge: parameter exist: interface-ll
-merge: parameter exist: interface-ll  adding as: interface-ll71
+merge: parameter exist: interface-ll  adding as: interface-ll70
  parameter fix --> None
-merge: parameter exist: interface-all
-merge: parameter exist: interface-all  adding as: interface-all72
+merge: parameter exist: interface-b
+merge: parameter exist: interface-b  adding as: interface-b71
  parameter fix --> None
 merge: parameter exist: interface-baseline
-merge: parameter exist: interface-baseline  adding as: interface-baseline73
- parameter fix --> {'$ref': '#/parameters/interface-baseline'}
-merge: definition exist: slinks
+merge: parameter exist: interface-baseline  adding as: interface-baseline72
+ parameter fix --> None
+merge: parameter exist: interface-all
+merge: parameter exist: interface-all  adding as: interface-all73
+ parameter fix --> None
+merge: definition exist: sbaseline
+merge: definition exist: sbaseline  adding as: sbaseline44
 merge: definition exist: sbatch-retrieve
 merge: definition exist: sbatch-update
-merge: definition exist: sbaseline
+merge: definition exist: slinks
+merge: definition exist: oic.wk.col-batch-update
+merge: definition exist: uuid
+merge: definition exist: oic.collection.properties
+merge: definition exist: oic.core
+merge: definition exist: oic.batch-update.item
+merge: definition exist: oic.collection.linksexpanded
+merge: definition exist: oic.collection.links
+merge: definition exist: oic.oic-link

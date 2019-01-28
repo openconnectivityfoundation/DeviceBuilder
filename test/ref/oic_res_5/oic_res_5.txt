@@ -1,6 +1,6 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/oic_res_5/out
 resource dir        : ../../IoTDataModels
 oic/res file        : ./input_oic_res/oic-res-response-binaryswitch-brightness.json
@@ -39,6 +39,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /BrightnessResURI
 collapse_allOf:
@@ -50,11 +51,9 @@ update_path_value /BrightnessResURI
  update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
 update_definition_with_rt
   rt: oic.r.light.brightness
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.a', 'oic.if.baseline']
 update_parameters_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
@@ -66,9 +65,9 @@ remove_definition_properties
   rt: oic.r.light.brightness  prop: None
 remove_path_method
    href: /BrightnessResURI  method: None
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /BinarySwitchResURI
 collapse_allOf:
@@ -80,11 +79,9 @@ update_path_value /BinarySwitchResURI
  update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
@@ -96,7 +93,6 @@ remove_definition_properties
   rt: oic.r.switch.binary  prop: None
 remove_path_method
    href: /BinarySwitchResURI  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
@@ -131,7 +127,7 @@ processing files: ['BinarySwitchResURI.swagger.json', 'BrightnessResURI.swagger.
     basefile         : BinarySwitchResURI.swagger.json
  
 
-create_introspection index: 0 /BrightnessResURI
+create_code_generation index: 0 /BrightnessResURI
 collapse_allOf:
    Brightness
 handle_collections
@@ -141,11 +137,9 @@ update_path_value /BrightnessResURI
  update_path_value: already the same : ['/BrightnessResURI', '/BrightnessResURI']
 update_definition_with_rt
   rt: oic.r.light.brightness
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.a', 'oic.if.baseline']
 update_parameters_with_if
   href: /BrightnessResURI  if: ['oic.if.a', 'oic.if.baseline']
@@ -158,7 +152,7 @@ remove_definition_properties
 remove_path_method
    href: /BrightnessResURI  method: None
 
-create_introspection index: 1 /BinarySwitchResURI
+create_code_generation index: 1 /BinarySwitchResURI
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -168,11 +162,9 @@ update_path_value /BinarySwitchResURI
  update_path_value: already the same : ['/BinarySwitchResURI', '/BinarySwitchResURI']
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /BinarySwitchResURI  if: ['oic.if.baseline', 'oic.if.a']

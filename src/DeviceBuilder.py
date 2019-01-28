@@ -27,6 +27,9 @@ import argparse
 import traceback
 from os import listdir
 from os.path import isfile, join
+import requests
+import wget
+#from  collections import OrderedDict
 
 try: 
     from deepdiff import DeepDiff
@@ -84,12 +87,20 @@ def load_json(filename, my_dir=None):
     full_path = filename
     if my_dir is not None:
         full_path = os.path.join(my_dir, filename)
-    if os.path.isfile(full_path) is False:
-        print ("json file does not exist:", full_path)
-    linestring = open(full_path, 'r').read()
+    if filename.startswith("http"):
+        r = requests.get(filename)
+        return r.json()
+    else:
+        if os.path.isfile(full_path) is False:
+            print ("json file does not exist:", full_path)
+        linestring = open(full_path, 'r').read()
+    #json_dict = json.loads(linestring, object_pairs_hook=OrderedDict)
     json_dict = json.loads(linestring)
     return json_dict
 
+    
+def remove_prefix(text, prefix):
+    return text[text.startswith(prefix) and len(prefix):]
     
 def write_json(filename, file_data): 
     """
@@ -197,6 +208,109 @@ def find_key_value(rec_dict, searchkey, target, depth=0):
                             return r
                                
     
+    
+def find_key_link(rec_dict, target, depth=0):
+    """
+    find the first key recursively
+    also traverse lists (arrays, oneOf,..) but only returns the first occurance
+    :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
+    :param target: target key to search for
+    :param depth: depth of the search (recursion)
+    :return:
+    """
+    
+    if isinstance(rec_dict, dict):
+        # direct key
+        for key,value in rec_dict.items():
+            if key == target:
+                return rec_dict[key]
+        # key is in array
+        rvalues = []
+        found = False
+        for key,value in rec_dict.items():
+            if key in ["oneOf", "allOf", "anyOf"]:
+                for val in value:
+                    #print ("xxx", depth, key, val)
+                    if val == target:
+                        return val
+                    if isinstance(val, dict):
+                        r = find_key_link(val, target, depth+1)
+                        if r is not None:
+                            found = True
+                            # TODO: this should return an array, now it only returns the last found item
+                            rvalues = r
+        if found:
+            return rvalues
+        # key is an dict
+        for key,value in rec_dict.items():
+            r = find_key_link(value, target, depth+1)
+            if r is not None:
+                return r #[list(r.items())]
+                
+def find_target_value(rec_dict, target, depth=0):
+    """
+    find the first key recursively
+    also traverse lists (arrays, oneOf,..) but only returns the first occurance
+    :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
+    :param target: target key to search for
+    :param depth: depth of the search (recursion)
+    :return:
+    """
+    
+    if isinstance(rec_dict, dict):
+        # direct key
+        for key,value in rec_dict.items():
+            if key == target:
+                return rec_dict[key]
+        # key is in array
+        rvalues = []
+        found = False
+        for key,value in rec_dict.items():
+            if key in ["oneOf", "allOf", "anyOf"]:
+                for val in value:
+                    #print ("xxx", depth, key, val)
+                    if val == target:
+                        return val
+                    if isinstance(val, dict):
+                        r = find_target_value(val, target, depth+1)
+                        if r is not None:
+                            if not r.startswith("#/definitions/"):
+                                found = True
+                                # TODO: this should return an array, now it only returns the last found item
+                                rvalues = r
+        if found:
+            return rvalues
+        # key is an dict
+        for key,value in rec_dict.items():
+            r = find_target_value(value, target, depth+1)
+            if r is not None:
+                if not r.startswith("#/definitions/"):
+                    return r #[list(r.items())]
+
+def find_key(rec_dict, target, depth=0):
+    """
+    find key "target" in recursive dict
+    :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
+    :param target: target key to search for
+    :param depth: depth of the search (recursion)
+    :return:
+    """
+    #print ("find key", target);
+    try:
+        if isinstance(rec_dict, dict):
+            for key, value in rec_dict.items():
+                if key == target:
+                    return rec_dict[key]
+            for key, value in rec_dict.items():
+                r = find_key(value, target, depth+1)
+                if r is not None:
+                        return r
+        #else:
+        #    print ("no dict:", rec_dict)
+    except:
+        print("xxxxx")
+        traceback.print_exc()
+        
 def get_dict_recursively(search_dict, field):
     """
     Takes a dict with nested lists and dicts,
@@ -1001,7 +1115,86 @@ def merge(merge_data, file_data, index):
     
     for path, path_item in file_data["paths"].items():
         merge_data["paths"][path] = path_item
+
+def resolve_ref(json_data, ref_dict):
+    """
+    find key "target" in recursive dict
+    :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
+    :param target: target key to search for
+    :param depth: depth of the search (recursion)
+    :return: error: False => ok, True => error 
+    """
+    return_error = False
+    try:
+        if isinstance(ref_dict, list):
+            for value in ref_dict:
+                # recurse down in array
+                # not that $ref is only in a object, e.g. not part of an array.
+                return_error = resolve_ref(json_data, value)
+        new_data = None
+        if isinstance(ref_dict, dict):
+            for key, value in ref_dict.items():
+                # if $ref found, replace the whole content.
+                if key == "$ref":
+                    if value.startswith("#"):
+                        print("resolve_ref: found local $ref:", value)
+                        reference = value.replace('#/definitions/', '')
+                        new_data_i = json_data["definitions"]
+                        m_ref = reference.split("/")
+                        for i in range(len(m_ref)):
+                           print("resolve_ref: key:", m_ref[i])
+                           new_data = new_data_i[m_ref[i]]
+                           new_data_i = new_data
+                    if value.startswith("http"):
+                        print("resolve_ref: found external $ref: ", value)
+                        reference = value.split('#/definitions/')[1]
+                        url = value.split("#")[0]
+                        filename = "removeme_"+url[url.rfind("/")+1:]
+                        wget.download(url, filename)
+                        print("resolve_ref: url:", url)
+                        #print("resolve_ref: ref:", reference)
+                        json_file = load_json(filename)
+                        try:
+                            os.remove(filename)
+                        except OSError:
+                            pass
+                        new_data_i = json_file["definitions"]
+                        m_ref = reference.split("/")
+                        for i in range(len(m_ref)):
+                           print("resolve_ref: key:", m_ref[i])
+                           new_data = new_data_i[m_ref[i]]
+                           new_data_i = new_data
+                if new_data is not None:
+                    # break the loop, just fix the single found reference
+                    break
+            # this code must be out of the loop, it modifies the object
+            if new_data is not None:
+                print("resolve_ref: fixing $ref:", value)
+                try:
+                    ref_dict.pop("$ref")
+                except:
+                    pass
+                for key_n, value_n in new_data.items():
+                    ref_dict[key_n] = value_n
+                            
+            for key, value in ref_dict.items():
+                # recurse down in object
+                resolve_ref(json_data, value)
+    except:
+        traceback.print_exc()
+        print("resolve_ref: !ERROR!!")
     
+def resolve_external(json_data):
+    max_loop=100
+    ref_dict = json_data["definitions"]
+    key = find_key(ref_dict, "$ref")
+    while key is not None:
+        error = resolve_ref(json_data, ref_dict)
+        key = find_key(ref_dict, "$ref")
+        max_loop = max_loop - 1
+        if max_loop == 0:
+            print ("resolve_external: max loop reached!")
+            key = None
     
 def main_app(my_args, generation_type):
     """
@@ -1057,8 +1250,8 @@ def main_app(my_args, generation_type):
         for rt in rt_values:
             if rt[index_file] is not None:
                 file_data = load_json(rt[index_file], str(my_args.resource_dir))
+                resolve_external(file_data)
                 rt_values_file = swagger_rt(file_data)
-                
                 
                 if "introspection" == generation_type:
                     print ("optimize for introspection..")
@@ -1091,9 +1284,9 @@ def main_app(my_args, generation_type):
 #   main of script
 #
 if __name__ == '__main__':
-    print ("**************************")
-    print ("*** DeviceBuilder (v1) ***")
-    print ("**************************")
+    print ("****************************")
+    print ("*** DeviceBuilder (v1.2) ***")
+    print ("****************************")
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-ver", "--verbose", default=False, help="Execute in verbose mode", action='store_true')

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PYTHON_EXE=C:\\python35-32\\python3.exe
+PYTHON_EXE=C:\\python36-32\\python3.exe
 DeviceBuilder=../src/DeviceBuilder.py
 SWAG2CBOR=../src/swag2cbor.py
 DIFF=../src/compareJson.py
@@ -61,6 +61,25 @@ function my_test_in_dir {
 
     compare_json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     compare_json $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
+    #compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    #compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
+
+}
+
+
+function my_test_in_dir_no_code {
+    mkdir -p $OUTPUT_DIR/$TEST_CASE
+    $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    compare_file $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT $REF_DIR/$TEST_CASE/$TEST_CASE$EXT
+
+    #wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
+    wb-swagger validate $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    $PYTHON_EXE $SWAG2CBOR -file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json  #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    $PYTHON_EXE $SWAG2CBOR -cbor $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor #> $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json.cbor.json
+
+    compare_json $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
+    #compare_json $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_introspection_merged.swagger.json $REF_DIR/$TEST_CASE/out_introspection_merged.swagger.json
     #compare_file $OUTPUT_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json $REF_DIR/$TEST_CASE/out_codegeneration_merged.swagger.json
 
@@ -180,9 +199,18 @@ my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_
 
 TEST_CASE="ctt_client"
 resfile=./input_DeviceBuilderInputFormat/ctt_client.json
-my_test_in_dir -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
+my_test_in_dir_no_code -input $resfile -resource_dir $MODELS_DIR -out $OUTPUT_DIR/$TEST_CASE/out
 
 }
+
+function deviceBuilder_ref_tests {
+
+TEST_CASE="ref_1"
+resfile=./input_DeviceBuilderInputFormat/input-thermostat.json
+my_test_in_dir -input $resfile -resource_dir ./input_swagger -out $OUTPUT_DIR/$TEST_CASE/out
+
+}
+
 
 if [ ! -f ../../IoTDataModels/README.md ]
 then
@@ -198,3 +226,4 @@ oic_res_tests
 deviceBuilder_tests
 deviceBuilder_tests2
 deviceBuilder_ctt_tests
+deviceBuilder_ref_tests

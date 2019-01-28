@@ -1,10 +1,10 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/lightdevice/out
 resource dir        : ../../IoTDataModels
 oic/res file        : None
-input file          : ./input_define_device/input-lightdevice.json
+input file          : ./input_DeviceBuilderInputFormat/input-lightdevice.json
 remove_property     : None
 type                : None
 intermediate files  : False
@@ -13,16 +13,16 @@ intermediate files  : False
 == INTROSPECTION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
-processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagger.json', 'DimmingResURI.swagger.json']
+processing files: ['BinarySwitchResURI.swagger.json', 'DimmingResURI.swagger.json', 'oic.wk.p.swagger.json']
 
   main: File : BinarySwitchResURI.swagger.json
   main: rt : ['oic.r.switch.binary']
 
-  main: File : ColourChromaResURI.swagger.json
-  main: rt : ['oic.r.colour.chroma']
-
   main: File : DimmingResURI.swagger.json
   main: rt : ['oic.r.light.dimming']
+
+  main: File : oic.wk.p.swagger.json
+  main: rt : ['oic.wk.p']
   rt                 : oic.r.switch.binary
     href             : /binaryswitch
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -39,15 +39,16 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     methods (remove) : None
     rts (enum)       : None
     basefile         : DimmingResURI.swagger.json
-  rt                 : oic.r.colour.chroma
-    href             : /colourchroma
-    if               : ['oic.if.baseline', 'oic.if.a']
+  rt                 : oic.wk.p
+    href             : /oic/p
+    if               : ['oic.if.baseline', 'oic.if.r']
     type (replace)   : None
-    props (remove)   : ['range', 'step', 'value', 'id']
+    props (remove)   : ['n', 'range', 'value', 'step', 'precision', 'vid']
     methods (remove) : None
     rts (enum)       : None
-    basefile         : ColourChromaResURI.swagger.json
+    basefile         : oic.wk.p.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /binaryswitch
 collapse_allOf:
@@ -59,11 +60,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /binaryswitch
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
@@ -72,16 +71,15 @@ update_definition_with_type
   href: /binaryswitch  type: None
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
-erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
    href: /binaryswitch  method: None
+erase_element: Cannot find matching key: x-example
+erase_element: Cannot find matching key: x-example
 optimize for introspection..
-erase_element: Cannot find matching key: x-example
-erase_element: Cannot find matching key: x-example
 
 create_introspection index: 1 /dimming
 collapse_allOf:
@@ -93,11 +91,9 @@ update_path_value /DimmingResURI
  update_path_value : /DimmingResURI /dimming
 update_definition_with_rt
   rt: oic.r.light.dimming
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
@@ -106,7 +102,6 @@ update_definition_with_type
   href: /dimming  type: None
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
-erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -114,62 +109,56 @@ erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: precision
 remove_path_method
    href: /dimming  method: None
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+optimize for introspection..
 
-create_introspection index: 2 /colourchroma
+create_introspection index: 2 /oic/p
 collapse_allOf:
-   ColourChroma
+   Platform
 handle_collections
 update_path_value:
-   rt: oic.r.colour.chroma  href: /colourchroma
-update_path_value /example/ColourChromaResURI
- update_path_value : /example/ColourChromaResURI /colourchroma
+   rt: oic.wk.p  href: /oic/p
+update_path_value /oic/p
+ update_path_value: already the same : ['/oic/p', '/oic/p']
 update_definition_with_rt
-  rt: oic.r.colour.chroma
-  update_definition_with_rt rt not found!, inserting..
+  rt: oic.wk.p
   update_definition_with_rt  rt
 update_definition_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
-  replacing if with ['oic.if.baseline', 'oic.if.a']
+  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
+  replacing if with ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
+  href: /oic/p  if: ['oic.if.baseline', 'oic.if.r']
 update_parameters_with_if interface
 update_definition_with_type
-  href: /colourchroma  type: None
+  href: /oic/p  type: None
 remove_definition_properties
-  rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
+  rt: oic.wk.p  prop: ['n', 'range', 'value', 'step', 'precision', 'vid']
 erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: id
-erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: id
+erase_element: Cannot find matching key: precision
 remove_path_method
-   href: /colourchroma  method: None
-optimize for introspection..
-erase_element: Cannot find matching key: x-example
+   href: /oic/p  method: None
 erase_element: Cannot find matching key: x-example
 merge: parameter exist: interface
+merge: parameter exist: interface  adding as: interface20
+ parameter fix --> None
 
 == CODE GENERATION ==
 handling resources (overview):
 find_files: directory: ../../IoTDataModels
-processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagger.json', 'DimmingResURI.swagger.json']
+processing files: ['BinarySwitchResURI.swagger.json', 'DimmingResURI.swagger.json', 'oic.wk.p.swagger.json']
 
   main: File : BinarySwitchResURI.swagger.json
   main: rt : ['oic.r.switch.binary']
 
-  main: File : ColourChromaResURI.swagger.json
-  main: rt : ['oic.r.colour.chroma']
-
   main: File : DimmingResURI.swagger.json
   main: rt : ['oic.r.light.dimming']
+
+  main: File : oic.wk.p.swagger.json
+  main: rt : ['oic.wk.p']
   rt                 : oic.r.switch.binary
     href             : /binaryswitch
     if               : ['oic.if.baseline', 'oic.if.a']
@@ -186,17 +175,17 @@ processing files: ['BinarySwitchResURI.swagger.json', 'ColourChromaResURI.swagge
     methods (remove) : None
     rts (enum)       : None
     basefile         : DimmingResURI.swagger.json
-  rt                 : oic.r.colour.chroma
-    href             : /colourchroma
-    if               : ['oic.if.baseline', 'oic.if.a']
+  rt                 : oic.wk.p
+    href             : /oic/p
+    if               : ['oic.if.baseline', 'oic.if.r']
     type (replace)   : None
-    props (remove)   : ['range', 'step', 'value', 'id']
+    props (remove)   : ['n', 'range', 'value', 'step', 'precision', 'vid']
     methods (remove) : None
     rts (enum)       : None
-    basefile         : ColourChromaResURI.swagger.json
+    basefile         : oic.wk.p.swagger.json
  
 
-create_introspection index: 0 /binaryswitch
+create_code_generation index: 0 /binaryswitch
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -206,11 +195,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /binaryswitch
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /binaryswitch  if: ['oic.if.baseline', 'oic.if.a']
@@ -219,7 +206,6 @@ update_definition_with_type
   href: /binaryswitch  type: None
 remove_definition_properties
   rt: oic.r.switch.binary  prop: ['range', 'step', 'id', 'precision']
-erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: id
@@ -227,7 +213,7 @@ erase_element: Cannot find matching key: precision
 remove_path_method
    href: /binaryswitch  method: None
 
-create_introspection index: 1 /dimming
+create_code_generation index: 1 /dimming
 collapse_allOf:
    Dimming
 handle_collections
@@ -237,11 +223,9 @@ update_path_value /DimmingResURI
  update_path_value : /DimmingResURI /dimming
 update_definition_with_rt
   rt: oic.r.light.dimming
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.baseline', 'oic.if.a']
 update_parameters_with_if
   href: /dimming  if: ['oic.if.baseline', 'oic.if.a']
@@ -250,7 +234,6 @@ update_definition_with_type
   href: /dimming  type: None
 remove_definition_properties
   rt: oic.r.light.dimming  prop: ['range', 'step', 'value', 'id', 'precision']
-erase_element: Cannot find matching key: id
 erase_element: Cannot find matching key: range
 erase_element: Cannot find matching key: step
 erase_element: Cannot find matching key: value
@@ -260,37 +243,6 @@ remove_path_method
    href: /dimming  method: None
 merge: parameter exist: interface
 
-create_introspection index: 2 /colourchroma
-collapse_allOf:
-   ColourChroma
-handle_collections
-update_path_value:
-   rt: oic.r.colour.chroma  href: /colourchroma
-update_path_value /example/ColourChromaResURI
- update_path_value : /example/ColourChromaResURI /colourchroma
-update_definition_with_rt
-  rt: oic.r.colour.chroma
-  update_definition_with_rt rt not found!, inserting..
-  update_definition_with_rt  rt
-update_definition_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
-  update_definition_with_if if not found!, inserting..
-  replacing if with ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if
-  href: /colourchroma  if: ['oic.if.baseline', 'oic.if.a']
-update_parameters_with_if interface
-update_definition_with_type
-  href: /colourchroma  type: None
-remove_definition_properties
-  rt: oic.r.colour.chroma  prop: ['range', 'step', 'value', 'id']
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: id
-erase_element: Cannot find matching key: range
-erase_element: Cannot find matching key: step
-erase_element: Cannot find matching key: value
-erase_element: Cannot find matching key: id
-remove_path_method
-   href: /colourchroma  method: None
-merge: parameter exist: interface
+create_code_generation ignored: oic.wk.p
+merge ignored: oic.wk.p
+ merge: data ignored, is empty

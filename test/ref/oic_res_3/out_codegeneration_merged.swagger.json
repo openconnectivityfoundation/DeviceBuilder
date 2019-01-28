@@ -5,25 +5,36 @@
   "definitions": {
     "BinarySwitch": {
       "properties": {
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "The interface set supported by this resource",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.switch.binary"
           ],
+          "description": "Resource Type",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -50,25 +61,36 @@
           "minimum": 0,
           "type": "integer"
         },
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "The interface set supported by this resource",
           "items": {
             "enum": [
               "oic.if.a",
               "oic.if.baseline"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.light.brightness"
           ],
+          "description": "Resource Type",
           "items": {
             "maxLength": 64,
             "type": "string"

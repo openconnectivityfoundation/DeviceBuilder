@@ -1,0 +1,315 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "Temperature": {
+      "properties": {
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.temperature"
+          ],
+          "description": "Resource Type",
+          "items": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            }
+          ],
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "temperature": {
+          "description": "Current temperature setting or measurement",
+          "type": "number"
+        },
+        "units": {
+          "description": "Units for the temperature value",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    },
+    "Temperature11": {
+      "properties": {
+        "id": {
+          "description": "Instance ID of this specific resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "The interface set supported by this resource",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "Friendly name of the resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.temperature"
+          ],
+          "description": "Resource Type",
+          "items": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            }
+          ],
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "temperature": {
+          "description": "Current temperature setting or measurement",
+          "type": "number"
+        },
+        "units": {
+          "description": "Units for the temperature value",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved.",
+      "x-description": "Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:@cr        1.  Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.@cr        2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.@cr@cr        THIS SOFTWARE IS PROVIDED BY THE Open Connectivity Foundation, INC. 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR WARRANTIES OF NON-INFRINGEMENT, ARE DISCLAIMED.@cr        IN NO EVENT SHALL THE Open Connectivity Foundation, INC. OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)@cr        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.@cr"
+    },
+    "title": "OICTemperature",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface10": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/actuatorthermostat": {
+      "get": {
+        "description": "This resource describes a sensed or actuated Temperature value.@crThe temperature describes the current value measured.@crThe units is a single value that is one of C, F or K.@crIt provides the unit of measurement for the temperature value.@crIt is a read-only value that is provided by the server.@crIf the units Property is missing the default is Celsius [C].@crWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.@crRetrieves the current temperature value.@crA client can specify the units for the requested temperature by use of a query parameter.@crIf no query parameter is provided the server provides its default measure or set value.@cr",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          },
+          {
+            "description": "Units",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "range": [
+                0.0,
+                100.0
+              ],
+              "rt": [
+                "oic.r.temperature"
+              ],
+              "temperature": 20.0,
+              "units": "C"
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:@cr  A retrieve with q queryParameter indicating a unit that the server does not support.@crThe server responds with the current resource representation including the@crunits property illustrating the supported units and the error.@cr",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 20.0,
+              "units": "C"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Sets the desired temperature value.@crIf a unit is included and the server does not support the unit indictaed the request will fail.@crIf the units are omitted value is taken to be in C.@cr",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 18.0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 18.0
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:@cr  An update with an out of range property value for temperature.@cr  An update with an unsupported unit for this server.@crThe server responds with the current resource representation including@crthe range property illustrating the supported range and the error.@cr",
+            "schema": {
+              "$ref": "#/definitions/Temperature11"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "range": [
+                0.0,
+                100.0
+              ],
+              "temperature": 20.0,
+              "units": "C"
+            }
+          }
+        }
+      }
+    },
+    "/sensorthermostat": {
+      "get": {
+        "description": "This resource describes a sensed or actuated Temperature value.@crThe temperature describes the current value measured.@crThe units is a single value that is one of C, F or K.@crIt provides the unit of measurement for the temperature value.@crIt is a read-only value that is provided by the server.@crIf the units Property is missing the default is Celsius [C].@crWhen range (from oic.r.baseresource) is omitted the default is +/- MAXINT.@crRetrieves the current temperature value.@crA client can specify the units for the requested temperature by use of a query parameter.@crIf no query parameter is provided the server provides its default measure or set value.@cr",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "description": "Units",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "range": [
+                0.0,
+                100.0
+              ],
+              "rt": [
+                "oic.r.temperature"
+              ],
+              "temperature": 20.0,
+              "units": "C"
+            }
+          },
+          "403": {
+            "description": "This response is generated by the OIC Server when the client sends:@cr  A retrieve with q queryParameter indicating a unit that the server does not support.@crThe server responds with the current resource representation including the@crunits property illustrating the supported units and the error.@cr",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            },
+            "x-example": {
+              "id": "unique_example_id",
+              "temperature": 20.0,
+              "units": "C"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}

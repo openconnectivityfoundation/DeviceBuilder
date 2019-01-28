@@ -1,10 +1,10 @@
-**************************
-*** DeviceBuilder (v1) ***
-**************************
+****************************
+*** DeviceBuilder (v1.2) ***
+****************************
 out                 : ./out/switch/out
 resource dir        : ../../IoTDataModels
 oic/res file        : None
-input file          : ./input_define_device/input-switch.json
+input file          : ./input_DeviceBuilderInputFormat/input-switch.json
 remove_property     : None
 type                : None
 intermediate files  : False
@@ -26,6 +26,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     rts (enum)       : None
     basefile         : BinarySwitchResURI.swagger.json
  
+optimize for introspection..
 
 create_introspection index: 0 /mypath
 collapse_allOf:
@@ -37,11 +38,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /mypath
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /mypath  if: ['oic.if.s']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.s']
 update_parameters_with_if
   href: /mypath  if: ['oic.if.s']
@@ -53,7 +52,6 @@ remove_definition_properties
 erase_element: Cannot find matching key: range
 remove_path_method
    href: /mypath  method: ['post']
-optimize for introspection..
 erase_element: Cannot find matching key: x-example
 
 == CODE GENERATION ==
@@ -73,7 +71,7 @@ processing files: ['BinarySwitchResURI.swagger.json']
     basefile         : BinarySwitchResURI.swagger.json
  
 
-create_introspection index: 0 /mypath
+create_code_generation index: 0 /mypath
 collapse_allOf:
    BinarySwitch
 handle_collections
@@ -83,11 +81,9 @@ update_path_value /BinarySwitchResURI
  update_path_value : /BinarySwitchResURI /mypath
 update_definition_with_rt
   rt: oic.r.switch.binary
-  update_definition_with_rt rt not found!, inserting..
   update_definition_with_rt  rt
 update_definition_with_if
   href: /mypath  if: ['oic.if.s']
-  update_definition_with_if if not found!, inserting..
   replacing if with ['oic.if.s']
 update_parameters_with_if
   href: /mypath  if: ['oic.if.s']

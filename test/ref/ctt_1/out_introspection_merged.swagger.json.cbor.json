@@ -6,24 +6,29 @@
     "BinarySwitch": {
       "properties": {
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.switch.binary"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -62,24 +67,22 @@
         },
         "hue": {
           "description": "",
-          "maximum": 360,
-          "minimum": 0,
+          "maximum": 360.0,
+          "minimum": 0.0,
           "type": "number"
         },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
         },
         "maximumsaturation": {
           "description": "",
@@ -88,10 +91,17 @@
           "readOnly": true,
           "type": "integer"
         },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "rt": {
           "default": [
             "oic.r.colour.chroma"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -107,6 +117,11 @@
           "type": "integer"
         }
       },
+      "required": [
+        "hue",
+        "saturation",
+        "csc"
+      ],
       "type": "object"
     },
     "Dimming": {
@@ -116,24 +131,29 @@
           "type": "integer"
         },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.light.dimming"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -150,25 +170,36 @@
     },
     "Temperature": {
       "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.s"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.temperature"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -188,7 +219,8 @@
             "F",
             "K"
           ],
-          "readOnly": true
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
@@ -198,25 +230,36 @@
     },
     "Temperature00": {
       "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
         "if": {
+          "description": "",
           "items": {
             "enum": [
               "oic.if.baseline",
               "oic.if.a"
             ],
-            "maxLength": 64,
             "type": "string"
           },
-          "maxItems": 2,
           "minItems": 1,
           "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
         },
         "rt": {
           "default": [
             "oic.r.temperature"
           ],
+          "description": "",
           "items": {
             "maxLength": 64,
             "type": "string"
@@ -236,7 +279,8 @@
             "F",
             "K"
           ],
-          "readOnly": true
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
