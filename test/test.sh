@@ -3,6 +3,7 @@
 PYTHON_EXE=C:\\python36-32\\python3.exe
 DeviceBuilder=../src/DeviceBuilder.py
 SWAG2CBOR=../src/swag2cbor.py
+PKI2INCLUDE=../src/pki2include.py
 DIFF=../src/compareJson.py
 
 #MODELS_DIR=./input_swagger
@@ -46,6 +47,14 @@ function compare_json {
 function my_test {
     $PYTHON_EXE $DeviceBuilder $* > $OUTPUT_DIR/$TEST_CASE$EXT 2>&1
     compare_output
+}
+
+
+function my_pki_test_in_dir {
+    mkdir -p $OUTPUT_DIR/$TEST_CASE
+    #$PYTHON_EXE $PKI2INCLUDE $* > $OUTPUT_DIR/$TEST_CASE/$TEST_CASE$EXT 2>&1
+    $PYTHON_EXE $PKI2INCLUDE $* 
+    #compare_output
 }
 
 function my_test_in_dir {
@@ -212,6 +221,16 @@ my_test_in_dir -input $resfile -resource_dir ./input_swagger -out $OUTPUT_DIR/$T
 }
 
 
+
+function deviceBuilder_pki_tests {
+
+TEST_CASE="ref_1"
+resfile=./input_pki/ZippedEndEntityCert.zip
+my_pki_test_in_dir -file $resfile 
+
+}
+
+
 if [ ! -f ../../IoTDataModels/README.md ]
 then
 pushd `pwd`
@@ -227,3 +246,4 @@ deviceBuilder_tests
 deviceBuilder_tests2
 deviceBuilder_ctt_tests
 deviceBuilder_ref_tests
+deviceBuilder_pki_tests
