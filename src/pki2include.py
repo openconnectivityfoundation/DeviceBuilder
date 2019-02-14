@@ -94,11 +94,11 @@ if (args.file) :
     f.write("#    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n")
     f.write("*/\n")
 
-    f.write("#ifndef PKI_INCLUDE_H\n")
-    f.write("#define PKI_INCLUDE_H\n")
+    f.write("#ifndef PKI_CERT_INCLUDE_H\n")
+    f.write("#define PKI_CERT_INCLUDE_H\n")
     f.write("#if defined(OC_SECURITY) && defined(OC_PKI)\n\n")
     
-    f.write("/* pki certificate data\n")
+    f.write("/* PKI certificate data\n")
     f.write(" input file = ")
     f.write(args.file)
     f.write("\n")
@@ -129,7 +129,7 @@ if (args.file) :
         write_contents(f, data, "root_ca");
     
     f.write("#endif /* OC_SECURITY && OC_PKI */\n")
-    f.write("#endif /* PKI_INCLUDE_H */\n")
+    f.write("#endif /* PKI_CERT_INCLUDE_H */\n")
     f.close()
     
 
