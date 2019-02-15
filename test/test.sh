@@ -224,8 +224,13 @@ my_test_in_dir -input $resfile -resource_dir ./input_swagger -out $OUTPUT_DIR/$T
 
 function deviceBuilder_pki_tests {
 
-TEST_CASE="ref_1"
+TEST_CASE="pki_1"
 resfile=./input_pki/ZippedEndEntityCert.zip
+my_pki_test_in_dir -file $resfile 
+
+
+TEST_CASE="pki_2"
+resfile=./input_pki/WouterTest.zip
 my_pki_test_in_dir -file $resfile 
 
 }

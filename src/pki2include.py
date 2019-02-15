@@ -21,8 +21,8 @@
 #############################
 
 #
-#my_crt = contents of ZippedEndEntityCert_cert.der.hex
-#my_key = contents of ZippedEndEntityCert_key.der.hex
+#my_crt = contents of <filename>_cert.der.hex
+#my_key = contents of <filename>_key.der.hex
 #int_ca = contents of ./chain/1-subca-cert.der.hex
 #root_ca = contents of ./chain/0-root-cert.der.hex
 
@@ -74,6 +74,10 @@ if (args.file) :
 
     f = open(args.file+".h", "w")
     
+    file_name = str(args.file)
+    filename = file_name.split(".z")[0]
+    prefix = filename.split("/")[-1]
+    
     f.write("/*\n")
     f.write("#    copyright 2019 Open Interconnect Consortium, Inc. All rights reserved.\n")
     f.write("#    Redistribution and use in source and binary forms, with or without modification,\n")
@@ -102,10 +106,15 @@ if (args.file) :
     f.write(" input file = ")
     f.write(args.file)
     f.write("\n")
+    f.write(" prefix = ")
+    f.write(prefix)
+    f.write("\n")
     
     f.write(" date ")
     f.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
     f.write("\n*/\n\n")
+    
+    
 
     # opening the zip file in READ mode 
     with ZipFile(args.file, 'r') as zip: 
@@ -116,10 +125,12 @@ if (args.file) :
         #print('Extracting all the files now...') 
         #zip.extractall() 
         #print('Done!') 
-        data = zip.read("ZippedEndEntityCert_cert.der.hex")
-        write_contents(f, data, "my_crt");
+        cert_file = prefix + "_cert.der.hex"
+        data = zip.read(cert_file)
+        write_contents(f, data, "my_cert");
         
-        data = zip.read("ZippedEndEntityCert_key.der.hex")
+        key_file = prefix + "_key.der.hex"
+        data = zip.read(key_file)
         write_contents(f, data, "my_key");
         
         data = zip.read("chain/1-subca-cert.der.hex")
