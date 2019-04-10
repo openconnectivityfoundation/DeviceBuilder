@@ -1,7 +1,7 @@
 
 cbor==1.0.0
 deepdiff==3.3.0
-Jinja2==2.8
+Jinja2 ~> 2.8.1
 jsonschema==2.5.1
 requests
 wget
