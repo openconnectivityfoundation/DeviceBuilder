@@ -8,20 +8,19 @@ This swagger definition file of an full device (application level resources) can
 - generate introspection file.
 
 Typical flow to define an OCF device using DeviceBuilder is:
-- determine device type
-    - see for list of devices: https://openconnectivity.org/specs/OCF_Device_Specification_v1.3.0.pdf 
-    - this determines the mandatory resources that has to be implemented.
-    - add optional resources to the device
-        - this can be any resource described in oneIOTa, www.oneIOTa.org
+- determine device type :
+    - see for list of devices: https://openconnectivity.org/specs/OCF_Device_Specification.pdf (or https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
+    - chosing a Device Type determines the mandatory resources that has to be implemented.
+    - add optional resources to the device:
+        - this can be any resource described in oneIOTa: https://www.oneiota.org
+        - alternatively one can search by means of: https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html
     - create the input for the DeviceBuilder
         - see https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples
-    - determine which code generator needs to be used
-        - C++ code (for Linux, Windows,..)
+    - determine which code generator needs to be used:
+        - Iotivity-Lite: C code (for Linux, Windows,..)
     - run one of the toolchain scripts
-        - scripts in the main directory of the DeviceBuilder repo
-        - these are bash scripts.
-        
-
+        - scripts in the main directory of the DeviceBuilder repo.
+        - scripts are in BASH, e.g. requiring a Linux command prompt.
 
             
 The tool chain script implements the following tool chain to generate code:
@@ -51,6 +50,12 @@ The tool chain script implements the following tool chain to generate code:
 The generated code depends on the available code generation templates in swagger2x.
   
 Currently available DeviceBuilder scripts are:
+-  DeviceBuilder_IotivityLiteServer.sh
+    - C code generation for the IOTivity-Lite stack in C.
+    - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/IOTivity-lite
+    - usage :
+        see for examples of the DeviceBuilder input format and command line options:
+        https://github.com/openconnectivityfoundation/swagger2x/tree/master/DeviceBuilderInputFormat-file-examples/readme.md
 -  DeviceBuilder_C++IotivityServer.sh
     - C++ code generation for the C++ IOTivity API
     - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/C%2B%2BIotivityServer
@@ -75,9 +80,9 @@ Currently available DeviceBuilder scripts are:
  
     
 Additional manual steps to build the generated code:
-- download IOTivity 
+- download IoTivity 
   - see: https://www.iotivity.org/documentation
-- edit build files in IOTivity 
+- edit build files in IoTivity 
     - see additional instructions that are supplied with generated with the code.
 - build
     - instructions vary according the used platform
@@ -86,7 +91,7 @@ Additional manual steps to build the generated code:
     - using the generated PICS file.
 
             
-## individual tools
+## Individual tools
 
 The usage of the individual python scripts  in this repo can be found at:
 https://github.com/openconnectivityfoundation/swagger2x/tree/master/individual_tools.md
