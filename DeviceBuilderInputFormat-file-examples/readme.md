@@ -1,4 +1,4 @@
-# DeviceBuilder Input File examples
+# DeviceBuilder Input File 
 
 The DeviceBuilder Input format is to list all resources that needs to be included in the device that will make up the application.
 E.g. the resources that will be sensor/actuators/etc. that make up the functionality of the device.
@@ -7,7 +7,34 @@ The changes that are allowed are limited, the result still needs to be OCF compl
 The property that is being used to find the resource is the rt value, the rt value being used as lookup towards the oneIOTa/Core github repos where the resource will be pulled from.
 To use the properties to change the resource one needs to know what the resource implements. 
 
-The DeviceBuilder input format is an json array that define each resource separately
+# Where to obtain which Resources and Devices are defined.
+
+
+In OCF devices are defined by a Device Type.
+The Device Types can have mandatory resources.
+
+Device Types are defined in:
+
+https://openconnectivity.org/specs/OCF_Smart_Home_Device_Specification.pdf
+
+but for ease of use (search) the list also can be found at:
+
+
+https://openconnectivityfoundation.github.io/devicemodels/docs/index.html
+
+
+The list of standardized resources can be found at:
+
+https://openconnectivity.org/specs/OCF_Resource_Type_Specification.pdf
+
+for ease of use (search) the resources can also be found at:
+
+https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html
+
+
+# Description of DeviceBuilder Input  Format
+
+The DeviceBuilder input file format is an json array that define each resource separately
 the following properties are defined:
   -  "path" : the path to be used in the implementation
         - required
@@ -35,13 +62,25 @@ the following properties are defined:
         - example  "override_type" :  "integer" 
         - typical values "integer", "number" or "string"
 
-The advantage of this format that it is:
-- instructions per resource instance to change things.
-- format may change by adding new fields to introduce new features to the tool
+The advantage of this file format that it is:
+- Instructions per resource instance to change things.
+- Format may change by adding new fields to introduce new features to the tool
+
+
+# Examples with IoTivity
+
+
+Note: to create code for IoTivity-Lite please subsitute:
+
+DeviceBuilder_C++IotivityServer.sh
+
+with
+
+DeviceBuilder_IotivityLiteServer.sh
+
 
 
 Examples of DeviceBuilderInput Format:
-
 
 - input-lightdevice.json
     The minimal light device, implementing only binary switch (on/off).
@@ -72,7 +111,7 @@ Examples of DeviceBuilderInput Format:
 
         ```
 
-    - deviceBuilder command
+    - deviceBuilder command (IoTivity)
         - Invoked from the top level github repo, where the script resides
         - Creates output directory outside the github tree.
         
@@ -98,7 +137,7 @@ Examples of DeviceBuilderInput Format:
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.
     
     
-    - deviceBuilder command
+    - deviceBuilder command (IoTivity)
         - Invoked from the top level github repo, where the script resides
         - Creates output directory outside the github tree.
         
@@ -124,7 +163,7 @@ Examples of DeviceBuilderInput Format:
     - added resource type oic.wk.p for introspection generation, since IOTivity has optional implemented properties in this resource.
     
     
-    - deviceBuilder command
+    - deviceBuilder command (IoTivity)
         - Invoked from the top level github repo, where the script resides
         - Creates output directory outside the github tree.
         
