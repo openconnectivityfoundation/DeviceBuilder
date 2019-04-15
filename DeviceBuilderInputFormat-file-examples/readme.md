@@ -7,7 +7,7 @@ The changes that are allowed are limited, the result still needs to be OCF compl
 The property that is being used to find the resource is the rt value, the rt value being used as lookup towards the oneIOTa/Core github repos where the resource will be pulled from.
 To use the properties to change the resource one needs to know what the resource implements. 
 
-# Where to obtain which Resources and Devices are defined.
+# Where to obtain which OCF Devices and Resources are defined.
 
 
 In OCF devices are defined by a Device Type.
@@ -17,8 +17,7 @@ Device Types are defined in:
 
 https://openconnectivity.org/specs/OCF_Smart_Home_Device_Specification.pdf
 
-but for ease of use (search) the list also can be found at:
-
+But for ease of use (search) the list also can be found at:
 
 https://openconnectivityfoundation.github.io/devicemodels/docs/index.html
 
@@ -27,14 +26,14 @@ The list of standardized resources can be found at:
 
 https://openconnectivity.org/specs/OCF_Resource_Type_Specification.pdf
 
-for ease of use (search) the resources can also be found at:
+For ease of use (search) the resources can also be found at:
 
 https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html
 
 
-# Description of DeviceBuilder Input  Format
+# Description of DeviceBuilder Input Format
 
-The DeviceBuilder input file format is an json array that define each resource separately
+The DeviceBuilder input file format is an JSON array that define each resource separately
 the following properties are defined:
   -  "path" : the path to be used in the implementation
         - required
