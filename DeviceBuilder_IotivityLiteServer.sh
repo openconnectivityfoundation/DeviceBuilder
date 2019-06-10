@@ -69,7 +69,7 @@ CORE_DIR=../core
 if [ -z "$TITLE" ]
 then
       echo "\$TITLE is empty, setting PID"
-      TITLE=$$
+      TITLE=server_lite_$$
       echo "==> $TITLE"
 else
       echo "\$TITLE is NOT empty"
