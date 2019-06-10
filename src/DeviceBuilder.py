@@ -62,6 +62,7 @@ class MyArgs(object):
         self.resource_dir = None
         self.ocfres = None
         self.input = None
+        self.title = None
         self.remove_property = []
         self.intermediate_files = False
     
@@ -74,6 +75,7 @@ class MyArgs(object):
         # print("")
         print("remove_property     : " + str(self.remove_property))
         print("type                : " + str(self.type))
+        print("title               : " + str(self.title))
         print("intermediate files  : " + str(self.intermediate_files))
         print("")
 
@@ -1231,7 +1233,7 @@ def main_app(my_args, generation_type):
             #else:
             #    rt.append(None)
                 
-    if rt_values is not None:           
+    if rt_values is not None:
         for rt in rt_values:
             # always append one...
             rt.append(None)
@@ -1277,6 +1279,9 @@ def main_app(my_args, generation_type):
             
         if merged_data is not None: 
             file_to_write = str(my_args.out) + "_" + generation_type + "_" + "merged.swagger.json"
+            if my_args.title is not None:
+                print("  Setting title:",  my_args.title)
+                merged_data["info"]["title"] = my_args.title
             write_json(file_to_write, merged_data)
 
        
@@ -1307,6 +1312,8 @@ if __name__ == '__main__':
                         help='remove property (--remove_property  value range step precision id) ')
     parser.add_argument('-type', '--type', default=None, nargs='?',
                         help='type of the value (or renamed value) (--type  integer number) ')
+    parser.add_argument('-title', '--title', default=None, nargs='?',
+                        help='populates info.title in the full swagger file (to be used as title for the device)(--title  myname) ')
 
      
     args = parser.parse_args()
@@ -1319,6 +1326,7 @@ if __name__ == '__main__':
     myargs.remove_property = args.remove_property
     myargs.type = args.type
     myargs.intermediate_files = args.intermediate_files
+    myargs.title = args.title
 
     VERBOSE = args.verbose
     myargs.my_print()

@@ -62,8 +62,18 @@ PIP3=pip3
 INPUTFILE=$1
 OUTPUTDIR=$2
 DEVICETYPE=$3
+TITLE=$4
 MODELS_DIR=../IoTDataModels
 CORE_DIR=../core
+
+if [ -z "$TITLE" ]
+then
+      echo "\$TITLE is empty, setting PID"
+      TITLE=$$
+      echo "==> $TITLE"
+else
+      echo "\$TITLE is NOT empty"
+fi
 
 
 stringContain() { [ -z "${2##*$1*}" ]; }
@@ -156,7 +166,7 @@ cp $INPUTFILE $OUTPUTDIR
 
 mkdir -p $OUTPUTDIR/code
 
-$PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out
+$PYTHON_EXE $DeviceBuilder -input $INPUTFILE -resource_dir $MODELS_DIR -out $OUTPUTDIR/out -title $TITLE
 WB_INSTALLED=`which wb-swagger`
 if stringContain "not found" $WB_INSTALLED;then 
     echo "== wb-swagger not installed, see https://github.com/WAvdBeek/wb-swagger-tools to install"
