@@ -35,25 +35,22 @@ from zipfile import ZipFile
 
 import sys
 import traceback
+import io
 
 def write_contents(f, data, name):
+    decl = "const char *"+name+" = "
+    f.write(decl)
+    data = data.decode('utf-8')
+    lines = io.StringIO(data);
+    line = lines.readline()
+    while line != '':
+      f.write("\"" + line[:-2] +"\\r\\n\"")
+      line = lines.readline()
+      if line == '':
+        f.write(";\n\n")
+      else:
+        f.write("\n")
 
-    str = "unsigned char "+name+"[] = {\n"
-    f.write(str)
-    counter = 0
-    for item in data[:-1]:
-        counter += 1
-        int_item = int(item)
-        f.write(" ")
-        f.write(hex(int_item))
-        f.write ("," )
-        if counter == 12:
-             f.write ("\n")
-             counter = 0
-    f.write(hex(int(data[len(data)-1])))
-    f.write("};\n\n")
- 
- 
 if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
                     (sys.version_info[0], sys.version_info[1]))
@@ -125,18 +122,16 @@ if (args.file) :
         #print('Extracting all the files now...') 
         #zip.extractall() 
         #print('Done!') 
-        cert_file = prefix + "_cert.der.hex"
-        data = zip.read(cert_file)
+        data = zip.read(prefix + "_cert.pem")
         write_contents(f, data, "my_cert");
         
-        key_file = prefix + "_key.der.hex"
-        data = zip.read(key_file)
+        data = zip.read(prefix + "_key.pem")
         write_contents(f, data, "my_key");
         
-        data = zip.read("chain/1-subca-cert.der.hex")
+        data = zip.read("chain/1-subca-cert.pem")
         write_contents(f, data, "int_ca");
         
-        data = zip.read("chain/0-root-cert.der.hex")
+        data = zip.read("chain/0-root-cert.pem")
         write_contents(f, data, "root_ca");
     
     f.write("#endif /* OC_SECURITY && OC_PKI */\n")
