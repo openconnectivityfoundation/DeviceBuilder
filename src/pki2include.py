@@ -112,27 +112,37 @@ if (args.file) :
     f.write("\n*/\n\n")
     
     
-
-    # opening the zip file in READ mode 
-    with ZipFile(args.file, 'r') as zip: 
-        # printing all the contents of the zip file 
-        zip.printdir() 
-      
-        # extracting all the files 
-        #print('Extracting all the files now...') 
-        #zip.extractall() 
-        #print('Done!') 
-        data = zip.read(prefix + "_cert.pem")
+    try:
+    
+        # opening the zip file in READ mode 
+        with ZipFile(args.file, 'r') as zip: 
+            # printing all the contents of the zip file 
+            zip.printdir() 
+          
+            # extracting all the files 
+            #print('Extracting all the files now...') 
+            #zip.extractall() 
+            #print('Done!') 
+            data = zip.read(prefix + "_cert.pem")
+            write_contents(f, data, "my_cert");
+            
+            data = zip.read(prefix + "_key.pem")
+            write_contents(f, data, "my_key");
+            
+            data = zip.read("chain/1-subca-cert.pem")
+            write_contents(f, data, "int_ca");
+            
+            data = zip.read("chain/0-root-cert.pem")
+            write_contents(f, data, "root_ca");
+    
+    except:
+        print (" ERROR zip file not found: no certificate data")
+        data = " FAKE".encode("windows-1252")
         write_contents(f, data, "my_cert");
-        
-        data = zip.read(prefix + "_key.pem")
         write_contents(f, data, "my_key");
-        
-        data = zip.read("chain/1-subca-cert.pem")
         write_contents(f, data, "int_ca");
-        
-        data = zip.read("chain/0-root-cert.pem")
         write_contents(f, data, "root_ca");
+        
     
     f.write("#endif /* OC_SECURITY && OC_PKI */\n")
     f.write("#endif /* PKI_CERT_INCLUDE_H */\n")
