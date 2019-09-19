@@ -672,8 +672,9 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                         if prop_name == "if":
                             print ("  replacing if with", entry[3][index_if])
                             prop["items"]["enum"] = entry[3][index_if]
-                            if len(entry[3][index_if]) != 2:
-                                prop["maxItems"] = len(entry[3][index_if])
+                            if entry[3][index_if] is not None:
+                                if len(entry[3][index_if]) != 2:
+                                    prop["maxItems"] = len(entry[3][index_if])
                         
                         
 def update_parameters_with_if(json_data, rt_value_file, rt_values):
