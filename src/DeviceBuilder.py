@@ -136,7 +136,7 @@ def erase_element(d, k, erase_entry=False):
     """
     erases an the sub entries of k in the dict d, if the subkey does not start with an /, e.g. an sub end point
     
-    :param d: node tree representing the (partial) raml file
+    :param d: node tree representing the (partial) json file
     :param k: descendants of this key should be deleted (if not the starting with an /)
     :param erase_entry : also erases the element k.
     """
@@ -833,6 +833,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
                 if remove_list is not None:
                     for prop_name in remove_list:
                         erase_element(properties, prop_name, erase_entry=True)
+                        
 
 
 def remove_path_method(json_data, rt_value_file, rt_values):

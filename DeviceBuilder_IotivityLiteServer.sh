@@ -65,6 +65,8 @@ DEVICETYPE=$3
 TITLE=$4
 MODELS_DIR=../IoTDataModels
 CORE_DIR=../core
+COREEXTENSIONS_DIR=../core-extensions
+CERTIFICATION_DIR=../certification
 
 if [ -z "$TITLE" ]
 then
@@ -142,12 +144,38 @@ ORGDIR=`pwd`
 cd ..
 git clone https://github.com/openconnectivityfoundation/core.git --branch master
 cd $ORGDIR
+echo "copying $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
+cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
+fi
+
+
+
+if [ ! -f $COREEXTENSIONS_DIR/README.md ]
+then
+echo "== installing core extensions models"
+ORGDIR=`pwd`
+cd ..
+git clone https://github.com/openconnectivityfoundation/core-extensions.git --branch master
+cd $ORGDIR
+echo "copying $COREEXTENSIONS_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
+cp $COREEXTENSIONS_DIR/swagger2.0/*.swagger.json $MODELS_DIR
+fi
+
+if [ ! -f $CERTIFICATION_DIR/README.md ]
+then
+echo "== installing certification (module certifcation) models"
+ORGDIR=`pwd`
+cd ..
+git clone https://github.com/openconnectivityfoundation/certification.git --branch master
+cd $ORGDIR
+echo "copying $CERTIFICATION_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
+cp $CERTIFICATION_DIR/module_testing/*.swagger.json $MODELS_DIR
 fi
 
 #if [ ! -f $MODELS_DIR/oic.wk.res.swagger.json ]
 #then
-echo "copying $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
-cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
+#echo "copying $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR/*"
+#cp $CORE_DIR/swagger2.0/*.swagger.json $MODELS_DIR
 #fi
 
 
