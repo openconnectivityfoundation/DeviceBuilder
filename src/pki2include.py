@@ -36,6 +36,7 @@ from zipfile import ZipFile
 import sys
 import traceback
 import io
+import re
 
 def write_contents(f, data, name):
     decl = "const char *"+name+" = "
@@ -118,6 +119,16 @@ if (args.file) :
         with ZipFile(args.file, 'r') as zip: 
             # printing all the contents of the zip file 
             zip.printdir() 
+            chain_prefix = "chain"
+
+            #determine if the zip has a parent directory
+            pattern = r"/?([a-zA-Z0-9 _]+)?/pki_certs_cert.pem"
+            dir_list = zip.namelist()
+            for zfile in dir_list:
+                match_object = re.match(pattern,zfile)
+                if match_object:
+                    prefix = match_object.group(1) + '/' + prefix
+                    chain_prefix = match_object.group(1) + '/' + chain_prefix
           
             # extracting all the files 
             #print('Extracting all the files now...') 
@@ -129,10 +140,10 @@ if (args.file) :
             data = zip.read(prefix + "_key.pem")
             write_contents(f, data, "my_key");
             
-            data = zip.read("chain/1-subca-cert.pem")
+            data = zip.read(chain_prefix + "/1-subca-cert.pem")
             write_contents(f, data, "int_ca");
             
-            data = zip.read("chain/0-root-cert.pem")
+            data = zip.read(chain_prefix + "/0-root-cert.pem")
             write_contents(f, data, "root_ca");
     
     except:
