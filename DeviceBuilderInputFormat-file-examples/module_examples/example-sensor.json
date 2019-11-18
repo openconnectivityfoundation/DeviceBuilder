@@ -1,0 +1,9 @@
+[
+
+    {
+      "path" : "/sensorurl",
+      "rt"   : [ "oic.r.test-sensor" ],
+      "if"   : ["oic.if.baseline", "oic.if.s" ],
+      "remove_properties" : ["id" , "n"]
+    }
+]
