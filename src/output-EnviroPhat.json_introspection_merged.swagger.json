@@ -1,0 +1,977 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "BinarySwitch": {
+      "properties": {
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.a"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.switch.binary"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "value": {
+          "description": "",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "Brightness": {
+      "properties": {
+        "brightness": {
+          "description": "",
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.light.brightness"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": ""
+        }
+      },
+      "required": [
+        "brightness"
+      ],
+      "type": "object"
+    },
+    "ColourRGB": {
+      "properties": {
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rgbValue": {
+          "description": "",
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "rt": {
+          "default": [
+            "oic.r.colour.rgb"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": ""
+        }
+      },
+      "required": [
+        "rgbValue"
+      ],
+      "type": "object"
+    },
+    "Energy": {
+      "properties": {
+        "current": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "desiredcurrent": {
+          "description": "",
+          "type": "number"
+        },
+        "desiredfrequency": {
+          "description": "",
+          "type": "number"
+        },
+        "desiredvoltage": {
+          "description": "",
+          "type": "number"
+        },
+        "frequency": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.energy.electrical"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "voltage": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "required": [
+        "voltage",
+        "current",
+        "frequency"
+      ],
+      "type": "object"
+    },
+    "EnergyUpdate": {
+      "anyOf": [
+        {
+          "required": [
+            "desiredvoltage"
+          ]
+        },
+        {
+          "required": [
+            "desiredcurrent"
+          ]
+        },
+        {
+          "required": [
+            "desiredfrequency"
+          ]
+        }
+      ],
+      "properties": {
+        "desiredcurrent": {
+          "description": "",
+          "type": "number"
+        },
+        "desiredfrequency": {
+          "description": "",
+          "type": "number"
+        },
+        "desiredvoltage": {
+          "description": "",
+          "type": "number"
+        },
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.ll",
+              "oic.if.b",
+              "oic.if.lb",
+              "oic.if.rw",
+              "oic.if.r",
+              "oic.if.a",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "precision": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "range": {
+          "description": "",
+          "items": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array"
+        },
+        "rt": {
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "step": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "description": "",
+          "readOnly": true
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": ""
+        }
+      },
+      "type": "object"
+    },
+    "Temperature": {
+      "properties": {
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.temperature"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "temperature": {
+          "description": "",
+          "type": "number"
+        },
+        "units": {
+          "description": "",
+          "enum": [
+            "C",
+            "F",
+            "K"
+          ],
+          "readOnly": true
+        }
+      },
+      "required": [
+        "temperature"
+      ],
+      "type": "object"
+    },
+    "acceleration": {
+      "properties": {
+        "acceleration": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.sensor.acceleration"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "required": [
+        "acceleration"
+      ]
+    },
+    "atmosphericPressure": {
+      "properties": {
+        "atmosphericPressure": {
+          "description": "",
+          "readOnly": true,
+          "type": "number"
+        },
+        "id": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.sensor.atmosphericpressure"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "required": [
+        "atmosphericPressure"
+      ]
+    },
+    "magneticFieldDirection": {
+      "properties": {
+        "if": {
+          "description": "",
+          "items": {
+            "enum": [
+              "oic.if.baseline",
+              "oic.if.s"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        },
+        "n": {
+          "description": "",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.sensor.magneticfielddirection"
+          ],
+          "description": "",
+          "items": {
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  },
+  "info": {
+    "license": {
+      "name": "copyright 2016-2017 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "title": "Binary Switch",
+    "version": "v1.1.0-20160519"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.a"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface-all": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface-update": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface10": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface20": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface30": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface40": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface50": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface60": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface70": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    },
+    "interface80": {
+      "enum": [
+        "oic.if.baseline",
+        "oic.if.s"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/binaryswitch": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            }
+          }
+        }
+      }
+    },
+    "/brightness": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Brightness"
+            }
+          }
+        }
+      }
+    },
+    "/colourRGB": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface20"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ColourRGB"
+            }
+          }
+        }
+      }
+    },
+    "/heading": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface80"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/magneticFieldDirection"
+            }
+          }
+        }
+      }
+    },
+    "/pressure": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface40"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/atmosphericPressure"
+            }
+          }
+        }
+      }
+    },
+    "/temperature": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface30"
+          },
+          {
+            "description": "",
+            "enum": [
+              "C",
+              "F",
+              "K"
+            ],
+            "in": "query",
+            "name": "units",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Temperature"
+            }
+          }
+        }
+      }
+    },
+    "/voltage0": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-all"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Energy"
+            }
+          }
+        }
+      }
+    },
+    "/voltage1": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-all"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Energy"
+            }
+          }
+        }
+      }
+    },
+    "/voltage2": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-all"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Energy"
+            }
+          }
+        }
+      }
+    },
+    "/voltage3": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface-all"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Energy"
+            }
+          }
+        }
+      }
+    },
+    "/xmotion": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface50"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/acceleration"
+            }
+          }
+        }
+      }
+    },
+    "/ymotion": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface60"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/acceleration"
+            }
+          }
+        }
+      }
+    },
+    "/zmotion": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface70"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/acceleration"
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}
