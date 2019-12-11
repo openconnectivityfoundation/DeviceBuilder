@@ -86,6 +86,7 @@ def load_json(filename, my_dir=None):
     :param my_dir: path to the file
     :return: json_dict
     """
+    print ("load_json: ",filename)
     full_path = filename
     if my_dir is not None:
         full_path = os.path.join(my_dir, filename)
