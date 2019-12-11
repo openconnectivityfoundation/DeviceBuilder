@@ -1,0 +1,98 @@
+[
+  {
+    "path" : "/binaryswitch",
+    "rt"   : [ "oic.r.switch.binary" ],
+    "if"   : ["oic.if.baseline", "oic.if.a" ],
+    "remove_properties" : [ "range", "step" , "id", "precision" ]
+  },
+  {
+    "path" : "/brightness",
+    "rt"   : [ "oic.r.light.brightness" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step" , "id", "precision" ],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/colourRGB",
+    "rt"   : [ "oic.r.colour.rgb" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step" , "id", "precision" ],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/temperature",
+    "rt"   : [ "oic.r.temperature" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "value" , "step", "precision" ],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/pressure",
+    "rt"   : [ "oic.r.sensor.atmosphericpressure" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "value" , "step", "precision" ],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/xmotion",
+    "rt"   : [ "oic.r.sensor.acceleration" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/ymotion",
+    "rt"   : [ "oic.r.sensor.acceleration" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/zmotion",
+    "rt"   : [ "oic.r.sensor.acceleration" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/heading",
+    "rt"   : [ "oic.r.sensor.magneticfielddirection" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/voltage0",
+    "rt"   : [ "oic.r.energy.electrical" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/voltage1",
+    "rt"   : [ "oic.r.energy.electrical" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/voltage2",
+    "rt"   : [ "oic.r.energy.electrical" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/voltage3",
+    "rt"   : [ "oic.r.energy.electrical" ],
+    "if"   : ["oic.if.baseline", "oic.if.s" ],
+    "remove_properties" : [ "range", "step", "value" , "id" , "precision"],
+    "remove_methods" : ["post"]
+  },
+  {
+    "path" : "/oic/p",
+    "rt"   : [ "oic.wk.p" ],
+    "if"   : ["oic.if.baseline", "oic.if.r" ],
+    "remove_properties" : [ "n", "range", "value", "step", "precision", "vid"  ]
+  }
+]

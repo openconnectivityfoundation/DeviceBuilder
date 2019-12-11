@@ -38,6 +38,7 @@ import traceback
 import io
 import re
 
+
 def write_contents(f, data, name):
     decl = "const char *"+name+" = "
     f.write(decl)
@@ -45,12 +46,20 @@ def write_contents(f, data, name):
     lines = io.StringIO(data);
     line = lines.readline()
     while line != '':
-      f.write("\"" + line[:-2] +"\\r\\n\"")
+      mychar = line[-2:-1] 
+      mychar2 = line[-1:]
+      if hex(ord(mychar)) == "0xd":
+        #print ("-2", len(line[-2:]), hex(ord(mychar)),hex(ord(mychar2)))
+        f.write("\"" + line[:-2] +"\\r\\n\"")
+      else:
+        #print ("-1",len(line[-2:]),hex(ord(mychar)),hex(ord(mychar2)))
+        f.write("\"" + line[:-1] +"\\r\\n\"")
       line = lines.readline()
       if line == '':
         f.write(";\n\n")
       else:
         f.write("\n")
+
 
 if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
