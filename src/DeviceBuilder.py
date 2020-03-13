@@ -429,6 +429,24 @@ def find_input_resources(filename):
                         print ("find_resources: vendor defined rt (not handled):", rt_value)
     return found_rt_values
 
+def db_get_key(input_json_data, dict_path):
+    print("db_get_key",dict_path)
+    my_data = input_json_data
+    
+    my_path_segments = dict_path.split("/")
+    for path_seg in my_path_segments:
+        #print (path_seg)
+        if path_seg != "#":
+            if isinstance(my_data,dict):
+                if path_seg in my_data:
+                    my_data = my_data[path_seg]
+                else:
+                   print("db_get_key key not in my_data not a dict", path_seg, my_data)
+                   return []
+            else:
+                print("db_get_key my_data not a dict", my_data)
+                return []
+    return my_data
 
 def swagger_rt(json_data):
     """
@@ -438,18 +456,27 @@ def swagger_rt(json_data):
     """
     rt_values = []
     for path, item in json_data["paths"].items():
-        try:
-            x_example = item["get"]["responses"]["200"]["x-example"]
-            rt = x_example.get("rt")
+        rt = db_get_key(item, "get/responses/200/x-example/rt")
+        if isinstance(rt, list) and len(rt) > 0:
             for rt_value in rt:
-                rt_values.append(rt_value)
-        except:
-            try:
-                rt = item["post"]["responses"]["200"]["x-example"]["rt"]
+               rt_values.append(rt_value)
+        else:
+            rt = db_get_key(item, "post/responses/200/x-example/rt")
+            if isinstance(rt, list)  and len(rt) > 0:
+                for rt_value in rt:
+                   rt_values.append(rt_value)
+            else:
+                #print(" swagger_rt : rt from schema")
+                schema_id = db_get_key(item,"get/responses/200/schema/$ref")
+                #print(" swagger_rt : schema_id",schema_id)
+                my_data = db_get_key(json_data,schema_id)
+                rt = db_get_key(my_data,"properties/rt/items/enum")
+                #print ("  RT ",rt)
                 for rt_value in rt:
                     rt_values.append(rt_value)
-            except:
-                pass
+
+
+    print (" swagger_rt rt (array):", rt_values)
     return rt_values
 
 
