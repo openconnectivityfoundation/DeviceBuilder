@@ -599,6 +599,7 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
         print ("  rt:", rt_value[index_rt])
         
     keyvaluepairs = []
+    
     for path, path_item in json_data["paths"].items():
         try:
             x_example = path_item["get"]["responses"]["200"]["x-example"]
@@ -898,25 +899,32 @@ def update_path_value(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print ("   rt:", rt_value[index_rt], " href:", rt_value[index_href])
                 
+    
+    
+    rt_values_file = swagger_rt(json_data)
+    print (rt_values_file)
+    
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
         print ("update_path_value", path)
         try:
             x_example = path_item["get"]["responses"]["200"]["x-example"]
             rt = x_example.get("rt")
-            if find_in_array(rt[0], rt_values):
-                for rt_f in rt_values:
-                    if rt_f[0] == rt[0]:
-                        keyvaluepairs.append([path, rt_f[1]])
         except:
+            # no example, use the list of found rt values not using the example
+            rt = rt_values_file
             pass
+        if find_in_array(rt[0], rt_values):
+            for rt_f in rt_values:
+                if rt_f[0] == rt[0]:
+                    keyvaluepairs.append([path, rt_f[1]])
             
     path_data = json_data["paths"]
     for replacement in keyvaluepairs:
         if replacement[1] != replacement[0]:
             old_path = replacement[0]
             new_path = replacement[1]
-            print (" update_path_value :", old_path, new_path)
+            print (" update_path_value :", old_path, " with ", new_path)
             path_data[new_path] = path_data[old_path]
             path_data.pop(old_path)
         else:
