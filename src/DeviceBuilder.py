@@ -51,7 +51,8 @@ index_type = 3
 index_prop = 4
 index_method = 5 
 index_rts = 6 
-index_file = 7
+index_add_props = 7
+index_file = 8  # always the last one
 
 VERBOSE=False
 
@@ -404,7 +405,7 @@ def find_input_resources(filename):
     """
     find the rt values for introspection, uses the ingore list and excludes oic.d and .com. in the rt values.
     :param filename: filename with oic/res response (json)
-    :return: array with found [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values]] values
+    :return: array with found [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values], [new prop (names)]] values
     """
     rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection"]
     json_data = load_json(filename)
@@ -417,12 +418,13 @@ def find_input_resources(filename):
         methods = entry.get("remove_methods")
         props = entry.get("remove_properties")
         rts = entry.get("collection_rts_enum")
+        new_props = entry.get("additional_properties")
         if rt:
             for rt_value in rt:
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
                         #if "oic." not in rt_value:
-                        found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts])
+                        found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts, new_props])
                         #else:
                         #    print ("find_resources: device type rt (not handled):", rt_value)
                     else:
@@ -474,8 +476,6 @@ def swagger_rt(json_data):
                 #print ("  RT ",rt)
                 for rt_value in rt:
                     rt_values.append(rt_value)
-
-
     print (" swagger_rt rt (array):", rt_values)
     return rt_values
 
@@ -514,6 +514,36 @@ def find_files(dirname, rt_values):
     return found_file
         
 
+def find_schema_files(dirname):
+    """
+    find the files where the rt values are stored in (as part of the example)
+    :param dirname: dir name
+    :return found_file: array of file names, no duplicates...
+    """
+    file_list = get_dir_list(dirname, ext="-schema.json")
+    print ("find_files: directory:", dirname)
+    found_file = []
+    for myfile in file_list:
+            #file_data = load_json(myfile, dirname)
+            found_file.append(myfile)
+    return found_file
+
+def find_resource_in_files(dirname, file_list, property_name):
+    """
+    find the property where the rt values are stored in (as part of the example)
+    :param dirname: dir name
+    :return found_file: array of file names, no duplicates...
+    """
+    for myfile in file_list:
+        file_data = load_json(myfile, dirname)
+        #print ("find_resource_in_files file:", myfile)
+        for key, item in file_data["definitions"].items():
+            if key == property_name:
+                #print ("find_resource_in_files ", key, item)
+                return (key, item)
+
+
+
 def remove_unused_defintions(json_data):
     """
     remove unused definitions
@@ -540,7 +570,7 @@ def remove_unused_parameters(json_data):
     - definitions that are not referenced
     """
     print ("remove_unused_parameters")
-    paths_data = json_data["paths"]
+    #paths_data = json_data["paths"]
     par_data = json_data["parameters"]
     to_remove = []
     for par_name, par_item in par_data.items():
@@ -864,6 +894,56 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
                     for prop_name in remove_list:
                         erase_element(properties, prop_name, erase_entry=True)
                         
+def add_definition_properties(json_data, rt_value_file, rt_values, dirname, file_list):
+    """
+    add the definition properties as indicated in the values of rt_values
+    :param json_data: the parsed swagger file
+    :param rt_value_file: not used
+    :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
+    """
+    print ("add_definition_properties")
+    rt = None
+    for rt_value in rt_values:
+        print ("  new props:", rt_value[index_rt], " prop:", rt_value[index_add_props])
+    
+    if rt_values[0][index_add_props] == None :
+        return
+
+    for item in rt_value[index_add_props]:
+        key, items = find_resource_in_files(dirname, file_list, item)
+        print ("add_definition_properties", key, items)
+
+    # array of arrays of path, r, ref, rt_values
+    keyvaluepairs = []
+    for path, path_item in json_data["paths"].items():
+        try:
+            schema = path_item["get"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            keyvaluepairs.append([ref, key, items])
+        except:
+            pass
+        try:
+            schema = path_item["post"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            keyvaluepairs.append([ref, key, items])
+        except:
+            pass    
+                        
+    def_data = json_data["definitions"]
+    for def_name, def_item in def_data.items():
+        full_def_name = "#/definitions/" + def_name
+        for entry in keyvaluepairs:
+            if entry[0] == full_def_name:
+                if VERBOSE:
+                    print ("  definition:", full_def_name)
+                # found entry
+                properties = def_item.get("properties")
+                properties[key] = items
+
+
+
+                
+
 
 
 def remove_path_method(json_data, rt_value_file, rt_values):
@@ -1033,7 +1113,7 @@ def handle_collections(json_data, rt_value_file, rt_values):
                     mydict[item[0]] = newval
     
     
-def create_code_generation(json_data, rt_value_file, rt_values, index):
+def create_code_generation(json_data, rt_value_file, rt_values, index, dirname, file_list):
     """
     create the introspection data, e.g. morph json_data.
     :param json_data: the parsed swagger file
@@ -1060,10 +1140,11 @@ def create_code_generation(json_data, rt_value_file, rt_values, index):
     update_parameters_with_if(json_data, rt_value_file, rt_single)
     update_definition_with_type(json_data, rt_value_file, rt_single)
     remove_definition_properties(json_data, rt_value_file, rt_single)
+    add_definition_properties(json_data, rt_value_file, rt_single, dirname, file_list)
     remove_path_method(json_data, rt_value_file, rt_single)
     
     
-def create_introspection(json_data, rt_value_file, rt_values, index):
+def create_introspection(json_data, rt_value_file, rt_values, index, dirname, file_list):
     """
     create the introspection data, e.g. morph json_data.
     :param json_data: the parsed swagger file
@@ -1082,6 +1163,7 @@ def create_introspection(json_data, rt_value_file, rt_values, index):
     update_parameters_with_if(json_data, rt_value_file, rt_single)
     update_definition_with_type(json_data, rt_value_file, rt_single)
     remove_definition_properties(json_data, rt_value_file, rt_single)
+    add_definition_properties(json_data, rt_value_file, rt_single, dirname, file_list)
     remove_path_method(json_data, rt_value_file, rt_single)
     
 def optimize_introspection(json_data):    
@@ -1162,15 +1244,13 @@ def resolve_ref(json_data, ref_dict):
     :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
     :param target: target key to search for
     :param depth: depth of the search (recursion)
-    :return: error: False => ok, True => error 
     """
-    return_error = False
     try:
         if isinstance(ref_dict, list):
             for value in ref_dict:
                 # recurse down in array
                 # not that $ref is only in a object, e.g. not part of an array.
-                return_error = resolve_ref(json_data, value)
+                resolve_ref(json_data, value)
         new_data = None
         if isinstance(ref_dict, dict):
             for key, value in ref_dict.items():
@@ -1229,7 +1309,7 @@ def resolve_external(json_data):
     ref_dict = json_data["definitions"]
     key = find_key(ref_dict, "$ref")
     while key is not None:
-        error = resolve_ref(json_data, ref_dict)
+        resolve_ref(json_data, ref_dict)
         key = find_key(ref_dict, "$ref")
         max_loop = max_loop - 1
         if max_loop == 0:
@@ -1256,6 +1336,8 @@ def main_app(my_args, generation_type):
         
     print ("handling resources (overview):")
     files_to_process = find_files(str(my_args.resource_dir), rt_values)
+    schema_files = find_schema_files(str(my_args.resource_dir)+"/schemas")
+    print ("schema files:", schema_files)
     print ("processing files:", files_to_process)
 
     merged_data = None
@@ -1283,7 +1365,7 @@ def main_app(my_args, generation_type):
             print ("    methods (remove) :", rt[index_method])
             print ("    rts (enum)       :", rt[index_rts])
             print ("    basefile         :", rt[index_file])
-                
+            print ("    additional props :", rt[index_add_props])
         print(" ")   
             
         index = 0
@@ -1295,10 +1377,10 @@ def main_app(my_args, generation_type):
                 
                 if "introspection" == generation_type:
                     print ("optimize for introspection..")
-                    create_introspection(file_data, rt_values_file, rt_values, index)
+                    create_introspection(file_data, rt_values_file, rt_values, index, str(my_args.resource_dir)+"/schemas", schema_files)
                     optimize_introspection(file_data)
                 else:
-                    create_code_generation(file_data, rt_values_file, rt_values, index)
+                    create_code_generation(file_data, rt_values_file, rt_values, index, str(my_args.resource_dir)+"/schemas", schema_files)
                     rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
                     rt_single = [rt_values[index]]
                     if rt_single[0][index_rt] in rt_ingore_list :
