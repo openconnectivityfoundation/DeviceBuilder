@@ -21,6 +21,7 @@ Typical flow to create an OCF device using DeviceBuilder is:
         - scripts in the main directory of the DeviceBuilder repo.
         - scripts are written in BASH, e.g. requiring a Linux command prompt.
 
+## Tool Chain
             
 The tool chain script implements the following tool chain to generate code:
 
@@ -86,6 +87,6 @@ Manual steps to build the generated code:
             
 ## Individual python tools
 
-The usage of the individual python scripts in this repo can be found [here](/DeviceBuilder/individual_tools.md).
+The usage of the individual python scripts in this repo can be found [here](/DeviceBuilder/individual_tools).
            
 
