@@ -8,18 +8,18 @@ The single swagger definition file of a full device (application level resources
 - generation of the introspection file.
 
 Typical flow to create an OCF device using DeviceBuilder is:
-- determine device type :
-    - see for list of OCF Devices [the Device specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or use [the interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
-    - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
-    - add optional resources to the device:
+- Create the [input file](/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
+    - Determine device type :
+        - see for list of OCF Devices [the Device specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or use [the interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
+        - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
+    - Add optional resources to the device:
         - This can be any resource described in [oneIOTa](https://www.oneiota.org) or from the [Resource Type specification](https://openconnectivity.org/specs/OCF_Resource_Type_Specification.pdf).
         - Alternatively one can [search interactively](https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html)
-    - Create the [input file](/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
-    - Determine which code generator needs to be used:
-        - [IoTivity-Lite](www.iotivity.org): C code (for Linux, Windows,..)
-    - Run one of the toolchain scripts
-        - scripts in the main directory of the DeviceBuilder repo.
-        - scripts are written in BASH, e.g. requiring a Linux command prompt.
+- Determine which code generator needs to be used:
+    - [IoTivity-Lite](www.iotivity.org): C code (for Linux, Windows,..)
+- Run one of the toolchain scripts
+    - scripts in the main directory of the DeviceBuilder repo.
+    - scripts are written in BASH, e.g. requiring a Linux command prompt.
 
 ## Tool Chain
             
