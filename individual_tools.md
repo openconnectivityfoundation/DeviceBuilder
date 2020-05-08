@@ -27,7 +27,7 @@ or (include file generation of the introspection file)
 
 Running the above commands gives all command line options available. 
 
-# swagger file creation from oic/res.
+# Swagger file creation from oic/res.
 Running DeviceBuilder gives the 2 swagger files:
 - The Introspection Device Data (IDD) swagger file
 - The swagger file representing the device.
@@ -53,14 +53,14 @@ Tool chain:
      
      Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json     
                                       
-## for introspection
+## For introspection
 create introspection file from an oic/res (json) input file.
 The oic/res file can be used "as is" from an implementation.
 This swagger data:
 - x-examples removed
 - descriptions as empty strings
 
-## for code generation data 
+## For code generation data 
 create code generation file from an oic/res (json) input file.
 The oic/res file can be used "as is" from an implementation.
 This swagger data includes:
@@ -128,7 +128,7 @@ merge different output files into 1 swagger file.
 
 # How it works
 
-- The oic/res response file is read from disk
+- The input  file is read from disk
 - All resources from core/security resources are ignored.
 - for all remaining resources    
   - the swagger file that belongs to the "rt" is looked up
@@ -140,17 +140,14 @@ merge different output files into 1 swagger file.
     - (remove unwanted (not needed) text descriptions)
   - merge all files into 1 output file
 
+## Other tools
   
- ### documentation of the internals
- https://openconnectivityfoundation.github.io/DeviceBuilder/
- 
- 
- # swag2cbor
+## swag2cbor
  
  This tool converts swagger (e.g. read json) into cbor.
  also the tool can convert the cbor back to json.
  
- # cbor2include
+## cbor2include
  
  This tool converts cbor (e.g. a binary file) into a c-style include file.
  The binary data is presented as a array with hex values.

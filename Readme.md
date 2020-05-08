@@ -43,8 +43,8 @@ The tool chain script implements the following tool chain to generate code:
                                      (swagger)
                                        
                                       
-     Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json
-     this depends on the implementation of the stack, IOTivity reads CBOR as input file.
+     Note that swag2cbor is only needed if the device read CBOR as introspection format and not the swagger.json
+     this depends on the implementation of the stack, IoTivity can read CBOR as input file for introspection.
      
 
 The generated code depends on the available code generation templates in swagger2x.
