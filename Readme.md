@@ -9,18 +9,18 @@ This swagger definition file of an full device (application level resources) can
 
 Typical flow to define an OCF device using DeviceBuilder is:
 - determine device type :
-    - see for list of devices: https://openconnectivity.org/specs/OCF_Device_Specification.pdf (or https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
+    - see for list of [OCF devices specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or [interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
     - chosing a Device Type determines the mandatory resources that has to be implemented.
     - add optional resources to the device:
-        - this can be any resource described in oneIOTa: https://www.oneiota.org
-        - alternatively one can search by means of: https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html
+        - this can be any resource described in [oneIOTa](https://www.oneiota.org)
+        - alternatively one can [search interactively](https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html)
     - create the input for the DeviceBuilder
         - see https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples
     - determine which code generator needs to be used:
-        - Iotivity-Lite: C code (for Linux, Windows,..)
+        - [IoTivity-Lite](www.iotivity.org): C code (for Linux, Windows,..)
     - run one of the toolchain scripts
         - scripts in the main directory of the DeviceBuilder repo.
-        - scripts are in BASH, e.g. requiring a Linux command prompt.
+        - scripts are written in BASH, e.g. requiring a Linux command prompt.
 
             
 The tool chain script implements the following tool chain to generate code:
@@ -52,27 +52,19 @@ The generated code depends on the available code generation templates in swagger
 Currently available DeviceBuilder scripts are:
 -  DeviceBuilder_IotivityLiteServer.sh
     - C code generation for the IOTivity-Lite stack in C.
-    - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/IOTivity-lite
+    - see for details [here](https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/IOTivity-lite)
     - usage :
-        see for examples of the DeviceBuilder input format and command line options:
-        https://github.com/openconnectivityfoundation/swagger2x/tree/master/DeviceBuilderInputFormat-file-examples/readme.md
+        see  [here](DeviceBuilder/DeviceBuilderInputFormat-file-examples/readme.md) for examples of the DeviceBuilder input format and command line options.
 -  DeviceBuilder_C++IotivityServer.sh
     - C++ code generation for the C++ IOTivity API
     - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/C%2B%2BIotivityServer
     - usage :
-        see for examples of the DeviceBuilder input format and command line options:
-        https://github.com/openconnectivityfoundation/swagger2x/tree/master/DeviceBuilderInputFormat-file-examples/readme.md
--  DeviceBuilder_NodeIotivityServer.sh
-    - javascript code generation for the node.js IOTivity API
-    - see for details: https://github.com/openconnectivityfoundation/swagger2x/tree/master/src/templates/NodeIotivityServer
- 
+        see [here](DeviceBuilder/DeviceBuilderInputFormat-file-examples/readme.md)for examples of the DeviceBuilder input format and command line options. 
  
  The DeviceBuilder script installs the following components:
  - github repos:
-    - swagger2x - the code generation tool
-        https://github.com/openconnectivityfoundation/swagger2x
-    - oneIOTa - resource data models
-        https://github.com/OpenInterConnect/IoTDataModels
+    - [swagger2x - the code generation tool] (https://github.com/openconnectivityfoundation/swagger2x)
+    - [oneIOTa - resource data models](https://github.com/OpenInterConnect/IoTDataModels
     - core - core resource models
         https://github.com/openconnectivityfoundation/core
  - installs needed python (3.5) packages.
@@ -91,9 +83,8 @@ Additional manual steps to build the generated code:
     - using the generated PICS file.
 
             
-## Individual tools
+## Individual python tools
 
-The usage of the individual python scripts  in this repo can be found at:
-https://github.com/openconnectivityfoundation/swagger2x/tree/master/individual_tools.md
+The usage of the individual python scripts in this repo can be found [here](https://openconnectivityfoundation.github.io/swagger2x/individual_tools.md).
            
 
