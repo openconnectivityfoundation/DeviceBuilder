@@ -9,10 +9,10 @@ The single swagger definition file of a full device (application level resources
 
 Typical flow to create an OCF device using DeviceBuilder is:
 - determine device type :
-    - see for list of [OCF devices specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or [interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
+    - see for list of OCF Devices [the Device specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or use [the interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
     - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
     - add optional resources to the device:
-        - This can be any resource described in [oneIOTa](https://www.oneiota.org)
+        - This can be any resource described in [oneIOTa](https://www.oneiota.org) or from the [Resource Type specification](https://openconnectivity.org/specs/OCF_Resource_Type_Specification.pdf).
         - Alternatively one can [search interactively](https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html)
     - Create the [input file](/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
     - Determine which code generator needs to be used:
@@ -47,7 +47,9 @@ The tool chain script implements the following tool chain to generate code:
      
 
 The generated code depends on the available code generation templates in swagger2x.
-  
+
+## Available scripts 
+
 Currently available DeviceBuilder scripts are:
 -  DeviceBuilder_IotivityLiteServer.sh
     - C code generation for the IOTivity-Lite stack in C.
@@ -63,16 +65,16 @@ Currently available DeviceBuilder scripts are:
  The DeviceBuilder script installs the following components:
  - github repos:
     - [swagger2x - the code generation tool] (https://github.com/openconnectivityfoundation/swagger2x)
-    - [oneIOTa - resource data models](https://github.com/OpenInterConnect/IoTDataModels
-    - core - core resource models
-        https://github.com/openconnectivityfoundation/core
+    - [IoTDataModels - resource type data models](https://github.com/openconnectivityfoundation/IoTDataModels)
+    - [core - core resource models](https://github.com/openconnectivityfoundation/core)
  - installs needed python (3.5) packages.
- Note that this only works if one has already downloaded/cloned the DeviceBuilder github repo.
+ Note that setup script only works if one has already downloaded/cloned the DeviceBuilder github repo.
  
-    
-Additional manual steps to build the generated code:
-- download IoTivity 
-  - see: https://www.iotivity.org/documentation
+
+# manual steps 
+
+Manual steps to build the generated code:
+- [download IoTivity](https://www.iotivity.org/documentation)
 - edit build files in IoTivity 
     - see additional instructions that are supplied with generated with the code.
 - build
@@ -84,6 +86,6 @@ Additional manual steps to build the generated code:
             
 ## Individual python tools
 
-The usage of the individual python scripts in this repo can be found [here](https://openconnectivityfoundation.github.io/swagger2x/individual_tools.md).
+The usage of the individual python scripts in this repo can be found [here](/DeviceBuilder/individual_tools.md).
            
 
