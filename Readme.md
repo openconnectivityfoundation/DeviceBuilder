@@ -1,24 +1,23 @@
 # DeviceBuilder
 
 This script has various functions to work with OCF swagger type definitions.
-The base function is to:
-- create an single swagger file from OCF swagger type definitions (oneIOTa, Core,...)
-This swagger definition file of an full device (application level resources) can be used for:
+The base function of DeviceBuilder is to:
+- create a single Swagger2.0 file from OCF swagger type definitions (oneIOTa, Core,...)
+The single swagger definition file of a full device (application level resources) can be used for:
 - code generation (as input of swagger2x) 
-- generate introspection file.
+- generation of the introspection file.
 
-Typical flow to define an OCF device using DeviceBuilder is:
+Typical flow to create an OCF device using DeviceBuilder is:
 - determine device type :
     - see for list of [OCF devices specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or [interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
-    - chosing a Device Type determines the mandatory resources that has to be implemented.
+    - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
     - add optional resources to the device:
-        - this can be any resource described in [oneIOTa](https://www.oneiota.org)
-        - alternatively one can [search interactively](https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html)
-    - create the input for the DeviceBuilder
-        - see https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples
-    - determine which code generator needs to be used:
+        - This can be any resource described in [oneIOTa](https://www.oneiota.org)
+        - Alternatively one can [search interactively](https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html)
+    - Create the [input file](/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
+    - Determine which code generator needs to be used:
         - [IoTivity-Lite](www.iotivity.org): C code (for Linux, Windows,..)
-    - run one of the toolchain scripts
+    - Run one of the toolchain scripts
         - scripts in the main directory of the DeviceBuilder repo.
         - scripts are written in BASH, e.g. requiring a Linux command prompt.
 
