@@ -1,15 +1,15 @@
 # Usage of the individual tools
 
 
-The tools are python3.5 code.
+The tools are programmed in python3.5.
 
-to install the dependencies run : ``` python3 src\install.py```
-
-tools currently available are:
+Tools currently available are:
 - DeviceBuilder
 - swag2cbor
 - cbor2include
 
+
+## DeviceBuilder
 
 run the tool(s) from the commandline in the src directory (DeviceBuilder):
 
@@ -27,7 +27,7 @@ or (include file generation of the introspection file)
 
 Running the above commands gives all command line options available. 
 
-# Swagger file creation from oic/res.
+### Swagger file creation from oic/res.
 Running DeviceBuilder gives the 2 swagger files:
 - The Introspection Device Data (IDD) swagger file
 - The swagger file representing the device.
@@ -53,14 +53,14 @@ Tool chain:
      
      Note that swag2cbor is only needed if the device read cbor as introspection format and not the swagger.json     
                                       
-## For introspection
+#### For introspection
 create introspection file from an oic/res (json) input file.
 The oic/res file can be used "as is" from an implementation.
 This swagger data:
 - x-examples removed
 - descriptions as empty strings
 
-## For code generation data 
+#### For code generation data 
 create code generation file from an oic/res (json) input file.
 The oic/res file can be used "as is" from an implementation.
 This swagger data includes:
@@ -70,19 +70,19 @@ This swagger data includes:
 The advantage of this input format is:
 - can be used for existing devices, e.g. just retrieve the oic/res of an existing device
 
-### Options needed to run the tool (oic/res response):
+#### Options needed to run the tool (oic/res response):
 - introspection : output base file, more files are generated with different extensions.
 - ocfres: the oic/res output in json
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)
 
 
-### Optional options depended on the wanted output:
+#### Optional options depended on the wanted output:
 - remove_property : array of properties that needs to be removed, for example the properties "range", "step", etc that will not be part of the implementation
 - type: if the resource is multi-valued, e.g. oneOf(integer,number) then one force an single type for this
 note that this is done on all the resources in the same way.
 
 
-### Simplified oic/res response input format
+#### Simplified oic/res response input format
   The ```simple input format``` is an stripped down version of oic/res json file.
   It still has all needed data to create an introspection file.
   The intention is that if you do not have an implementation yet, this file format can be used to create an introspection file.
@@ -102,13 +102,13 @@ note that the generation works for:
   - the batch introduces the next level of resources, which is not handled in the format.
       
 
-### Options needed to run the tool (deviceBuilder):
+#### Options needed to run the tool (deviceBuilder):
 - introspection : output base file
 - input: the manually crafted deviceBuilder input file
 - resource_dir: the directory with the swagger resource files (e.g. download the contents of this folder from oneIOTa/github)      
       
       
-# Implemented DeviceBuilder features
+## Implemented DeviceBuilder features
 This is about the DeviceBuilder python code.
 
 Per resource (output file per detected and found resource)
@@ -122,11 +122,11 @@ Per resource (output file per detected and found resource)
     - clear the descriptions (e.g. make string empty)
 merge different output files into 1 swagger file.
 
-## Optimizations (introspection):
+### Optimizations (introspection):
 - clean descriptions (e.g. make them empty string, so that swagger is still valid)
 - removal of x-examples
 
-# How it works
+## How it works
 
 - The input  file is read from disk
 - All resources from core/security resources are ignored.
@@ -140,14 +140,13 @@ merge different output files into 1 swagger file.
     - (remove unwanted (not needed) text descriptions)
   - merge all files into 1 output file
 
-## Other tools
   
-## swag2cbor
+# swag2cbor
  
  This tool converts swagger (e.g. read json) into cbor.
  also the tool can convert the cbor back to json.
  
-## cbor2include
+# cbor2include
  
  This tool converts cbor (e.g. a binary file) into a c-style include file.
  The binary data is presented as a array with hex values.
