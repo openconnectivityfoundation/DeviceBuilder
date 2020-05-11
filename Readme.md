@@ -26,7 +26,11 @@ This tool is part of [the tool chain](#tool-chain).
   
 ## Installation
 
-Installation is done via git, just clone the repo to have access to the bash & python script locally.
+Installation of the tool is making a clone of the repository and
+use the tool relative of where the repository is located on your system.
+To install the dependencies:
+
+run ```pip3 install -U -r requirements.txt``` to install the dependencies.
 
 ## Usage
 
