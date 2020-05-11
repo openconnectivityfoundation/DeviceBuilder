@@ -1,6 +1,6 @@
 # DeviceBuilder
 
-{:toc}
+* TOC {:toc}
 
 # Introduction
 
