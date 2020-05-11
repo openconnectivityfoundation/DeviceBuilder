@@ -1,5 +1,7 @@
 # Usage of the individual tools
 
+## Introduction 
+
 The tools are programmed in python3.5.
 
 Tools currently available are:
@@ -7,6 +9,14 @@ Tools currently available are:
 - DeviceBuilder
 - swag2cbor
 - cbor2include
+
+## Table of Contents
+
+- [Usage of the individual tools](#usage-of-the-individual-tools)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [DeviceBuilder](#devicebuilder)
+  - [cbor2include](#cbor2include)
 
 ## DeviceBuilder
 
