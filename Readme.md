@@ -13,6 +13,7 @@ The single swagger definition file of a full device (application level resources
 This tool is part of [the tool chain](#tool-chain).
 
 ## Table of Contents
+
 - [DeviceBuilder](#devicebuilder)
   - [Description](#description)
   - [Table of Contents](#table-of-contents)
@@ -105,14 +106,13 @@ Currently available DeviceBuilder scripts are:
 
 Manual steps to build the generated code:
 
-- [download IoTivity](https://www.iotivity.org/documentation)
-- edit build files in IoTivity
+- [Download IoTivity](https://www.iotivity.org)
+- Edit build files in IoTivity
   - see additional instructions that are supplied with generated with the code.
-- build
-  - instructions vary according the used platform
-    - see read me file with the generated code
-- test against CTT (see additional instructions that are supplied with the generated code)
-  - using the generated PICS file.
+- Build
+  - Instructions vary according the used platform
+    - See read me file with the generated code
+- Test against CTT (see additional instructions that are supplied with the generated code)
 
 ### Individual python tools
 

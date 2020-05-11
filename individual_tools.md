@@ -14,7 +14,6 @@ run the tool(s) from the commandline in the src directory (DeviceBuilder):
 
 ```python3 DeviceBuilder.py -h```
 
-
 Running the above command lists all command line options available.
 
 ### Swagger file creation from oic/res
