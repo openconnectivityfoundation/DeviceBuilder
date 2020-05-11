@@ -1,11 +1,18 @@
 # DeviceBuilder
 
+{:toc}
+
+# Introduction
+
 This script has various functions to work with OCF swagger type definitions.
 The base function of DeviceBuilder is to:
 - create a single Swagger2.0 file from OCF swagger type definitions (oneIOTa, Core,...)
 The single swagger definition file of a full device (application level resources) can be used for:
 - code generation (as input of swagger2x) 
 - generation of the introspection file.
+
+This tool is part of [the tool chain](#Tool-Chain).
+
 
 Typical flow to create an OCF device using DeviceBuilder is:
 - Create the [input file](/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
@@ -18,7 +25,7 @@ Typical flow to create an OCF device using DeviceBuilder is:
 - Determine which code generator needs to be used:
     - [IoTivity-Lite](www.iotivity.org): C code (for Linux, Windows,..)
 - Run one of the toolchain scripts
-    - scripts in the main directory of the DeviceBuilder repo.
+    - scripts in the [main directory](https://github.com/openconnectivityfoundation/DeviceBuilder) of the DeviceBuilder repo.
     - scripts are written in BASH, e.g. requiring a Linux command prompt.
 
 ## Tool Chain
@@ -72,7 +79,7 @@ Currently available DeviceBuilder scripts are:
  Note that setup script only works if one has already downloaded/cloned the DeviceBuilder github repo.
  
 
-# manual steps 
+# Manual steps 
 
 Manual steps to build the generated code:
 - [download IoTivity](https://www.iotivity.org/documentation)
