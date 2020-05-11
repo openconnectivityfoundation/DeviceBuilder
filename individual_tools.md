@@ -1,6 +1,6 @@
 # Usage of the individual tools
 
-## Introduction 
+## Introduction
 
 The tools are programmed in python3.5.
 
