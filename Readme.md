@@ -7,8 +7,8 @@ The base function of DeviceBuilder is to:
 
 - create a single Swagger2.0 file from OCF swagger type definitions (oneIOTa, Core,...)
 The single swagger definition file of a full device (application level resources) can be used for:
-- code generation (as input of swagger2x)
-- generation of the introspection file.
+  - code generation (as input of swagger2x)
+  - generation of the introspection file.
 
 This tool is part of [the tool chain](#tool-chain).
 
