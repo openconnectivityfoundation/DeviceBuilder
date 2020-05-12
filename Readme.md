@@ -55,26 +55,8 @@ Typical flow to create an OCF device using DeviceBuilder is:
 ### Tool Chain
 
 The tool chain script implements the following tool chain to generate code:
+![ToolChain](https://openconnectivityfoundation.github.io/DeviceBuilder/data/toolchain.png)
 
-                       __________
-                      |          |
-                      | oneIOTa  |
-                      |__________|
-                           |
-              Resource Type|descriptions
-                           |
-                    _______v________                                          __________           _______________
-     input         |                |    introspection data (swagger.json)   |          |  cbor   |               |
-     description   |                |--------------------------------------->| swag2cbor|-------->|               |
-     ------------->|  DeviceBuilder |        ___________         __________  |__________|         | actual device |
-                   |                | code  |           |  src  |          |                      |               |
-                   |                |------>| swagger2x |------>| compiler |--------------------->|               |
-                   |________________| data  |___________|       |__________|     executable       |_______________|
-                                     (swagger)
-                                       
-                                      
-     Note that swag2cbor is only needed if the device read CBOR as introspection format and not the swagger.json
-     this depends on the implementation of the stack, IoTivity can read CBOR as input file for introspection.
 
 The generated code depends on the available code generation templates in swagger2x.
 
@@ -117,5 +99,3 @@ Manual steps to build the generated code:
 ### Individual python tools
 
 The usage of the individual python scripts in this repo can be found [here](/DeviceBuilder/individual_tools)
-
-

@@ -1,0 +1,29 @@
+@startuml
+ditaa
+
+                                     +----------+
+                                     |          |
+                                     | oneIOTa  |                                        
+                                     |          |                                   
+                                     +----------+                                     
+                                          |                                          
+                             Resource Type|descriptions                                
+                                          |                                                                    +---------------+
+                                          V                   +-----------+       IDD cbor                     |               |
+        +---------+                +----------------+  IDD    |           |-=--------------------------------->|               |
+        | {d}     | Resource List  |                |-------->| swag2cbor |        +------------+              |               |
+        | Input   |--------------->|                |         |           |-=----> |            |              |               |
+        | File    |                |                |         +-----------+        |  cbor2inc  |              |               |
+        +---------+                |                |                              |            |              |               |
+                                   |  DeviceBuilder |                              +-----+------+              | actual device |
+                                   |                |                                    |                     |               |
+                                   |                |                                    V                     |               |
+                                   |                |         +-----------+        +------------+              |               |
+                                   |                |  data   |           |  src   |            |  executable  |               |
+                                   |                |-------->| swagger2x |------->| C compiler |------------->|               |
+                                   +----------------+         |           |        |            |              |               |
+                                                              +-----------+        +------------+              +---------------+
+
+  The IDD can be supplied as header file or as cbor file to be read from disk. 
+
+@enduml
