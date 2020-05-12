@@ -1,11 +1,11 @@
 @startuml
 ditaa
 
-                                     +----------+
-                                     |          |
-                                     | oneIOTa  |                                        
-                                     |          |                                   
-                                     +----------+                                     
+                                  +---------------+
+                                  | {d}           |
+                                  | IoTDataModels |                                        
+                                  |  (github      |                                   
+                                  +---------------+                                     
                                           |                                          
                              Resource Type|descriptions                                
                                           |                                                                    +---------------+

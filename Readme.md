@@ -2,12 +2,12 @@
 
 ## Description
 
-This script has various functions to work with OCF swagger type definitions.
+This Tool has various functions to work with OCF swagger type definitions.
 The base function of DeviceBuilder is to:
 
 - create a single Swagger2.0 file from OCF swagger type definitions (oneIOTa, Core,...)
 The single swagger definition file of a full device (application level resources) can be used for:
-  - code generation (as input of swagger2x)
+  - code generation (as input of [swagger2x](/swagger2x))
   - generation of the introspection file.
 
 This tool is part of [the tool chain](#tool-chain).
@@ -27,11 +27,13 @@ This tool is part of [the tool chain](#tool-chain).
   
 ## Installation
 
-Installation of the tool is making a clone of the repository and
+Installation of DeviceBuilder is making a clone of the repository and
 use the tool relative of where the repository is located on your system.
 To install the dependencies:
 
 run ```pip3 install -U -r requirements.txt``` to install the dependencies.
+
+The full installation of all tools and repos can be achieved via [setup](https://openconnectivity.github.io/IOTivity-Lite-setup/).
 
 ## Usage
 
@@ -57,10 +59,9 @@ Typical flow to create an OCF device using DeviceBuilder is:
 The tool chain script implements the following tool chain to generate code:
 ![ToolChain](https://openconnectivityfoundation.github.io/DeviceBuilder/data/toolchain.png)
 
+The generated code depends on the available code generation templates in [swagger2x](/swagger2x).
 
-The generated code depends on the available code generation templates in swagger2x.
-
-### Available scripts 
+### Available scripts
 
 Currently available DeviceBuilder scripts are:
 
