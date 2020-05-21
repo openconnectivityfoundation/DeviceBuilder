@@ -68,7 +68,7 @@ CORE_DIR=../core
 
 stringContain() { [ -z "${2##*$1*}" ]; }
 
-
+echo "please use DeviceBuilder_IotivityLiteServer.sh instead"
 echo "input file:   " $INPUTFILE
 echo "output folder:" $OUTPUTDIR
 
