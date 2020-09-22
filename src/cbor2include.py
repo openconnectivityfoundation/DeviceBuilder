@@ -93,7 +93,7 @@ if (args.file) :
     f.write(str(size_cbor))
     f.write("  /* size of the CBOR */\n")
     
-    f.write("uint8_t introspection_data[] = {\n")
+    f.write("const uint8_t introspection_data[] = {\n")
     counter = 0
     for item in cbor_data[:-1]:
         counter += 1
