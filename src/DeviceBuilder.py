@@ -614,7 +614,19 @@ def clear_descriptions(json_data):
     :param json_data: the parsed swagger file
     """
     find_key_and_clean(json_data, "description")
-                    
+
+def clear_info(json_data):
+    """
+    clear the info fields e.g. set them on empty string e.g. ""
+    :param json_data: the parsed swagger file
+    """   
+    try:
+        json_data["info"]["license"]["name"] = ""
+        json_data["info"]["license"]["url"] = ""
+        json_data["info"]["license"]["x-copyright"] = ""
+        json_data["info"]["termsOfService"] = ""
+    except:
+        pass
               
 def update_definition_with_rt(json_data, rt_value_file, rt_values):
     """
@@ -1174,6 +1186,7 @@ def optimize_introspection(json_data):
     """
     remove_for_optimize(json_data)
     clear_descriptions(json_data)
+    clear_info(json_data)
     #remove_unused_defintions(json_data)
     #remove_unused_parameters(json_data)
            
