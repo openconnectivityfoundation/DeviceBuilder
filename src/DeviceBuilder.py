@@ -594,18 +594,30 @@ def remove_for_optimize(json_data):
     """
     info_dict = json_data["info"]["license"]
     erase_element(info_dict, "x-description")
+    erase_element(info_dict, "x-copyright")
+    erase_element(info_dict, "url")
     
     for path, path_item in json_data["paths"].items():
         for method, method_item in path_item.items():
             if isinstance(method_item, dict):
+                #erase_element(method_item, "description", erase_entry=True)
                 for response, response_item in method_item.items():
                     if isinstance(response_item, dict):
                         for responsecode, responsecode_item in response_item.items():
                             erase_element(responsecode_item, "x-example", erase_entry=True)
+                            #erase_element(responsecode_item, "description", erase_entry=True)
                     if isinstance(response_item, list):
                         for entry in response_item:
                             if isinstance(entry, dict):
                                 erase_element(entry, "x-example", erase_entry=True)
+                                #erase_element(entry, "description", erase_entry=True)
+    
+    for defi, defi_item in json_data["definitions"].items():
+      for obj, obj_item in defi_item.items():
+        if isinstance(obj_item, dict):
+          for prop, prop_item in obj_item.items():
+            print (" ======> prop", obj)
+            erase_element(prop_item, "description", erase_entry=True)
 
 
 def clear_descriptions(json_data):
@@ -622,8 +634,8 @@ def clear_info(json_data):
     """   
     try:
         json_data["info"]["license"]["name"] = ""
-        json_data["info"]["license"]["url"] = ""
-        json_data["info"]["license"]["x-copyright"] = ""
+        #json_data["info"]["license"]["url"] = ""
+        #json_data["info"]["license"]["x-copyright"] = ""
         json_data["info"]["termsOfService"] = ""
     except:
         pass
@@ -1184,9 +1196,10 @@ def optimize_introspection(json_data):
     - clear the descriptions (e.g. remove the text only)
     :param json_data: the parsed swagger file
     """
-    remove_for_optimize(json_data)
+    #remove_for_optimize(json_data)
     clear_descriptions(json_data)
     clear_info(json_data)
+    remove_for_optimize(json_data)
     #remove_unused_defintions(json_data)
     #remove_unused_parameters(json_data)
            
