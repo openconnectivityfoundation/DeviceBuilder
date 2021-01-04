@@ -67,15 +67,15 @@ Currently available DeviceBuilder script:
 
 - DeviceBuilder_IotivityLiteServer.sh
   - C code generation for the IoTivity stack in C.
-  - see for details [here](swagger2x/src/templates/IOTivity-lite)
+  - see for details [here](https://openconnectivityfoundation.github.io/swagger2x/src/templates/IOTivity-lite)
     - usage :
-        see  [here](DeviceBuilder/DeviceBuilderInputFormat-file-examples/readme.md) for examples of the DeviceBuilder input format and command line options.
+        see  [here](https://openconnectivityfoundation.github.io/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for examples of the DeviceBuilder input format and command line options.
 - Note: there are more scripts but those will not use IoTivity as stack.
 
  The DeviceBuilder script installs the following components:
 
 - github repos:
-  - [swagger2x - the code generation tool](/swagger2x)
+  - [swagger2x - the code generation tool](https://openconnectivityfoundation.github.io/swagger2x)
   - [IoTDataModels - resource type data models](https://github.com/openconnectivityfoundation/IoTDataModels)
   - [core - core resource models](https://github.com/openconnectivityfoundation/core)
 - installs needed python (3.5) packages.
