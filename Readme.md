@@ -7,7 +7,7 @@ The base function of DeviceBuilder is to:
 
 - create a single Swagger2.0 file from OCF swagger type definitions (oneIOTa, Core,...)
 The single Swagger definition file of a full device (application level resources) can be used for:
-  - code generation (as input of [swagger2x](/swagger2x))
+  - code generation (as input of [swagger2x](https://openconnectivityfoundation.github.io/swagger2x))
   - generation of the introspection file.
 
 This tool is part of [the tool chain](#tool-chain).
@@ -41,7 +41,7 @@ The full installation of all tools and repos can be achieved via [setup](https:/
 
 Typical flow to create an OCF device using DeviceBuilder is:
 
-- Create the [input file](/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
+- Create the [input file](https://openconnectivity.github.io/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
   - Determine device type :
         - see for list of OCF Devices [the Device specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or use [the interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
         - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
@@ -95,4 +95,4 @@ Manual steps to build the generated code:
 
 ### Individual python tools
 
-The usage of the individual python scripts in this repo can be found [here](/DeviceBuilder/individual_tools)
+The usage of the individual python scripts in this repo can be found [here](https://openconnectivityfoundation.github.io/DeviceBuilder/individual_tools)
