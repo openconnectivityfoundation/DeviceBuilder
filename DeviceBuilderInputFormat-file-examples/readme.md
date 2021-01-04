@@ -90,15 +90,10 @@ This input file describes the minimal light device, implementing only binary swi
             "rt"   : [ "oic.r.switch.binary" ],
             "if"   : ["oic.if.a", "oic.if.baseline" ],
             "remove_properties" : [ "range", "step" , "id", "precision" ]
-        },
-        {
-            "path" : "/oic/p",
-            "rt"   : [ "oic.wk.p" ],
-            "if"   : ["oic.if.baseline", "oic.if.r" ],
-            "remove_properties" : [ "n", "range", "value", "step", "precision", "vid"  
         }
     ]
     ```
+	Note: Iotivity_classic needs /oic/p entry, Iotivity_Lite does NOT require and /oic/p entry.
 
 - DeviceBuilder command:
   - Invoked from the top level github repo, where the script resides
