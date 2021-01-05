@@ -5,15 +5,15 @@
 The DeviceBuilder Input format is to list all resources that needs to be included in the device that will make up the application.
 It lists the resources that will be sensor/actuators/etc. that make up the functionality of the device.
 The input file format supports additional information per resource so that the OCF data model can be changed.
-The changes that are allowed are limited: the result still needs to be OCF compliant. 
+The changes that are allowed are limited: the result still needs to be OCF compliant.
 for example:
+
 - removal of optional properties
 - removal of (post) method
 - changing of the interface (as required if removal of post)
-The property that is being used to find the resource is the __rt__ value. 
+  
+The property that is being used to find the resource is the __rt__ value.
 The __rt__ value is being used as lookup towards the oneIOTa/Core github repos where the resource will be used from.
-
-
 
 ## Table of Contents
 
@@ -22,10 +22,11 @@ The __rt__ value is being used as lookup towards the oneIOTa/Core github repos w
   - [Table of Contents](#table-of-contents)
   - [Where to obtain information about OCF Devices and Resources](#where-to-obtain-information-about-ocf-devices-and-resources)
   - [Description of DeviceBuilder Input Format](#description-of-devicebuilder-input-format)
+  - [optimization](#optimization)
   - [Examples with IoTivity](#examples-with-iotivity)
     - [input-lightdevice.json](#input-lightdevicejson)
     - [input-lightdevice-dimming.json](#input-lightdevice-dimmingjson)
-    - [input-lightdevice-dimming.json](#input-lightdevice-dimmingjson-1)
+    - [input-lightdevice-dimming-chroma.json](#input-lightdevice-dimming-chromajson)
 
 ## Where to obtain information about OCF Devices and Resources
 
@@ -62,7 +63,7 @@ The following properties are defined:
   - order is maintained, the first listed interface is the default interface.
 - "remove_properties" : properties that will be removed
   - optional
-  - array of strings, 
+  - array of strings
   - example: "remove_properties : ["range", "step" "value"]
 - "remove_methods" :  methods to remove from the implementation[]
   - optional
@@ -70,7 +71,7 @@ The following properties are defined:
   - example: "remove_methods" : ["post"]
 - "override_type" :  override the type of the property value,  
   - optional
-  - string, optional, e.g. can be omitted,
+  - string, optional, e.g. can be omitted
   - example  "override_type" :  "integer"
   - typical values "integer", "number" or "string"
 
@@ -131,9 +132,9 @@ The light device implementing binary switch (on/off) and the dimming resource.
     sh DeviceBuilder_IotivityLiteServer.sh ./test/input_DeviceBuilderInputFormat/input-lightdevice-dimming.json  ../lightdevice-dimming "oic.d.light"
     ```
 - actual copy of the generated data (old) is [here](https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples/code_examples/lightdevice-dimming)
-  
-### input-lightdevice-dimming.json
-    
+
+### input-lightdevice-dimming-chroma.json
+
 The light device implementing binary switch (on/off), dimming and colour chroma.
 
 - The input file is [here](https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-lightdevice-dimming-chroma.json)
