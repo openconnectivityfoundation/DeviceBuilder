@@ -41,7 +41,7 @@ The full installation of all tools and repos can be achieved via [setup](https:/
 
 Typical flow to create an OCF device using DeviceBuilder is:
 
-- Create the [input file](https://openconnectivity.github.io/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
+- Create the [input file](https://openconnectivityfoundation.github.io/DeviceBuilder/DeviceBuilderInputFormat-file-examples) for the DeviceBuilder
   - Determine device type :
         - see for list of OCF Devices [the Device specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or use [the interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
         - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
