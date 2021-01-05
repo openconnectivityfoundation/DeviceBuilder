@@ -4,10 +4,16 @@
 
 The DeviceBuilder Input format is to list all resources that needs to be included in the device that will make up the application.
 It lists the resources that will be sensor/actuators/etc. that make up the functionality of the device.
-The format supports additional information per resource to that the OCF data model can be changed.
-The changes that are allowed are limited, the result still needs to be OCF compliant. So optional properties, methods etc can be removed from the resource.
-The property that is being used to find the resource is the rt value, the rt value being used as lookup towards the oneIOTa/Core github repos where the resource will be pulled from.
-To use the properties to change the resource one needs to know what the resource implements.
+The input file format supports additional information per resource so that the OCF data model can be changed.
+The changes that are allowed are limited: the result still needs to be OCF compliant. 
+for example:
+- removal of optional properties
+- removal of (post) method
+- changing of the interface (as required if removal of post)
+The property that is being used to find the resource is the __rt__ value. 
+The __rt__ value is being used as lookup towards the oneIOTa/Core github repos where the resource will be used from.
+
+
 
 ## Table of Contents
 
@@ -53,7 +59,7 @@ The following properties are defined:
 - "if"   : the interfaces that needs to be supported
   - required
   - array of strings
-  - order is maintained, hence the first listed interface is the default interface.
+  - order is maintained, the first listed interface is the default interface.
 - "remove_properties" : properties that will be removed
   - optional
   - array of strings, 
@@ -72,6 +78,12 @@ The advantage of the file format that it is:
   
 - Instructions per resource instance to change the behaviour.
 - Format may change by adding new fields to introduce new features to the tool.
+
+## optimization
+
+- use short paths names, note the examples are pretty long
+  - 1 or 2 characters to distinquish the different paths in the application will suffice.
+- remove all properties that are not needed in the application.
 
 ## Examples with IoTivity
 
