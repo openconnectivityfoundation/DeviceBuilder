@@ -432,7 +432,7 @@ def find_input_resources(filename):
     return found_rt_values
 
 def db_get_key(input_json_data, dict_path):
-    print("db_get_key",dict_path)
+    #print("db_get_key", dict_path)
     my_data = input_json_data
     
     my_path_segments = dict_path.split("/")
@@ -616,7 +616,7 @@ def remove_for_optimize(json_data):
       for obj, obj_item in defi_item.items():
         if isinstance(obj_item, dict):
           for prop, prop_item in obj_item.items():
-            print (" ======> prop", obj)
+            #print (" ======> prop", obj)
             erase_element(prop_item, "description", erase_entry=True)
 
 
@@ -1204,6 +1204,8 @@ def optimize_introspection(json_data):
     #remove_unused_parameters(json_data)
            
 
+local_index = 0
+
 def merge(merge_data, file_data, index):
     """
     merge the file_data (paths and definitions) into merge_data
@@ -1211,7 +1213,8 @@ def merge(merge_data, file_data, index):
     :param file_data: the data to merge
     :param index: index counter of the index that is being merged
     """
-    local_index = 0
+    global local_index
+    
     if file_data is None:
         print (" merge: data ignored, is empty")
         return
@@ -1245,6 +1248,7 @@ def merge(merge_data, file_data, index):
         else:
             print ("merge: definition exist:", definition)
             ddiff = DeepDiff(data, definiton_item, ignore_order=True)
+            print (ddiff)
             if ddiff != {}:
                 new_definition = definition + str(local_index) + str(local_index)
                 local_index = local_index + 1
