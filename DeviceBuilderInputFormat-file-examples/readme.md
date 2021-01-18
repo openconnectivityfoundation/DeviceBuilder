@@ -22,7 +22,7 @@ The __rt__ value is being used as lookup towards the oneIOTa/Core github repos w
   - [Table of Contents](#table-of-contents)
   - [Where to obtain information about OCF Devices and Resources](#where-to-obtain-information-about-ocf-devices-and-resources)
   - [Description of DeviceBuilder Input Format](#description-of-devicebuilder-input-format)
-  - [optimization](#optimization)
+  - [Optimization](#optimization)
   - [Examples with IoTivity](#examples-with-iotivity)
     - [input-lightdevice.json](#input-lightdevicejson)
     - [input-lightdevice-dimming.json](#input-lightdevice-dimmingjson)
@@ -80,11 +80,13 @@ The advantage of the file format that it is:
 - Instructions per resource instance to change the behaviour.
 - Format may change by adding new fields to introduce new features to the tool.
 
-## optimization
+## Optimization
 
-- use short paths names, note the examples are pretty long
+- Use short paths names, note the examples are pretty long
   - 1 or 2 characters to distinquish the different paths in the application will suffice.
-- remove all properties that are not needed in the application.
+- Remove all properties that are not needed in the application.
+- For unwanted enums, please edit the resource to remove the unwanted enum values
+  - remove the enum values in the example and the schema
 
 ## Examples with IoTivity
 
