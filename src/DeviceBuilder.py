@@ -439,14 +439,14 @@ def db_get_key(input_json_data, dict_path):
     for path_seg in my_path_segments:
         #print (path_seg)
         if path_seg != "#":
-            if isinstance(my_data,dict):
+            if isinstance(my_data, dict):
                 if path_seg in my_data:
                     my_data = my_data[path_seg]
                 else:
-                   print("db_get_key key not in my_data not a dict", path_seg, my_data)
+                   #print("db_get_key key not in my_data not a dict", path_seg, my_data)
                    return []
             else:
-                print("db_get_key my_data not a dict", my_data)
+                #print("db_get_key my_data not a dict", my_data)
                 return []
     return my_data
 
@@ -965,11 +965,6 @@ def add_definition_properties(json_data, rt_value_file, rt_values, dirname, file
                 properties[key] = items
 
 
-
-                
-
-
-
 def remove_path_method(json_data, rt_value_file, rt_values):
     """
     remove the method on an path
@@ -1003,8 +998,6 @@ def update_path_value(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print ("   rt:", rt_value[index_rt], " href:", rt_value[index_href])
                 
-    
-    
     rt_values_file = swagger_rt(json_data)
     print (rt_values_file)
     
@@ -1203,9 +1196,6 @@ def optimize_introspection(json_data):
     #remove_unused_defintions(json_data)
     #remove_unused_parameters(json_data)
            
-
-local_index = 0
-
 def merge(merge_data, file_data, index):
     """
     merge the file_data (paths and definitions) into merge_data
@@ -1213,58 +1203,84 @@ def merge(merge_data, file_data, index):
     :param file_data: the data to merge
     :param index: index counter of the index that is being merged
     """
-    global local_index
-    
+   
     if file_data is None:
         print (" merge: data ignored, is empty")
         return
     
+    local_index = 0
     for parameter, parameter_item in file_data["parameters"].items():
-        data = merge_data["parameters"].get(parameter)
-        if data is None:
-            merge_data["parameters"][parameter] = parameter_item
-        else:
-            print ("merge: parameter exist:", parameter)
-            ddiff = DeepDiff(data, parameter_item, ignore_order=True)
-            if ddiff != {}:
-                new_parameter = parameter + str(index) + str(local_index)
-                local_index = local_index + 1
-                print ("merge: parameter exist:", parameter, " adding as:", new_parameter)
-                # fix the path data, do it 2 times..
+        local_index += 1
+        fixed = False
+        for cmp, cmp_data in merge_data["parameters"].items():
+            # check if a simular parameter (same tree) set exist.
+            ddiff = DeepDiff(cmp_data, parameter_item, ignore_order=True)
+            if ddiff == {}:
+                # found the same tree, but with a different name
+                print ("   ==> parameter merge: found" + parameter +"identical tree with name:", cmp)
+                # fix the path data to the existing found parameter, do it 2 times..
                 search_parameter = "#/parameters/" + parameter
+                new_parameter = cmp #"p" + str(index) +"p"+ str(local_index)
                 my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
-                if my_dict is not None:
+                while my_dict is not None:
+                    # update the reference
                     my_dict["$ref"] = "#/parameters/" + new_parameter
+                    # find next
+                    my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
+                fixed = True
+                break 
+        if fixed == False:
+            # there is no matching existing definition, add a new one with a new name
+            new_parameter = "p" + str(index) + str(local_index)
+            print ("merge: parameter adding new:", parameter, " adding as:", new_parameter)
+            # fix the path data, do it 2 times.. 
+            search_parameter = "#/parameters/" + parameter
+            my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
+            while my_dict is not None:
+                # update the reference
+                my_dict["$ref"] = "#/parameters/" + new_parameter
+                # find next
                 my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
-                print (" parameter fix -->", my_dict)
-                if my_dict is not None:
-                    my_dict["$ref"] = "#/parameters/" + new_parameter
-                merge_data["parameters"][new_parameter] = parameter_item
+            # add the new parameter.
+            merge_data["parameters"][new_parameter] = parameter_item
 
+    local_index = 0
     for definition, definiton_item in file_data["definitions"].items():
-        data = merge_data["definitions"].get(definition)
-        if data is None:
-            merge_data["definitions"][definition] = definiton_item
-        else:
-            print ("merge: definition exist:", definition)
-            ddiff = DeepDiff(data, definiton_item, ignore_order=True)
-            print (ddiff)
-            if ddiff != {}:
-                new_definition = definition + str(local_index) + str(local_index)
-                local_index = local_index + 1
-                print ("merge: definition exist:", definition, " adding as:", new_definition)
-                
-                # fix the definition data
+        local_index += 1
+        fixed = False
+        for cmp, cmp_data in merge_data["definitions"].items():
+            # check if a simular parameter (same tree) set exist.
+            ddiff = DeepDiff(cmp_data, definiton_item, ignore_order=True)
+            if ddiff == {}:
+                # found the same tree, but with a different name
+                print ("   ==> definition merge:"+ definition +"found identical tree with name:", cmp)
+                # fix the path data to the existing found parameter, do it 2 times..
                 search_definition = "#/definitions/" + definition
+                new_definition = cmp #"d" + str(index) + str(local_index)
                 my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
                 while my_dict is not None:
-                    if VERBOSE:
-                        print (" definition fix -->", my_dict)
+                    # update the reference
                     my_dict["$ref"] = "#/definitions/" + new_definition
+                    # find next
                     my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
-                                    
-                merge_data["definitions"][new_definition] = definiton_item                
-    
+                fixed = True
+                break 
+        if fixed == False:
+            # there is no matching existing definition, add a new one with a new name
+            new_definition = "d" + str(index) + str(local_index)
+            print ("merge: ===> definition adding new:", definition, " adding as:", new_definition)
+            # fix the path data, do it 2 times.. 
+            search_definition = "#/definitions/" + definition
+            my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
+            while my_dict is not None:
+                # update the reference
+                my_dict["$ref"] = "#/definitions/" + new_definition
+                # find next
+                my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
+            # add the new parameter.
+            merge_data["definitions"][new_definition] = definiton_item
+
+ 
     for path, path_item in file_data["paths"].items():
         merge_data["paths"][path] = path_item
 
@@ -1370,7 +1386,15 @@ def main_app(my_args, generation_type):
     print ("schema files:", schema_files)
     print ("processing files:", files_to_process)
 
-    merged_data = None
+    # not required so not framing...:
+    # "consumes": [ "application/json" ],
+    #              "termsOfService": "",
+    merged_data = {    "definitions": {}, "parameters": {}, "paths": {} ,
+                        "info": { "license": { "name": " " },
+                            "title": " ",
+                            "version": " " },
+                        }
+
     for my_file in files_to_process:
         print ("")
         print ("  main: File :", my_file)
@@ -1380,8 +1404,6 @@ def main_app(my_args, generation_type):
         for rt in rt_values:
             if rt[index_rt] == rt_values_file[0]:
                 rt.append(my_file)  
-            #else:
-            #    rt.append(None)
                 
     if rt_values is not None:
         for rt in rt_values:
