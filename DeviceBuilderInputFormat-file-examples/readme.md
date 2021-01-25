@@ -27,6 +27,7 @@ The __rt__ value is being used as lookup towards the oneIOTa/Core github repos w
     - [input-lightdevice.json](#input-lightdevicejson)
     - [input-lightdevice-dimming.json](#input-lightdevice-dimmingjson)
     - [input-lightdevice-dimming-chroma.json](#input-lightdevice-dimming-chromajson)
+    - [input-thermostat.json](#input-thermostatjson)
 
 ## Where to obtain information about OCF Devices and Resources
 
@@ -69,6 +70,11 @@ The following properties are defined:
   - optional
   - array of strings
   - example: "remove_methods" : ["post"]
+- "remove_queryparm" :  query parameters to remove from the implementation[]
+  - optional
+  - array of strings
+  - example: "remove_methods" : ["units"]
+  - Note: works for temperature resource
 - "override_type" :  override the type of the property value,  
   - optional
   - string, optional, e.g. can be omitted
@@ -154,3 +160,22 @@ The light device implementing binary switch (on/off), dimming and colour chroma.
     ```
 
 - Actual copy of the generated data (old) is [here](https://github.com/openconnectivityfoundation/DeviceBuilder/tree/master/DeviceBuilderInputFormat-file-examples/code_examples/lightdevice-dimming-chroma)
+
+### input-thermostat.json
+
+A device as thermostat, having 2 temperature resourses.
+
+- sensor resource, stripped out: post and units
+- actuator resource, stripped out: units.
+
+- The input file is [here](https://github.com/openconnectivityfoundation/DeviceBuilder/blob/master/DeviceBuilderInputFormat-file-examples/input-thermostat.json)
+  
+- Resource list for oic.d.sensor
+  - Resource Type : oic.r.temperature
+- DeviceBuilder command (IoTivity)
+  - Invoked from the top level github repo, where the script resides
+  - Creates output directory outside the github tree.
+    ```
+    sh DeviceBuilder_IotivityLiteServer.sh ./test/input_DeviceBuilderInputFormat/
+    input-thermostat.json  ../input-thermostat "oic.d.sensor"
+    ```

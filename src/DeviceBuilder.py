@@ -1,6 +1,6 @@
 #############################
 #
-#    copyright 2016 Open Interconnect Consortium, Inc. All rights reserved.
+#    copyright 2016-2021 Open Interconnect Consortium, Inc. All rights reserved.
 #    Redistribution and use in source and binary forms, with or without modification,
 #    are permitted provided that the following conditions are met:
 #    1.  Redistributions of source code must retain the above copyright notice,
@@ -52,7 +52,8 @@ index_prop = 4
 index_method = 5 
 index_rts = 6 
 index_add_props = 7
-index_file = 8  # always the last one
+index_remove_query = 8
+index_file = 9  # always the last one
 
 VERBOSE=False
 
@@ -405,7 +406,8 @@ def find_input_resources(filename):
     """
     find the rt values for introspection, uses the ingore list and excludes oic.d and .com. in the rt values.
     :param filename: filename with oic/res response (json)
-    :return: array with found [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values], [new prop (names)]] values
+    :return: array with found 
+    [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values], [new prop (names)], remove query param names] values
     """
     rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection"]
     json_data = load_json(filename)
@@ -417,6 +419,7 @@ def find_input_resources(filename):
         my_type = entry.get("override_type")
         methods = entry.get("remove_methods")
         props = entry.get("remove_properties")
+        query_params = entry.get("remove_queryparm")
         rts = entry.get("collection_rts_enum")
         new_props = entry.get("additional_properties")
         if rt:
@@ -424,7 +427,7 @@ def find_input_resources(filename):
                 if rt_value not in rt_ingore_list:
                     if ".com." not in rt_value:
                         #if "oic." not in rt_value:
-                        found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts, new_props])
+                        found_rt_values.append([rt_value, href, prop_if, my_type, props, methods, rts, new_props, query_params])
                         #else:
                         #    print ("find_resources: device type rt (not handled):", rt_value)
                     else:
@@ -432,6 +435,11 @@ def find_input_resources(filename):
     return found_rt_values
 
 def db_get_key(input_json_data, dict_path):
+    """
+    find key from input json
+    dict_path defined as '#/something/something/somethingelse
+    
+    """
     #print("db_get_key", dict_path)
     my_data = input_json_data
     
@@ -449,6 +457,35 @@ def db_get_key(input_json_data, dict_path):
                 #print("db_get_key my_data not a dict", my_data)
                 return []
     return my_data
+    
+    
+
+def db_remove_key(input_json_data, dict_path):
+    """
+    remove key from input json
+    dict_path defined as '#/something/something/somethingelse
+    
+    """
+    #print("db_remove_key", dict_path)
+    my_data = input_json_data
+    
+    my_path_segments = dict_path.split("/")
+    last_entry = my_path_segments[-1]
+    #print (last_entry)
+    my_path_segments.pop()
+    #print (my_path_segments)
+    
+    for path_seg in my_path_segments:
+        #print (path_seg)
+        if path_seg != "#":
+            if isinstance(my_data, dict):
+                if path_seg in my_data:
+                    #if my_data[path_seg].get(
+                    my_data = my_data[path_seg]
+                    #if my_data 
+    my_data.pop(last_entry)
+
+
 
 def swagger_rt(json_data):
     """
@@ -1027,6 +1064,60 @@ def update_path_value(json_data, rt_value_file, rt_values):
         else:
             print(" update_path_value: already the same :", replacement)
 
+def is_query_to_be_removed(my_dict, remove_param):
+  """
+    "unit" :  {
+            "in": "query",
+            "description": "Units",
+            "type": "string",
+            "enum": ["C", "F", "K"],
+            "name": "units",
+            "x-queryexample" : "/TemperatureResURI?units=C"
+      }
+  """
+  if isinstance(my_dict, dict):
+     in_v = my_dict.get("in")
+     name = my_dict.get("name")
+     if in_v == "query" and name in remove_param:
+         return True
+  return False
+
+
+def remove_query_param(json_data, rt_value_file, rt_values):
+    """
+    remove the query param
+    :param json_data: the parsed swagger file
+    :param rt_value_file:  not used
+    :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
+    """
+    print ("remove_query_param")
+    for rt_value in rt_values:
+        print ("   href:", rt_value[index_href], " query name:", rt_value[index_remove_query])
+    remove_param = rt_value[index_remove_query]
+        
+    # array of arrays of path, r, ref, rt_values
+    keyvaluepairs =[]
+    for path, path_item in json_data["paths"].items():
+       for method, method_item in path_item.items():
+           remove_item = None
+           for param_item in method_item["parameters"]:
+              value = param_item.get("$ref")
+              if isinstance(value, dict):
+                 if is_query_to_be_removed(value, remove_param):
+                    remove_item = param_item
+                    print ("   removing query:", path, method, remove_param)
+              if (value != None) and isinstance(value,str) and value.startswith("#/") :
+                # get the reference.
+                dict_value = db_get_key(json_data, value)
+                if isinstance(dict_value, dict):
+                  if is_query_to_be_removed(dict_value, remove_param):
+                    remove_item = param_item
+                    print ("   removing query:", path, method, remove_param, value)
+                    print ("   removing definition:", value)
+                    db_remove_key(json_data, value)
+           if remove_item:
+              method_item["parameters"].remove(remove_item)
+                
 
 def collapse_allOf(json_data):
     """
@@ -1159,6 +1250,8 @@ def create_code_generation(json_data, rt_value_file, rt_values, index, dirname, 
     remove_definition_properties(json_data, rt_value_file, rt_single)
     add_definition_properties(json_data, rt_value_file, rt_single, dirname, file_list)
     remove_path_method(json_data, rt_value_file, rt_single)
+    remove_query_param(json_data, rt_value_file, rt_single)
+    
     
     
 def create_introspection(json_data, rt_value_file, rt_values, index, dirname, file_list):
@@ -1182,6 +1275,7 @@ def create_introspection(json_data, rt_value_file, rt_values, index, dirname, fi
     remove_definition_properties(json_data, rt_value_file, rt_single)
     add_definition_properties(json_data, rt_value_file, rt_single, dirname, file_list)
     remove_path_method(json_data, rt_value_file, rt_single)
+    remove_query_param(json_data, rt_value_file, rt_single)
     
 def optimize_introspection(json_data):    
     """
@@ -1409,15 +1503,16 @@ def main_app(my_args, generation_type):
         for rt in rt_values:
             # always append one...
             rt.append(None)
-            print ("  rt                 :", rt[index_rt])
-            print ("    href             :", rt[index_href])
-            print ("    if               :", rt[index_if])
-            print ("    type (replace)   :", rt[index_type])
-            print ("    props (remove)   :", rt[index_prop])
-            print ("    methods (remove) :", rt[index_method])
-            print ("    rts (enum)       :", rt[index_rts])
-            print ("    basefile         :", rt[index_file])
-            print ("    additional props :", rt[index_add_props])
+            print ("  rt                      :", rt[index_rt])
+            print ("    href                  :", rt[index_href])
+            print ("    if                    :", rt[index_if])
+            print ("    type (replace)        :", rt[index_type])
+            print ("    props (remove)        :", rt[index_prop])
+            print ("    methods (remove)      :", rt[index_method])
+            print ("    query params (remove) :", rt[index_remove_query])
+            print ("    rts (enum)            :", rt[index_rts])
+            print ("    basefile              :", rt[index_file])
+            print ("    additional props      :", rt[index_add_props])
         print(" ")   
             
         index = 0

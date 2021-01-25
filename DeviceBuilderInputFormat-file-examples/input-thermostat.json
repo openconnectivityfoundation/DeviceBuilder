@@ -1,0 +1,18 @@
+[
+  
+  {
+    "path" : "/temperature_actuator",
+    "rt"   : [ "oic.r.temperature" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ],
+    "remove_properties" : [ "units", "range", "step" , "precision", "id", "n" ],
+	"remove_queryparm" : ["units"]
+  },
+  {
+    "path" : "/temperature_sensor",
+    "rt"   : [ "oic.r.temperature" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ],
+    "remove_properties" : [ "units", "range", "step" , "precision", "id", "n" ],
+	"remove_queryparm" : ["units"],
+	"remove_methods": [ "post"]
+  }
+]
