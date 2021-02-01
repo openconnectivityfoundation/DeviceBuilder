@@ -1078,6 +1078,12 @@ def is_query_to_be_removed(my_dict, remove_param):
   if isinstance(my_dict, dict):
      in_v = my_dict.get("in")
      name = my_dict.get("name")
+     if name is None:
+        return False
+     if in_v is None:
+        return False
+     if remove_param is None:
+        return False
      if in_v == "query" and name in remove_param:
          return True
   return False
