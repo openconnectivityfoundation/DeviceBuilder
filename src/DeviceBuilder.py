@@ -443,6 +443,9 @@ def db_get_key(input_json_data, dict_path):
     #print("db_get_key", dict_path)
     my_data = input_json_data
     
+    if isinstance(dict_path,str) == False:
+        return []
+    
     my_path_segments = dict_path.split("/")
     for path_seg in my_path_segments:
         #print (path_seg)
@@ -495,6 +498,7 @@ def swagger_rt(json_data):
     """
     rt_values = []
     for path, item in json_data["paths"].items():
+        #print ("swagger_rt ", path)
         rt = db_get_key(item, "get/responses/200/x-example/rt")
         if isinstance(rt, list) and len(rt) > 0:
             for rt_value in rt:
@@ -506,9 +510,9 @@ def swagger_rt(json_data):
                    rt_values.append(rt_value)
             else:
                 #print(" swagger_rt : rt from schema")
-                schema_id = db_get_key(item,"get/responses/200/schema/$ref")
+                schema_id = db_get_key(item, "get/responses/200/schema/$ref")
                 #print(" swagger_rt : schema_id",schema_id)
-                my_data = db_get_key(json_data,schema_id)
+                my_data = db_get_key(json_data, schema_id)
                 rt = db_get_key(my_data,"properties/rt/items/enum")
                 #print ("  RT ",rt)
                 for rt_value in rt:
@@ -1058,6 +1062,15 @@ def update_path_value(json_data, rt_value_file, rt_values):
         if replacement[1] != replacement[0]:
             old_path = replacement[0]
             new_path = replacement[1]
+            # check if there is an action or interface in the path
+            old_path_temp = old_path.split("?")
+            if len(old_path_temp) > 1:
+                # concatinate everything again
+                new_path += "?"
+                for path_seg in old_path_temp[1:]:
+                    new_path += path_seg
+                
+            
             print (" update_path_value :", old_path, " with ", new_path)
             path_data[new_path] = path_data[old_path]
             path_data.pop(old_path)
