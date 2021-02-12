@@ -1040,11 +1040,11 @@ def update_path_value(json_data, rt_value_file, rt_values):
         print ("   rt:", rt_value[index_rt], " href:", rt_value[index_href])
                 
     rt_values_file = swagger_rt(json_data)
-    print (rt_values_file)
+    #print (rt_values_file)
     
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
-        print ("update_path_value", path)
+        #print ("update_path_value", path)
         try:
             x_example = path_item["get"]["responses"]["200"]["x-example"]
             rt = x_example.get("rt")
@@ -1503,6 +1503,7 @@ def main_app(my_args, generation_type):
     # "consumes": [ "application/json" ],
     #              "termsOfService": "",
     merged_data = {    "definitions": {}, "parameters": {}, "paths": {} ,
+                        "swagger": "2.0",
                         "info": { "license": { "name": " " },
                             "title": " ",
                             "version": " " },
