@@ -753,9 +753,22 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
         try:
+            # GET
             x_example = path_item["get"]["responses"]["200"]["x-example"]
             rt = x_example.get("rt")
             schema = path_item["get"]["responses"]["200"]["schema"]
+            ref = schema["$ref"]
+            if find_in_array(rt[index_rt], rt_values):
+                for rt_f in rt_values:
+                    if rt_f[index_rt] == rt[index_rt]:
+                        keyvaluepairs.append([path, rt, ref, rt_f])
+        except:
+            pass
+        try:
+            # POST
+            x_example = path_item["post"]["responses"]["200"]["x-example"]
+            rt = x_example.get("rt")
+            schema = path_item["post"]["responses"]["200"]["schema"]
             ref = schema["$ref"]
             if find_in_array(rt[index_rt], rt_values):
                 for rt_f in rt_values:
