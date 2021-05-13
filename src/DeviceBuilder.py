@@ -835,7 +835,7 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
             pass
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
-        full_defname = "#/definitions/" + def_name   
+        full_defname = "#/definitions/" + def_name
         if VERBOSE:
             print("  def_name", def_name)
         for entry in keyvaluepairs:
@@ -846,9 +846,9 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                     # invalid type
                     if my_type is not None:
                         print(" *** ERROR type is not valid:", entry[3][index_type],
-                                " supported types:", supported_types)
+                              " supported types:", supported_types)
                 elif properties is not None:
-                    # properties is the top key 
+                    # properties is the top key
                     my_type = entry[3][index_type]
                     for prop_name, prop in properties.items():
                         one_off = prop.get("anyOf")
@@ -983,7 +983,7 @@ def remove_path_method(json_data, rt_value_file, rt_values):
     print("remove_path_method")
     for rt_value in rt_values:
         print("   href:", rt_value[index_href], " method:", rt_value[index_method])
-        
+
     # array of arrays of path, r, ref, rt_values
     # keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
@@ -1089,7 +1089,7 @@ def remove_query_param(json_data, rt_value_file, rt_values):
                     if is_query_to_be_removed(value, remove_param):
                         remove_item = param_item
                         print("   removing query:", path, method, remove_param)
-                if (value != None) and isinstance(value,str) and value.startswith("#/"):
+                if (value is not None) and isinstance(value, str) and value.startswith("#/"):
                     # get the reference.
                     dict_value = db_get_key(json_data, value)
                     if isinstance(dict_value, dict):
@@ -1129,7 +1129,7 @@ def collapse_allOf(json_data):
                             else:
                                 # add properties decendants to the existing properties key
                                 for prop_item_name, prop_item in item.items():
-                                   new_props["properties"][prop_item_name] = prop_item
+                                    new_props["properties"][prop_item_name] = prop_item
                         elif item_name == "description":
                             new_props[item_name] = item
                         else:
@@ -1211,7 +1211,7 @@ def create_code_generation(json_data, rt_value_file, rt_values, index, dirname, 
     """
     print("")
     rt_single = [rt_values[index]]
-    rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
+    rt_ingore_list = ["oic.wk.res", "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
     if rt_single[0][index_rt] in rt_ingore_list:
         print("create_code_generation ignored:", rt_single[0][index_rt])
         json_data = None
@@ -1327,7 +1327,7 @@ def merge(merge_data, file_data, index):
             ddiff = DeepDiff(cmp_data, definiton_item, ignore_order=True)
             if ddiff == {}:
                 # found the same tree, but with a different name
-                print("   ==> definition merge:"+ definition +"found identical tree with name:", cmp)
+                print("   ==> definition merge:" + definition + "found identical tree with name:", cmp)
                 # fix the path data to the existing found parameter, do it 2 times..
                 search_definition = "#/definitions/" + definition
                 new_definition = cmp  # "d" + str(index) + str(local_index)
@@ -1338,7 +1338,7 @@ def merge(merge_data, file_data, index):
                     # find next
                     my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
                 fixed = True
-                break 
+                break
         if fixed is False:
             # there is no matching existing definition, add a new one with a new name
             new_definition = "d" + str(index) + str(local_index)
@@ -1399,9 +1399,9 @@ def resolve_ref(json_data, ref_dict):
                         new_data_i = json_file["definitions"]
                         m_ref = reference.split("/")
                         for i in range(len(m_ref)):
-                           print("resolve_ref: key:", m_ref[i])
-                           new_data = new_data_i[m_ref[i]]
-                           new_data_i = new_data
+                            print("resolve_ref: key:", m_ref[i])
+                            new_data = new_data_i[m_ref[i]]
+                            new_data_i = new_data
                 if new_data is not None:
                     # break the loop, just fix the single found reference
                     break
@@ -1414,7 +1414,6 @@ def resolve_ref(json_data, ref_dict):
                     pass
                 for key_n, value_n in new_data.items():
                     ref_dict[key_n] = value_n
-                            
             for key, value in ref_dict.items():
                 # recurse down in object
                 resolve_ref(json_data, value)
@@ -1424,7 +1423,7 @@ def resolve_ref(json_data, ref_dict):
 
 
 def resolve_external(json_data):
-    max_loop=100
+    max_loop = 100
     ref_dict = json_data["definitions"]
     key = find_key(ref_dict, "$ref")
     while key is not None:
@@ -1455,18 +1454,20 @@ def main_app(my_args, generation_type):
 
     print("handling resources (overview):")
     files_to_process = find_files(str(my_args.resource_dir), rt_values)
-    schema_files = find_schema_files(str(my_args.resource_dir)+"/schemas")
+    schema_files = find_schema_files(str(my_args.resource_dir) + "/schemas")
     print("schema files:", schema_files)
     print("processing files:", files_to_process)
 
     # not required so not framing...:
     # "consumes": [ "application/json" ],
     #              "termsOfService": "",
-    merged_data =   {   "definitions": {}, "parameters": {}, "paths": {} ,
+    merged_data =   {   "definitions": {}, 
+                        "parameters": {}, 
+                        "paths": {},
                         "swagger": "2.0",
                         "info": { "license": { "name": " " },
-                            "title": " ",
-                            "version": " " },
+                                  "title": " ",
+                                  "version": " " }
                     }
     for my_file in files_to_process:
         print("")
@@ -1476,7 +1477,7 @@ def main_app(my_args, generation_type):
         print("  main: rt :", rt_values_file)
         for rt in rt_values:
             if rt[index_rt] == rt_values_file[0]:
-                rt.append(my_file)  
+                rt.append(my_file)
     if rt_values is not None:
         for rt in rt_values:
             # always append one...
@@ -1511,7 +1512,7 @@ def main_app(my_args, generation_type):
                         print("merge ignored:", rt_single[0][index_rt])
                         file_data = None
                 if write_intermediate:
-                    file_to_write = str(my_args.out) + "_" + generation_type + "_" + str(index) + "_"+rt[6]
+                    file_to_write = str(my_args.out) + "_" + generation_type + "_" + str(index) + "_" + rt[6]
                     write_json(file_to_write, file_data)
                 if merged_data is None:
                     merged_data = file_data
