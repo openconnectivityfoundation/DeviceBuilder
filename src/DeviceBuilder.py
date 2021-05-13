@@ -91,7 +91,7 @@ def load_json(filename, my_dir=None):
     :param my_dir: path to the file
     :return: json_dict
     """
-    print("load_json: ",filename)
+    print("load_json: ", filename)
     full_path = filename
     if my_dir is not None:
         full_path = os.path.join(my_dir, filename)
@@ -111,7 +111,7 @@ def remove_prefix(text, prefix):
     return text[text.startswith(prefix) and len(prefix):]
 
 
-def write_json(filename, file_data): 
+def write_json(filename, file_data):
     """
     write the JSON  file
     :param filename: filename (with extension)
@@ -122,7 +122,7 @@ def write_json(filename, file_data):
     fp.write(json_string)
     fp.close()
 
-    
+
 def get_dir_list(my_dir, ext=None):
     """
     get all files (none recursive) in the specified dir
@@ -170,7 +170,6 @@ def erase_element(d, k, erase_entry=False):
                     d.pop(k)
                 except:
                     print("erase_element : could not delete:", k)
-                
         else:
             print("erase_element: Cannot find matching key:", k)
     elif isinstance(d, list):
@@ -227,13 +226,13 @@ def find_key_link(rec_dict, target, depth=0):
     """
     if isinstance(rec_dict, dict):
         # direct key
-        for key,value in rec_dict.items():
+        for key, value in rec_dict.items():
             if key == target:
                 return rec_dict[key]
         # key is in array
         rvalues = []
         found = False
-        for key,value in rec_dict.items():
+        for key, value in rec_dict.items():
             if key in ["oneOf", "allOf", "anyOf"]:
                 for val in value:
                     if val == target:
@@ -251,7 +250,8 @@ def find_key_link(rec_dict, target, depth=0):
             r = find_key_link(value, target, depth + 1)
             if r is not None:
                 return r
-                
+
+
 def find_target_value(rec_dict, target, depth=0):
     """
     find the first key recursively
@@ -261,22 +261,21 @@ def find_target_value(rec_dict, target, depth=0):
     :param depth: depth of the search (recursion)
     :return:
     """
-    
     if isinstance(rec_dict, dict):
         # direct key
-        for key,value in rec_dict.items():
+        for key, value in rec_dict.items():
             if key == target:
                 return rec_dict[key]
         # key is in array
         rvalues = []
         found = False
-        for key,value in rec_dict.items():
+        for key, value in rec_dict.items():
             if key in ["oneOf", "allOf", "anyOf"]:
                 for val in value:
                     if val == target:
                         return val
                     if isinstance(val, dict):
-                        r = find_target_value(val, target, depth+1)
+                        r = find_target_value(val, target, depth + 1)
                         if r is not None:
                             if not r.startswith("#/definitions/"):
                                 found = True
@@ -285,11 +284,12 @@ def find_target_value(rec_dict, target, depth=0):
         if found:
             return rvalues
         # key is an dict
-        for key,value in rec_dict.items():
-            r = find_target_value(value, target, depth+1)
+        for key, value in rec_dict.items():
+            r = find_target_value(value, target, depth + 1)
             if r is not None:
                 if not r.startswith("#/definitions/"):
                     return r
+
 
 def find_key(rec_dict, target, depth=0):
     """
@@ -305,13 +305,14 @@ def find_key(rec_dict, target, depth=0):
                 if key == target:
                     return rec_dict[key]
             for key, value in rec_dict.items():
-                r = find_key(value, target, depth+1)
+                r = find_key(value, target, depth + 1)
                 if r is not None:
-                        return r
+                    return r
     except:
         print("xxxxx")
         traceback.print_exc()
-        
+
+
 def get_dict_recursively(search_dict, field):
     """
     Takes a dict with nested lists and dicts,
@@ -326,12 +327,10 @@ def get_dict_recursively(search_dict, field):
 
             if key == field:
                 fields_found.append([key, value, search_dict])
-
             elif isinstance(value, dict):
                 results = get_dict_recursively(value, field)
                 for result in results:
                     fields_found.append(result)
-
             elif isinstance(value, list):
                 for item in value:
                     if isinstance(item, dict):
@@ -340,10 +339,9 @@ def get_dict_recursively(search_dict, field):
                             fields_found.append(another_result)
     except:
         traceback.print_exc()
-
     return fields_found  
-        
-                            
+
+
 def find_key_and_clean(rec_dict, search_key, depth=0):
     """
     find all keys and clean the value, e.g. make the value an empty string
@@ -401,10 +399,10 @@ def find_input_resources(filename):
     """
     find the rt values for introspection, uses the ingore list and excludes oic.d and .com. in the rt values.
     :param filename: filename with oic/res response (json)
-    :return: array with found 
+    :return: array with found
     [rt, href, if, type,[props to be removed], [methods to be removed], [rts enum values], [new prop (names)], remove query param names] values
     """
-    rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection"]
+    rt_ingore_list = ["oic.wk.res", "oic.wk.introspection"]
     json_data = load_json(filename)
     found_rt_values = []
     for entry in json_data:
@@ -426,6 +424,7 @@ def find_input_resources(filename):
                         print("find_resources: vendor defined rt (not handled):", rt_value)
     return found_rt_values
 
+
 def db_get_key(input_json_data, dict_path):
     """
     find key from input json
@@ -441,7 +440,7 @@ def db_get_key(input_json_data, dict_path):
                 if path_seg in my_data:
                     my_data = my_data[path_seg]
                 else:
-                   return []
+                    return []
             else:
                 return []
     return my_data
@@ -451,14 +450,11 @@ def db_remove_key(input_json_data, dict_path):
     """
     remove key from input json
     dict_path defined as '#/something/something/somethingelse
-    
     """
     my_data = input_json_data
-    
     my_path_segments = dict_path.split("/")
     last_entry = my_path_segments[-1]
     my_path_segments.pop()
-    
     for path_seg in my_path_segments:
         if path_seg != "#":
             if isinstance(my_data, dict):
@@ -478,12 +474,12 @@ def swagger_rt(json_data):
         rt = db_get_key(item, "get/responses/200/x-example/rt")
         if isinstance(rt, list) and len(rt) > 0:
             for rt_value in rt:
-               rt_values.append(rt_value)
+                rt_values.append(rt_value)
         else:
             rt = db_get_key(item, "post/responses/200/x-example/rt")
             if isinstance(rt, list)  and len(rt) > 0:
                 for rt_value in rt:
-                   rt_values.append(rt_value)
+                    rt_values.append(rt_value)
             else:
                 schema_id = db_get_key(item, "get/responses/200/schema/$ref")
                 my_data = db_get_key(json_data, schema_id)
@@ -520,11 +516,11 @@ def find_files(dirname, rt_values):
     print("find_files: directory:", dirname)
     found_file = []
     for myfile in file_list:
-            file_data = load_json(myfile, dirname)
-            rt_values_file = swagger_rt(file_data)
-            for rt_file in rt_values_file:
-                if find_in_array(rt_file, rt_values):
-                    found_file.append(myfile)
+        file_data = load_json(myfile, dirname)
+        rt_values_file = swagger_rt(file_data)
+        for rt_file in rt_values_file:
+            if find_in_array(rt_file, rt_values):
+                found_file.append(myfile)
     return found_file
 
 
@@ -538,7 +534,7 @@ def find_schema_files(dirname):
     print("find_files: directory:", dirname)
     found_file = []
     for myfile in file_list:
-            found_file.append(myfile)
+        found_file.append(myfile)
     return found_file
 
 
@@ -580,7 +576,6 @@ def remove_unused_parameters(json_data):
     - definitions that are not referenced
     """
     print("remove_unused_parameters")
-    #paths_data = json_data["paths"]
     par_data = json_data["parameters"]
     to_remove = []
     for par_name, par_item in par_data.items():
@@ -589,11 +584,11 @@ def remove_unused_parameters(json_data):
         if value is None:
             # not found, e.g. can be removed
             to_remove.append(par_name)
-
     for item in to_remove:
         print("  remove_unused_parameters removing :", item)
         erase_element(par_data, item, erase_entry=True)
-    
+
+
 def remove_for_optimize(json_data):
     """
     remove things from the swagger file
@@ -638,7 +633,7 @@ def clear_info(json_data):
     """
     clear the info fields e.g. set them on empty string e.g. ""
     :param json_data: the parsed swagger file
-    """   
+    """
     try:
         json_data["info"]["license"]["name"] = ""
         # json_data["info"]["license"]["url"] = ""
@@ -658,9 +653,7 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
     print("update_definition_with_rt")
     for rt_value in rt_values:
         print("  rt:", rt_value[index_rt])
-
     keyvaluepairs = []
-
     for path, path_item in json_data["paths"].items():
         try:
             x_example = path_item["get"]["responses"]["200"]["x-example"]
@@ -828,7 +821,7 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                     if rt_f[0] == rt[0]:
                         keyvaluepairs.append([path, rt, ref, rt_f])
         except:
-            pass  
+            pass
         try:
             x_example = path_item["post"]["responses"]["200"]["x-example"]
             rt = x_example.get("rt")
@@ -966,8 +959,8 @@ def add_definition_properties(json_data, rt_value_file, rt_values, dirname, file
             ref = schema["$ref"]
             keyvaluepairs.append([ref, key, items])
         except:
-            pass    
-                        
+            pass
+
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
         full_def_name = "#/definitions/" + def_name
@@ -1049,7 +1042,7 @@ def update_path_value(json_data, rt_value_file, rt_values):
             print(" update_path_value: already the same :", replacement)
 
 def is_query_to_be_removed(my_dict, remove_param):
-  """
+    """
     "unit" :  {
             "in": "query",
             "description": "Units",
@@ -1058,19 +1051,19 @@ def is_query_to_be_removed(my_dict, remove_param):
             "name": "units",
             "x-queryexample" : "/TemperatureResURI?units=C"
       }
-  """
-  if isinstance(my_dict, dict):
-     in_v = my_dict.get("in")
-     name = my_dict.get("name")
-     if name is None:
-        return False
-     if in_v is None:
-        return False
-     if remove_param is None:
-        return False
-     if in_v == "query" and name in remove_param:
-         return True
-  return False
+    """
+    if isinstance(my_dict, dict):
+        in_v = my_dict.get("in")
+        name = my_dict.get("name")
+        if name is None:
+            return False
+        if in_v is None:
+            return False
+        if remove_param is None:
+            return False
+        if in_v == "query" and name in remove_param:
+            return True
+    return False
 
 
 def remove_query_param(json_data, rt_value_file, rt_values):
@@ -1088,24 +1081,24 @@ def remove_query_param(json_data, rt_value_file, rt_values):
     keyvaluepairs =[]
     for path, path_item in json_data["paths"].items():
        for method, method_item in path_item.items():
-           remove_item = None
-           for param_item in method_item["parameters"]:
-              value = param_item.get("$ref")
-              if isinstance(value, dict):
-                 if is_query_to_be_removed(value, remove_param):
-                    remove_item = param_item
-                    print("   removing query:", path, method, remove_param)
-              if (value != None) and isinstance(value,str) and value.startswith("#/") :
-                # get the reference.
-                dict_value = db_get_key(json_data, value)
-                if isinstance(dict_value, dict):
-                  if is_query_to_be_removed(dict_value, remove_param):
-                    remove_item = param_item
-                    print("   removing query:", path, method, remove_param, value)
-                    print("   removing definition:", value)
-                    db_remove_key(json_data, value)
-           if remove_item:
-              method_item["parameters"].remove(remove_item)
+            remove_item = None
+            for param_item in method_item["parameters"]:
+                value = param_item.get("$ref")
+                if isinstance(value, dict):
+                    if is_query_to_be_removed(value, remove_param):
+                        remove_item = param_item
+                        print("   removing query:", path, method, remove_param)
+                if (value != None) and isinstance(value,str) and value.startswith("#/") :
+                    # get the reference.
+                    dict_value = db_get_key(json_data, value)
+                    if isinstance(dict_value, dict):
+                        if is_query_to_be_removed(dict_value, remove_param):
+                            remove_item = param_item
+                            print("   removing query:", path, method, remove_param, value)
+                            print("   removing definition:", value)
+                            db_remove_key(json_data, value)
+            if remove_item:
+                method_item["parameters"].remove(remove_item)
 
 
 def collapse_allOf(json_data):
@@ -1113,7 +1106,7 @@ def collapse_allOf(json_data):
     collapse_allOf
     - only collapses if the keys below allOf are not of [allOf, anyOf, oneOf]
     e.g.
-       { oneOf [ properties : {a,b}, properties {a,c}  ] }   ==>    {  properties : {a,b,c } } 
+       { oneOf [ properties : {a,b}, properties {a,c}  ] }   ==>    {  properties : {a,b,c } }
     :param json_data: the parsed swagger file
     """
     print("collapse_allOf:")
@@ -1149,7 +1142,7 @@ def collapse_allOf(json_data):
                                     for prop_item_name, prop_item in item.items():
                                        new_props["properties"][prop_item_name] = prop_item
                         if item_name in ["oneOf", "anyOf", "allOf"]:
-                            handle_allof = False        
+                            handle_allof = False
         if handle_allof:
             if VERBOSE:
                 print(" processing: ", def_name)
@@ -1477,7 +1470,6 @@ def main_app(my_args, generation_type):
                             "title": " ",
                             "version": " " },
                         }
-
     for my_file in files_to_process:
         print("")
         print("  main: File :", my_file)
@@ -1487,7 +1479,6 @@ def main_app(my_args, generation_type):
         for rt in rt_values:
             if rt[index_rt] == rt_values_file[0]:
                 rt.append(my_file)  
-                
     if rt_values is not None:
         for rt in rt_values:
             # always append one...
@@ -1502,7 +1493,7 @@ def main_app(my_args, generation_type):
             print("    rts (enum)            :", rt[index_rts])
             print("    basefile              :", rt[index_file])
             print("    additional props      :", rt[index_add_props])
-        print(" ")   
+        print(" ")
 
         index = 0
         for rt in rt_values:
@@ -1547,21 +1538,17 @@ if __name__ == '__main__':
     print("*** DeviceBuilder (v1.2) ***")
     print("****************************")
     parser = argparse.ArgumentParser()
-
     parser.add_argument("-ver", "--verbose", default=False, help="Execute in verbose mode", action='store_true')
-
     parser.add_argument("-ocfres", "--ocfres", default=None,
                          help="ocf/res input", nargs='?', const="", required=False)
     parser.add_argument("-input", "--input", default=None,
                          help="device builder input format", nargs='?', const="", required=False)
     parser.add_argument("-out", "--out", default=None,
                          help="output dir + prefix e.g. (../mydir/generated1)", nargs='?', const="", required=True)
-
     parser.add_argument("-intermediate_files", "--intermediate_files", default=False,
                          help="write intermediate files", required=False)      
-                         
     parser.add_argument("-resource_dir", "--resource_dir", default=None,
-                         help="resource directory",  nargs='?', const="", required=False)
+                         help="resource directory", nargs='?', const="", required=False)
     parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*',
                         help='remove property (--remove_property  value range step precision id) ')
     parser.add_argument('-type', '--type', default=None, nargs='?',
@@ -1587,7 +1574,6 @@ if __name__ == '__main__':
         print("")
         print("== INTROSPECTION ==")
         main_app(myargs, "introspection")
-        
         print("")
         print("== CODE GENERATION ==")
         main_app(myargs, "codegeneration")
