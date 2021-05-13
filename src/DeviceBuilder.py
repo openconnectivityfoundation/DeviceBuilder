@@ -246,7 +246,7 @@ def find_key_link(rec_dict, target, depth=0):
         if found:
             return rvalues
         # key is an dict
-        for key,value in rec_dict.items():
+        for key, value in rec_dict.items():
             r = find_key_link(value, target, depth + 1)
             if r is not None:
                 return r
@@ -339,13 +339,13 @@ def get_dict_recursively(search_dict, field):
                             fields_found.append(another_result)
     except:
         traceback.print_exc()
-    return fields_found  
+    return fields_found
 
 
 def find_key_and_clean(rec_dict, search_key, depth=0):
     """
     find all keys and clean the value, e.g. make the value an empty string
-    also traverse lists (arrays, oneOf,..) 
+    also traverse lists (arrays, oneOf,..)
     :param rec_dict: dict to search in, json schema dict, so it is combination of dict and arrays
     :param search_key: target key to search in the dict and to be updated
     :param depth: depth of the search (recursion)
@@ -431,7 +431,7 @@ def db_get_key(input_json_data, dict_path):
     dict_path defined as '#/something/something/somethingelse
     """
     my_data = input_json_data
-    if isinstance(dict_path,str) is False:
+    if isinstance(dict_path, str) is False:
         return []
     my_path_segments = dict_path.split("/")
     for path_seg in my_path_segments:
@@ -477,13 +477,13 @@ def swagger_rt(json_data):
                 rt_values.append(rt_value)
         else:
             rt = db_get_key(item, "post/responses/200/x-example/rt")
-            if isinstance(rt, list)  and len(rt) > 0:
+            if isinstance(rt, list) and len(rt) > 0:
                 for rt_value in rt:
                     rt_values.append(rt_value)
             else:
                 schema_id = db_get_key(item, "get/responses/200/schema/$ref")
                 my_data = db_get_key(json_data, schema_id)
-                rt = db_get_key(my_data,"properties/rt/items/enum")
+                rt = db_get_key(my_data, "properties/rt/items/enum")
                 for rt_value in rt:
                     rt_values.append(rt_value)
     print(" swagger_rt rt (array):", rt_values)
@@ -677,7 +677,7 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                     rt_prop = properties.get("rt")
                     if rt_prop is None:
                         print("  update_definition_with_rt rt not found!, inserting..")
-                        properties["rt"] =  json.loads("""{
+                        properties["rt"] = json.loads("""{
                               "type" : "array",
                               "items" : {
                                 "type" : "string",
@@ -687,7 +687,6 @@ def update_definition_with_rt(json_data, rt_value_file, rt_values):
                               "readOnly" : true,
                               "default" : ["oic.r.switch.binary"]
                             }""")
-                    
                     for prop_name, prop in properties.items():
                         if prop_name == "rt":
                             print("  update_definition_with_rt ", prop_name)
@@ -747,7 +746,7 @@ def update_definition_with_if(json_data, rt_value_file, rt_values):
                     if_prop = properties.get("if")
                     if if_prop is None:
                         print("  update_definition_with_if if not found!, inserting..")
-                        properties["if"] =  json.loads("""{
+                        properties["if"] = json.loads("""{
                           "type" : "array",
                           "readOnly": true,
                           "items" : {
@@ -802,12 +801,13 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
     :param rt_values: array of rt values e.g.[[rt_value, href, prop_if, my_type, props, methods],...]
     """
     print("update_definition_with_type")
-    
+
     for rt_value in rt_values:
         print("  href:", rt_value[index_href], " type:", rt_value[index_type])
-        
-    supported_types = ["integer", "number", "string", "boolean"]  
-    keys_to_handle = ["type", "step", "precision", "value"] # range needs to be handled differently since it is an array
+
+    supported_types = ["integer", "number", "string", "boolean"]
+    keys_to_handle = ["type", "step", "precision", "value"]
+    # range needs to be handled differently since it is an array
     # array of arrays of path, r, ref, rt_values
     keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
@@ -846,7 +846,7 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                     # invalid type
                     if my_type is not None:
                         print(" *** ERROR type is not valid:", entry[3][index_type],
-                               " supported types:", supported_types)
+                                " supported types:", supported_types)
                 elif properties is not None:
                     # properties is the top key 
                     my_type = entry[3][index_type]
@@ -887,7 +887,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
     for rt_value in rt_values:
         print("  rt:", rt_value[index_rt], " prop:", rt_value[index_prop])
 
-    if rt_values[0][index_prop] == None :
+    if rt_values[0][index_prop] is None:
         return
 
     # array of arrays of path, r, ref, rt_values
@@ -913,7 +913,7 @@ def remove_definition_properties(json_data, rt_value_file, rt_values):
             if found_rt:
                 keyvaluepairs.append([path, rt, ref, rt_f])
         except:
-            pass    
+            pass
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
         full_def_name = "#/definitions/" + def_name
@@ -940,7 +940,7 @@ def add_definition_properties(json_data, rt_value_file, rt_values, dirname, file
     rt = None
     for rt_value in rt_values:
         print("  new props:", rt_value[index_rt], " prop:", rt_value[index_add_props])
-    if rt_values[0][index_add_props] == None :
+    if rt_values[0][index_add_props] == None:
         return
     for item in rt_value[index_add_props]:
         key, items = find_resource_in_files(dirname, file_list, item)
@@ -1041,6 +1041,7 @@ def update_path_value(json_data, rt_value_file, rt_values):
         else:
             print(" update_path_value: already the same :", replacement)
 
+
 def is_query_to_be_removed(my_dict, remove_param):
     """
     "unit" :  {
@@ -1078,9 +1079,9 @@ def remove_query_param(json_data, rt_value_file, rt_values):
         print("   href:", rt_value[index_href], " query name:", rt_value[index_remove_query])
     remove_param = rt_value[index_remove_query]
     # array of arrays of path, r, ref, rt_values
-    keyvaluepairs =[]
+    # keyvaluepairs = []
     for path, path_item in json_data["paths"].items():
-       for method, method_item in path_item.items():
+        for method, method_item in path_item.items():
             remove_item = None
             for param_item in method_item["parameters"]:
                 value = param_item.get("$ref")
@@ -1088,7 +1089,7 @@ def remove_query_param(json_data, rt_value_file, rt_values):
                     if is_query_to_be_removed(value, remove_param):
                         remove_item = param_item
                         print("   removing query:", path, method, remove_param)
-                if (value != None) and isinstance(value,str) and value.startswith("#/") :
+                if (value != None) and isinstance(value,str) and value.startswith("#/"):
                     # get the reference.
                     dict_value = db_get_key(json_data, value)
                     if isinstance(dict_value, dict):
@@ -1112,7 +1113,7 @@ def collapse_allOf(json_data):
     print("collapse_allOf:")
     def_data = json_data["definitions"]
     for def_name, def_item in def_data.items():
-        print("  ",def_name)
+        print("  ", def_name)
         handle_allof = False
         new_props = {}
         for prop_name, prop in def_item.items():
@@ -1128,7 +1129,7 @@ def collapse_allOf(json_data):
                             else:
                                 # add properties decendants to the existing properties key
                                 for prop_item_name, prop_item in item.items():
-                                   new_props["properties"][prop_item_name] = prop_item 
+                                   new_props["properties"][prop_item_name] = prop_item
                         elif item_name == "description":
                             new_props[item_name] = item
                         else:
@@ -1138,9 +1139,9 @@ def collapse_allOf(json_data):
                                 new_props[item_name] = item
                             else:
                                 # add properties decendants to the existing properties key
-                                if isinstance(item, dict): 
+                                if isinstance(item, dict):
                                     for prop_item_name, prop_item in item.items():
-                                       new_props["properties"][prop_item_name] = prop_item
+                                        new_props["properties"][prop_item_name] = prop_item
                         if item_name in ["oneOf", "anyOf", "allOf"]:
                             handle_allof = False
         if handle_allof:
@@ -1181,7 +1182,7 @@ def handle_collections(json_data, rt_value_file, rt_values):
                 keyvaluepairs.append([path, rt, ref, rt_f])
         except:
             pass
-    if rt_values[0][index_rts] == None:
+    if rt_values[0][index_rts] is None:
         return
 
     def_data = json_data["definitions"]
@@ -1190,9 +1191,9 @@ def handle_collections(json_data, rt_value_file, rt_values):
         for entry in keyvaluepairs:
             if entry[2] == full_def_name:
                 # found entry
-                rd = get_dict_recursively (def_item, "rts")
-                newval = {'type': 'array', 'minItems': 1, 'items': {""},  'uniqueItems': True}
-                my_enum ={}
+                rd = get_dict_recursively(def_item, "rts")
+                newval = {'type': 'array', 'minItems': 1, 'items': {""}, 'uniqueItems': True}
+                my_enum = {}
                 my_enum["enum"] = rt_values[0][index_rts]
                 newval["items"] = my_enum
                 for item in rd:
@@ -1210,10 +1211,8 @@ def create_code_generation(json_data, rt_value_file, rt_values, index, dirname, 
     """
     print("")
     rt_single = [rt_values[index]]
-    
-    # this should 
     rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
-    if rt_single[0][index_rt] in rt_ingore_list :
+    if rt_single[0][index_rt] in rt_ingore_list:
         print("create_code_generation ignored:", rt_single[0][index_rt])
         json_data = None
         return
@@ -1257,7 +1256,7 @@ def create_introspection(json_data, rt_value_file, rt_values, index, dirname, fi
     remove_query_param(json_data, rt_value_file, rt_single)
 
 
-def optimize_introspection(json_data):    
+def optimize_introspection(json_data):
     """
     optimize the json
     - clear the descriptions (e.g. remove the text only)
@@ -1292,10 +1291,10 @@ def merge(merge_data, file_data, index):
             ddiff = DeepDiff(cmp_data, parameter_item, ignore_order=True)
             if ddiff == {}:
                 # found the same tree, but with a different name
-                print("   ==> parameter merge: found" + parameter +"identical tree with name:", cmp)
+                print("   ==> parameter merge: found" + parameter + "identical tree with name:", cmp)
                 # fix the path data to the existing found parameter, do it 2 times..
                 search_parameter = "#/parameters/" + parameter
-                new_parameter = cmp #"p" + str(index) +"p"+ str(local_index)
+                new_parameter = cmp  # "p" + str(index) +"p"+ str(local_index)
                 my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
                 while my_dict is not None:
                     # update the reference
@@ -1303,12 +1302,12 @@ def merge(merge_data, file_data, index):
                     # find next
                     my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
                 fixed = True
-                break 
-        if fixed == False:
+                break
+        if fixed is False:
             # there is no matching existing definition, add a new one with a new name
             new_parameter = "p" + str(index) + str(local_index)
             print("merge: parameter adding new:", parameter, " adding as:", new_parameter)
-            # fix the path data, do it 2 times.. 
+            # fix the path data, do it 2 times..
             search_parameter = "#/parameters/" + parameter
             my_dict = find_key_value(file_data["paths"], "$ref", search_parameter)
             while my_dict is not None:
@@ -1331,7 +1330,7 @@ def merge(merge_data, file_data, index):
                 print("   ==> definition merge:"+ definition +"found identical tree with name:", cmp)
                 # fix the path data to the existing found parameter, do it 2 times..
                 search_definition = "#/definitions/" + definition
-                new_definition = cmp #"d" + str(index) + str(local_index)
+                new_definition = cmp  # "d" + str(index) + str(local_index)
                 my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
                 while my_dict is not None:
                     # update the reference
@@ -1340,11 +1339,11 @@ def merge(merge_data, file_data, index):
                     my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
                 fixed = True
                 break 
-        if fixed == False:
+        if fixed is False:
             # there is no matching existing definition, add a new one with a new name
             new_definition = "d" + str(index) + str(local_index)
             print("merge: ===> definition adding new:", definition, " adding as:", new_definition)
-            # fix the path data, do it 2 times.. 
+            # fix the path data, do it 2 times..
             search_definition = "#/definitions/" + definition
             my_dict = find_key_value(file_data["paths"], "$ref", search_definition)
             while my_dict is not None:
@@ -1382,17 +1381,16 @@ def resolve_ref(json_data, ref_dict):
                         new_data_i = json_data["definitions"]
                         m_ref = reference.split("/")
                         for i in range(len(m_ref)):
-                           print("resolve_ref: key:", m_ref[i])
-                           new_data = new_data_i[m_ref[i]]
-                           new_data_i = new_data
+                            print("resolve_ref: key:", m_ref[i])
+                            new_data = new_data_i[m_ref[i]]
+                            new_data_i = new_data
                     if value.startswith("http"):
                         print("resolve_ref: found external $ref: ", value)
                         reference = value.split('#/definitions/')[1]
                         url = value.split("#")[0]
-                        filename = "removeme_"+url[url.rfind("/")+1:]
+                        filename = "removeme_" + url[url.rfind("/") + 1:]
                         wget.download(url, filename)
                         print("resolve_ref: url:", url)
-                        #print("resolve_ref: ref:", reference)
                         json_file = load_json(filename)
                         try:
                             os.remove(filename)
@@ -1464,12 +1462,12 @@ def main_app(my_args, generation_type):
     # not required so not framing...:
     # "consumes": [ "application/json" ],
     #              "termsOfService": "",
-    merged_data = {    "definitions": {}, "parameters": {}, "paths": {} ,
+    merged_data =   {   "definitions": {}, "parameters": {}, "paths": {} ,
                         "swagger": "2.0",
                         "info": { "license": { "name": " " },
                             "title": " ",
                             "version": " " },
-                        }
+                    }
     for my_file in files_to_process:
         print("")
         print("  main: File :", my_file)
@@ -1501,31 +1499,29 @@ def main_app(my_args, generation_type):
                 file_data = load_json(rt[index_file], str(my_args.resource_dir))
                 resolve_external(file_data)
                 rt_values_file = swagger_rt(file_data)
-                
                 if "introspection" == generation_type:
                     print("optimize for introspection..")
-                    create_introspection(file_data, rt_values_file, rt_values, index, str(my_args.resource_dir)+"/schemas", schema_files)
+                    create_introspection(file_data, rt_values_file, rt_values, index, str(my_args.resource_dir) + "/schemas", schema_files)
                     optimize_introspection(file_data)
                 else:
-                    create_code_generation(file_data, rt_values_file, rt_values, index, str(my_args.resource_dir)+"/schemas", schema_files)
-                    rt_ingore_list = ["oic.wk.res",  "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
+                    create_code_generation(file_data, rt_values_file, rt_values, index, str(my_args.resource_dir) + "/schemas", schema_files)
+                    rt_ingore_list = ["oic.wk.res", "oic.wk.introspection", "oic.wk.p", "oic.wk.d"]
                     rt_single = [rt_values[index]]
-                    if rt_single[0][index_rt] in rt_ingore_list :
+                    if rt_single[0][index_rt] in rt_ingore_list:
                         print("merge ignored:", rt_single[0][index_rt])
                         file_data = None
-
                 if write_intermediate:
-                    file_to_write = str(my_args.out) + "_" + generation_type + "_" + str(index) +"_"+rt[6]
+                    file_to_write = str(my_args.out) + "_" + generation_type + "_" + str(index) + "_"+rt[6]
                     write_json(file_to_write, file_data)
                 if merged_data is None:
                     merged_data = file_data
                 else:
                     merge(merged_data, file_data, index)
             index = index + 1
-        if merged_data is not None: 
+        if merged_data is not None:
             file_to_write = str(my_args.out) + "_" + generation_type + "_" + "merged.swagger.json"
             if my_args.title is not None:
-                print("  Setting title:",  my_args.title)
+                print("  Setting title:", my_args.title)
                 merged_data["info"]["title"] = my_args.title
             write_json(file_to_write, merged_data)
 
@@ -1540,15 +1536,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-ver", "--verbose", default=False, help="Execute in verbose mode", action='store_true')
     parser.add_argument("-ocfres", "--ocfres", default=None,
-                         help="ocf/res input", nargs='?', const="", required=False)
+                        help="ocf/res input", nargs='?', const="", required=False)
     parser.add_argument("-input", "--input", default=None,
-                         help="device builder input format", nargs='?', const="", required=False)
+                        help="device builder input format", nargs='?', const="", required=False)
     parser.add_argument("-out", "--out", default=None,
-                         help="output dir + prefix e.g. (../mydir/generated1)", nargs='?', const="", required=True)
+                        help="output dir + prefix e.g. (../mydir/generated1)", nargs='?', const="", required=True)
     parser.add_argument("-intermediate_files", "--intermediate_files", default=False,
-                         help="write intermediate files", required=False)      
+                        help="write intermediate files", required=False)
     parser.add_argument("-resource_dir", "--resource_dir", default=None,
-                         help="resource directory", nargs='?', const="", required=False)
+                        help="resource directory", nargs='?', const="", required=False)
     parser.add_argument('-remove_property', '--remove_property', default=None, nargs='*',
                         help='remove property (--remove_property  value range step precision id) ')
     parser.add_argument('-type', '--type', default=None, nargs='?',
