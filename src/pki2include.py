@@ -67,8 +67,8 @@ print("***  pki2include (v1)   ***")
 print("***************************")
 parser = argparse.ArgumentParser()
 
-parser.add_argument( "-ver", "--verbose", help="Execute in verbose mode", action='store_true')
-parser.add_argument( "-file", "--file", default=None, help="zip file name", nargs='?', const="", required=False)
+parser.add_argument("-ver", "--verbose", help="Execute in verbose mode", action='store_true')
+parser.add_argument("-file", "--file", default=None, help="zip file name", nargs='?', const="", required=False)
 args = parser.parse_args()
 
 print("file        : " + str(args.file))
