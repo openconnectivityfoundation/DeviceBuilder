@@ -865,7 +865,7 @@ def update_definition_with_type(json_data, rt_value_file, rt_values):
                                     print("update_definition_with_type ", prop_name)
                                 prop["items"].pop("anyOf")
                                 prop["items"]["type"] = my_type
-                else :
+                else:
                     try:
                         ds = def_item | grep("type")
                         print(" ===> grep")
@@ -940,7 +940,7 @@ def add_definition_properties(json_data, rt_value_file, rt_values, dirname, file
     rt = None
     for rt_value in rt_values:
         print("  new props:", rt_value[index_rt], " prop:", rt_value[index_add_props])
-    if rt_values[0][index_add_props] == None:
+    if rt_values[0][index_add_props] is None:
         return
     for item in rt_value[index_add_props]:
         key, items = find_resource_in_files(dirname, file_list, item)
@@ -1461,14 +1461,14 @@ def main_app(my_args, generation_type):
     # not required so not framing...:
     # "consumes": [ "application/json" ],
     #              "termsOfService": "",
-    merged_data =   {   "definitions": {}, 
-                        "parameters": {}, 
-                        "paths": {},
-                        "swagger": "2.0",
-                        "info": { "license": { "name": " " },
-                                  "title": " ",
-                                  "version": " " }
-                    }
+    merged_data =   {"definitions": {},
+                     "parameters": {},
+                     "paths": {},
+                     "swagger": "2.0",
+                     "info": {"license": {"name": " "},
+                              "title": " ",
+                              "version": " "}}
+
     for my_file in files_to_process:
         print("")
         print("  main: File :", my_file)
