@@ -28,28 +28,29 @@
 import argparse
 import os
 from time import gmtime, strftime
-from zipfile import ZipFile 
+from zipfile import ZipFile
 
 import sys
 import traceback
 import io
 import re
 
+
 def write_contents(f, data, name):
-    decl = "const char *"+name+" = "
+    decl = "const char *" + name + " = "
     f.write(decl)
     data = data.decode('utf-8')
-    lines = io.StringIO(data);
+    lines = io.StringIO(data)
     line = lines.readline()
     while line != '':
-        mychar = line[-2:-1] 
+        mychar = line[-2:-1]
         mychar2 = line[-1:]
         if hex(ord(mychar)) == "0xd":
             # print ("-2", len(line[-2:]), hex(ord(mychar)),hex(ord(mychar2)))
-            f.write("\"" + line[:-2] +"\\r\\n\"")
+            f.write("\"" + line[:-2] + "\\r\\n\"")
         else:
             # print ("-1",len(line[-2:]),hex(ord(mychar)),hex(ord(mychar2)))
-            f.write("\"" + line[:-1] +"\\r\\n\"")
+            f.write("\"" + line[:-1] + "\\r\\n\"")
         line = lines.readline()
         if line == '':
             f.write(";\n\n")
@@ -60,10 +61,10 @@ def write_contents(f, data, name):
 if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
                     (sys.version_info[0], sys.version_info[1]))
- 
-print ("***************************")
-print ("***  pki2include (v1)   ***")
-print ("***************************")
+
+print("***************************")
+print("***  pki2include (v1)   ***")
+print("***************************")
 parser = argparse.ArgumentParser()
 
 parser.add_argument( "-ver", "--verbose", help="Execute in verbose mode", action='store_true')
@@ -72,8 +73,8 @@ args = parser.parse_args()
 
 print("file        : " + str(args.file))
 
-if (args.file) :
-    f = open(args.file+".h", "w")
+if (args.file):
+    f = open(args.file + ".h", "w")
 
     file_name = str(args.file)
     filename = file_name.split(".z")[0]
@@ -102,7 +103,7 @@ if (args.file) :
     f.write("#ifndef PKI_CERT_INCLUDE_H\n")
     f.write("#define PKI_CERT_INCLUDE_H\n")
     f.write("#if defined(OC_SECURITY) && defined(OC_PKI)\n\n")
-    
+
     f.write("/* PKI certificate data\n")
     f.write(" input file = ")
     f.write(args.file)
@@ -110,7 +111,7 @@ if (args.file) :
     f.write(" prefix = ")
     f.write(prefix)
     f.write("\n")
-    
+
     f.write(" date ")
     f.write(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
     f.write("\n*/\n\n")
@@ -121,36 +122,35 @@ if (args.file) :
             zip.printdir()
             chain_prefix = "chain"
 
-            #determine if the zip has a parent directory
+            # determine if the zip has a parent directory
             pattern = r"/?([a-zA-Z0-9 _]+)?/pki_certs_cert.pem"
             dir_list = zip.namelist()
             for zfile in dir_list:
-                match_object = re.match(pattern,zfile)
+                match_object = re.match(pattern, zfile)
                 if match_object:
                     prefix = match_object.group(1) + '/' + prefix
                     chain_prefix = match_object.group(1) + '/' + chain_prefix
 
             data = zip.read(prefix + "_cert.pem")
-            write_contents(f, data, "my_cert");
+            write_contents(f, data, "my_cert")
 
             data = zip.read(prefix + "_key.pem")
-            write_contents(f, data, "my_key");
+            write_contents(f, data, "my_key")
 
             data = zip.read(chain_prefix + "/1-subca-cert.pem")
-            write_contents(f, data, "int_ca");
-            
+            write_contents(f, data, "int_ca")
+
             data = zip.read(chain_prefix + "/0-root-cert.pem")
-            write_contents(f, data, "root_ca");
+            write_contents(f, data, "root_ca")
 
     except:
-        print (" ERROR zip file not found: no certificate data")
+        print(" ERROR zip file not found: no certificate data")
         data = " FAKE".encode("windows-1252")
-        write_contents(f, data, "my_cert");
-        write_contents(f, data, "my_key");
-        write_contents(f, data, "int_ca");
-        write_contents(f, data, "root_ca");
+        write_contents(f, data, "my_cert")
+        write_contents(f, data, "my_key")
+        write_contents(f, data, "int_ca")
+        write_contents(f, data, "root_ca")
 
     f.write("#endif /* OC_SECURITY && OC_PKI */\n")
     f.write("#endif /* PKI_CERT_INCLUDE_H */\n")
     f.close()
-
