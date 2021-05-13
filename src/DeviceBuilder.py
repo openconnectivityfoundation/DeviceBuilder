@@ -1461,13 +1461,13 @@ def main_app(my_args, generation_type):
     # not required so not framing...:
     # "consumes": [ "application/json" ],
     #              "termsOfService": "",
-    merged_data =   {"definitions": {},
-                     "parameters": {},
-                     "paths": {},
-                     "swagger": "2.0",
-                     "info": {"license": {"name": " "},
-                              "title": " ",
-                              "version": " "}}
+    merged_data = {"definitions": {},
+                   "parameters": {},
+                   "paths": {},
+                   "swagger": "2.0",
+                   "info": {"license": {"name": " "},
+                            "title": " ",
+                            "version": " "}}
 
     for my_file in files_to_process:
         print("")
