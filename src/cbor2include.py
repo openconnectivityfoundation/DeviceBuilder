@@ -50,13 +50,13 @@ if (args.file) :
     if args.verbose:
         print("cbor data:")
         print (cbor_data)
-        
+
     f = open(args.file+".h", "w")
 
     size_cbor = len(cbor_data)
     if args.verbose:
         print("size:", size_cbor)
-        
+
     f.write("/*\n")
     f.write("#    copyright 2019 Open Interconnect Consortium, Inc. All rights reserved.\n")
     f.write("#    Redistribution and use in source and binary forms, with or without modification,\n")
@@ -104,12 +104,9 @@ if (args.file) :
         if counter == 12:
              f.write ("\n")
              counter = 0
-    f.write(hex(int(cbor_data[len(cbor_data)-1])))
-   
+    f.write(hex(int(cbor_data[len(cbor_data) - 1])))
+
     f.write("};\n\n")
     f.write("#endif /* INTROSPECTION_INCLUDE_H */\n")
     f.close()
-    
 
-    
-    
