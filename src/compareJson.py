@@ -1,6 +1,6 @@
 #############################
 #
-#    copyright 2016 Open Interconnect Consortium, Inc. All rights reserved.
+#    copyright 2016-2021 Open Interconnect Consortium, Inc. All rights reserved.
 #    Redistribution and use in source and binary forms, with or without modification,
 #    are permitted provided that the following conditions are met:
 #    1.  Redistributions of source code must retain the above copyright notice,
@@ -27,19 +27,18 @@ import json
 import sys
 import traceback
 
-
-try: 
+try:
     from deepdiff import DeepDiff
 except:
     print("missing DeepDiff:")
-    print ("Trying to Install required module: DeepDiff ")
+    print("Trying to Install required module: DeepDiff ")
     os.system('python3 -m pip install deepdiff')
 import deepdiff
- 
+
 if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
                     (sys.version_info[0], sys.version_info[1]))
- 
+
 def json_print(data):
     """
     pretty print json
@@ -49,8 +48,9 @@ def json_print(data):
         json_string = json.dumps(data, indent=2)
         print(json_string)
     except:
-        print (data)
- 
+        print(data)
+
+
 def load_json(filename, my_dir=None):
     """
     load the JSON file
@@ -62,12 +62,12 @@ def load_json(filename, my_dir=None):
     if my_dir is not None:
         full_path = os.path.join(my_dir, filename)
     if os.path.isfile(full_path) is False:
-        print ("json file does not exist:", full_path)
+        print("json file does not exist:", full_path)
     linestring = open(full_path, 'r').read()
     json_dict = json.loads(linestring)
     return json_dict
 
-    
+
 def compare_json(file1, file2):
     """
     compare 2 json files, ignoring the order..
@@ -81,16 +81,16 @@ def compare_json(file1, file2):
         print(" == EQUAL ==")
     else:
         print(" == NOT EQUAL == ")
-        json_print (ddiff)
-    
-            
+        json_print(ddiff)
+
+
 #
 #   main of script
 #
 if __name__ == '__main__':
-    print ("***************************")
-    print ("***  compareJson (v1)   ***")
-    print ("***************************")
+    print("***************************")
+    print("***  compareJson (v1)   ***")
+    print("***************************")
     parser = argparse.ArgumentParser()
 
     parser.add_argument( "-ver", "--verbose", help="Execute in verbose mode", action='store_true')
@@ -101,12 +101,5 @@ if __name__ == '__main__':
 
     print("file1        : " + str(args.file1))
     print("file2        : " + str(args.file2))
-        
+
     compare_json(args.file1, args.file2)
-
-
-    
-
-   
-    
-    
