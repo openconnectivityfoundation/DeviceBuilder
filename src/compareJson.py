@@ -39,6 +39,7 @@ if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
                     (sys.version_info[0], sys.version_info[1]))
 
+
 def json_print(data):
     """
     pretty print json
@@ -74,8 +75,8 @@ def compare_json(file1, file2):
     :param file1: filename (with extension)
     :param file2: path to the file
     """
-    file_data1 = load_json(file1) 
-    file_data2 = load_json(file2)  
+    file_data1 = load_json(file1)
+    file_data2 = load_json(file2)
     ddiff = DeepDiff(file_data1, file_data2, ignore_order=True)
     if ddiff == {}:
         print(" == EQUAL ==")
@@ -93,9 +94,9 @@ if __name__ == '__main__':
     print("***************************")
     parser = argparse.ArgumentParser()
 
-    parser.add_argument( "-ver", "--verbose", help="Execute in verbose mode", action='store_true')
-    parser.add_argument( "-file1", "--file1", default=None, help="swagger file name 1",  nargs='?', const="", required=True)
-    parser.add_argument( "-file2", "--file2", default=None, help="swagger file name 2",  nargs='?', const="", required=True)
+    parser.add_argument("-ver", "--verbose", help="Execute in verbose mode", action='store_true')
+    parser.add_argument("-file1", "--file1", default=None, help="swagger file name 1", nargs='?', const="", required=True)
+    parser.add_argument("-file2", "--file2", default=None, help="swagger file name 2", nargs='?', const="", required=True)
 
     args = parser.parse_args()
 
