@@ -36,19 +36,19 @@ print("***  cbor2include (v1)   ***")
 print("*************************")
 parser = argparse.ArgumentParser()
 
-parser.add_argument( "-ver", "--verbose", help="Execute in verbose mode", action='store_true')
-parser.add_argument( "-file", "--file", default=None, help="swagger file name", nargs='?', const="", required=False)
+parser.add_argument("-ver", "--verbose", help="Execute in verbose mode", action='store_true')
+parser.add_argument("-file", "--file", default=None, help="swagger file name", nargs='?', const="", required=False)
 
 args = parser.parse_args()
 
 print("file        : " + str(args.file))
 
-if (args.file) :
+if (args.file):
     cbor_data = open(args.file, 'rb').read()
 
     if args.verbose:
         print("cbor data:")
-        print (cbor_data)
+        print(cbor_data)
 
     f = open(args.file + ".h", "w")
 
@@ -99,10 +99,10 @@ if (args.file) :
         int_item = int(item)
         f.write(" ")
         f.write(hex(int_item))
-        f.write ("," )
+        f.write(",")
         if counter == 12:
-             f.write ("\n")
-             counter = 0
+            f.write("\n")
+            counter = 0
     f.write(hex(int(cbor_data[len(cbor_data) - 1])))
 
     f.write("};\n\n")
