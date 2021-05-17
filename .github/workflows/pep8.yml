@@ -38,6 +38,6 @@ jobs:
           # W605 invalid escape sequence '\ ' 
           pycodestyle --ignore=E501,E722,W605 src/DeviceBuilder.py
           pycodestyle --ignore=E501,E722,W605 src/pki2include.py
-          #pycodestyle --ignore=E501,E722,W605 src/swag2cbor.py
-          #pycodestyle --ignore=E501,E722,W605 src/cbor2include.py
-          #pycodestyle --ignore=E501,E722,W605 src/compareJson.py
+          pycodestyle --ignore=E501,E722,W605 src/swag2cbor.py
+          pycodestyle --ignore=E501,E722,W605 src/cbor2include.py
+          pycodestyle --ignore=E501,E722,W605 src/compareJson.py

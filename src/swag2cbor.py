@@ -39,9 +39,9 @@ if sys.version_info < (3, 5):
     raise Exception("ERROR: Python 3.5 or more is required, you are currently running Python %d.%d!" %
                     (sys.version_info[0], sys.version_info[1]))
  
-print ("*************************")
-print ("***  swag2cbor (v1)   ***")
-print ("*************************")
+print("*************************")
+print("***  swag2cbor (v1)   ***")
+print("*************************")
 parser = argparse.ArgumentParser()
 
 parser.add_argument( "-ver", "--verbose", help="Execute in verbose mode", action='store_true')
@@ -58,17 +58,17 @@ if (args.file) :
     schema_data = json.loads(swagger_raw)
     if args.verbose:
         print("json data:")
-        print (schema_data)
+        print(schema_data)
 
     cbor_data = cbor.dumps(schema_data)
     if args.verbose:
         print("cbor data:")
-        print (cbor_data)
-        
+        print(cbor_data)
+
     f = open(args.file+".cbor", "wb")
     f.write(cbor_data)
     f.close()
-    
+
 if (args.cbor) :
 
     cbor_raw = None
@@ -77,7 +77,7 @@ if (args.cbor) :
     except:
         print ("cbor_to_txt: failed:", args.cbor)
         traceback.print_exc()
-        
+
     if args.verbose:
         print("cbor data:")
         print (cbor_raw)
@@ -88,15 +88,13 @@ if (args.cbor) :
     except:
         print ("cbor_to_txt: failed:", cbor_raw)
         traceback.print_exc()
-        
+
     if args.verbose:
         print("json data:")
         print (json_data)
-        
+
     fp = open(str(args.cbor)+".json", "w")
     json_string = json.dumps(json_data, indent=2, sort_keys=True)
     fp.write(json_string)
     fp.close()
-   
-    
-    
+
