@@ -4,6 +4,6 @@
       "path" : "/binaryswitch",
       "rt"   : [ "oic.r.switch.binary" ],
       "if"   : ["oic.if.a", "oic.if.baseline" ],
-      "remove_properties" : [ "range", "step" , "id", "precision" ]
+      "remove_properties" : [ "range", "step" , "id", "precision", "n" ]
     }
 ]
