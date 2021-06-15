@@ -109,7 +109,7 @@ This input file describes the minimal light device, implementing only binary swi
             "path" : "/binaryswitch",
             "rt"   : [ "oic.r.switch.binary" ],
             "if"   : ["oic.if.a", "oic.if.baseline" ],
-            "remove_properties" : [ "range", "step" , "id", "precision" ]
+            "remove_properties" : [ "range", "step" , "id", "precision", "n" ]
         }
     ]
     ```
