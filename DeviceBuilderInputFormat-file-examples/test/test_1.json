@@ -2,19 +2,19 @@
 
     {
       "path" : "/queryurl",
-      "rt"   : [ "oic.r.test-query" ],
+      "rt"   : [ "oic.r.test.query" ],
       "if"   : ["oic.if.baseline", "oic.if.a" ],
       "remove_properties" : ["id" , "n"]
     },
     {
       "path" : "/rangeurl",
-      "rt"   : [ "oic.r.test-range" ],
+      "rt"   : [ "oic.r.test.range" ],
       "if"   : ["oic.if.baseline", "oic.if.a" ],
       "remove_properties" : ["id" , "n"]
     },
     {
       "path" : "/varianturl",
-      "rt"   : [ "oic.r.test-variant" ], 
+      "rt"   : [ "oic.r.test.variant" ], 
       "if"   : ["oic.if.baseline", "oic.if.a" ],
       "remove_properties" : ["id" , "n"]
     },

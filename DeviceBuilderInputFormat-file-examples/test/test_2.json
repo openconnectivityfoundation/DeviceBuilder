@@ -1,0 +1,37 @@
+[
+  {
+    "path" : "/air1",
+    "rt"   : [ "oic.r.airquality" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ]
+  },
+  {
+    "path" : "/alarm",
+    "rt"   : [ "oic.r.alarm" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ]
+  },
+  {
+    "path" : "/audio",
+    "rt"   : [ "oic.r.audio" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ]
+  },
+  {
+    "path" : "/battery",
+    "rt"   : [ "oic.r.energy.battery" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ]
+  },
+  {
+    "path" : "/docfeeder",
+    "rt"   : [ "oic.r.automaticdocumentfeeder" ],
+    "if"   : [ "oic.if.s","oic.if.baseline" ]
+  },
+  {
+    "path" : "/mode",
+    "rt"   : [ "oic.r.mode" ],
+    "if"   : [ "oic.if.a","oic.if.baseline" ]
+  },
+  {
+    "path" : "/loc",
+    "rt"   : [ "oic.r.location.civic" ],
+    "if"   : [ "oic.if.rw","oic.if.baseline" ]
+  }
+]
