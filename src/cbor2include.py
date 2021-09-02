@@ -90,9 +90,9 @@ if (args.file):
 
     f.write("#define introspection_data_size ")
     f.write(str(size_cbor))
-    f.write("  /* size of the CBOR */\n")
+    f.write(" /* size of the CBOR */\n")
 
-    f.write("const uint8_t introspection_data[] = {\n")
+    f.write("const uint8_t introspection_data[] = {\n ")
     counter = 0
     for item in cbor_data[:-1]:
         counter += 1
@@ -101,7 +101,7 @@ if (args.file):
         f.write(hex(int_item))
         f.write(",")
         if counter == 12:
-            f.write("\n")
+            f.write("\n ")
             counter = 0
     f.write(hex(int(cbor_data[len(cbor_data) - 1])))
 
