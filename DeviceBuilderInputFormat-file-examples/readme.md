@@ -13,7 +13,8 @@ for example:
 - changing of the interface (as required if removal of post)
   
 The property that is being used to find the resource is the __rt__ value.
-The __rt__ value is being used as lookup towards the oneIOTa/Core github repos where the resource will be used from.
+The __rt__ value is being used as lookup towards the 
+IoTDataModels/Core github repos where the resource will be used from.
 
 ## Table of Contents
 
