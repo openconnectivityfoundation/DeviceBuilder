@@ -130,7 +130,7 @@ fi
 
 if [ ! -f $MODELS_DIR/README.md ]
 then
-echo "== installing oneIOTa models"
+echo "== installing IoTDataModels models"
 ORGDIR=`pwd`
 cd ..
 git clone https://github.com/openconnectivityfoundation/IoTDataModels.git --branch master

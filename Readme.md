@@ -5,7 +5,7 @@
 This Tool has various functions to work with OCF swagger type definitions.
 The base function of DeviceBuilder is to:
 
-- create a single Swagger2.0 file from OCF swagger type definitions (oneIOTa, Core,...)
+- create a single Swagger2.0 file from OCF swagger type definitions (IoTDataModels, Core,...)
 The single Swagger definition file of a full device (application level resources) can be used for:
   - code generation (as input of [swagger2x](https://openconnectivityfoundation.github.io/swagger2x))
   - generation of the introspection file.
@@ -46,7 +46,7 @@ Typical flow to create an OCF device using DeviceBuilder is:
         - see for list of OCF Devices [the Device specification](https://openconnectivity.org/specs/OCF_Device_Specification.pdf) or use [the interactive webpage](https://openconnectivityfoundation.github.io/devicemodels/docs/index.html)
         - choosing an OCF Device Type determines the mandatory resources that has to be implemented.
     - Add optional resources to the device:
-      - This can be any resource described in [oneIOTa](https://www.oneiota.org) or from the [Resource Type specification](https://openconnectivity.org/specs/OCF_Resource_Type_Specification.pdf).
+      - This can be any resource described in [IoTDataModels](https://github.com/openconnectivityfoundation/IoTDataModels) or from the [Resource Type specification](https://openconnectivity.org/specs/OCF_Resource_Type_Specification.pdf).
         - Alternatively one can [search interactively](https://openconnectivityfoundation.github.io/devicemodels/docs/resource.html)
 - Determine which code generator needs to be used:
   - [IoTivity-Lite](www.iotivity.org): C code (for Linux, Windows,..)
